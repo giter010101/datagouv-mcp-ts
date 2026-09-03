@@ -47,20 +47,11 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Lint (Biome)
-        run: pnpm lint
-
-      - name: Layering (core ← clients ← formats ← tools ← server)
-        run: pnpm check:layers
+      - name: Check (typecheck + lint + layers + tests + build)
+        run: pnpm check
 
       - name: Offline tests with coverage
         run: pnpm test:coverage
-
-      - name: Build
-        run: pnpm build
 
       - name: Smoke the bundle (--version / --help)
         run: |
