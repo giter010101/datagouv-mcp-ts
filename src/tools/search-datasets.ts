@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { DatasetSearchFilters } from "../clients/types.js";
 import { truncate } from "../core/text.js";
 import type { DatasetSummary, Page } from "../core/types.js";
 import type { ToolDeps } from "./deps.js";
@@ -26,6 +27,38 @@ export const searchDatasetsInputShape = {
     .enum(LAST_UPDATE_RANGES)
     .optional()
     .describe("Only datasets updated recently: last_30_days, last_12_months or last_3_years."),
+  organization: z
+    .string()
+    .optional()
+    .describe("Organization ID facet (id, not slug; e.g. INSEE is 61937d50e54eade2bbf8e8df)."),
+  tag: z
+    .string()
+    .optional()
+    .describe("Tag slug facet. Comma-separated for several tags (ANDed)."),
+  license: z.string().optional().describe("License slug facet (e.g. fr-lo)."),
+  format: z
+    .string()
+    .optional()
+    .describe(
+      "Resource format facet (e.g. csv). Matches datasets that have at least one resource of that format.",
+    ),
+  badge: z
+    .string()
+    .optional()
+    .describe("Dataset badge facet: hvd, inspire, spd, sr (e.g. hvd for High Value Datasets)."),
+  geozone: z
+    .string()
+    .optional()
+    .describe("Spatial geozone id (e.g. country:fr, fr:departement:75)."),
+  granularity: z
+    .string()
+    .optional()
+    .describe("Spatial granularity (e.g. commune, department, other)."),
+  schema: z
+    .string()
+    .optional()
+    .describe("schema.data.gouv.fr name (e.g. etalab/schema-irve-statique)."),
+  topic: z.string().optional().describe("Topic id facet."),
 };
 
 export const searchDatasetsOutputShape = {
@@ -63,6 +96,7 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, To
   outputSchema: searchDatasetsOutputShape,
   annotations: READ_ONLY_EXTERNAL_API_TOOL,
   async handler(input, ctx) {
+    const filters = toSearchFilters(input);
     const cleaned = cleanSearchQuery(input.query);
     let usedQuery = cleaned === "" ? input.query : cleaned;
     let result = await ctx.deps.datagouv.searchDatasets({
@@ -71,6 +105,7 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, To
       pageSize: input.page_size,
       sort: input.sort,
       lastUpdateRange: input.last_update_range,
+      filters,
     });
 
     // Legacy behaviour: if stop-word cleaning yields nothing, retry with the original query.
@@ -83,6 +118,7 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, To
         pageSize: input.page_size,
         sort: input.sort,
         lastUpdateRange: input.last_update_range,
+        filters,
       });
     }
 
@@ -101,6 +137,35 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, To
     };
   },
 });
+
+export function toSearchFilters(input: {
+  organization?: string;
+  tag?: string;
+  license?: string;
+  format?: string;
+  badge?: string;
+  geozone?: string;
+  granularity?: string;
+  schema?: string;
+  topic?: string;
+}): DatasetSearchFilters | undefined {
+  const tags = input.tag
+    ?.split(",")
+    .map((s) => s.trim())
+    .filter((s) => s !== "");
+  const filters: DatasetSearchFilters = {
+    organization: input.organization,
+    tag: tags && tags.length > 0 ? tags : undefined,
+    license: input.license,
+    format: input.format,
+    badge: input.badge,
+    geozone: input.geozone,
+    granularity: input.granularity,
+    schema: input.schema,
+    topic: input.topic,
+  };
+  return Object.values(filters).some((v) => v !== undefined) ? filters : undefined;
+}
 
 export function datasetToStructured(ds: DatasetSummary) {
   return {

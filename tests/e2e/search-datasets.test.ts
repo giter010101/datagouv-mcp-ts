@@ -32,11 +32,20 @@ describe("MCP e2e: search_datasets", () => {
     });
     const props = tool?.inputSchema.properties ?? {};
     expect(Object.keys(props).sort()).toEqual([
+      "badge",
+      "format",
+      "geozone",
+      "granularity",
       "last_update_range",
+      "license",
+      "organization",
       "page",
       "page_size",
       "query",
+      "schema",
       "sort",
+      "tag",
+      "topic",
     ]);
     expect(tool?.inputSchema.required).toEqual(["query"]);
   });
@@ -130,6 +139,39 @@ describe("MCP e2e: search_datasets", () => {
     );
     expect(fetchImpl.calls[0]?.searchParams.get("sort")).toBe("-last_update");
     expect(fetchImpl.calls[0]?.searchParams.get("last_update_range")).toBe("last_30_days");
+  });
+
+  it("passes facet filters through to API v2 search", async () => {
+    const fetchImpl = routedFetch([
+      { match: "/api/2/datasets/search/", respond: () => Response.json(EMPTY) },
+    ]);
+    server = await startTestServer({ fetchImpl });
+
+    await server.client.callTool({
+      name: "search_datasets",
+      arguments: {
+        query: "population",
+        organization: "61937d50e54eade2bbf8e8df",
+        tag: "insee, recensement",
+        license: "fr-lo",
+        format: "csv",
+        badge: "hvd",
+        geozone: "country:fr",
+        granularity: "commune",
+        schema: "etalab/schema-irve-statique",
+        topic: "topic-id",
+      },
+    });
+    const params = fetchImpl.calls[0]?.searchParams;
+    expect(params?.get("organization")).toBe("61937d50e54eade2bbf8e8df");
+    expect(params?.get("tag")).toBe("insee,recensement");
+    expect(params?.get("license")).toBe("fr-lo");
+    expect(params?.get("format")).toBe("csv");
+    expect(params?.get("badge")).toBe("hvd");
+    expect(params?.get("geozone")).toBe("country:fr");
+    expect(params?.get("granularity")).toBe("commune");
+    expect(params?.get("schema")).toBe("etalab/schema-irve-statique");
+    expect(params?.get("topic")).toBe("topic-id");
   });
 
   it("rejects invalid input at the protocol level", async () => {
