@@ -1,0 +1,84 @@
+name: Release
+
+# Changesets-driven release (see .agent/skills/release.md):
+#   1. Every user-facing PR adds a `.changeset/*.md` file.
+#   2. On push to main this workflow opens/refreshes the "chore(release): version packages" PR
+#      (runs `pnpm version-packages` → bumps package.json, folds changesets into CHANGELOG.md).
+#   3. Merging that PR re-runs the workflow with no pending changesets: it builds, publishes to npm
+#      with provenance (only when the NPM_TOKEN secret is configured), tags `v<version>` and creates
+#      the GitHub release from the CHANGELOG section. The tag then triggers docker.yml.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: "1"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # changesets needs history to detect changed packages
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Quality gate
+        run: pnpm check
+
+      - name: Detect npm token
+        id: npm
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "${NPM_TOKEN}" ]; then
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::NPM_TOKEN secret not set — version PR only, npm publish skipped."
+          fi
+
+      - name: Version PR / publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          title: "chore(release): version packages"
+          commit: "chore(release): version packages"
+          version: pnpm version-packages
+          # Empty string disables publishing (action still manages the version PR).
+          publish: ${{ steps.npm.outputs.has_token == 'true' && 'pnpm release' || '' }}
+          createGithubReleases: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_CONFIG_PROVENANCE: "true"
+
+      - name: Summary
+        run: |
+          {
+            echo "### Release"
+            echo "- published: \`${{ steps.changesets.outputs.published }}\`"
+            echo "- packages: \`${{ steps.changesets.outputs.publishedPackages }}\`"
+            echo "- npm token present: \`${{ steps.npm.outputs.has_token }}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
