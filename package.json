@@ -37,6 +37,7 @@
     "test:conformance": "tsx scripts/conformance.ts",
     "fixtures:record": "tsx scripts/record-fixtures.ts",
     "evidence": "tsx scripts/evidence.ts",
+    "evidence:check": "tsx scripts/evidence-coverage.ts",
     "check": "pnpm typecheck && pnpm lint && pnpm check:layers && pnpm test && pnpm build",
     "changeset": "changeset",
     "version-packages": "changeset version",
