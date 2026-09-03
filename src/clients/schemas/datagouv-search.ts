@@ -33,6 +33,8 @@ export const apiDatasetSearchResponseSchema = z.looseObject({
   page_size: z.number().int().nullish(),
   total: z.number().int().nullish(),
   next_page: z.string().nullish(),
+  /** Facet name → buckets. Bucket shapes vary (`[value, count]` tuples or `{value,count}` objects). */
+  facets: z.record(z.string(), z.unknown()).nullish(),
 });
 
 export type ApiDatasetSearchItem = z.infer<typeof apiDatasetSearchItemSchema>;

@@ -119,6 +119,13 @@ export interface OrganizationSummary {
   url: string;
 }
 
+export interface OrganizationDetail extends OrganizationSummary {
+  description: string;
+  businessNumberId: string | undefined;
+  createdAt: string | undefined;
+  logo: string | undefined;
+}
+
 export interface DataserviceSummary {
   id: string;
   title: string;
@@ -151,6 +158,16 @@ export interface ReuseSummary {
   url: string;
 }
 
+export interface ReuseDetail extends ReuseSummary {
+  description: string;
+  tags: string[];
+  datasets: Array<{ id: string; title: string }>;
+  createdAt: string | undefined;
+  lastModified: string | undefined;
+  /** Individual owner (when the reuse is not published by an organization). */
+  owner: OrganizationRef | undefined;
+}
+
 export interface TopicSummary {
   id: string;
   name: string;
@@ -158,6 +175,57 @@ export interface TopicSummary {
   description: string;
   tags: string[];
   url: string;
+}
+
+export interface TopicDetail extends TopicSummary {
+  organization: OrganizationRef | undefined;
+  createdAt: string | undefined;
+  lastModified: string | undefined;
+  /** Total number of elements (datasets, dataservices, reuses, external links) in the topic. */
+  elementsCount: number;
+  featured: boolean;
+}
+
+/** One entry of a topic (API v2 `/topics/{id}/elements/`). `element` is a reference, not a full object. */
+export interface TopicElement {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  /** udata class of the referenced object (`Dataset`, `Dataservice`, `Reuse`), `undefined` for external links. */
+  elementClass: string | undefined;
+  elementId: string | undefined;
+  /** Web URL of the referenced object when it can be derived (datasets, reuses, dataservices). */
+  url: string | undefined;
+}
+
+export interface SpatialZone {
+  id: string;
+  code: string;
+  name: string;
+  level: string;
+  uri: string | undefined;
+}
+
+export interface SpatialLevel {
+  id: string;
+  name: string;
+}
+
+export interface LicenseInfo {
+  id: string;
+  title: string;
+  url: string | undefined;
+  flags: string[];
+  alternateUrls: string[];
+}
+
+/** `/site/` aggregate figures (datasets, organizations, reuses, dataservices…). */
+export interface SiteInfo {
+  id: string;
+  title: string;
+  version: string | undefined;
+  metrics: Record<string, number>;
 }
 
 /** One row of the Tabular API / Metrics API: column name → JSON value. */

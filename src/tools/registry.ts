@@ -1,14 +1,19 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { toDatagouvError } from "../core/errors.js";
+import { z } from "zod";
+import { type DatagouvError, toDatagouvError } from "../core/errors.js";
 import { childLogger, type Logger } from "../core/logger.js";
 import { capOutput } from "../core/text.js";
-import type { AnyToolDefinition, ToolResult } from "./types.js";
+import type { AnyToolDefinition, ToolCallEvent, ToolResult } from "./types.js";
 
 export interface RegistryOptions {
   /** Soft cap for text content per call (see ADR 0008). */
   maxOutputChars: number;
   logger?: Logger;
+  /** Fire-and-forget observer for every call (Matomo/Sentry adapters live in `server/telemetry`). */
+  onToolCall?: (event: ToolCallEvent) => void;
+  /** Observer for failed calls (error reporting). Never throws back into the tool. */
+  onToolError?: (error: DatagouvError, event: ToolCallEvent) => void;
 }
 
 /**
@@ -29,6 +34,7 @@ export function registerTool<TDeps>(
       title: definition.title,
       description: definition.description,
       inputSchema: definition.inputSchema,
+      ...(definition.outputSchema ? { outputSchema: withTruncationFlag(definition) } : {}),
       annotations: definition.annotations,
     },
     async (args, extra) => {
@@ -41,15 +47,43 @@ export function registerTool<TDeps>(
           signal: extra.signal,
           requestId: extra.requestId,
         });
-        log.info({ ms: Date.now() - started }, "tool completed");
+        const durationMs = Date.now() - started;
+        log.info({ ms: durationMs }, "tool completed");
+        emit(options, { tool: definition.name, durationMs, ok: true, requestId: extra.requestId });
         return toCallToolResult(result, options.maxOutputChars);
       } catch (error) {
         const mapped = toDatagouvError(error);
-        log.error({ err: mapped, code: mapped.code, ms: Date.now() - started }, "tool failed");
+        const durationMs = Date.now() - started;
+        log.error({ err: mapped, code: mapped.code, ms: durationMs }, "tool failed");
+        const event: ToolCallEvent = {
+          tool: definition.name,
+          durationMs,
+          ok: false,
+          errorCode: mapped.code,
+          requestId: extra.requestId,
+        };
+        emit(options, event);
+        try {
+          options.onToolError?.(mapped, event);
+        } catch (hookError) {
+          log.warn({ err: hookError }, "onToolError hook failed");
+        }
         return toErrorResult(mapped.toJSON());
       }
     },
   );
+}
+
+function emit(options: RegistryOptions, event: ToolCallEvent): void {
+  try {
+    options.onToolCall?.(event);
+  } catch {
+    // Telemetry must never affect tool results.
+  }
+}
+
+function withTruncationFlag<TDeps>(definition: AnyToolDefinition<TDeps>): z.ZodRawShape {
+  return { ...definition.outputSchema, text_truncated: z.boolean().optional() };
 }
 
 export function registerTools<TDeps>(

@@ -32,7 +32,16 @@ export interface ToolDefinition<TShape extends z.ZodRawShape, TDeps> {
   title: string;
   description: string;
   inputSchema: TShape;
+  /**
+   * Zod raw shape describing `structuredContent` (ADR 0008). Keep it permissive
+   * (`.optional()` everywhere it may be absent): the SDK validates successful
+   * results against it and would otherwise turn a formatting slip into a
+   * protocol error. `text_truncated` is appended automatically by the registry.
+   */
+  outputSchema?: z.ZodRawShape;
   annotations: ToolAnnotations;
+  /** True for the 10 tools inherited from the Python server (names/params frozen). */
+  legacy?: boolean;
   // Method syntax (not an arrow property) on purpose: parameter bivariance lets
   // tools with specific shapes be stored in a `ToolDefinition<z.ZodRawShape, D>[]`.
   handler(input: z.output<z.ZodObject<TShape>>, ctx: ToolContext<TDeps>): Promise<ToolResult>;
@@ -47,3 +56,13 @@ export function defineTool<TShape extends z.ZodRawShape, TDeps>(
 
 /** Erased element type for heterogeneous tool lists. */
 export type AnyToolDefinition<TDeps> = ToolDefinition<z.ZodRawShape, TDeps>;
+
+/** Emitted by the registry after every call (telemetry hook, see `server/telemetry`). */
+export interface ToolCallEvent {
+  tool: string;
+  durationMs: number;
+  ok: boolean;
+  /** `DatagouvError.code` when `ok === false`. */
+  errorCode?: string;
+  requestId?: string | number;
+}

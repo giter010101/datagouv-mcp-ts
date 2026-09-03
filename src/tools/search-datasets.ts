@@ -1,14 +1,11 @@
 import { z } from "zod";
-import type { DatagouvSearchClient } from "../clients/datagouv-client.js";
 import { truncate } from "../core/text.js";
 import type { DatasetSummary, Page } from "../core/types.js";
+import type { ToolDeps } from "./deps.js";
 import { READ_ONLY_EXTERNAL_API_TOOL } from "./shared/annotations.js";
+import { datasetSummarySchema, pageOutputShape } from "./shared/output-schemas.js";
 import { cleanSearchQuery } from "./shared/search-query.js";
 import { defineTool } from "./types.js";
-
-export interface SearchDatasetsDeps {
-  datagouv: DatagouvSearchClient;
-}
 
 export const LAST_UPDATE_RANGES = ["last_30_days", "last_12_months", "last_3_years"] as const;
 
@@ -29,11 +26,34 @@ export const searchDatasetsInputShape = {
     .enum(LAST_UPDATE_RANGES)
     .optional()
     .describe("Only datasets updated recently: last_30_days, last_12_months or last_3_years."),
+  organization: z
+    .string()
+    .optional()
+    .describe("Facet: organization ID (from search_organizations) to restrict results to one publisher."),
+  tag: z.string().optional().describe("Facet: exact tag slug (e.g. 'transport')."),
+  license: z.string().optional().describe("Facet: license ID (e.g. 'lov2', 'odc-odbl')."),
+  format: z.string().optional().describe("Facet: resource format present in the dataset (e.g. 'csv', 'geojson', 'parquet')."),
+  badge: z
+    .string()
+    .optional()
+    .describe("Facet: dataset badge, e.g. 'hvd' (High Value Dataset, EU regulation) or 'spd' (public service data)."),
+  geozone: z.string().optional().describe("Facet: spatial zone ID (e.g. 'fr:commune:75056'); find IDs with suggest(kind='zone')."),
+  granularity: z.string().optional().describe("Facet: spatial granularity (e.g. 'fr:commune', 'fr:departement', 'country')."),
+  schema: z.string().optional().describe("Facet: schema.data.gouv.fr schema name (e.g. 'etalab/schema-irve-statique')."),
+  topic: z.string().optional().describe("Facet: topic ID (from list_topics)."),
 };
 
-export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, SearchDatasetsDeps>({
+export const searchDatasetsOutputShape = {
+  query: z.string(),
+  effective_query: z.string().describe("Query actually sent after stop-word cleaning / fallback."),
+  ...pageOutputShape,
+  datasets: z.array(datasetSummarySchema),
+};
+
+export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, ToolDeps>({
   name: "search_datasets",
   title: "Search datasets",
+  legacy: true,
   description: [
     "Search for datasets on data.gouv.fr by keywords.",
     "",
@@ -47,18 +67,34 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, Se
     "results to recently updated datasets: last_30_days, last_12_months,",
     "last_3_years.",
     "",
+    "Optional facets narrow the search: organization, tag, license, format, badge (e.g. 'hvd'),",
+    "geozone, granularity, schema, topic. Facets are ANDed with the keywords.",
+    "",
     "Returns the total match count, the current page and for each dataset: title, ID,",
     "short description, organization, tags, resource count and URL.",
-    "Typical workflow: search_datasets → list_dataset_resources → query_resource_data.",
+    "Typical workflow: search_datasets → get_dataset_resources_summary (or list_dataset_resources) → query_resource / preview_resource.",
   ].join("\n"),
   inputSchema: searchDatasetsInputShape,
+  outputSchema: searchDatasetsOutputShape,
   annotations: READ_ONLY_EXTERNAL_API_TOOL,
   async handler(input, ctx) {
+    const filters = {
+      organization: input.organization,
+      tag: input.tag ? [input.tag] : undefined,
+      license: input.license,
+      format: input.format,
+      badge: input.badge,
+      geozone: input.geozone,
+      granularity: input.granularity,
+      schema: input.schema,
+      topic: input.topic,
+    };
     const baseParams = {
       page: input.page,
       pageSize: input.page_size,
       sort: input.sort,
       lastUpdateRange: input.last_update_range,
+      filters: Object.values(filters).some((v) => v !== undefined) ? filters : undefined,
     };
 
     const cleaned = cleanSearchQuery(input.query);
@@ -81,14 +117,14 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, Se
         page: result.page,
         page_size: result.pageSize,
         has_next: result.hasNext,
-        datasets: result.items.map(toStructured),
+        datasets: result.items.map(datasetToStructured),
       },
       howToGetMore: result.hasNext ? `Call again with page=${result.page + 1}.` : undefined,
     };
   },
 });
 
-function toStructured(ds: DatasetSummary) {
+export function datasetToStructured(ds: DatasetSummary) {
   return {
     id: ds.id,
     slug: ds.slug,
