@@ -50,3 +50,18 @@ What did we decide?
 ## Template
 
 Copy this structure for new ADRs. No separate template file needed.
+
+## Index
+
+| ADR | Title | Status |
+|-----|-------|--------|
+| `0001-package-at-root-legacy-move.md` | TS package at repo root; Python moved to `legacy/python/` | accepted |
+| `0002-stack-choices.md` | Node 22, pnpm, TS 5.9 strict ESM, SDK 1.30, vitest 5, Biome 2, tsdown 0.21, pino | accepted |
+| `0003-http-framework-and-transports.md` | Hono + web-standard Streamable HTTP (stateless), stdio default, host/origin guard | accepted |
+| `0004-layering.md` | `core ← clients ← formats ← tools ← server`, enforced by `check-layers` | accepted |
+| `0005-zod-version.md` | Zod 4 only; raw shapes for tool inputs; loose objects for APIs | accepted |
+| `0006-optional-duckdb-engine.md` | `QueryEngine` interface; DuckDB optional (`ENABLE_DUCKDB`), pure-JS fallback | accepted |
+| `0007-tool-naming-and-compat.md` | Legacy tool names/params frozen; naming grammar for new tools | accepted |
+| `0008-output-shaping-policy.md` | text + `structuredContent`, `MAX_OUTPUT_CHARS`, errors as `isError` results | accepted |
+| `0009-caching-and-http-policy.md` | Shared HttpClient (timeout/retry), LRU cache TTLs, download limits | accepted |
+| `0010-testing-and-evidence-strategy.md` | Test pyramid, fixtures via `fetchImpl`, live gating, evidence reports | accepted |

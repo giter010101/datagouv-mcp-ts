@@ -26,8 +26,12 @@ Living design documents for active workstreams. First-class artifacts — not op
 
 ```
 exec-plans/
-├── README.md      # this file
-├── TEMPLATE.md    # copy to start
-├── active/        # in-progress plans
-└── completed/     # finished plans (archive)
+├── README.md                    # this file
+├── TEMPLATE.md                  # copy to start
+├── 001-typescript-rewrite.md    # MASTER plan (architecture, tools, milestones, workstreams A–E)
+├── active/                      # one plan per workstream (e.g. active/ws-a-clients.md)
+└── completed/                   # finished plans (archive)
 ```
+
+Workstream plans in `active/` reference the master plan's milestone they implement and must not
+redefine architecture decided in `001-typescript-rewrite.md` / `decisions/` (propose an ADR instead).
