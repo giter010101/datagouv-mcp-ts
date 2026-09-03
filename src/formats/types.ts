@@ -238,6 +238,18 @@ export interface TabularDataSource {
     },
   ): Promise<{ rows: Row[]; page: number; pageSize: number; total: number }>;
   isAggregationAllowed?(resourceId: string): Promise<boolean>;
+  /** Optional; when absent, accessors refuse `QuerySpec.aggregate` on the Tabular path. */
+  aggregate?(
+    resourceId: string,
+    query: {
+      groupBy: string[];
+      metrics: Array<{ op: AggregationOp; column?: string }>;
+      filters?: TabularFilter[];
+      sort?: TabularSort[];
+      page?: number;
+      pageSize?: number;
+    },
+  ): Promise<{ rows: Row[]; page: number; pageSize: number; total: number }>;
 }
 
 /**

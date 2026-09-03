@@ -21,8 +21,8 @@ as they land changes; the release PR moves them into the new version section
 - New environment variables: `MCP_TRANSPORT`, `MCP_ALLOWED_HOSTS`, `MCP_ALLOWED_ORIGINS`,
   `HTTP_TIMEOUT_MS`, `HTTP_RETRIES`, `MAX_DOWNLOAD_BYTES`, `CACHE_MAX_ENTRIES`, `CACHE_DEFAULT_TTL_MS`,
   `MAX_OUTPUT_CHARS`, `ENABLE_DUCKDB` (legacy names unchanged, see `docs/configuration.md`).
-- Tool `search_datasets` ported with legacy-compatible name, parameters and behaviour
-  (stop-word cleaning + fallback).
+- Formats layer (workstream B): capability detection (already present) plus **resource accessors** for Tabular API, Hydra/native Parquet, CSV/TSV (gzip), XLSX/XLS/ODS, JSON/JSONL, GeoJSON, ZIP listing + member recurse, shapefile-in-zip, XML/KML, PDF/HTML/text, OGC API endpoints, and a metadata-only fallback that never throws. Stable exports: `defaultAccessors()`, `createAccessorRegistry()`, `openResource()`.
+- Optional DuckDB query engine remains behind `ENABLE_DUCKDB` + `@duckdb/node-api`; pure-JS engine always available (filters/sort/page/aggregations aligned with the Tabular API).
 - Multi-stage Docker image (`node:22-slim`, non-root, `HEALTHCHECK` on `/health`), `.dockerignore`
   and `docker-compose.yml` passing every documented variable through.
 - GitHub Actions: `ci.yml` (Node 22/24 matrix: typecheck, lint, layering, offline tests with coverage,

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createHttpClient, type HttpClient } from "../../../src/core/http.js";
+import { createHttpClient, type FetchLike, type HttpClient } from "../../../src/core/http.js";
 import type {
   ResourceAnalysis,
   ResourceDetail,
@@ -136,7 +136,7 @@ export function binaryResponse(
   return new Response(bytes, { status: 200, headers });
 }
 
-export function testHttp(fetchImpl: typeof fetch): HttpClient {
+export function testHttp(fetchImpl: FetchLike): HttpClient {
   return createHttpClient({ timeoutMs: 5_000, retries: 0, fetchImpl });
 }
 
