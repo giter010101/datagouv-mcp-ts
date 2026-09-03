@@ -2,6 +2,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { APP_NAME, APP_VERSION } from "../core/version.js";
 import { ALL_TOOLS, registerTools } from "../tools/index.js";
 import type { ServerDeps } from "./deps.js";
+import { createTelemetry } from "./telemetry.js";
 
 export const SERVER_TITLE = "data.gouv.fr MCP server";
 
@@ -20,6 +21,10 @@ export function createMcpServer(deps: ServerDeps): McpServer {
     { name: APP_NAME, version: APP_VERSION, title: SERVER_TITLE },
     { instructions: SERVER_INSTRUCTIONS, capabilities: { tools: {}, logging: {} } },
   );
-  registerTools(server, ALL_TOOLS, deps, { maxOutputChars: deps.config.output.maxChars });
+  const telemetry = createTelemetry(deps.config);
+  registerTools(server, ALL_TOOLS, deps, {
+    maxOutputChars: deps.config.output.maxChars,
+    onToolCall: (event) => telemetry.onToolCall(event),
+  });
   return server;
 }
