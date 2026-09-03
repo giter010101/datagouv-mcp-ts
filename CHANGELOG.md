@@ -21,17 +21,31 @@ as they land changes; the release PR moves them into the new version section
 - New environment variables: `MCP_TRANSPORT`, `MCP_ALLOWED_HOSTS`, `MCP_ALLOWED_ORIGINS`,
   `HTTP_TIMEOUT_MS`, `HTTP_RETRIES`, `MAX_DOWNLOAD_BYTES`, `CACHE_MAX_ENTRIES`, `CACHE_DEFAULT_TTL_MS`,
   `MAX_OUTPUT_CHARS`, `ENABLE_DUCKDB` (legacy names unchanged, see `docs/configuration.md`).
-- Formats layer (workstream B): capability detection (already present) plus **resource accessors** for Tabular API, Hydra/native Parquet, CSV/TSV (gzip), XLSX/XLS/ODS, JSON/JSONL, GeoJSON, ZIP listing + member recurse, shapefile-in-zip, XML/KML, PDF/HTML/text, OGC API endpoints, and a metadata-only fallback that never throws. Stable exports: `defaultAccessors()`, `createAccessorRegistry()`, `openResource()`.
-- Optional DuckDB query engine remains behind `ENABLE_DUCKDB` + `@duckdb/node-api`; pure-JS engine always available (filters/sort/page/aggregations aligned with the Tabular API).
+- Formats layer (workstream B): capability detection plus **resource accessors** for Tabular API,
+  Hydra/native Parquet, CSV/TSV (gzip), XLSX/XLS/ODS, JSON/JSONL, GeoJSON, ZIP listing + member
+  recurse, shapefile-in-zip, XML/KML, PDF/HTML/text, OGC API endpoints, and a metadata-only
+  fallback that never throws. Stable exports: `defaultAccessors()`, `createAccessorRegistry()`,
+  `openResource()`.
+- Optional DuckDB query engine behind `ENABLE_DUCKDB` + `@duckdb/node-api`; pure-JS engine always
+  available (filters/sort/page/aggregations aligned with the Tabular API).
+- **21 MCP tools** registered in `ALL_TOOLS` (10 legacy first, then 11 new):
+  `check_resource_availability`, `get_dataset_resources_summary`, `get_resource_schema`,
+  `get_reuse_info`, `list_high_value_datasets`, `list_topics`, `get_topic`, `preview_resource`,
+  `query_resource`, `search_reuses`, `suggest`.
+- `tsx scripts/print-tool-catalog.ts` prints the README markdown catalogue from `ALL_TOOLS`.
+- E2E `tools/list` snapshot (`tests/e2e/tools-list.test.ts`) asserting every registered name,
+  count ≥ 21, and the ten legacy names in the first ten slots.
 - Multi-stage Docker image (`node:22-slim`, non-root, `HEALTHCHECK` on `/health`), `.dockerignore`
   and `docker-compose.yml` passing every documented variable through.
-- GitHub Actions: `ci.yml` (Node 22/24 matrix: typecheck, lint, layering, offline tests with coverage,
+- GitHub Actions: `ci.yml` (Node 22/24: typecheck, lint, layering, offline tests with coverage,
   build, Docker smoke), `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
-  `docker.yml` (multi-arch GHCR image with provenance/SBOM), `release.yml` (changesets version PR,
-  npm publish with provenance gated on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.
-- Release tooling: `@changesets/cli` in `alpha` pre-release mode with an initial changeset for `1.0.0-alpha.1`.
-- Documentation: rewritten `README.md` (quick start, every client configuration in stdio and HTTP variants,
-  tool catalogue, architecture, env table), `docs/architecture.md`, `docs/deployment.md`,
+  `docker.yml` (branch: build+`/health` without registry push; main/tags: multi-arch GHCR image
+  with provenance/SBOM), `release.yml` (changesets version PR, npm publish with provenance gated
+  on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.
+- Release tooling: `@changesets/cli` in `alpha` pre-release mode with an initial changeset for
+  `1.0.0-alpha.1`.
+- Documentation: rewritten `README.md` (quick start, every client configuration in stdio and HTTP
+  variants, tool catalogue, architecture, env table), `docs/architecture.md`, `docs/deployment.md`,
   `docs/configuration.md`, `docs/tools.md`, `docs/development.md`, `docs/migration-from-python.md`,
   `CONTRIBUTING.md`, `SECURITY.md`, `.editorconfig`.
 
@@ -56,7 +70,8 @@ as they land changes; the release PR moves them into the new version section
 
 ---
 
-# Python (legacy) history
+## Python (legacy) history
+
 
 ## 0.2.30 (2026-07-17)
 
