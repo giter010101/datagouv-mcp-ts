@@ -40,7 +40,8 @@
     "check": "pnpm typecheck && pnpm lint && pnpm check:layers && pnpm test && pnpm build",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "docs:tools": "tsx docs/generate-tools-reference.mts"
   },
   "dependencies": {
     "@hono/node-server": "2.1.1",
