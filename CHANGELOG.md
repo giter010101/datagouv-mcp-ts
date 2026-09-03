@@ -39,15 +39,21 @@ as they land changes; the release PR moves them into the new version section
   and `docker-compose.yml` passing every documented variable through.
 - Optional **Matomo** tool-call beacons and **Sentry** error logging via `createTelemetry` / `onToolCall`
   (`MATOMO_*`, `SENTRY_*` env vars; no-op when unset).
-- Live evidence reports for **all 21 registered MCP tools** (`docs/evidence/*-live.md`, `pnpm evidence:check`).
+- Live evidence reports for **all 21 registered MCP tools** (`docs/evidence/*-live.md`;
+  `pnpm evidence:check` indexes 42 PASS rows). Automated live vitest smoke for
+  `search_datasets`, `get_dataset_info`, `list_dataset_resources`, `search_organizations`,
+  `query_resource_data`, and `preview_resource` (`DATAGOUV_LIVE=1`, loose assertions against
+  research/evidence fixture IDs). Nightly: `.github/workflows/nightly-live.yml` (`pnpm test:live`).
 - Loopback MCP conformance script (`pnpm test:conformance`: HTTP initialize + `tools/list` + `tools/call`).
 - GitHub Actions: `ci.yml` (Node 22/24: typecheck, lint, layering, offline tests with coverage,
-  informational MCP conformance, build, Docker smoke), `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
+  required `pnpm evidence:check`, required `pnpm test:conformance`, build, Docker smoke;
+  `docs/evidence/**` is **not** path-ignored so evidence-only commits still run the check job),
+  `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
   `docker.yml` (branch: build+`/health` without registry push; main/tags: multi-arch GHCR image
   with provenance/SBOM), `release.yml` (changesets version PR, npm publish with provenance gated
   on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.
-- Release tooling: `@changesets/cli` in `alpha` pre-release mode with an initial changeset for
-  `1.0.0-alpha.1`.
+- Release tooling: `@changesets/cli` in `alpha` pre-release mode. Next cut is **`1.0.0-alpha.1`**
+  (changesets pending; M6 documented). Not a production `1.0.0` and not published to npm from this work.
 - Documentation: rewritten `README.md` (quick start, every client configuration in stdio and HTTP
   variants, tool catalogue, architecture, env table), `docs/architecture.md`, `docs/deployment.md`,
   `docs/configuration.md`, `docs/tools.md`, `docs/development.md`, `docs/migration-from-python.md`,

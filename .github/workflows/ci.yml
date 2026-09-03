@@ -5,12 +5,10 @@ on:
     branches: [main, "cursor/**"]
     paths-ignore:
       - "legacy/**"
-      - "docs/evidence/**"
   pull_request:
     branches: [main]
     paths-ignore:
       - "legacy/**"
-      - "docs/evidence/**"
   workflow_dispatch:
 
 permissions:
@@ -53,8 +51,10 @@ jobs:
       - name: Offline tests with coverage
         run: pnpm test:coverage
 
+      - name: Evidence coverage gate (21 tools × offline + live)
+        run: pnpm evidence:check
+
       - name: MCP loopback conformance (initialize + tools/list + tools/call)
-        continue-on-error: true
         run: pnpm test:conformance
 
       - name: Smoke the bundle (--version / --help)

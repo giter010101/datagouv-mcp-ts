@@ -1,11 +1,12 @@
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { startTestServer, type TestServer } from "../helpers/mcp-client.js";
+import { LIVE } from "./live-gate.js";
 
 /**
  * Live smoke tests against the real data.gouv.fr API.
- * Gated by RUN_LIVE_TESTS=1 (see vitest.config.ts); run with `pnpm test:live`.
+ * Gated by DATAGOUV_LIVE=1 (alias RUN_LIVE_TESTS=1); run with `pnpm test:live`.
  */
-describe.skipIf(process.env.RUN_LIVE_TESTS !== "1")("live: search_datasets", () => {
+describe.skipIf(!LIVE)("live: search_datasets", () => {
   let server: TestServer;
 
   beforeAll(async () => {
