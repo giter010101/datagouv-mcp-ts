@@ -1,11 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { withClients } from "./harness.js";
+import { loadFixture } from "../helpers/mock-datagouv.js";
+import { sanitizeSchemaCatalog, withClients } from "./harness.js";
 
 describe("HttpSchemaClient (offline fixtures)", () => {
   it("listSchemas loads the recorded catalogue and filters by query", async () => {
     await withClients(
       (mock) => {
-        mock.schema("/schemas/schemas.json", { fixture: "schema/schemas-catalog" });
+        mock.schema("/schemas/schemas.json", {
+          json: sanitizeSchemaCatalog(loadFixture("schema/schemas-catalog")),
+        });
       },
       async (clients) => {
         const all = await clients.schema.listSchemas();
@@ -22,7 +25,9 @@ describe("HttpSchemaClient (offline fixtures)", () => {
   it("getSchema resolves IRVE fields from the recorded schema document", async () => {
     await withClients(
       (mock) => {
-        mock.schema("/schemas/schemas.json", { fixture: "schema/schemas-catalog" });
+        mock.schema("/schemas/schemas.json", {
+          json: sanitizeSchemaCatalog(loadFixture("schema/schemas-catalog")),
+        });
         mock.schema("/schemas/etalab/schema-irve-statique/latest/schema-statique.json", {
           fixture: "schema/schema-irve-statique-latest",
         });
@@ -33,9 +38,7 @@ describe("HttpSchemaClient (offline fixtures)", () => {
         expect(schema.schemaType).toBe("tableschema");
         expect(schema.resolvedUrl).toContain("schema-irve-statique");
         expect(schema.fields.length).toBeGreaterThan(0);
-        expect(schema.fields.some((f) => f.name.includes("pdc") || f.name.includes("id"))).toBe(
-          true,
-        );
+        expect(schema.fields.some((f) => f.name === "nom_amenageur")).toBe(true);
       },
     );
   });

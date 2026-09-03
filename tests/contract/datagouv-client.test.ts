@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { loadFixture } from "../helpers/mock-datagouv.js";
-import { IDS, sanitizeOrgPage, withClients } from "./harness.js";
+import { IDS, sanitizeDataset, sanitizeOrgPage, withClients } from "./harness.js";
 
 describe("HttpDatagouvClient (offline fixtures)", () => {
   it("searchDatasets maps the v2 page without exposing facets", async () => {
@@ -40,7 +40,9 @@ describe("HttpDatagouvClient (offline fixtures)", () => {
   it("getDataset maps v1 detail for the Insee population dataset", async () => {
     await withClients(
       (mock) => {
-        mock.v1(`/datasets/${IDS.dataset}/`, { fixture: "datagouv/dataset-population" });
+        mock.v1(`/datasets/${IDS.dataset}/`, {
+          json: sanitizeDataset(loadFixture("datagouv/dataset-population")),
+        });
       },
       async (clients) => {
         const dataset = await clients.datagouv.getDataset(IDS.dataset);

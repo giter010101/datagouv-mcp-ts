@@ -20,6 +20,25 @@ function asRecord(value: unknown): Record<string, unknown> {
     : {};
 }
 
+/** Recorded dataset payloads redact `quality` as a string; Zod expects a map. */
+export function sanitizeDataset(raw: unknown): Record<string, unknown> {
+  const dataset = asRecord(raw);
+  return {
+    ...dataset,
+    quality:
+      typeof dataset.quality === "object" && dataset.quality !== null ? dataset.quality : undefined,
+  };
+}
+
+/** Catalogue `version` is a number; the client schema expects a string. */
+export function sanitizeSchemaCatalog(raw: unknown): Record<string, unknown> {
+  const catalog = asRecord(raw);
+  return {
+    ...catalog,
+    version: catalog.version == null ? undefined : String(catalog.version),
+  };
+}
+
 /** Recorded org payloads redact `metrics` as a string; Zod expects a map. */
 export function sanitizeOrgPage(raw: unknown): Record<string, unknown> {
   const page = asRecord(raw);
