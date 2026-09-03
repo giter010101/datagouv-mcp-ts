@@ -29,7 +29,7 @@ Recommended workflows:
 
 The parameter tables below are generated from the Zod input schemas in `src/tools/*.ts`
 (descriptions are exactly what the LLM sees). "Registered" means present in `ALL_TOOLS`
-(`src/tools/index.ts`) and therefore exposed by the server; other files are landing and will be
-registered by the tools workstream. Regenerate with `pnpm docs:tools`
+(`src/tools/index.ts`) and therefore exposed by the server. The README catalogue is generated
+with `tsx scripts/print-tool-catalog.ts`. Regenerate this page with `pnpm docs:tools`
 (`docs/generate-tools-reference.mts`) after changing a tool. Legacy names, parameters,
 defaults and clamps are frozen ([ADR 0007](../.agent/decisions/0007-tool-naming-and-compat.md)).
