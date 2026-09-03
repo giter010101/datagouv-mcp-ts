@@ -29,11 +29,14 @@ Known technical debt items. Small, frequent paydown preferred over big-bang refa
 
 | ID | Title | Impact | Status |
 |----|-------|--------|--------|
-| TD-001 | `ServerDeps.datagouv` is a `Pick` of the full client | medium | scheduled (A, C) |
+| TD-001 | `ServerDeps.datagouv` was a narrow `Pick` | medium | resolved (`createClients` + full `DatagouvClient`) |
 | TD-002 | Matomo / Sentry parsed but not wired | medium | scheduled (C) |
 | TD-003 | tsdown 0.21 / TS 5.9 pins due to Node 22.14 VM | low | open (E) |
 | TD-004 | Delete `legacy/python/` after parity | low | scheduled (orchestrator) |
 | TD-005 | HTTP transport stateless/JSON-only | low | open (C) |
+| TD-006 | Non-datagouv client stubs in `server/deps.ts` | medium | in_progress (Grok, C) |
+| TD-007 | Missing live evidence reports (20/21 tools) | medium | open (D) |
+| TD-008 | `search_datasets` facets temporarily removed | low | in_progress (Grok, C) |
 
 ## Recurring cleanup
 

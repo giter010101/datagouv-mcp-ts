@@ -13,7 +13,7 @@ Branch: `cursor/datagouv-mcp-typescript-refonte-57e0`
 ## Toolchain (must be green before you commit)
 
 `pnpm check` = `pnpm typecheck && pnpm lint && pnpm check:layers && pnpm test && pnpm build`.
-Other: `pnpm test:live` (real API, `RUN_LIVE_TESTS=1`), `pnpm evidence --tool <name> --input '<json>' [--stdio]`, `pnpm dev` / `pnpm dev:http`.
+Other: `pnpm test:live` (real API, `DATAGOUV_LIVE=1`), `pnpm evidence --tool <name> --input '<json>' [--stdio]`, `pnpm dev` / `pnpm dev:http`, `pnpm docs:tools`.
 
 ## Core rules
 
@@ -76,13 +76,14 @@ Other: `pnpm test:live` (real API, `RUN_LIVE_TESTS=1`), `pnpm evidence --tool <n
 src/
 ├── index.ts    # CLI (stdio default, --http)
 ├── core/       # config, errors, logger, cache, http, text, types, version
-├── clients/    # data.gouv API clients (types.ts = contracts, schemas/ = Zod)
-├── formats/    # capability detection, ResourceAccessor registry, engines
-├── tools/      # ToolDefinition + registry adapter, one file per tool
-└── server/     # deps composition, McpServer factory, stdio, http (Hono)
+├── clients/    # data.gouv API clients (types.ts = contracts, createClients, schemas/, mappers/)
+├── formats/    # capability detection, accessors/, parsers/, engines/, ResourceAccessor registry
+├── tools/      # ToolDefinition + registry adapter, 21 tools in ALL_TOOLS
+└── server/     # deps composition (createDeps), McpServer factory, stdio, http (Hono)
 tests/          # unit · e2e (in-memory + HTTP) · live (gated) · fixtures · helpers
-scripts/        # check-layers.ts, evidence.ts
-docs/evidence/  # generated proof-of-function reports
+scripts/        # check-layers.ts, evidence.ts, record-fixtures.ts, conformance.ts, print-tool-catalog.ts
+docs/           # architecture, configuration, deployment, tools.md (generated), evidence/
+docs/evidence/  # proof-of-function reports (live + dated)
 legacy/python/  # frozen reference, deleted at parity
 ```
 

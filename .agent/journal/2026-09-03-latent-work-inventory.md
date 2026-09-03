@@ -1,5 +1,7 @@
 # Latent work inventory — post usage-limit interrupt
 
+> **Superseded** (2026-09-03): see `journal/2026-09-03-integration-complete.md` and updated `ownership.md` for current status. This file is kept as a historical snapshot at commit `d0c984e`.
+
 **Date**: 2026-09-03  
 **Agent**: research/review (Composer 2.5)  
 **Branch**: `cursor/datagouv-mcp-typescript-refonte-57e0`  
