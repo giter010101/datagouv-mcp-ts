@@ -14,8 +14,11 @@ function report(
     resourceId: "res-1",
     primary: capabilities[0] ?? "metadata_only",
     capabilities,
+    strategy: "stream-csv",
+    confidence: "high",
     formatFamily: "tabular",
     detectedFormat,
+    compression: undefined,
     reasons: [],
     urls: {
       download: "https://example.org/f.csv",

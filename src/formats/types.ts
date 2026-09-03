@@ -1,4 +1,6 @@
 import type { TabularFilter, TabularSort } from "../clients/types.js";
+import type { HttpClient } from "../core/http.js";
+import type { Logger } from "../core/logger.js";
 import type { ResourceDetail, Row, TableSchema, TableSlice } from "../core/types.js";
 
 /**
@@ -57,14 +59,44 @@ export type FormatFamily =
   | "xml"
   | "unknown";
 
+/**
+ * Concrete access strategy chosen by the detector — the accessor that will be
+ * used first. Finer than `ResourceCapability` (which is what the LLM sees).
+ */
+export const ACCESS_STRATEGIES = [
+  "tabular-api",
+  "hydra-parquet",
+  "stream-csv",
+  "spreadsheet",
+  "json",
+  "geojson",
+  "shapefile",
+  "parquet",
+  "xml",
+  "archive",
+  "document",
+  "api-endpoint",
+  "metadata-only",
+] as const;
+
+export type AccessStrategy = (typeof ACCESS_STRATEGIES)[number];
+
+export type DetectionConfidence = "high" | "medium" | "low";
+
 export interface CapabilityReport {
   resourceId: string;
   primary: ResourceCapability;
   /** All applicable capabilities, best first (includes `primary`). */
   capabilities: ResourceCapability[];
+  /** Accessor strategy the registry will try first. */
+  strategy: AccessStrategy;
+  /** How much the detector trusts `strategy` (metadata agreement, sniffing result). */
+  confidence: DetectionConfidence;
   formatFamily: FormatFamily;
   /** Normalised format actually detected (e.g. `csv.gz` → `csv`, empty → from mime). */
   detectedFormat: string;
+  /** Transparent compression of the download (`csv.gz`), if any. */
+  compression: "gzip" | undefined;
   /** Human-readable reasons, e.g. "extras.analysis:parsing:parsing_table present". */
   reasons: string[];
   /** Safe URLs the caller may use. */
@@ -90,11 +122,21 @@ export interface CapabilityDetectorDeps {
   /** Set of resource IDs exempted from Tabular size limits. */
   crawlerExceptions: () => Promise<ReadonlySet<string>>;
   tabularApiBaseUrl: string;
+  /** In-process download cap; when known, oversized files get a warning. */
+  maxDownloadBytes?: number;
+  /**
+   * Optional: fetch the first bytes of a URL (magic-number sniffing). Used only
+   * when metadata is missing or contradictory and `offline` is false. Errors
+   * are swallowed (a failed sniff becomes a warning, never a failure).
+   */
+  sniffHead?: (url: string, bytes: number) => Promise<Uint8Array>;
 }
 
 export interface DetectOptions {
   /** Skip network probes (pure metadata decision). Default false. */
   offline?: boolean;
+  /** Bytes fetched for content sniffing (default 512). */
+  sniffBytes?: number;
 }
 
 export type CapabilityDetector = (
@@ -107,6 +149,8 @@ export interface AccessContext {
   report: CapabilityReport;
   /** Hard cap on bytes downloaded for in-process parsing. */
   maxDownloadBytes: number;
+  /** Selected sub-table for containers (sheet name, ZIP member, layer). */
+  member?: string;
   signal?: AbortSignal;
 }
 
@@ -117,12 +161,23 @@ export interface PreviewOptions {
   member?: string;
 }
 
+export type AggregationOp = "count" | "sum" | "avg" | "min" | "max";
+
+export interface AggregationSpec {
+  /** Columns to group by (empty → one global row). */
+  groupBy: string[];
+  /** Metrics; `column` is ignored for `count`. Output column is `<column>__<op>` (`count` for count). */
+  metrics: Array<{ op: AggregationOp; column?: string }>;
+}
+
 export interface QuerySpec {
   filters?: TabularFilter[];
   sort?: TabularSort[];
   columns?: string[];
   page?: number;
   pageSize?: number;
+  /** Group-by aggregation (same vocabulary as tabular-api `__groupby` / `__count`…). */
+  aggregate?: AggregationSpec;
   /** Optional SQL for engines that support it (DuckDB). Read-only SELECT only. */
   sql?: string;
 }
@@ -167,4 +222,61 @@ export interface QueryEngine {
   /** Run a read-only query over the file at `url` (`format`: csv | parquet | json | xlsx). */
   queryUrl(url: string, format: string, spec: QuerySpec, signal?: AbortSignal): Promise<TableSlice>;
   describeUrl(url: string, format: string, signal?: AbortSignal): Promise<TableSchema>;
+}
+
+/** Subset of `TabularClient` the formats layer needs (workstream A implements the full client). */
+export interface TabularDataSource {
+  getProfile(resourceId: string): Promise<TableSchema | undefined>;
+  queryData(
+    resourceId: string,
+    query: {
+      page?: number;
+      pageSize?: number;
+      filters?: TabularFilter[];
+      sort?: TabularSort[];
+      columns?: string[];
+    },
+  ): Promise<{ rows: Row[]; page: number; pageSize: number; total: number }>;
+  isAggregationAllowed?(resourceId: string): Promise<boolean>;
+}
+
+/**
+ * Everything accessors may depend on. Built once by the server (`createDeps`)
+ * or by tests with fakes. `http` is the only way to reach the network.
+ */
+export interface FormatsDeps {
+  http: HttpClient;
+  /** Absent when the Tabular API client is not wired: `tabular_api` resources then stream-parse. */
+  tabular: TabularDataSource | undefined;
+  crawlerExceptions?: () => Promise<ReadonlySet<string>>;
+  tabularApiBaseUrl: string;
+  maxDownloadBytes: number;
+  /** Engine set (pure-js always present, DuckDB optional). */
+  engines: EngineSet;
+  logger?: Logger;
+}
+
+export interface EngineSelectionHints {
+  format: string;
+  sizeBytes?: number;
+  sql?: boolean;
+}
+
+export interface EngineSet {
+  pureJs: QueryEngine;
+  duckdb: QueryEngine | undefined;
+  /** Pick DuckDB when installed and justified (sql, parquet, large file), else pure-js. */
+  select(hints: EngineSelectionHints): Promise<QueryEngine>;
+}
+
+/** Handle returned by `openResource`: the façade tools use. */
+export interface OpenedResource {
+  resource: ResourceDetail;
+  report: CapabilityReport;
+  accessor: ResourceAccessor;
+  getSchema(): Promise<TableSchema | undefined>;
+  /** Never throws for data-access failures: degrades to a `metadata` preview explaining why. */
+  preview(options?: PreviewOptions): Promise<PreviewResult>;
+  /** Throws typed `DatagouvError`s (`UNSUPPORTED_CAPABILITY`, `PAYLOAD_TOO_LARGE`, …). */
+  query(spec: QuerySpec): Promise<TableSlice>;
 }
