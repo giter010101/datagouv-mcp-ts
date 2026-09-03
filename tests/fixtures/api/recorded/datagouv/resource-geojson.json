@@ -1,0 +1,54 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/resources/7c257c68-14ec-495e-9823-99d30ccab111/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:05.951Z",
+    "note": "GeoJSON file → geo_preview"
+  },
+  "body": {
+    "dataset_id": "6a90d14d387a417c0a06cf9e",
+    "resource": {
+      "checksum": null,
+      "created_at": "2026-08-27T00:00:00+00:00",
+      "description": "Unités paysagères figurant sur le plan de Parc validé en préfecture pour la Charte 2025 - 2040",
+      "extras": {
+        "analysis:check_id": 52555595,
+        "analysis:checksum": "4ce7ef0d30c4205d4d90bd92da3a24686fea82e9",
+        "analysis:content-length": 489103,
+        "analysis:last-modified-at": "[redacted]",
+        "analysis:last-modified-detection": "[redacted]",
+        "analysis:mime-type": "application/json",
+        "analysis:parsing:error": "pmtiles_export:GeoJSON to PMTiles conversion failed with exit code 110",
+        "analysis:parsing:finished_at": "2026-08-30T16:15:25.923984+00:00",
+        "check:available": true,
+        "check:cors:allow-headers": "*",
+        "check:cors:allow-methods": "POST, GET, OPTIONS, DELETE, PUT",
+        "check:cors:allow-origin": "*",
+        "check:cors:status": 200,
+        "check:date": "[redacted]",
+        "check:headers:content-length": 489103,
+        "check:headers:content-type": "application/geo+json",
+        "check:id": 52531462,
+        "check:status": 200,
+        "check:timeout": "[redacted]"
+      },
+      "filesize": null,
+      "filetype": "remote",
+      "format": "geojson",
+      "harvest": "[redacted]",
+      "id": "7c257c68-14ec-495e-9823-99d30ccab111",
+      "internal": "[redacted]",
+      "last_modified": "2021-10-01T00:00:00+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/7c257c68-14ec-495e-9823-99d30ccab111",
+      "metrics": "[redacted]",
+      "mime": "application/geo+json",
+      "preview_url": null,
+      "schema": null,
+      "title": "ref_charte_pe_entpay_v",
+      "type": "main",
+      "url": "https://www.datasud.fr/fr/dataset/datasets/4930/resource/7178/download/"
+    }
+  }
+}

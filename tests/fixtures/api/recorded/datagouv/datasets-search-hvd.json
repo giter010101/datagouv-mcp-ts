@@ -1,0 +1,558 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/search/?badge=hvd&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:08.103Z",
+    "note": "HVD badge filter"
+  },
+  "body": {
+    "data": [
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": "BAN",
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [
+          {
+            "kind": "hvd"
+          },
+          {
+            "kind": "spd"
+          }
+        ],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=5530fbacc751df5ff937dddb&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 2,
+          "type": "GET"
+        },
+        "contact_points": [
+          {
+            "contact_form": null,
+            "email": "adresse@data.gouv.fr",
+            "id": "6835db47e4af8e82fce9b552",
+            "name": "Equipe BAN",
+            "organization": {
+              "acronym": "BAN",
+              "badges": [
+                {
+                  "kind": "public-service"
+                },
+                {
+                  "kind": "certified"
+                }
+              ],
+              "class": "Organization",
+              "id": "58e555f5c751df205d54e76b",
+              "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/40/05f4e0291e4ad49a9321071c195cce.jpg",
+              "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/40/05f4e0291e4ad49a9321071c195cce-100.jpg",
+              "name": "Base Adresse Nationale",
+              "page": "https://www.data.gouv.fr/organizations/base-adresse-nationale",
+              "permissions": {
+                "delete": false,
+                "edit": false,
+                "harvest": "[redacted]",
+                "members": false,
+                "private": false
+              },
+              "slug": "base-adresse-nationale",
+              "uri": "https://www.data.gouv.fr/api/1/organizations/base-adresse-nationale/"
+            },
+            "owner": null,
+            "role": "contact"
+          }
+        ],
+        "created_at": "2015-04-17T14:25:16.900000+00:00",
+        "deleted": null,
+        "description": "La **Base Adresse Nationale** est l’une des neuf bases de données du [service public des données de référence](https://www.data.gouv.fr/fr/reference). C'est le référentiel d'adresses **officiellement reconnu par l’administration**.\n\nService numérique d'intérêt national sur lequel sont adossées de nombreuses politiques publiques, la BAN fait partie de l'infrastructure socle du **système d’information et de communication de l’État** et est à ce titre placée sous la **responsabilité du Premier ministre** représenté par La Direction Interministérielle du Numérique (**DINUM**).\n\nL'exploitation et la diffusion de la BAN sont pilotées par l'Institut National de l'Information Géographique et forestière (**IGN**). La Base Adresse Nationale est accessible en opendata dans le cadre de la [licence ouverte Etalab](https://www.etalab.gouv.fr/licence-ouverte-open-licence/). Les données sont mises à disposition [sous forme de fichiers, de flux, et d’API](https://adresse.data.gouv.fr/outils).\n\nLa construction de la BAN est assurée en premier lieu par les communes, seules autorités compétentes en terme d’adressage. Elles sont accompagnées dans le cadre de cette mission par le *[Programme BAL](https://adresse.data.gouv.fr/programme-bal)* de l'Agence Nationale de la Cohésion des Territoires (**ANCT**).\n",
+        "description_short": null,
+        "extras": {
+          "apigouvfr:apis": [
+            {
+              "logo": "/images/api-logo/dinum.png",
+              "openness": "open",
+              "owner": "Direction Interministérielle du Numérique",
+              "owner_acronym": "DINUM",
+              "path": "/les-api/base-adresse-nationale",
+              "slug": "base-adresse-nationale",
+              "tagline": "Interrogez la Base Adresse Nationale, base de données de l’intégralité des adresses du territoire français",
+              "title": "API Adresse (Base Adresse Nationale - BAN)"
+            }
+          ],
+          "recommendations-externals": [
+            {
+              "id": "https://adresse.data.gouv.fr/",
+              "messages": {
+                "en": {
+                  "button": "Visit adresse.data.gouv.fr",
+                  "message": "The national address website « adresse.data.gouv.fr » references all addresses in France and make them usable for all.",
+                  "title": "Would you like to search for an address in the National Address Database, or manage your own addresses?"
+                },
+                "fr": {
+                  "button": "Consulter adresse.data.gouv.fr",
+                  "message": "Le site national des adresses, adresse.data.gouv.fr, référence l’intégralité des adresses du territoire et les rend utilisables par toutes et tous.",
+                  "title": "Vous souhaitez chercher une adresse dans la Base Adresse Nationale ou, pour les communes, gérer vos adresses ?"
+                }
+              },
+              "score": 50,
+              "source": "edito"
+            }
+          ],
+          "recommendations:sources": "[redacted]"
+        },
+        "featured": true,
+        "frequency": "daily",
+        "frequency_date": "2024-08-29T15:42:10+00:00",
+        "harvest": null,
+        "id": "5530fbacc751df5ff937dddb",
+        "internal": "[redacted]",
+        "last_modified": "2025-05-27T15:33:27.507000+00:00",
+        "last_update": "2026-09-03T02:37:44.966000+00:00",
+        "license": "lov2",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": "BAN",
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "58e555f5c751df205d54e76b",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/40/05f4e0291e4ad49a9321071c195cce.jpg",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/40/05f4e0291e4ad49a9321071c195cce-100.jpg",
+          "name": "Base Adresse Nationale",
+          "page": "https://www.data.gouv.fr/organizations/base-adresse-nationale",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "base-adresse-nationale",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/base-adresse-nationale/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/base-adresse-nationale",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/5530fbacc751df5ff937dddb/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 4,
+          "type": "GET"
+        },
+        "slug": "base-adresse-nationale",
+        "spatial": {
+          "geom": null,
+          "granularity": "country",
+          "zones": [
+            "country-subset:fr:dromcom",
+            "country:fr"
+          ]
+        },
+        "tags": [
+          "adresse",
+          "adresses",
+          "ban"
+        ],
+        "temporal_coverage": {
+          "end": null,
+          "start": "2015-01-01"
+        },
+        "title": "Base Adresse Nationale",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/base-adresse-nationale/"
+      },
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [
+          {
+            "kind": "hvd"
+          }
+        ],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=5cf8d9ed8b4c4110294c841d&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 1,
+          "type": "GET"
+        },
+        "contact_points": [],
+        "created_at": "2019-06-06T11:16:29.966000+00:00",
+        "deleted": null,
+        "description": "**! ATTENTION ! :** *L'anomalie identifiée a été corrigée. La diffusion des données a repris. Un rattrapage des données passées a été réalisé jusqu'en 2024 inclus.*\n\nRésultats du contrôle sanitaire de l'eau distribuée commune par commune: prélèvements et résultats des analyses réalisées dans le cadre du contrôle sanitaire réglementaire sur les unités de distribution ou les installations directement en amont, et liens entre communes et unités de distribution. Les éléments mis à disposition dans ce jeu de données correspondent à une compilation des bulletins d’analyses diffusés en ligne, commune par commune, sur le site internet du Ministère en charge de la santé : <http://eaupotable.sante.gouv.fr/>\n\n_Fréquence de mise à jour :_ mensuelle à m+1, par remplacement du fichier annuel en cours.\n\n_NB: le jeu de données sera progressivement complété avec les données des départements d'outre-mer ainsi que l'historique sur les années antérieures._\n\n### L’alimentation en eau potable\n\nLe réseau public d’eau potable dessert aujourd’hui la quasi-totalité de la population française, qu’elle habite en milieu urbain ou rural. L’eau du robinet est produite à partir d’eau prélevée par un captage dans une nappe souterraine ou dans une ressource superficielle d’eau douce (fleuves, rivières, canaux, lacs, barrages) ou d’eau de mer. Selon la qualité de l’eau prélevée, différentes étapes de traitement peuvent être nécessaires pour rendre l’eau potable et maintenir sa qualité dans les installations de…[truncated]",
+        "description_short": null,
+        "extras": {},
+        "featured": true,
+        "frequency": "monthly",
+        "frequency_date": "2019-07-06T04:00:00+00:00",
+        "harvest": null,
+        "id": "5cf8d9ed8b4c4110294c841d",
+        "internal": "[redacted]",
+        "last_modified": "2026-09-01T12:31:11.605000+00:00",
+        "last_update": "2026-09-01T12:31:11.605000+00:00",
+        "license": "lov2",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": null,
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff94a3a7292c64a77fc1",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3c/2a35d973814c2681b6941e11810ff3.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3c/2a35d973814c2681b6941e11810ff3-100.png",
+          "name": "Ministère des Solidarités et de la Santé",
+          "page": "https://www.data.gouv.fr/organizations/ministere-des-solidarites-et-de-la-sante",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "ministere-des-solidarites-et-de-la-sante",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/ministere-des-solidarites-et-de-la-sante/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/resultats-du-controle-sanitaire-de-leau-distribuee-commune-par-commune",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/5cf8d9ed8b4c4110294c841d/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 23,
+          "type": "GET"
+        },
+        "slug": "resultats-du-controle-sanitaire-de-leau-distribuee-commune-par-commune",
+        "spatial": {
+          "geom": null,
+          "granularity": "fr:commune",
+          "zones": [
+            "country:fr"
+          ]
+        },
+        "tags": [
+          "alimentation-en-eau",
+          "controle-sanitaire",
+          "distribution-d-eau"
+        ],
+        "temporal_coverage": {
+          "end": null,
+          "start": "2016-01-01"
+        },
+        "title": "Résultats du contrôle sanitaire de l'eau distribuée commune par commune",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/resultats-du-controle-sanitaire-de-leau-distribuee-commune-par-commune/"
+      },
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": "Dispositif FiLoSoFi",
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [
+          {
+            "kind": "hvd"
+          }
+        ],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=5b156279c751df40bb588de9&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 0,
+          "type": "GET"
+        },
+        "contact_points": [],
+        "created_at": "2018-06-04T18:02:01.365000+00:00",
+        "deleted": null,
+        "description": "L'objectif du dispositif FiLoSoFi est de produire un ensemble d’indicateurs sur les revenus déclarés (avant redistribution) d’une part, et sur les revenus disponibles (après redistribution et imputation de revenus financiers non déclarés) d’autre part, à l'échelle communale, supra-communale et infra-communale :\n- indicateurs usuels d'analyse de la distribution des revenus (nombres, quartiles, déciles, médiane, etc. des revenus par unité de consommation)  sur l'ensemble de la population ainsi que sur des sous-populations\n- taux de pauvreté monétaire\n- indicateurs de structure des revenus \n",
+        "description_short": null,
+        "extras": {},
+        "featured": true,
+        "frequency": "annual",
+        "frequency_date": "2019-06-04T19:59:41+00:00",
+        "harvest": null,
+        "id": "5b156279c751df40bb588de9",
+        "internal": "[redacted]",
+        "last_modified": "2024-06-10T07:44:01.039000+00:00",
+        "last_update": "2026-07-24T10:04:08.612000+00:00",
+        "license": "fr-lo",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": null,
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff81a3a7292c64a77e5c",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+          "name": "Institut national de la statistique et des études économiques (Insee)",
+          "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/revenus-et-pauvrete-des-menages-aux-niveaux-national-et-local-revenus-localises-sociaux-et-fiscaux",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/5b156279c751df40bb588de9/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 4,
+          "type": "GET"
+        },
+        "slug": "revenus-et-pauvrete-des-menages-aux-niveaux-national-et-local-revenus-localises-sociaux-et-fiscaux",
+        "spatial": {
+          "geom": null,
+          "granularity": "fr:iris",
+          "zones": []
+        },
+        "tags": [
+          "distribution-des-revenus",
+          "hvd",
+          "pauvrete"
+        ],
+        "temporal_coverage": null,
+        "title": "Revenus et pauvreté des ménages aux niveaux national et local - Revenus localisés sociaux et fiscaux",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/revenus-et-pauvrete-des-menages-aux-niveaux-national-et-local-revenus-localises-sociaux-et-fiscaux/"
+      }
+    ],
+    "facets": {
+      "access_type": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 69384,
+          "name": "open"
+        },
+        {
+          "count": 189,
+          "name": "restricted"
+        }
+      ],
+      "badge": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 20024,
+          "name": "inspire"
+        },
+        {
+          "count": 718,
+          "name": "hvd"
+        }
+      ],
+      "format": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 26879,
+          "name": "csv"
+        },
+        {
+          "count": 19819,
+          "name": "wms"
+        }
+      ],
+      "format_family": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 41994,
+          "name": "other"
+        },
+        {
+          "count": 28480,
+          "name": "tabular"
+        }
+      ],
+      "geozone": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 4242,
+          "name": "country:fr"
+        },
+        {
+          "count": 725,
+          "name": "country-group:ue"
+        }
+      ],
+      "granularity": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 36171,
+          "name": "other"
+        },
+        {
+          "count": 3340,
+          "name": "fr:commune"
+        }
+      ],
+      "last_update": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 42525,
+          "name": "last_3_years"
+        },
+        {
+          "count": 24559,
+          "name": "last_12_months"
+        }
+      ],
+      "license": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 37358,
+          "name": "lov2"
+        },
+        {
+          "count": 16054,
+          "name": "notspecified"
+        }
+      ],
+      "organization_id_with_name": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 1957,
+          "name": "60784425bed18cfaefe5e653|Région Auvergne-Rhône-Alpes"
+        },
+        {
+          "count": 1788,
+          "name": "5d7f937b8b4c4165718fbff1|Office Français de la Biodiversité"
+        }
+      ],
+      "producer_type": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 39472,
+          "name": "public-service"
+        },
+        {
+          "count": 20516,
+          "name": "local-authority"
+        }
+      ],
+      "schema": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 1235,
+          "name": "etalab/schema-irve-statique"
+        },
+        {
+          "count": 1067,
+          "name": "etalab/schema-vehicules-faibles-emissions-renouvellement-parc"
+        }
+      ],
+      "tag": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 24008,
+          "name": "donnees-ouvertes"
+        },
+        {
+          "count": 20028,
+          "name": "inspire"
+        }
+      ],
+      "topics": [
+        {
+          "count": 74215,
+          "name": "all"
+        },
+        {
+          "count": 29842,
+          "name": "65e9aa6cb5c809c30c70ee02"
+        },
+        {
+          "count": 981,
+          "name": "69aea5dff97ef1fc29836765"
+        }
+      ]
+    },
+    "next_page": "https://www.data.gouv.fr/api/2/datasets/search/?badge=hvd&page_size=3&page=2",
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 718
+  }
+}

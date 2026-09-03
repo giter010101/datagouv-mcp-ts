@@ -1,0 +1,240 @@
+{
+  "$comment": "Recorded by `pnpm fixtures:record` (scripts/record-fixtures.ts). Stable IDs from .agent/research/02 §11 and 03 §9. Arrays are trimmed (`maxItems`), volatile fields are redacted deterministically. Re-record when API shapes change and note it in CHANGELOG.",
+  "defaults": {
+    "maxItems": 3,
+    "maxStringLength": 1500,
+    "redact": [
+      "metrics",
+      "quality",
+      "internal",
+      "extras.check:date",
+      "extras.check:timeout",
+      "extras.analysis:last-modified-at",
+      "extras.analysis:last-modified-detection",
+      "last_modified_internal",
+      "extras.recommendations:sources",
+      "extras.recommendations",
+      "harvest"
+    ]
+  },
+  "fixtures": [
+    {
+      "name": "datagouv/datasets-search-population",
+      "url": "https://www.data.gouv.fr/api/2/datasets/search/?q=population&page_size=3",
+      "note": "search_datasets happy path; v2 envelope with data/page/page_size/total/next_page"
+    },
+    {
+      "name": "datagouv/datasets-search-empty",
+      "url": "https://www.data.gouv.fr/api/2/datasets/search/?q=zzqqxxjjkkllzz&page_size=3",
+      "note": "search_datasets fallback path (no result)"
+    },
+    {
+      "name": "datagouv/datasets-search-hvd",
+      "url": "https://www.data.gouv.fr/api/2/datasets/search/?badge=hvd&page_size=3",
+      "note": "HVD badge filter"
+    },
+    {
+      "name": "datagouv/dataset-population",
+      "url": "https://www.data.gouv.fr/api/1/datasets/53699d0ea3a729239d205b2e/",
+      "maxItems": 5,
+      "note": "get_dataset_info / list_dataset_resources (Insee population, 8 resources)"
+    },
+    {
+      "name": "datagouv/dataset-radars",
+      "url": "https://www.data.gouv.fr/api/1/datasets/619f8727e07d975a56664c61/",
+      "maxItems": 5,
+      "note": "dataset with tabular CSV resources (radars)"
+    },
+    {
+      "name": "datagouv/dataset-catalog",
+      "url": "https://www.data.gouv.fr/api/1/datasets/5d13a8b6634f41070a43dff3/",
+      "maxItems": 5,
+      "note": "the catalogue export dataset (large CSV/parquet resources)"
+    },
+    {
+      "name": "datagouv/dataset-not-found",
+      "url": "https://www.data.gouv.fr/api/1/datasets/000000000000000000000000/",
+      "expectStatus": 404,
+      "note": "404 body shape for NOT_FOUND mapping"
+    },
+    {
+      "name": "datagouv/dataset-resources-population",
+      "url": "https://www.data.gouv.fr/api/2/datasets/53699d0ea3a729239d205b2e/resources/?page=1&page_size=5",
+      "maxItems": 5,
+      "note": "v2 paginated resources listing"
+    },
+    {
+      "name": "datagouv/resource-tabular-csv",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/",
+      "note": "small CSV indexed by the Tabular API (extras analysis:parsing:parsing_table)"
+    },
+    {
+      "name": "datagouv/resource-large-csv",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/52200d61-5e80-4a4e-999f-6e1c184fa122/",
+      "note": "12.7M-row CSV, crawler exception"
+    },
+    {
+      "name": "datagouv/resource-tabular-xlsx",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/45f3844f-0039-48ec-ade7-7dc8c429168b/",
+      "note": "XLSX indexed by the Tabular API"
+    },
+    {
+      "name": "datagouv/resource-non-tabular-csv",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/dbab1fa5-b902-4586-81e0-6063a6f96ca9/",
+      "note": "CSV not in the Tabular API → stream_parse"
+    },
+    {
+      "name": "datagouv/resource-dead-remote",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/4792c248-8b80-4524-8605-7d4213e49051/",
+      "note": "remote HTML with check:available=false → dead_link"
+    },
+    {
+      "name": "datagouv/resource-parquet",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/84719f62-cdd4-4d7c-b292-2aafa56c6043/",
+      "note": "parquet on object.files.data.gouv.fr"
+    },
+    {
+      "name": "datagouv/resource-geojson",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/7c257c68-14ec-495e-9823-99d30ccab111/",
+      "note": "GeoJSON file → geo_preview"
+    },
+    {
+      "name": "datagouv/resource-wms",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/202c55f0-6be6-4880-8055-9c6a03892857/",
+      "note": "WMS service endpoint → api_endpoint"
+    },
+    {
+      "name": "datagouv/resource-not-found",
+      "url": "https://www.data.gouv.fr/api/2/datasets/resources/00000000-0000-0000-0000-000000000000/",
+      "expectStatus": 404
+    },
+    {
+      "name": "datagouv/organizations-search-etalab",
+      "url": "https://www.data.gouv.fr/api/2/organizations/search/?q=etalab&page_size=3"
+    },
+    {
+      "name": "datagouv/organizations-search-browse",
+      "url": "https://www.data.gouv.fr/api/2/organizations/search/?page_size=3&sort=-datasets",
+      "note": "browse mode (empty query)"
+    },
+    {
+      "name": "datagouv/organization-etalab",
+      "url": "https://www.data.gouv.fr/api/1/organizations/534fff75a3a7292c64a77de4/"
+    },
+    {
+      "name": "datagouv/dataservices-search-adresse",
+      "url": "https://www.data.gouv.fr/api/2/dataservices/search/?q=adresse&page_size=3"
+    },
+    {
+      "name": "datagouv/dataservice-api-adresse",
+      "url": "https://www.data.gouv.fr/api/1/dataservices/672cf67802ef6b1be63b8975/"
+    },
+    {
+      "name": "datagouv/dataservice-not-found",
+      "url": "https://www.data.gouv.fr/api/1/dataservices/000000000000000000000000/",
+      "expectStatus": 404
+    },
+    {
+      "name": "datagouv/reuses-population",
+      "url": "https://www.data.gouv.fr/api/1/reuses/?dataset=53699d0ea3a729239d205b2e&page_size=3",
+      "maxItems": 2,
+      "redact": ["datasets.resources", "datasets.description", "datasets.extras"],
+      "note": "v1 reuses embed full datasets: resources/description redacted"
+    },
+    {
+      "name": "datagouv/topics-search-transport",
+      "url": "https://www.data.gouv.fr/api/2/topics/?q=transport&page_size=3"
+    },
+    {
+      "name": "datagouv/suggest-datasets-popu",
+      "url": "https://www.data.gouv.fr/api/1/datasets/suggest/?q=popu&size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "datagouv/suggest-organizations-insee",
+      "url": "https://www.data.gouv.fr/api/1/organizations/suggest/?q=insee&size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "datagouv/suggest-tags-tran",
+      "url": "https://www.data.gouv.fr/api/1/tags/suggest/?q=tran&size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "datagouv/suggest-zones-paris",
+      "url": "https://www.data.gouv.fr/api/1/spatial/zones/suggest/?q=paris&size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "datagouv/suggest-formats-cs",
+      "url": "https://www.data.gouv.fr/api/1/datasets/suggest/formats/?q=cs&size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "tabular/profile-a86ebc34",
+      "url": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/profile/",
+      "maxItems": 50,
+      "note": "column profile of the small tabular CSV"
+    },
+    {
+      "name": "tabular/data-a86ebc34-page1",
+      "url": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=1&page_size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "tabular/data-a86ebc34-page2",
+      "url": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=2&page_size=5",
+      "maxItems": 5
+    },
+    {
+      "name": "tabular/profile-45f3844f-xlsx",
+      "url": "https://tabular-api.data.gouv.fr/api/resources/45f3844f-0039-48ec-ade7-7dc8c429168b/profile/",
+      "maxItems": 50
+    },
+    {
+      "name": "tabular/profile-not-found",
+      "url": "https://tabular-api.data.gouv.fr/api/resources/dbab1fa5-b902-4586-81e0-6063a6f96ca9/profile/",
+      "expectStatus": 404
+    },
+    {
+      "name": "tabular/aggregation-exceptions",
+      "url": "https://tabular-api.data.gouv.fr/api/aggregation-exceptions/",
+      "maxItems": 10
+    },
+    {
+      "name": "metrics/datasets-population",
+      "url": "https://metric-api.data.gouv.fr/api/datasets/data/?dataset_id__exact=53699d0ea3a729239d205b2e&metric_month__sort=desc&page_size=3"
+    },
+    {
+      "name": "metrics/resources-a86ebc34",
+      "url": "https://metric-api.data.gouv.fr/api/resources/data/?resource_id__exact=a86ebc34-a979-4d6c-8f2a-9710a43dca93&metric_month__sort=desc&page_size=3"
+    },
+    {
+      "name": "crawler/resources-exceptions",
+      "url": "https://crawler.data.gouv.fr/api/resources-exceptions",
+      "maxItems": 5,
+      "keepIds": ["52200d61-5e80-4a4e-999f-6e1c184fa122"],
+      "note": "array trimmed to 5 entries but always keeps the research fixture exception"
+    },
+    {
+      "name": "schema/schemas-catalog",
+      "url": "https://schema.data.gouv.fr/schemas/schemas.json",
+      "maxItems": 5,
+      "keepNames": ["etalab/schema-irve-statique", "etalab/schema-bal"],
+      "note": "catalogue trimmed to 5 schemas incl. IRVE + BAL"
+    },
+    {
+      "name": "schema/schema-irve-statique-latest",
+      "url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
+      "maxItems": 200,
+      "maxStringLength": 4000
+    },
+    {
+      "name": "validata/validate-irve-sample",
+      "url": "https://api.validata.etalab.studio/validate?schema=https%3A%2F%2Fschema.data.gouv.fr%2Fschemas%2Fetalab%2Fschema-irve-statique%2Flatest%2Fschema-statique.json&url=https%3A%2F%2Fwww.data.gouv.fr%2Fapi%2F1%2Fdatasets%2Fr%2Fa86ebc34-a979-4d6c-8f2a-9710a43dca93",
+      "maxItems": 3,
+      "optional": true,
+      "note": "Validata may be slow/unavailable; optional so the recorder does not fail"
+    }
+  ]
+}

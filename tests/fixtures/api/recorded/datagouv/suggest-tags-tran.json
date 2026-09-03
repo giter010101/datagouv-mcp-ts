@@ -1,0 +1,26 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/tags/suggest/?q=tran&size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:10.375Z"
+  },
+  "body": [
+    {
+      "text": "transport"
+    },
+    {
+      "text": "transports"
+    },
+    {
+      "text": "transportation"
+    },
+    {
+      "text": "transport-en-commun"
+    },
+    {
+      "text": "reseaux-de-transport"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/spatial/zones/suggest/?q=paris&size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:10.717Z"
+  },
+  "body": [
+    {
+      "code": "75",
+      "id": "fr:departement:75",
+      "level": "fr:departement",
+      "name": "Paris",
+      "uri": "http://id.insee.fr/geo/departement/973f58f8-e45f-468d-b91f-03d28bcd08ee"
+    },
+    {
+      "code": "200054781",
+      "id": "fr:epci:200054781",
+      "level": "fr:epci",
+      "name": "Le Grand Paris",
+      "uri": "http://id.insee.fr/geo/intercommunalite/29fae681-5620-4a63-a591-d5535e9d8e17"
+    },
+    {
+      "code": "200059889",
+      "id": "fr:epci:200059889",
+      "level": "fr:epci",
+      "name": "Grand Paris Seine et Oise",
+      "uri": "http://id.insee.fr/geo/intercommunalite/bc25e31a-e618-4b03-a07e-0a5f28f1a1e8"
+    },
+    {
+      "code": "200056232",
+      "id": "fr:epci:200056232",
+      "level": "fr:epci",
+      "name": "Communauté Paris-Saclay",
+      "uri": "http://id.insee.fr/geo/intercommunalite/a4fea694-d47a-447e-adc0-26f8b1400606"
+    },
+    {
+      "code": "200059228",
+      "id": "fr:epci:200059228",
+      "level": "fr:epci",
+      "name": "Grand Paris Sud Seine Essonne Sénart",
+      "uri": "http://id.insee.fr/geo/intercommunalite/e26d557e-3ef3-4da0-8edc-fac1891db779"
+    }
+  ]
+}

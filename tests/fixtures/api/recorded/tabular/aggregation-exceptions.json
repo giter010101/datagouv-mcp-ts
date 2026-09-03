@@ -1,0 +1,24 @@
+{
+  "$fixture": {
+    "url": "https://tabular-api.data.gouv.fr/api/aggregation-exceptions/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:12.706Z"
+  },
+  "body": {
+    "allowed": [
+      "b8703c69-a18f-46ab-9e7f-3a8368dcb891",
+      "851d342f-9c96-41c1-924a-11a7a7aae8a6",
+      "66e052d8-e387-443e-8f43-2916d17022fb",
+      "eb76d20a-8501-400e-b336-d85724de5435",
+      "d7307e39-c2e7-4a42-8685-a9f245fdea19",
+      "5ccd6238-4fb0-4b2c-b14a-581909489320",
+      "14dba482-41e3-4c54-b82a-d8c11d1d80eb"
+    ],
+    "exceptions": [
+      "dddddddd-7777-eeee-8888-ffffffffffff",
+      "aaaaaaaa-9999-bbbb-1010-cccccccccccc"
+    ]
+  }
+}

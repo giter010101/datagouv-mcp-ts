@@ -13,14 +13,15 @@ import type {
   DataserviceDetail,
   DatasetDetail,
   DatasetSummary,
-  OrganizationSummary,
+  OrganizationDetail,
   Page,
   ResourceDetail,
-  ReuseSummary,
+  ReuseDetail,
   Row,
   TableSchema,
   TableSlice,
-  TopicSummary,
+  TopicDetail,
+  TopicElement,
 } from "../../src/core/types.js";
 import { type AccessorRegistry, createAccessorRegistry } from "../../src/formats/registry.js";
 import type {
@@ -185,9 +186,7 @@ export function fakeDatasetDetail(overrides: Partial<DatasetDetail> = {}): Datas
   };
 }
 
-export function fakeOrganization(
-  overrides: Partial<OrganizationSummary> = {},
-): OrganizationSummary {
+export function fakeOrganization(overrides: Partial<OrganizationDetail> = {}): OrganizationDetail {
   return {
     id: FAKE_IDS.organization,
     name: "Etalab",
@@ -196,6 +195,10 @@ export function fakeOrganization(
     badges: ["public-service", "certified"],
     metrics: { datasets: 100, reuses: 10, followers: 50, views: 1000 },
     url: "https://www.data.gouv.fr/organizations/etalab/",
+    description: "Département Etalab de la DINUM.",
+    businessNumberId: "13002526500013",
+    createdAt: "2014-03-17T00:00:00+00:00",
+    logo: undefined,
     ...overrides,
   };
 }
@@ -226,7 +229,7 @@ export function fakeDataservice(overrides: Partial<DataserviceDetail> = {}): Dat
   };
 }
 
-export function fakeReuse(overrides: Partial<ReuseSummary> = {}): ReuseSummary {
+export function fakeReuse(overrides: Partial<ReuseDetail> = {}): ReuseDetail {
   return {
     id: "5f2b6f2a8b4c410a1d3c0001",
     title: "Carte de la population",
@@ -236,11 +239,17 @@ export function fakeReuse(overrides: Partial<ReuseSummary> = {}): ReuseSummary {
     organization: undefined,
     datasetsCount: 1,
     url: "https://www.data.gouv.fr/reuses/carte-de-la-population/",
+    description: "Carte interactive de la population par commune.",
+    tags: ["population", "carte"],
+    datasets: [{ id: FAKE_IDS.dataset, title: "Population" }],
+    createdAt: "2020-08-05T00:00:00+00:00",
+    lastModified: "2026-01-01T00:00:00+00:00",
+    owner: undefined,
     ...overrides,
   };
 }
 
-export function fakeTopic(overrides: Partial<TopicSummary> = {}): TopicSummary {
+export function fakeTopic(overrides: Partial<TopicDetail> = {}): TopicDetail {
   return {
     id: "6440ac2a2ef7a8ee8f4b0001",
     name: "Transports",
@@ -248,6 +257,24 @@ export function fakeTopic(overrides: Partial<TopicSummary> = {}): TopicSummary {
     description: "Données de transport.",
     tags: ["transport"],
     url: "https://www.data.gouv.fr/topics/transports/",
+    organization: undefined,
+    createdAt: "2023-04-19T00:00:00+00:00",
+    lastModified: "2026-01-01T00:00:00+00:00",
+    elementsCount: 1,
+    featured: false,
+    ...overrides,
+  };
+}
+
+export function fakeTopicElement(overrides: Partial<TopicElement> = {}): TopicElement {
+  return {
+    id: "6440ac2a2ef7a8ee8f4b1001",
+    title: "Population",
+    description: "Recensement de la population.",
+    tags: ["population"],
+    elementClass: "Dataset",
+    elementId: FAKE_IDS.dataset,
+    url: "https://www.data.gouv.fr/datasets/population/",
     ...overrides,
   };
 }
@@ -398,12 +425,121 @@ export function fakeDatagouvClient(
       fakePage([fakeReuse()], { page: params.page ?? 1, pageSize: params.pageSize ?? 20 }),
     searchTopics: async (_query, page = 1, pageSize = 20) =>
       fakePage([fakeTopic()], { page, pageSize }),
+    searchDatasetsWithFacets: async (params) => ({
+      ...fakePage(datasets.map(fakeDatasetSummary), {
+        page: params.page ?? 1,
+        pageSize: params.pageSize ?? 20,
+      }),
+      facets: {
+        format: [
+          { value: "csv", count: 2 },
+          { value: "xlsx", count: 1 },
+        ],
+        license: [{ value: "fr-lo", count: 3 }],
+      },
+    }),
+    listHighValueDatasets: async (_query, page = 1, pageSize = 20) =>
+      fakePage(datasets.map(fakeDatasetSummary), { page, pageSize }),
+    getOrganization: async (idOrSlug) => {
+      const org = fakeOrganization();
+      if (idOrSlug !== org.id && idOrSlug !== org.slug) {
+        throw new NotFoundError(`Organization with ID '${idOrSlug}' not found.`);
+      }
+      return org;
+    },
+    getReuse: async (idOrSlug) => {
+      const reuse = fakeReuse();
+      if (idOrSlug !== reuse.id && idOrSlug !== reuse.slug) {
+        throw new NotFoundError(`Reuse with ID '${idOrSlug}' not found.`);
+      }
+      return reuse;
+    },
+    listTopicElements: async (idOrSlug, page = 1, pageSize = 20) => {
+      const topic = fakeTopic();
+      if (idOrSlug !== topic.id && idOrSlug !== topic.slug) {
+        throw new NotFoundError(`Topic with ID '${idOrSlug}' not found.`);
+      }
+      return fakePage(
+        datasets.map((d) =>
+          fakeTopicElement({ id: `el-${d.id}`, title: d.title, elementId: d.id, url: d.url }),
+        ),
+        { page, pageSize },
+      );
+    },
+    suggestZones: async (query, size = 5) =>
+      [
+        { id: "commune:75056", code: "75056", name: "Paris", level: "fr:commune", uri: undefined },
+        { id: "country:fr", code: "fr", name: "France", level: "country", uri: undefined },
+      ]
+        .filter((z) => z.name.toLowerCase().startsWith(query.toLowerCase()))
+        .slice(0, size),
+    suggestTags: async (query, size = 5) =>
+      ["transport", "transports-publics", "population", "energie"]
+        .filter((t) => t.startsWith(query.toLowerCase()))
+        .slice(0, size),
+    suggestFormats: async (query, size = 5) =>
+      ["csv", "json", "geojson", "xlsx", "parquet"]
+        .filter((f) => f.startsWith(query.toLowerCase()))
+        .slice(0, size),
+    listSpatialLevels: async () => [
+      { id: "country", name: "Pays" },
+      { id: "fr:region", name: "Région française" },
+      { id: "fr:departement", name: "Département français" },
+      { id: "fr:commune", name: "Commune française" },
+    ],
+    listSpatialGranularities: async () => [
+      { id: "poi", name: "Point d'intérêt" },
+      { id: "fr:commune", name: "Commune française" },
+      { id: "country", name: "Pays" },
+    ],
+    listLicenses: async () => [
+      {
+        id: "fr-lo",
+        title: "Licence Ouverte / Open Licence",
+        url: "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+        flags: ["domain_content", "domain_data", "okd_compliant"],
+        alternateUrls: [],
+      },
+      {
+        id: "notspecified",
+        title: "License Not Specified",
+        url: undefined,
+        flags: [],
+        alternateUrls: [],
+      },
+    ],
+    listBadges: async () => ({ hvd: "High value datasets", spd: "Service public de la donnée" }),
+    listRegisteredSchemas: async () => [
+      {
+        name: "etalab/schema-irve-statique",
+        title: "IRVE statique",
+        description: "Infrastructures de recharge pour véhicules électriques.",
+        schemaType: "tableschema",
+        schemaUrl:
+          "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
+        latestVersion: "2.3.1",
+        versions: ["2.3.0", "2.3.1"],
+        homepage: "https://github.com/etalab/schema-irve",
+        consolidationDatasetId: "5448d3e0c751df01f85d0572",
+      },
+    ],
+    getSite: async () => ({
+      id: "www.data.gouv.fr",
+      title: "data.gouv.fr",
+      version: "fake",
+      metrics: { datasets: 60_000, organizations: 5_000, reuses: 4_000, dataservices: 400 },
+    }),
     getTopic: async (idOrSlug) => {
       const topic = fakeTopic();
       if (idOrSlug !== topic.id && idOrSlug !== topic.slug) {
         throw new NotFoundError(`Topic with ID '${idOrSlug}' not found.`);
       }
-      return { ...topic, elements: datasets.map(fakeDatasetSummary) };
+      return {
+        ...topic,
+        elements: datasets.map((d) =>
+          fakeTopicElement({ id: `el-${d.id}`, title: d.title, elementId: d.id, url: d.url }),
+        ),
+      };
     },
     suggest: async (_query, size = 5): Promise<Suggestion[]> =>
       datasets
@@ -422,12 +558,38 @@ export function fakeDatagouvClient(
 }
 
 export function fakeTabularClient(overrides: Partial<TabularClient> = {}): TabularClient {
+  const known = (resourceId: string) => resourceId !== FAKE_IDS.resourceDeadRemote;
   return {
-    getProfile: async (resourceId) =>
-      resourceId === FAKE_IDS.resourceDeadRemote ? undefined : fakeTableSchema(),
+    getResourceMeta: async (resourceId) =>
+      known(resourceId)
+        ? {
+            resourceId,
+            createdAt: "2026-01-01T00:00:00+00:00",
+            url: `https://static.data.gouv.fr/resources/population/${resourceId}/population-2024.csv`,
+            profileUrl: `https://tabular-api.data.gouv.fr/api/resources/${resourceId}/profile/`,
+            dataUrl: `https://tabular-api.data.gouv.fr/api/resources/${resourceId}/data/`,
+            swaggerUrl: `https://tabular-api.data.gouv.fr/api/resources/${resourceId}/swagger/`,
+          }
+        : undefined,
+    isAvailable: async (resourceId) => known(resourceId),
+    getProfile: async (resourceId) => (known(resourceId) ? fakeTableSchema() : undefined),
     queryData: async (_resourceId, query) =>
       fakeTabularPage({ page: query.page ?? 1, pageSize: query.pageSize ?? 20 }),
+    aggregate: async (_resourceId, aggregation) =>
+      fakeTabularPage({
+        rows: [{ [aggregation.groupBy[0] ?? "group"]: "all", count: FAKE_ROWS.length }],
+        total: 1,
+        page: aggregation.page ?? 1,
+        pageSize: aggregation.pageSize ?? 20,
+      }),
     isAggregationAllowed: async () => false,
+    getSwagger: async () => ({
+      columns: fakeTableSchema().columns.map((c) => ({
+        name: c.name,
+        operators: ["exact", "contains", "less", "greater"],
+      })),
+      raw: { openapi: "3.0.0" },
+    }),
     ...overrides,
   };
 }
@@ -444,8 +606,15 @@ export function fakeMetricsClient(overrides: Partial<MetricsClient> = {}): Metri
 }
 
 export function fakeCrawlerClient(overrides: Partial<CrawlerClient> = {}): CrawlerClient {
+  const exceptions = new Set<string>([FAKE_IDS.resourceLargeCsv]);
   return {
-    getResourceExceptions: async () => new Set([FAKE_IDS.resourceLargeCsv]),
+    getResourceExceptions: async () => exceptions,
+    isException: async (resourceId) => exceptions.has(resourceId),
+    getHealth: async () => ({
+      version: "fake",
+      environment: "test",
+      features: { csv_analysis: true, csv_to_db: true, db_to_parquet: true },
+    }),
     ...overrides,
   };
 }
@@ -474,6 +643,7 @@ export function fakeSchemaClient(overrides: Partial<SchemaClient> = {}): SchemaC
       if (name !== entry.name) throw new NotFoundError(`Schema '${name}' not found.`);
       return {
         ...entry,
+        resolvedUrl: entry.schemaUrl,
         fields: [
           {
             name: "id_pdc_itinerance",
@@ -492,7 +662,14 @@ export function fakeSchemaClient(overrides: Partial<SchemaClient> = {}): SchemaC
         ],
       };
     },
-    validateResource: async () => ({ valid: true, errorCount: 0, errors: [] }),
+    validateResource: async () => ({
+      valid: true,
+      errorCount: 0,
+      warningCount: 0,
+      rows: 3,
+      errors: [],
+      warnings: [],
+    }),
     ...overrides,
   };
 }

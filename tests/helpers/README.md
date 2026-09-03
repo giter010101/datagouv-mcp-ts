@@ -36,8 +36,8 @@ Route builders: `v1`, `v2`, `site`, `tabular`, `metrics`, `crawler`, `schema`, `
 Path matchers: string (exact pathname, query ignored, trailing slash tolerant), `RegExp` or predicate on `path?query`.
 Reply options: `status`, `json`, `text`, `body`, `fixture`, `headers`, `method` (`HEAD` for probes), `query`, `times`, `delayMs`, `respond(fn)`.
 
-Fixtures are looked up in `tests/fixtures/api/<service>/<name>.json` first (recorded by
-`pnpm fixtures:record`, see `tests/fixtures/api/manifest.json`) and then in `tests/fixtures/`.
+Fixtures are looked up in `tests/fixtures/api/recorded/<service>/<name>.json` first (enveloped `{ $fixture, body }`, recorded by
+`pnpm fixtures:record` from `tests/fixtures/api/manifest.json`; status + content-type replayed), then in `tests/fixtures/api/` (workstream A plain bodies) and `tests/fixtures/`.
 Unmatched requests are rejected (`net.connect` disabled) and surface as `NETWORK_ERROR`.
 
 ## `createTestMcpClient(server)` / `startTestServer()`

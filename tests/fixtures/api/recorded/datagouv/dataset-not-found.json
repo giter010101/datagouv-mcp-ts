@@ -1,0 +1,13 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/datasets/000000000000000000000000/",
+    "method": "GET",
+    "status": 404,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:04.551Z",
+    "note": "404 body shape for NOT_FOUND mapping"
+  },
+  "body": {
+    "message": "The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again."
+  }
+}

@@ -1,0 +1,296 @@
+{
+  "$fixture": {
+    "url": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/profile/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:11.449Z",
+    "note": "column profile of the small tabular CSV"
+  },
+  "body": {
+    "dataset_id": "6a9899255369f45f95bdd226",
+    "deleted_at": null,
+    "indexes": null,
+    "profile": {
+      "categorical": [],
+      "columns": {
+        "code_insee": {
+          "format": "code_commune",
+          "python_type": "string",
+          "score": 1.4983396426280766
+        },
+        "commune": {
+          "format": "commune",
+          "python_type": "string",
+          "score": 1.490534447406398
+        },
+        "departement": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "gentile": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "columns_fields": {
+        "code_insee": {
+          "format": "code_commune",
+          "python_type": "string",
+          "score": 0.9988930950853845
+        },
+        "commune": {
+          "format": "commune",
+          "python_type": "string",
+          "score": 0.9936896316042653
+        },
+        "departement": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "gentile": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "columns_labels": {
+        "code_insee": {
+          "format": "code_commune",
+          "python_type": "string",
+          "score": 1
+        },
+        "commune": {
+          "format": "commune",
+          "python_type": "string",
+          "score": 1
+        },
+        "departement": {
+          "format": "code_departement",
+          "python_type": "string",
+          "score": 1
+        },
+        "gentile": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "encoding": "utf-8",
+      "formats": {
+        "code_commune": [
+          "code_insee"
+        ],
+        "commune": [
+          "commune"
+        ],
+        "string": [
+          "departement",
+          "gentile"
+        ]
+      },
+      "header": [
+        "code_insee",
+        "commune",
+        "departement",
+        "gentile"
+      ],
+      "header_row_idx": 0,
+      "heading_columns": 0,
+      "nb_duplicates": 0,
+      "profile": {
+        "code_insee": {
+          "nb_distinct": 34946,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 1,
+              "value": "01001"
+            },
+            {
+              "count": 1,
+              "value": "01002"
+            },
+            {
+              "count": 1,
+              "value": "01004"
+            },
+            {
+              "count": 1,
+              "value": "01005"
+            },
+            {
+              "count": 1,
+              "value": "01006"
+            },
+            {
+              "count": 1,
+              "value": "01007"
+            },
+            {
+              "count": 1,
+              "value": "01008"
+            },
+            {
+              "count": 1,
+              "value": "01009"
+            },
+            {
+              "count": 1,
+              "value": "01010"
+            },
+            {
+              "count": 1,
+              "value": "01011"
+            }
+          ]
+        },
+        "commune": {
+          "nb_distinct": 32693,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 12,
+              "value": "Sainte-Colombe"
+            },
+            {
+              "count": 11,
+              "value": "Saint-Sauveur"
+            },
+            {
+              "count": 10,
+              "value": "Beaulieu"
+            },
+            {
+              "count": 10,
+              "value": "Saint-Aubin"
+            },
+            {
+              "count": 10,
+              "value": "Sainte-Marie"
+            },
+            {
+              "count": 9,
+              "value": "Saint-Marcel"
+            },
+            {
+              "count": 9,
+              "value": "Saint-Paul"
+            },
+            {
+              "count": 9,
+              "value": "Saint-Michel"
+            },
+            {
+              "count": 9,
+              "value": "Saint-Pierre"
+            },
+            {
+              "count": 9,
+              "value": "Le Pin"
+            }
+          ]
+        },
+        "departement": {
+          "nb_distinct": 106,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 887,
+              "value": "62"
+            },
+            {
+              "count": 797,
+              "value": "02"
+            },
+            {
+              "count": 771,
+              "value": "80"
+            },
+            {
+              "count": 725,
+              "value": "57"
+            },
+            {
+              "count": 707,
+              "value": "76"
+            },
+            {
+              "count": 698,
+              "value": "21"
+            },
+            {
+              "count": 680,
+              "value": "60"
+            },
+            {
+              "count": 647,
+              "value": "59"
+            },
+            {
+              "count": 610,
+              "value": "51"
+            },
+            {
+              "count": 591,
+              "value": "54"
+            }
+          ]
+        },
+        "gentile": {
+          "nb_distinct": 26644,
+          "nb_missing_values": 3092,
+          "tops": [
+            {
+              "count": 69,
+              "value": "Saint-Martinois, Saint-Martinoises"
+            },
+            {
+              "count": 50,
+              "value": "Neuvillois, Neuvilloises"
+            },
+            {
+              "count": 47,
+              "value": "Saint-Aubinois, Saint-Aubinoises"
+            },
+            {
+              "count": 46,
+              "value": "Stéphanois, Stéphanoises"
+            },
+            {
+              "count": 45,
+              "value": "Chapellois, Chapelloises"
+            },
+            {
+              "count": 44,
+              "value": "Villeneuvois, Villeneuvoises"
+            },
+            {
+              "count": 33,
+              "value": "Saint-Cyriens, Saint-Cyriennes"
+            },
+            {
+              "count": 32,
+              "value": "Saint-Germinois, Saint-Germinoises"
+            },
+            {
+              "count": 31,
+              "value": "Saint-Jeannais, Saint-Jeannaises"
+            },
+            {
+              "count": 30,
+              "value": "Saint-Laurentais, Saint-Laurentaises"
+            }
+          ]
+        }
+      },
+      "separator": ",",
+      "total_lines": 34946,
+      "trailing_columns": 0,
+      "unique_values": {}
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/datasets/suggest/formats/?q=cs&size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:10.877Z"
+  },
+  "body": [
+    {
+      "text": "csv"
+    },
+    {
+      "text": "ics"
+    },
+    {
+      "text": "ics"
+    }
+  ]
+}

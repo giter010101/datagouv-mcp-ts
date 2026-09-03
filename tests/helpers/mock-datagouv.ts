@@ -101,7 +101,7 @@ export interface DatagouvMock {
 /** Absolute path string (query ignored), RegExp on `path?query`, or predicate on `path?query`. */
 export type PathMatcher = string | RegExp | ((pathWithQuery: string) => boolean);
 
-const FIXTURE_ROOTS = ["tests/fixtures/api", "tests/fixtures"];
+const FIXTURE_ROOTS = ["tests/fixtures/api/recorded", "tests/fixtures/api", "tests/fixtures"];
 
 interface MockScopeLike {
   delay(waitInMs: number): MockScopeLike;
@@ -109,9 +109,51 @@ interface MockScopeLike {
   times(repeatTimes: number): MockScopeLike;
 }
 
-/** Load a recorded fixture (`datagouv/dataset-population` → `tests/fixtures/api/datagouv/dataset-population.json`). */
+/** Envelope written by `scripts/record-fixtures.ts`. */
+export interface RecordedFixture<T = unknown> {
+  $fixture: {
+    url: string;
+    method: string;
+    status: number;
+    contentType: string | undefined;
+    recordedAt: string;
+    note?: string;
+  };
+  body: T;
+}
+
+function isRecorded(value: unknown): value is RecordedFixture {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "$fixture" in value &&
+    "body" in (value as Record<string, unknown>)
+  );
+}
+
+/**
+ * Load a fixture body (`datagouv/dataset-population` → `tests/fixtures/api/datagouv/dataset-population.json`).
+ * Recorded fixtures (`{ $fixture, body }`) are unwrapped; plain JSON files are returned as-is.
+ */
 export function loadFixture<T = unknown>(name: FixtureName): T {
-  return JSON.parse(loadFixtureText(name)) as T;
+  const parsed = JSON.parse(loadFixtureText(name)) as unknown;
+  return (isRecorded(parsed) ? parsed.body : parsed) as T;
+}
+
+/** Load a recorded fixture with its envelope (status, url, content type). */
+export function loadRecordedFixture<T = unknown>(name: FixtureName): RecordedFixture<T> {
+  const parsed = JSON.parse(loadFixtureText(name)) as unknown;
+  if (isRecorded(parsed)) return parsed as RecordedFixture<T>;
+  return {
+    $fixture: {
+      url: "",
+      method: "GET",
+      status: 200,
+      contentType: "application/json",
+      recordedAt: "",
+    },
+    body: parsed as T,
+  };
 }
 
 export function loadFixtureText(name: FixtureName): string {
@@ -150,15 +192,29 @@ function originAndPrefix(base: string): { origin: string; prefix: string } {
   };
 }
 
-function bodyFor(reply: MockReply): { body: string | Uint8Array; contentType: string | undefined } {
-  if (reply.body) return { body: reply.body, contentType: "application/octet-stream" };
+function bodyFor(reply: MockReply): {
+  body: string | Uint8Array;
+  contentType: string | undefined;
+  status: number;
+} {
+  const status = reply.status ?? 200;
+  if (reply.body) return { body: reply.body, contentType: "application/octet-stream", status };
   if (reply.text !== undefined)
-    return { body: reply.text, contentType: "text/plain; charset=utf-8" };
-  if (reply.fixture)
-    return { body: loadFixtureText(reply.fixture), contentType: "application/json" };
+    return { body: reply.text, contentType: "text/plain; charset=utf-8", status };
+  if (reply.fixture) {
+    const recorded = loadRecordedFixture(reply.fixture);
+    const body = typeof recorded.body === "string" ? recorded.body : JSON.stringify(recorded.body);
+    return {
+      body,
+      contentType:
+        recorded.$fixture.contentType ??
+        (typeof recorded.body === "string" ? "text/plain; charset=utf-8" : "application/json"),
+      status: reply.status ?? recorded.$fixture.status,
+    };
+  }
   if (reply.json !== undefined)
-    return { body: JSON.stringify(reply.json), contentType: "application/json" };
-  return { body: "", contentType: undefined };
+    return { body: JSON.stringify(reply.json), contentType: "application/json", status };
+  return { body: "", contentType: undefined, status };
 }
 
 export interface MockDatagouvOptions {
@@ -225,8 +281,8 @@ export function mockDatagouv(options: MockDatagouvOptions = {}): DatagouvMock {
         };
       });
     } else {
-      const { body, contentType } = bodyFor(reply);
-      scope = interceptor.reply(status, body, {
+      const { body, contentType, status: recordedStatus } = bodyFor(reply);
+      scope = interceptor.reply(recordedStatus, body, {
         headers: { ...(contentType ? { "content-type": contentType } : {}), ...reply.headers },
       });
     }

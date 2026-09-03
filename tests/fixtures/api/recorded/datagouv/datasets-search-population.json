@@ -1,0 +1,515 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/search/?q=population&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:02.578Z",
+    "note": "search_datasets happy path; v2 envelope with data/page/page_size/total/next_page"
+  },
+  "body": {
+    "data": [
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=53699d0ea3a729239d205b2e&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 1,
+          "type": "GET"
+        },
+        "contact_points": [],
+        "created_at": "2013-08-23T08:43:28.560000+00:00",
+        "deleted": null,
+        "description": "Ce jeu de données permet d'accéder aux résultats des recensements de la population, à des séries chronologiques de la Banque de Données Macro-économiques de l'Insee sur le thème de la population et à d'autres données issues notamment des statistiques de l'état civil. \n\nLe recensement de la population permet de connaître la diversité et l'évolution de la population de la France. L'Insee fournit ainsi des statistiques sur les habitants et les logements, leur nombre et leurs caractéristiques : répartition par sexe et âge, professions, diplômes-formation, conditions de logement, modes de transport, déplacements domicile-travail, etc.\n\nLa BDM est la principale base de données de séries et indices sur l'ensemble des domaines économiques et sociaux. \n\n",
+        "description_short": null,
+        "extras": {
+          "datagouv_ckan_id": "81ba9cac-f837-419e-835e-bb538a92ea54",
+          "datagouv_ckan_last_sync": "2014-09-16T09:54:48.768000"
+        },
+        "featured": true,
+        "frequency": "monthly",
+        "frequency_date": null,
+        "harvest": null,
+        "id": "53699d0ea3a729239d205b2e",
+        "internal": "[redacted]",
+        "last_modified": "2024-12-10T16:27:01.529000+00:00",
+        "last_update": "2026-08-19T10:27:05.636000+00:00",
+        "license": "fr-lo",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": null,
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff81a3a7292c64a77e5c",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+          "name": "Institut national de la statistique et des études économiques (Insee)",
+          "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/population",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/53699d0ea3a729239d205b2e/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 8,
+          "type": "GET"
+        },
+        "slug": "population",
+        "spatial": {
+          "geom": null,
+          "granularity": "fr:commune",
+          "zones": [
+            "country:fr"
+          ]
+        },
+        "tags": [
+          "deces",
+          "demographie",
+          "etat-civil"
+        ],
+        "temporal_coverage": null,
+        "title": "Population",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/population/"
+      },
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=5369931ca3a729239d2040d1&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 1,
+          "type": "GET"
+        },
+        "contact_points": [],
+        "created_at": "2013-12-17T08:35:15.907000+00:00",
+        "deleted": null,
+        "description": "**Cette page n’est plus maintenue**, vous pouvez consulter les données plus récentes sur la page [Revenus, pauvreté et niveau de vie - Données carroyées issues du Dispositif Fichier localisé social et fiscal (FiLoSoFi)](https://www.data.gouv.fr/fr/datasets/revenus-pauvrete-et-niveau-de-vie-donnees-carroyees-issues-du-dispositif-fichier-localise-social-et-fiscal-filosofi/).\n\nCette base comprend 18 variables sur la structure par âge des individus, les caractéristiques des ménages (locataire/propriétaire, etc.) et les revenus au 31 décembre 2010.\nAfin de respecter la règle de diffusion des données sur les revenus fiscaux des ménages, aucune information statistique (à l'exception du nombre total d'individus) n'est diffusée sur des carreaux de moins de 11 ménages. Ces carreaux de faibles effectifs sont donc regroupés en rectangles de taille plus importante et satisfaisant à cette règle des 11 ménages minimum.\nPar ailleurs, un certain nombre de variables considérées comme « à risque » ont été traitées afin que tout risque de rupture de confidentialité soit évité.\nL'utilisation correcte de ces données carroyées impose une lecture attentive de la documentation complète sur les données carroyées à 200 mètres.\n",
+        "description_short": null,
+        "extras": {
+          "datagouv_ckan_id": "7981f24d-244f-4005-bbd6-fb06eea4cb1d",
+          "datagouv_ckan_last_sync": "2014-09-17T04:06:45.200000"
+        },
+        "featured": true,
+        "frequency": "unknown",
+        "frequency_date": null,
+        "harvest": null,
+        "id": "5369931ca3a729239d2040d1",
+        "internal": "[redacted]",
+        "last_modified": "2024-02-05T17:37:02.082000+00:00",
+        "last_update": "2026-08-19T10:44:15.176000+00:00",
+        "license": "fr-lo",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": null,
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff81a3a7292c64a77e5c",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+          "name": "Institut national de la statistique et des études économiques (Insee)",
+          "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/anciennes-donnees-carroyees-a-200-m-sur-la-population",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/5369931ca3a729239d2040d1/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 3,
+          "type": "GET"
+        },
+        "slug": "anciennes-donnees-carroyees-a-200-m-sur-la-population",
+        "spatial": {
+          "geom": null,
+          "granularity": "other",
+          "zones": [
+            "country:fr"
+          ]
+        },
+        "tags": [],
+        "temporal_coverage": {
+          "end": "2011-01-01",
+          "start": "2010-12-31"
+        },
+        "title": "Anciennes données carroyées à 200 m sur la population",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/anciennes-donnees-carroyees-a-200-m-sur-la-population/"
+      },
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived": null,
+        "authorization_request_url": null,
+        "badges": [],
+        "community_resources": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/community_resources/?dataset=67fe0fe2423db9c4a05d8ced&page=1&page_size=50",
+          "rel": "subsection",
+          "total": 0,
+          "type": "GET"
+        },
+        "contact_points": [
+          {
+            "contact_form": "https://api.insee.fr/catalogue/site/themes/wso2/subthemes/insee/pages/help.jag#contact",
+            "email": null,
+            "id": "672cf986b5e28a380535f12c",
+            "name": "Contact",
+            "organization": {
+              "acronym": null,
+              "badges": [
+                {
+                  "kind": "public-service"
+                },
+                {
+                  "kind": "certified"
+                }
+              ],
+              "class": "Organization",
+              "id": "534fff81a3a7292c64a77e5c",
+              "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d.png",
+              "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+              "name": "Institut national de la statistique et des études économiques (Insee)",
+              "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+              "permissions": {
+                "delete": false,
+                "edit": false,
+                "harvest": "[redacted]",
+                "members": false,
+                "private": false
+              },
+              "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+              "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+            },
+            "owner": null,
+            "role": "contact"
+          }
+        ],
+        "created_at": "2025-04-15T07:50:58.118000+00:00",
+        "deleted": null,
+        "description": "Ce jeu de données produit par l’Insee permet de s’intéresser aux temps d’accès aux équipements, en utilisant comme source principale la [base permanente des équipements](https://www.data.gouv.fr/fr/datasets/base-permanente-des-equipements-1/) (BPE). Il fournit, pour chaque carreau de 200 mètres de côté, sa population (issue du [dispositif Filosofi](https://www.data.gouv.fr/fr/datasets/revenus-pauvrete-et-niveau-de-vie-donnees-carroyees/)) ainsi que la distance et la durée par la route le séparant de son équipement le plus proche, pour chaque type d’équipement de la BPE. Il s’appuie sur le [distancier Metric-OSRM](https://metric-osrm.pages.lab.sspcloud.fr/metric-osrm-package/), qui permet des calculs de trajets routiers en voiture optimaux, de point à point, avec une grande rapidité d’exécution.\n\nLes données sont mises à jour à chaque nouveau millésime de la BPE. La description complète du jeu de données figure dans la note méthodologique à télécharger ci-dessous.\n\nLes bases sont au format *parquet*, partitionnées selon la région (variable *reg*). Un exemple de code R montre comment les exploiter à l’aide du package *{duckdb}*.&#x20;\n\nDans les publications où elles sont utilisées, il est demandé de citer les sources des données comme suit :\n\nSources : Insee, base permanente des équipements, distancier Metric-OSRM, © les contributeurs d’OpenStreetMap et du projet OSRM\n",
+        "description_short": null,
+        "extras": {},
+        "featured": true,
+        "frequency": "annual",
+        "frequency_date": null,
+        "harvest": null,
+        "id": "67fe0fe2423db9c4a05d8ced",
+        "internal": "[redacted]",
+        "last_modified": "2026-08-19T07:47:04.129000+00:00",
+        "last_update": "2026-08-19T07:47:04.129000+00:00",
+        "license": "lov2",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": null,
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff81a3a7292c64a77e5c",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+          "name": "Institut national de la statistique et des études économiques (Insee)",
+          "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+        },
+        "owner": null,
+        "page": "https://www.data.gouv.fr/datasets/donnees-sur-la-localisation-et-lacces-de-la-population-aux-equipements",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "edit_resources": false
+        },
+        "private": false,
+        "quality": "[redacted]",
+        "resources": {
+          "href": "https://www.data.gouv.fr/api/2/datasets/67fe0fe2423db9c4a05d8ced/resources/?page=1&page_size=50",
+          "rel": "subsection",
+          "total": 33,
+          "type": "GET"
+        },
+        "slug": "donnees-sur-la-localisation-et-lacces-de-la-population-aux-equipements",
+        "spatial": {
+          "geom": null,
+          "granularity": "other",
+          "zones": [
+            "country-subset:fr:metro",
+            "fr:region:04",
+            "fr:region:02"
+          ]
+        },
+        "tags": [
+          "acces-aux-equipements",
+          "bpe",
+          "distance-aux-equipements"
+        ],
+        "temporal_coverage": {
+          "end": "2025-01-01",
+          "start": "2024-01-01"
+        },
+        "title": "Données sur la localisation et l’accès de la population aux équipements",
+        "uri": "https://www.data.gouv.fr/api/1/datasets/donnees-sur-la-localisation-et-lacces-de-la-population-aux-equipements/"
+      }
+    ],
+    "facets": {
+      "access_type": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 2593,
+          "name": "open"
+        },
+        {
+          "count": 5,
+          "name": "restricted"
+        }
+      ],
+      "badge": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 901,
+          "name": "inspire"
+        },
+        {
+          "count": 33,
+          "name": "hvd"
+        }
+      ],
+      "format": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 932,
+          "name": "wfs"
+        },
+        {
+          "count": 900,
+          "name": "wms"
+        }
+      ],
+      "format_family": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1830,
+          "name": "other"
+        },
+        {
+          "count": 1347,
+          "name": "geographical"
+        }
+      ],
+      "geozone": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 239,
+          "name": "country:fr"
+        },
+        {
+          "count": 32,
+          "name": "country-subset:fr:metro"
+        }
+      ],
+      "granularity": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1711,
+          "name": "other"
+        },
+        {
+          "count": 146,
+          "name": "fr:commune"
+        }
+      ],
+      "last_update": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1316,
+          "name": "last_3_years"
+        },
+        {
+          "count": 854,
+          "name": "last_12_months"
+        }
+      ],
+      "license": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1480,
+          "name": "lov2"
+        },
+        {
+          "count": 647,
+          "name": "notspecified"
+        }
+      ],
+      "organization_id_with_name": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 303,
+          "name": "5883d10488ee3810d19b81e3|DREAL Grand Est"
+        },
+        {
+          "count": 108,
+          "name": "59a538b688ee386b121578b9|Atmo Auvergne-Rhône-Alpes"
+        }
+      ],
+      "producer_type": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1783,
+          "name": "public-service"
+        },
+        {
+          "count": 532,
+          "name": "local-authority"
+        }
+      ],
+      "schema": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1,
+          "name": "139bercy/format-commande-publique"
+        },
+        {
+          "count": 1,
+          "name": "etalab/schema-passage-a-niveau"
+        }
+      ],
+      "tag": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1014,
+          "name": "donnees-ouvertes"
+        },
+        {
+          "count": 901,
+          "name": "inspire"
+        }
+      ],
+      "topics": [
+        {
+          "count": 2710,
+          "name": "all"
+        },
+        {
+          "count": 1368,
+          "name": "65e9aa6cb5c809c30c70ee02"
+        },
+        {
+          "count": 27,
+          "name": "69aea5dff97ef1fc29836765"
+        }
+      ]
+    },
+    "next_page": "https://www.data.gouv.fr/api/2/datasets/search/?q=population&page_size=3&page=2",
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 2710
+  }
+}

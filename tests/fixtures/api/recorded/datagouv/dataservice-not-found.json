@@ -1,0 +1,12 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/dataservices/000000000000000000000000/",
+    "method": "GET",
+    "status": 404,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:07.660Z"
+  },
+  "body": {
+    "message": "The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. You have requested this URI [/api/1/dataservices/000000000000000000000000/] but did you mean /api/1/dataservices/<dataservice:dataservice>/datasets/<dataset:dataset>/ or /api/1/dataservices/<dataservice:dataservice>/rdf.<_format> or /api/1/dataservices/<dataservice:dataservice>/rdf ?"
+  }
+}

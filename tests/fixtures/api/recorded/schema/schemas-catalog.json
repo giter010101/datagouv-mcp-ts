@@ -1,0 +1,210 @@
+{
+  "$fixture": {
+    "url": "https://schema.data.gouv.fr/schemas/schemas.json",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:16.308Z",
+    "note": "catalogue trimmed to 5 schemas incl. IRVE + BAL"
+  },
+  "body": {
+    "$schema": "https://opendataschema.frama.io/catalog/schema-catalog.json",
+    "schemas": [
+      {
+        "consolidation_dataset_id": null,
+        "contact": "adresse@data.gouv.fr",
+        "description": "Fichier contenant toutes les adresses d'un territoire donné",
+        "examples": [],
+        "external_doc": "https://adresse.data.gouv.fr/bases-locales",
+        "external_tool": "https://mes-adresses.data.gouv.fr/new",
+        "homepage": "https://github.com/etalab/schema-bal",
+        "labels": [
+          "Socle Commun des Données Locales"
+        ],
+        "name": "etalab/schema-bal",
+        "schema_type": "other",
+        "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/latest/schema.yml",
+        "title": "Base Adresse Locale (BAL)",
+        "versions": [
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/1.1.0/schema.yml",
+            "version_name": "1.1.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/1.3.0/schema.yml",
+            "version_name": "1.3.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/1.4.0/schema.yml",
+            "version_name": "1.4.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/1.5.0/schema.yml",
+            "version_name": "1.5.0"
+          }
+        ]
+      },
+      {
+        "consolidation_dataset_id": "5448d3e0c751df01f85d0572",
+        "contact": "contact@transport.data.gouv.fr",
+        "datapackage_description": "data package contenant 2 schémas : IRVE statique et IRVE dynamique",
+        "datapackage_name": "etalab/schema-irve",
+        "datapackage_title": "Infrastructures de recharges pour véhicules électriques (IRVE)",
+        "description": "Spécification du fichier d'échange relatif aux données concernant la localisation géographique et les caractéristiques techniques des stations et des points de recharge pour véhicules électriques. Chaque ligne du fichier correspond à un point de recharge (PDC).",
+        "examples": [
+          {
+            "path": "https://raw.githubusercontent.com/etalab/schema-irve/v2.3.0/statique/exemple-valide-statique.csv",
+            "title": "Exemple de fichier IRVE valide"
+          }
+        ],
+        "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
+        "external_tool": null,
+        "homepage": "https://github.com/etalab/schema-irve.git",
+        "labels": [
+          "Socle Commun des Données Locales",
+          "transport.data.gouv.fr"
+        ],
+        "name": "etalab/schema-irve-statique",
+        "schema_type": "tableschema",
+        "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
+        "title": "IRVE statique",
+        "versions": [
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/2.2.0/schema-statique.json",
+            "version_name": "2.2.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/2.2.1/schema-statique.json",
+            "version_name": "2.2.1"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/2.3.0/schema-statique.json",
+            "version_name": "2.3.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/2.3.1/schema-statique.json",
+            "version_name": "2.3.1"
+          }
+        ]
+      },
+      {
+        "consolidation_dataset_id": null,
+        "contact": "contact@geodae.sante.gouv.fr",
+        "description": "Spécification du modèle de données relatif aux DAE",
+        "examples": [
+          {
+            "path": "https://gitlab.com/arsante/atlasante/schema-dae/raw/1.0.7/exemple_invalide.csv",
+            "title": "Exemple de fichier DAE avec des données invalides"
+          },
+          {
+            "path": "https://gitlab.com/arsante/atlasante/schema-dae/raw/1.0.7/exemple_invalide_structure.csv",
+            "title": "Exemple de fichier DAE avec une structure invalide"
+          },
+          {
+            "path": "https://gitlab.com/arsante/atlasante/schema-dae/raw/1.0.7/exemple_invalide_complet.csv",
+            "title": "Exemple de fichier DAE toutes les données invalides"
+          },
+          {
+            "path": "https://gitlab.com/arsante/atlasante/schema-dae/raw/1.0.7/exemple_valide.csv",
+            "title": "Exemple de fichier DAE valide"
+          }
+        ],
+        "external_doc": null,
+        "external_tool": null,
+        "homepage": "https://gitlab.com/arsante/atlasante/schema-dae.git",
+        "labels": [
+          "Socle Commun des Données Locales"
+        ],
+        "name": "atlasante/schema-dae",
+        "schema_type": "tableschema",
+        "schema_url": "https://schema.data.gouv.fr/schemas/atlasante/schema-dae/latest/schema.json",
+        "title": "DAE",
+        "versions": [
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/atlasante/schema-dae/1.0.7/schema.json",
+            "version_name": "1.0.7"
+          }
+        ]
+      },
+      {
+        "consolidation_dataset_id": "5448d3e0c751df01f85d0572",
+        "contact": "contact@transport.data.gouv.fr",
+        "datapackage_description": "data package contenant 2 schémas : IRVE statique et IRVE dynamique",
+        "datapackage_name": "etalab/schema-irve",
+        "datapackage_title": "Infrastructures de recharges pour véhicules électriques (IRVE)",
+        "description": "Spécification du fichier d'échange relatif aux données concernant l’état temps réel des points de recharge pour véhicules électriques. Chaque ligne du fichier correspond à un point de recharge (PDC) dont les caractéristiques complètes sont décrites dans un fichier au schéma « IRVE statique »",
+        "examples": [
+          {
+            "path": "https://raw.githubusercontent.com/etalab/schema-irve/v2.3.0/dynamique/exemple-valide-dynamique.csv",
+            "title": "Exemple de fichier IRVE valide"
+          }
+        ],
+        "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
+        "external_tool": null,
+        "homepage": "https://github.com/etalab/schema-irve.git",
+        "labels": [
+          "Socle Commun des Données Locales",
+          "transport.data.gouv.fr"
+        ],
+        "name": "etalab/schema-irve-dynamique",
+        "schema_type": "tableschema",
+        "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/latest/schema-dynamique.json",
+        "title": "IRVE dynamique",
+        "versions": [
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/2.2.0/schema-dynamique.json",
+            "version_name": "2.2.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/2.2.1/schema-dynamique.json",
+            "version_name": "2.2.1"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/2.3.0/schema-dynamique.json",
+            "version_name": "2.3.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/2.3.1/schema-dynamique.json",
+            "version_name": "2.3.1"
+          }
+        ]
+      },
+      {
+        "consolidation_dataset_id": "5448d3e0c751df01f85d0572",
+        "contact": "contact@transport.data.gouv.fr",
+        "description": "data package contenant 2 schémas : IRVE statique et IRVE dynamique",
+        "examples": [],
+        "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
+        "external_tool": null,
+        "homepage": "https://github.com/etalab/schema-irve.git",
+        "labels": [
+          "Socle Commun des Données Locales",
+          "transport.data.gouv.fr"
+        ],
+        "name": "etalab/schema-irve",
+        "schema_type": "datapackage",
+        "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/latest/datapackage.json",
+        "title": "Infrastructures de recharges pour véhicules électriques (IRVE)",
+        "versions": [
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/2.2.0/datapackage.json",
+            "version_name": "2.2.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/2.2.1/datapackage.json",
+            "version_name": "2.2.1"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/2.3.0/datapackage.json",
+            "version_name": "2.3.0"
+          },
+          {
+            "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/2.3.1/datapackage.json",
+            "version_name": "2.3.1"
+          }
+        ]
+      }
+    ],
+    "version": 1
+  }
+}

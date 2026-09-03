@@ -1,0 +1,106 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/search/?q=zzqqxxjjkkllzz&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:02.773Z",
+    "note": "search_datasets fallback path (no result)"
+  },
+  "body": {
+    "data": [],
+    "facets": {
+      "access_type": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "badge": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "format": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "format_family": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "geozone": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "granularity": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "last_update": [
+        {
+          "count": 0,
+          "name": "all"
+        },
+        {
+          "count": 0,
+          "name": "last_3_years"
+        },
+        {
+          "count": 0,
+          "name": "last_12_months"
+        }
+      ],
+      "license": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "organization_id_with_name": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "producer_type": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "schema": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "tag": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ],
+      "topics": [
+        {
+          "count": 0,
+          "name": "all"
+        }
+      ]
+    },
+    "next_page": null,
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 0
+  }
+}

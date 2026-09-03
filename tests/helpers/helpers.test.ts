@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { FAKE_IDS, fakeClients, fakeFormatsDeps } from "./fakes.js";
 import { startTestServer, type TestServer } from "./mcp-client.js";
-import { loadFixture, mockDatagouv } from "./mock-datagouv.js";
+import { loadFixture, loadRecordedFixture, mockDatagouv } from "./mock-datagouv.js";
 
 /** Self-tests for the shared helpers (workstream D). */
 describe("tests/helpers", () => {
@@ -19,7 +19,7 @@ describe("tests/helpers", () => {
     const ok = await server.callToolOk<{ total: number }>("search_datasets", {
       query: "population",
     });
-    expect(ok.structured?.total).toBe(1234);
+    expect(ok.structured?.total).toBeGreaterThan(100);
     expect(mock.calls[0]?.path).toBe("/api/2/datasets/search/");
 
     // Unregistered route → the HTTP layer maps the mock error to a NETWORK_ERROR, never a live call.
@@ -46,10 +46,27 @@ describe("tests/helpers", () => {
     await mock.close();
   });
 
-  it("loadFixture resolves names under tests/fixtures/api then tests/fixtures", () => {
-    const fixture = loadFixture<{ total: number }>("datagouv/datasets-search-population");
-    expect(fixture.total).toBe(1234);
+  it("loadFixture unwraps recorded envelopes and resolves recorded → api → fixtures roots", () => {
+    const recorded = loadRecordedFixture<{ total: number }>("datagouv/datasets-search-population");
+    expect(recorded.$fixture.status).toBe(200);
+    expect(recorded.$fixture.url).toContain("/api/2/datasets/search/");
+    expect(loadFixture<{ total: number }>("datagouv/datasets-search-population").total).toBe(
+      recorded.body.total,
+    );
+    // Plain (non-enveloped) fixture from tests/fixtures/ still loads.
+    expect(loadFixture<{ total: number }>("datagouv/dataset-404-v1")).toHaveProperty("message");
     expect(() => loadFixture("does/not/exist")).toThrow(/fixtures:record/);
+  });
+
+  it("recorded 404 fixtures replay their status through the route builders", async () => {
+    const mock = mockDatagouv();
+    mock.v1("/datasets/000000000000000000000000/", { fixture: "datagouv/dataset-not-found" });
+    const res = await mock.fetchImpl(
+      "https://www.data.gouv.fr/api/1/datasets/000000000000000000000000/",
+    );
+    expect(res.status).toBe(404);
+    expect(await res.json()).toHaveProperty("message");
+    await mock.close();
   });
 
   it("fakeClients returns deterministic data, records calls and 404s on unknown ids", async () => {

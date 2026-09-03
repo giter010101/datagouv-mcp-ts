@@ -1,0 +1,62 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/resources/84719f62-cdd4-4d7c-b292-2aafa56c6043/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:05.779Z",
+    "note": "parquet on object.files.data.gouv.fr"
+  },
+  "body": {
+    "dataset_id": "6a1577f6e669fa1712ef2aed",
+    "resource": {
+      "checksum": {
+        "type": "sha1",
+        "value": "63e0a3f3b31f2e389b971f25701f3aad035e9073"
+      },
+      "created_at": "2026-05-26T10:37:47.250000+00:00",
+      "description": null,
+      "extras": {
+        "analysis:check_id": 47405880,
+        "analysis:checksum": "63e0a3f3b31f2e389b971f25701f3aad035e9073",
+        "analysis:content-length": 532274,
+        "analysis:last-modified-at": "[redacted]",
+        "analysis:last-modified-detection": "[redacted]",
+        "analysis:mime-type": "text/csv",
+        "analysis:parsing:finished_at": "2026-05-26T10:38:01.678486+00:00",
+        "analysis:parsing:parquet_size": 139356,
+        "analysis:parsing:parquet_url": "https://object.files.data.gouv.fr/hydra-parquet/hydra-parquet/84719f62-cdd4-4d7c-b292-2aafa56c6043.parquet",
+        "analysis:parsing:parsing_table": "5e8a5090540069cddbe48db5d057882c",
+        "analysis:parsing:started_at": "2026-05-26T10:37:58.511133+00:00",
+        "check:available": true,
+        "check:cors:allow-credentials": "true",
+        "check:cors:allow-headers": "Origin,Authorization,Accept,DNT,User-Agent,If-Modified-Since,Cache-Control,Content-Type,Range,sentry-trace,baggage",
+        "check:cors:allow-methods": "GET, OPTIONS",
+        "check:cors:allow-origin": "*",
+        "check:cors:max-age": "1728000",
+        "check:cors:status": 204,
+        "check:date": "[redacted]",
+        "check:headers:content-type": "text/csv",
+        "check:id": 47405880,
+        "check:status": 200,
+        "check:timeout": "[redacted]",
+        "mesh": "com"
+      },
+      "filesize": 532274,
+      "filetype": "file",
+      "format": "csv",
+      "harvest": null,
+      "id": "84719f62-cdd4-4d7c-b292-2aafa56c6043",
+      "internal": "[redacted]",
+      "last_modified": "2026-05-26T10:37:47.355000+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/84719f62-cdd4-4d7c-b292-2aafa56c6043",
+      "metrics": "[redacted]",
+      "mime": "text/csv",
+      "preview_url": "https://explore.data.gouv.fr/fr/resources/84719f62-cdd4-4d7c-b292-2aafa56c6043",
+      "schema": null,
+      "title": "frequentation-gares_com",
+      "type": "main",
+      "url": "https://static.data.gouv.fr/resources/frequentation-moyenne-annuelle-par-gare/20260526-103747/tmp6hz0336w.csv"
+    }
+  }
+}
