@@ -1,14 +1,7 @@
-import { createDatagouvClient } from "../clients/datagouv-client.js";
-import type {
-  CrawlerClient,
-  DatagouvClient,
-  MetricsClient,
-  SchemaClient,
-  TabularClient,
-} from "../clients/types.js";
+import { createClients } from "../clients/index.js";
+import type { DatagouvClient } from "../clients/types.js";
 import { type Cache, createCache } from "../core/cache.js";
 import type { Config } from "../core/config.js";
-import { NotFoundError } from "../core/errors.js";
 import { createHttpClient, type FetchLike, type HttpClient } from "../core/http.js";
 import { defaultAccessors } from "../formats/accessors/index.js";
 import { createCapabilityDetector } from "../formats/capability.js";
@@ -46,33 +39,7 @@ export function createDeps(config: Config, options: CreateDepsOptions = {}): Ser
     maxEntries: config.cache.maxEntries,
     defaultTtlMs: config.cache.defaultTtlMs,
   });
-  const datagouv = createDatagouvClient({ http, cache, baseUrls: config.baseUrls });
-  // Work-in-progress: formats/tools require more clients (tabular, metrics, crawler,
-  // schema). Until workstream B completes, we provide safe stubs so the server
-  // compiles and the currently-registered tool(s) keep working.
-  const tabular: TabularClient = {
-    async getResourceMeta() {
-      return undefined;
-    },
-    async isAvailable() {
-      return false;
-    },
-    async getProfile() {
-      return undefined;
-    },
-    async queryData() {
-      return { rows: [], page: 1, pageSize: 1, total: 0, nextUrl: undefined };
-    },
-    async aggregate() {
-      return { rows: [], page: 1, pageSize: 1, total: 0, nextUrl: undefined };
-    },
-    async isAggregationAllowed() {
-      return false;
-    },
-    async getSwagger() {
-      return { columns: [], raw: {} };
-    },
-  };
+  const { datagouv, tabular, metrics, crawler, schema } = createClients(config, { http, cache });
 
   const tabularDataSource: TabularDataSource = {
     getProfile: (resourceId) => tabular.getProfile(resourceId),
@@ -104,43 +71,6 @@ export function createDeps(config: Config, options: CreateDepsOptions = {}): Ser
         page: query.page,
         pageSize: query.pageSize,
       }),
-  };
-
-  const metrics: MetricsClient = {
-    async getMonthlyMetrics() {
-      return [];
-    },
-  };
-
-  const crawler: CrawlerClient = {
-    async getResourceExceptions() {
-      return new Set();
-    },
-    async isException() {
-      return false;
-    },
-    async getHealth() {
-      return { version: undefined, environment: undefined, features: {} };
-    },
-  };
-
-  const schema: SchemaClient = {
-    async listSchemas() {
-      return [];
-    },
-    async getSchema() {
-      throw new NotFoundError("Schema not available (stub).", { details: {} });
-    },
-    async validateResource() {
-      return {
-        valid: false,
-        errorCount: 0,
-        warningCount: 0,
-        rows: undefined,
-        errors: [],
-        warnings: [],
-      };
-    },
   };
 
   const engines = createEngines({
