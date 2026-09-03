@@ -23,9 +23,9 @@ describe("tests/helpers", () => {
     expect(mock.calls[0]?.path).toBe("/api/2/datasets/search/");
 
     // Unregistered route → the HTTP layer maps the mock error to a NETWORK_ERROR, never a live call.
-    const res = await mock.fetchImpl("https://www.data.gouv.fr/api/1/datasets/unknown/").catch(
-      (e: Error) => e,
-    );
+    const res = await mock
+      .fetchImpl("https://www.data.gouv.fr/api/1/datasets/unknown/")
+      .catch((e: Error) => e);
     expect(res).toBeInstanceOf(Error);
     await mock.close();
   });

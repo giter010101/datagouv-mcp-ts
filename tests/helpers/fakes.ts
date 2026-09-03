@@ -406,7 +406,9 @@ export function fakeDatagouvClient(
       return { ...topic, elements: datasets.map(fakeDatasetSummary) };
     },
     suggest: async (_query, size = 5): Promise<Suggestion[]> =>
-      datasets.slice(0, size).map((d) => ({ id: d.id, text: d.title, kind: "dataset", url: d.url })),
+      datasets
+        .slice(0, size)
+        .map((d) => ({ id: d.id, text: d.title, kind: "dataset", url: d.url })),
     fetchOpenApiSpec: async () => ({
       openapi: "3.0.0",
       info: { title: "Fake API", version: "1.0.0" },
