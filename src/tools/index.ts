@@ -30,7 +30,10 @@ export * from "./types.js";
 
 export type { ToolDeps };
 
-/** All registered MCP tools. Legacy tools first (ADR 0007), then new tools alphabetically. */
+/**
+ * All registered MCP tools. Legacy tools first (ADR 0007), then new tools alphabetically.
+ * Markdown catalogue for README: `tsx scripts/print-tool-catalog.ts`.
+ */
 export const ALL_TOOLS: ReadonlyArray<AnyToolDefinition<ToolDeps>> = [
   // Legacy (10)
   searchDatasetsTool,
