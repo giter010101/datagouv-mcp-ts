@@ -4,7 +4,7 @@ import type { FetchLike } from "../../../src/core/http.js";
 import type { Logger } from "../../../src/core/logger.js";
 import { createTelemetry } from "../../../src/server/telemetry.js";
 import { registerTools } from "../../../src/tools/registry.js";
-import type { AnyToolDefinition } from "../../../src/tools/types.js";
+import type { AnyToolDefinition, ToolCallEvent } from "../../../src/tools/types.js";
 
 function fakeFetch(handler: FetchLike): FetchLike & {
   calls: Array<{ url: string; init: RequestInit | undefined }>;
@@ -147,7 +147,7 @@ describe("registry wiring", () => {
       },
     };
     const telemetry = {
-      onToolCall: () => {
+      onToolCall: (_event: ToolCallEvent) => {
         throw new Error("boom");
       },
       flush: async () => {},
