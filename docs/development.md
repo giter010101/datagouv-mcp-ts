@@ -25,8 +25,10 @@ cp .env.example .env    # optional; every variable has a default
 | `pnpm check:layers` | Layer import rules (`core ← clients ← formats ← tools ← server`) |
 | `pnpm test` / `pnpm test:watch` | Offline vitest suite (unit + contract + e2e + layering), ~1 s |
 | `pnpm test:coverage` | Same with v8 coverage (`coverage/lcov`) |
-| `pnpm test:live` | Live smoke tests against data.gouv.fr (`RUN_LIVE_TESTS=1`, `tests/live/**`) |
+| `pnpm test:live` | Live smoke tests against data.gouv.fr (`DATAGOUV_LIVE=1` or `RUN_LIVE_TESTS=1`, `tests/live/**`) |
 | `pnpm evidence --tool <name> --input '<json>' [--stdio]` | Executes a tool for real and writes `docs/evidence/<tool>-<date>.md` (+ raw JSON, git-ignored) |
+| `pnpm docs:tools` | Regenerates `docs/tools.md` from tool definitions |
+| `tsx scripts/print-tool-catalog.ts` | Prints the README markdown catalogue from `ALL_TOOLS` |
 | `pnpm check` | `typecheck && lint && check:layers && test && build` — must be green before every commit |
 | `pnpm changeset` / `pnpm version-packages` / `pnpm release` | Release tooling (see [Releasing](#releasing)) |
 
@@ -38,10 +40,10 @@ tests/
 ├── unit/       cross-module unit tests (plus src/**/*.test.ts next to the code)
 ├── contract/   client tests replaying recorded fixtures
 ├── e2e/        MCP-level tests: SDK Client over InMemoryTransport and over HTTP loopback
-├── live/       *.live.test.ts, network, gated by RUN_LIVE_TESTS=1
+├── live/       *.live.test.ts, network, gated by DATAGOUV_LIVE=1 (alias RUN_LIVE_TESTS=1)
 ├── fixtures/   recorded API payloads (<service>/*.json) and sample files (files/)
 └── helpers/    startTestServer, routedFetch, fakes
-scripts/        check-layers.ts · evidence.ts · record-fixtures.ts
+scripts/        check-layers.ts · evidence.ts · record-fixtures.ts · print-tool-catalog.ts
 docs/           this documentation · evidence/ (generated reports)
 .agent/         agent harness: AGENTS.md map, rules, skills, exec plans, ADRs, tech debt, journal
 .changeset/     pending changesets + config (pre-release mode)
