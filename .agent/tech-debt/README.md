@@ -37,6 +37,7 @@ Known technical debt items. Small, frequent paydown preferred over big-bang refa
 | TD-006 | Non-datagouv client stubs in `server/deps.ts` | medium | in_progress (Grok, C) |
 | TD-007 | Missing live evidence reports (20/21 tools) | medium | open (D) |
 | TD-008 | `search_datasets` facets temporarily removed | low | in_progress (Grok, C) |
+| TD-009 | Coverage floors below ADR 0010 (honest CI) | medium | open (D) |
 
 ## Recurring cleanup
 
