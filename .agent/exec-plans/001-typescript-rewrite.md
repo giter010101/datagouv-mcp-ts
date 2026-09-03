@@ -3,7 +3,7 @@
 **Status**: active
 **Owner**: architect (plan) · orchestrator (workstream dispatch)
 **Created**: 2026-09-03
-**Updated**: 2026-09-03
+**Updated**: 2026-09-03 (tracking refresh post completion-audit-2)
 **Inputs**: `research/01`–`04`, ADRs `decisions/0001`–`0010`, draft PR [#1](https://github.com/giter010101/datagouv-mcp-ts/pull/1)
 
 ## Goal
@@ -233,12 +233,12 @@ New: `MCP_TRANSPORT`, `MCP_ALLOWED_HOSTS`, `MCP_ALLOWED_ORIGINS`, `HTTP_TIMEOUT_
 ## 11. Milestones
 
 - [x] **M0 — Scaffold & contracts** (architect, 2026-09-03): repo layout, toolchain green, shared interfaces, `search_datasets`, both transports, e2e/live tests, evidence generator, ADRs 0001–0010.
-- [ ] **M1 — Clients & core hardening** (A): all `Clients` implemented with fixtures + contract tests; `ServerDeps` widened.
-- [ ] **M2 — Formats layer** (B): capability detector, Tier 1 accessors (tabular-api, csv-stream, parquet), Tier 2 (spreadsheet, json/jsonl, geojson, archive listing), Tier 3 (document/text, api-endpoint, metadata), DuckDB engine behind flag.
-- [ ] **M3 — Tool parity** (C): 10 legacy tools green with evidence; legacy Python deletable.
-- [ ] **M4 — New tools** (C on B): `get_resource_schema`, `preview_resource`, `query_resource`, `check_resource_availability`, `get_dataset_resources_summary`, `suggest`, reuses/topics/HVD, schema tools.
-- [ ] **M5 — Quality gates** (D): coverage targets, conformance suite in CI, nightly live, evidence for 100% tools, stress test port.
-- [ ] **M6 — Release** (E): README rewrite (client configs), CI, Docker multi-stage, compose, release script/changesets, `1.0.0` tag; delete `legacy/python/`.
+- [x] **M1 — Clients & core hardening** (A, 2026-09-03): all `Clients` implemented; `createClients()` in `createDeps`; 5 contract test files; fixtures for each upstream.
+- [x] **M2 — Formats layer** (B, 2026-09-03): capability detector, Tier 1–3 accessors, DuckDB engine behind flag; unit tests green.
+- [x] **M3 — Tool parity** (C, 2026-09-03): 10 legacy tools green with offline + live evidence; `legacy/python/` retained until M6 (TD-004).
+- [x] **M4 — New tools** (C on B, 2026-09-03): 11 core new tools shipped (`get_resource_schema`, `preview_resource`, `query_resource`, `check_resource_availability`, `get_dataset_resources_summary`, `suggest`, reuses, topics/HVD). Optional schema/geo tools (`list_schemas`, `get_schema`, `validate_resource_against_schema`, `geo_lookup`) deferred per §4.
+- [ ] **M5 — Quality gates** (D, partial): `pnpm check` + `test:coverage` green (TD-009 floors, below ADR 0010 90%); 21/21 evidence offline+live; `evidence:check` + `test:conformance` green locally; nightly live workflow. **Open**: `evidence:check` not in CI; `test:conformance` soft-fail (`continue-on-error`); automated live vitest 1/21; no stress test port.
+- [ ] **M6 — Release** (E, partial/alpha): README + docs + CI + Docker + changesets present; package `1.0.0-alpha.0`; PR #1 open with green CI. **Open**: `1.0.0` tag / npm publish; delete `legacy/python/` (TD-004); hard CI gates for evidence + conformance.
 
 ## 12. Workstreams (parallel, disjoint file ownership)
 

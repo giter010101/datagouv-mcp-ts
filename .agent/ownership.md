@@ -12,18 +12,17 @@ Master plan: `exec-plans/001-typescript-rewrite.md` (§12 for the shared-file pr
 | Resource formats catalog | research-03 | `.agent/research/03-resource-formats-catalog.md` | done |
 | Harness & TS stack research | research-04 | `.agent/research/04-harness-engineering-and-ts-stack.md`, `.agent/rules/`, `.agent/skills/` | done |
 | Architecture, ADRs, scaffold (M0) | architect | `.agent/exec-plans/001-typescript-rewrite.md`, `.agent/decisions/`, initial `src/**`, toolchain config | done |
-| Legacy Python reference | — (read-only) | `legacy/python/**` — delete at M3 | frozen |
+| Legacy Python reference | — (read-only) | `legacy/python/**` — delete at M6 (TD-004) | frozen |
 
 ## Development workstreams (M1–M6)
 
 | WS | Owner agent | Files / directories (exclusive) | Depends on | Status |
 |----|-------------|----------------------------------|------------|--------|
-| **A — core + clients** | Fable → Grok | `src/core/**`, `src/clients/**` (`types.ts`, `index.ts` `createClients`, `datagouv-client.ts`, `tabular-client.ts`, `metrics-client.ts`, `crawler-client.ts`, `schema-client.ts`, `datagouv-reference.ts`, `openapi.ts`, `mappers/**`, `schemas/**`), `tests/fixtures/api/**`, `tests/contract/**` (not started) | M0 | **mostly done** — all 5 clients + `createClients()`; mappers/schemas complete; typecheck green; **no `tests/contract/**` yet** |
-| **B — formats** | Grok | `src/formats/**` (`capability.ts`, `download.ts`, `parsers/**`, `engines/**`, `accessors/**`, `open.ts`, `registry.ts`, `index.ts`), `tests/fixtures/files/**`, `tests/unit/formats/**` | M0 | **done** — detector, parsers, engines, 11 accessors, `defaultAccessors()` / `openResource()`; offline unit tests green |
-| **C — MCP tools + server** | Fable → Grok | `src/tools/**` (21 tool files + `registry.ts`, `deps.ts`, `index.ts` `ALL_TOOLS`), `src/server/**` (`deps.ts`, `mcp-server.ts`, `stdio.ts`, `http.ts`), `src/index.ts`, `tests/e2e/**`, `server/telemetry/**` (not started) | M0; A; B | **mostly done** — **21 tools registered**; `createDeps` wires `createClients` + formats; stdio/HTTP transports OK; telemetry not started; sibling editing `deps.ts` / `search-datasets.ts` |
-| **D — tests & evidence** | Fable → Composer | `tests/helpers/**`, `tests/live/**`, `scripts/evidence.ts`, `scripts/evidence-coverage.ts`, `scripts/record-fixtures.ts`, `scripts/conformance.ts`, `docs/evidence/**`, `vitest.config.ts` | M0 | **mostly done** — harness + fixtures; 21/21 tools mapped in `docs/evidence/coverage.md` (offline fixture calls + live `search_datasets`); `pnpm evidence:check` gate; contract tests still missing |
-
-| **E — docs / CI / release** | Fable | `README.md`, `docs/**` (except `docs/evidence`), `.github/**`, `Dockerfile`, `docker-compose.yml`, `.changeset/**`, `CHANGELOG.md`, `.agent/skills/release.md` | M0 | **mostly done** — README, docs/*, CI (`pnpm check`), Docker, nightly live, changesets; CONTRIBUTING/SECURITY present |
+| **A — core + clients** | Fable → Grok | `src/core/**`, `src/clients/**`, `tests/fixtures/api/**`, `tests/contract/**` | M0 | **done** — 5 clients + `createClients()`; mappers/schemas; **5 contract test files**; typecheck + `pnpm check` green |
+| **B — formats** | Grok | `src/formats/**`, `tests/fixtures/files/**`, `tests/unit/formats/**` | M0 | **done** — detector, parsers, engines, 11 accessors, `defaultAccessors()` / `openResource()`; unit tests green |
+| **C — MCP tools + server** | Fable → Grok | `src/tools/**`, `src/server/**`, `src/index.ts`, `tests/e2e/**` | M0; A; B | **done** — **21 tools** in `ALL_TOOLS`; `createDeps` wires `createClients` + formats; stdio/HTTP; **telemetry** (`createTelemetry`, Matomo live, Sentry log-only — TD-002 partial); facets restored (TD-008 resolved) |
+| **D — tests & evidence** | Fable → Composer | `tests/helpers/**`, `tests/live/**`, `scripts/evidence*.ts`, `scripts/conformance.ts`, `docs/evidence/**`, `vitest.config.ts` | M0 | **done** — **21/21 offline + 21/21 live** evidence (`coverage.md` 42 PASS rows); `pnpm evidence:check` green; `pnpm test:conformance` green locally; 5 contract suites; 1 automated live vitest (`search_datasets`); nightly live workflow |
+| **E — docs / CI / release** | Fable | `README.md`, `docs/**` (except `docs/evidence`), `.github/**`, `Dockerfile`, `docker-compose.yml`, `.changeset/**`, `CHANGELOG.md`, `.agent/skills/release.md` | M0 | **mostly done** — README, docs/*, CI matrix Node 22/24 + Docker `/health` smoke; **gaps**: `evidence:check` not in CI, `test:conformance` `continue-on-error`; package `1.0.0-alpha.0` (M6 open) |
 
 Shared files (coordinate, small commits, rebase): `package.json` / `pnpm-lock.yaml` (deps via `pnpm add`), `src/clients/types.ts`, `src/formats/types.ts`, `src/core/types.ts` (additive only), `.agent/ownership.md` (orchestrator only), `.agent/AGENTS.md` (orchestrator/architect).
 
