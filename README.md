@@ -1,37 +1,104 @@
 # data.gouv.fr MCP Server
 
-<img width="1200" height="675" alt="image" src="https://github.com/user-attachments/assets/5d20e992-349a-4b3b-9a0a-ebe308735cc9" />
+<img width="1200" height="675" alt="data.gouv.fr MCP server" src="https://github.com/user-attachments/assets/5d20e992-349a-4b3b-9a0a-ebe308735cc9" />
+
+[![CI](https://github.com/giter010101/datagouv-mcp-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/giter010101/datagouv-mcp-ts/actions/workflows/ci.yml)
+[![Nightly live](https://github.com/giter010101/datagouv-mcp-ts/actions/workflows/nightly-live.yml/badge.svg)](https://github.com/giter010101/datagouv-mcp-ts/actions/workflows/nightly-live.yml)
+[![npm](https://img.shields.io/npm/v/datagouv-mcp?label=npm)](https://www.npmjs.com/package/datagouv-mcp)
+[![Node 22+](https://img.shields.io/badge/node-%3E%3D22-339933?logo=node.js&logoColor=white)](.nvmrc)
+[![MCP](https://img.shields.io/badge/MCP-2025--11--25-blue)](https://modelcontextprotocol.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+> **En bref (FR).** Ce serveur [MCP](https://modelcontextprotocol.io) permet à un assistant IA
+> (Claude, ChatGPT, Le Chat, Gemini, Cursor, VS Code…) de chercher, explorer et interroger les
+> jeux de données de [data.gouv.fr](https://www.data.gouv.fr), la plateforme nationale d'open data,
+> directement dans la conversation : « Quels jeux de données existent sur les prix de l'immobilier ? »,
+> « Montre-moi les dix premières lignes du fichier des bornes de recharge ». Il est utilisable tel quel
+> via l'instance publique `https://mcp.data.gouv.fr/mcp`, ou en local avec `npx datagouv-mcp`.
+> Le reste de ce document est en anglais.
 
 > [!TIP]
-> Got feedback? [Tell us about it here](https://tally.so/r/KYMboX)
+> Got feedback? [Tell us about it here](https://tally.so/r/KYMboX).
 
-[![CircleCI](https://circleci.com/gh/datagouv/datagouv-mcp.svg?style=svg)](https://circleci.com/gh/datagouv/datagouv-mcp)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+**datagouv-mcp** is a [Model Context Protocol](https://modelcontextprotocol.io) server written in
+TypeScript that gives LLM clients read-only, structured access to the data.gouv.fr catalogue
+(≈74k datasets, ≈690k resources, ≈1.2k APIs) and to the data itself: search datasets, organizations
+and third-party APIs, inspect resources, and query tabular files through the Tabular API — with a
+format-aware data-access layer (CSV, XLSX, Parquet, JSON, GeoJSON, archives…) that lets an assistant
+preview and query **any** resource without protocol-level errors.
 
-Model Context Protocol (MCP) server that allows AI chatbots (Claude, ChatGPT, Gemini, etc.) to search, explore, and analyze datasets from [data.gouv.fr](https://www.data.gouv.fr), the French national Open Data platform, directly through conversation.
+It is the TypeScript successor of the Python server previously deployed at `mcp.data.gouv.fr`
+(see [Migration from the Python server](docs/migration-from-python.md)); all legacy tool names,
+parameters and messages are preserved.
 
-Instead of manually browsing the website, you can simply ask questions like "Quels jeux de données sont disponibles sur les prix de l'immobilier ?" or "Montre-moi les dernières données de population pour Paris" and get instant answers.
+## Contents
 
-> [!TIP]
-> Use it now: A public instance is available for everyone at https://mcp.data.gouv.fr/mcp with no access restrictions.
-> To connect your favorite chatbot, simply follow [the connection instructions below](#-connect-your-chatbot-to-the-mcp-server).
+- [Quick start](#quick-start)
+- [Connect your client](#connect-your-client)
+- [Tools](#tools)
+- [Architecture](#architecture)
+- [Configuration](#configuration)
+- [Development](#development)
+- [Deployment](#deployment)
+- [Contributing](#contributing) · [Security](#security) · [License](#license)
 
-## 🌐 Connect your chatbot to the MCP server
+## Quick start
 
-Use the hosted endpoint `https://mcp.data.gouv.fr/mcp` (recommended). If you self-host, swap in your own URL.
+Three ways to use the server. Pick one:
 
-The MCP server configuration depends on your client. Use the appropriate configuration format for your client:
+| | How | For |
+|---|---|---|
+| **Hosted** | `https://mcp.data.gouv.fr/mcp` (Streamable HTTP, no auth, no API key) | Web chatbots (ChatGPT, Le Chat, HuggingChat), anyone who does not want to run anything |
+| **Local stdio** | `npx -y datagouv-mcp` | IDEs and CLIs (Cursor, VS Code, Claude Code/Desktop, Gemini CLI, Kiro, Windsurf…) |
+| **Self-hosted HTTP** | `npx -y datagouv-mcp --http` or `docker compose up -d` | Your own `/mcp` endpoint, behind a reverse proxy |
 
-[AnythingLLM](#anythingllm) | [Autohand Code](#autohand-code) | [ChatGPT](#chatgpt) | [Claude Code](#claude-code) | [Claude Desktop](#claude-desktop) | [Cursor](#cursor) | [Gemini CLI](#gemini-cli) | [HuggingChat](#huggingchat) | [IBM Bob](#ibm-bob) | [Kiro CLI](#kiro-cli) | [Kiro IDE](#kiro-ide) | [Le Chat (Mistral)](#le-chat-mistral) | [Mistral Vibe](#mistral-vibe-cli) | [OpenCode](#opencode) | [VS Code](#vs-code) | [Windsurf](#windsurf)
+> [!NOTE]
+> Until `1.0.0` is published, the npm package is on the `alpha` dist-tag: use `npx -y datagouv-mcp@alpha`
+> in the examples below, or run from source (`pnpm dev`). Requires Node.js ≥ 22.
+
+### Local stdio (default)
+
+```shell
+npx -y datagouv-mcp            # speaks MCP over stdin/stdout; logs go to stderr
+npx -y datagouv-mcp --help
+```
+
+### Streamable HTTP
+
+```shell
+npx -y datagouv-mcp --http                      # http://127.0.0.1:8000/mcp  +  GET /health
+npx -y datagouv-mcp --http --port 8007 --host 127.0.0.1
+MCP_TRANSPORT=http MCP_PORT=8007 npx -y datagouv-mcp   # same, via environment
+curl -s http://127.0.0.1:8007/health             # {"status":"ok","version":"…","env":"local","data_env":"prod"}
+```
+
+### Docker
+
+```shell
+docker compose up -d                              # image built locally, http://127.0.0.1:8000/mcp
+MCP_PORT=8007 DATAGOUV_API_ENV=demo LOG_LEVEL=debug docker compose up -d
+docker compose down
+
+# or the published image
+docker run --rm -p 8000:8000 ghcr.io/giter010101/datagouv-mcp:edge
+```
+
+Details, reverse proxy and hardening: [docs/deployment.md](docs/deployment.md).
+
+## Connect your client
+
+Every client below works with the **hosted endpoint** (`https://mcp.data.gouv.fr/mcp`, or your own
+`http://127.0.0.1:8000/mcp` when self-hosting) and, when the client supports local servers, with the
+**stdio** command `npx -y datagouv-mcp`. Use stdio for IDE/CLI tools (no network hop, always the
+latest package); use HTTP for web chatbots or when you want one shared instance.
+
+[AnythingLLM](#anythingllm) · [Autohand Code](#autohand-code) · [ChatGPT](#chatgpt) · [Claude Code](#claude-code) · [Claude Desktop](#claude-desktop) · [Cursor](#cursor) · [Gemini CLI](#gemini-cli) · [HuggingChat](#huggingchat) · [IBM Bob](#ibm-bob) · [Kiro CLI](#kiro-cli) · [Kiro IDE](#kiro-ide) · [Le Chat (Mistral)](#le-chat-mistral) · [Mistral Vibe CLI](#mistral-vibe-cli) · [OpenCode](#opencode) · [VS Code](#vs-code) · [Windsurf](#windsurf)
 
 ### AnythingLLM
 
-1. Locate the `anythingllm_mcp_servers.json` file in your AnythingLLM storage plugins directory:
-   - **Linux**: `~/.config/anythingllm-desktop/storage/plugins/anythingllm_mcp_servers.json`
-   - **MacOS**: `~/Library/Application Support/anythingllm-desktop/storage/plugins/anythingllm_mcp_servers.json`
-   - **Windows**: `C:\Users\<username>\AppData\Roaming\anythingllm-desktop\storage\plugins\anythingllm_mcp_servers.json`
-
-2. Add the following configuration:
+Edit `anythingllm_mcp_servers.json` in the AnythingLLM storage plugins directory
+(Linux `~/.config/anythingllm-desktop/storage/plugins/`, macOS `~/Library/Application Support/anythingllm-desktop/storage/plugins/`,
+Windows `%APPDATA%\anythingllm-desktop\storage\plugins\`):
 
 ```json
 {
@@ -44,79 +111,102 @@ The MCP server configuration depends on your client. Use the appropriate configu
 }
 ```
 
-For more details, see the [AnythingLLM MCP documentation](https://docs.anythingllm.com/mcp-compatibility/overview).
+Local stdio variant:
+
+```json
+{
+  "mcpServers": {
+    "datagouv": {
+      "command": "npx",
+      "args": ["-y", "datagouv-mcp"]
+    }
+  }
+}
+```
+
+See the [AnythingLLM MCP documentation](https://docs.anythingllm.com/mcp-compatibility/overview).
 
 ### Autohand Code
 
-Use the [Autohand Code](https://github.com/autohandai/code-cli/) CLI to register the hosted endpoint:
-
 ```shell
+# hosted / self-hosted HTTP
 autohand mcp add --transport http datagouv https://mcp.data.gouv.fr/mcp
+# local stdio
+autohand mcp add --transport stdio datagouv -- npx -y datagouv-mcp
 ```
 
-Add `--scope project` to keep the registration in the current workspace.
+Add `--scope project` to keep the registration in the current workspace. Docs: [Autohand Code](https://github.com/autohandai/code-cli/).
 
 ### ChatGPT
 
-*Available for paid plans only (Plus, Pro, Team, and Enterprise).*
+*Paid plans only (Plus, Pro, Team, Enterprise). Remote servers only.*
 
-1. **Access Settings**: Open ChatGPT in your browser, go to `Settings`, then `Apps and connectors`.
-2. **Enable Dev Mode**: Open `Advanced settings` and enable **Developer mode**.
-3. **Add Connector**: Return to `Settings` > `Connectors` > `Browse connectors` and click **Add a new connector**.
-4. **Configure the connector**: Set the URL to `https://mcp.data.gouv.fr/mcp` and save to activate the tools.
+1. `Settings` → `Apps and connectors` → `Advanced settings` → enable **Developer mode**.
+2. `Settings` → `Connectors` → `Browse connectors` → **Add a new connector**.
+3. URL: `https://mcp.data.gouv.fr/mcp`, no authentication, save.
 
 ### Claude Code
 
-Use the `claude mcp` command to add the MCP server:
-
 ```shell
+# local stdio (recommended)
+claude mcp add datagouv -- npx -y datagouv-mcp
+# hosted / self-hosted HTTP
 claude mcp add --transport http datagouv https://mcp.data.gouv.fr/mcp
 ```
 
 ### Claude Desktop
 
-Add the following to your Claude Desktop configuration file (typically `~/.config/Claude/claude_desktop_config.json` on Linux, `~/Library/Application Support/Claude/claude_desktop_config.json` on MacOS, or `%APPDATA%\Claude\claude_desktop_config.json` on Windows):
+Config file: Linux `~/.config/Claude/claude_desktop_config.json`, macOS
+`~/Library/Application Support/Claude/claude_desktop_config.json`, Windows `%APPDATA%\Claude\claude_desktop_config.json`.
+
+Local stdio (no extra dependency):
 
 ```json
 {
   "mcpServers": {
     "datagouv": {
       "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://mcp.data.gouv.fr/mcp"
-      ]
+      "args": ["-y", "datagouv-mcp"]
     }
   }
 }
 ```
 
-**Claude Desktop on Windows:** If the server appears in the list but never connects (no handshake, tools missing), Claude may be using its built-in Node.js runtime, which does not see packages installed with your system `npm` (including a global `mcp-remote`). Set `isUsingBuiltInNodeForMcp` to `false` at the **root** of the same config file so `npx` uses your installed Node — then restart Claude Desktop:
+Hosted endpoint through [`mcp-remote`](https://www.npmjs.com/package/mcp-remote) (or add it as a
+custom connector in `Settings → Connectors` on plans that support remote MCP):
 
 ```json
 {
-  "isUsingBuiltInNodeForMcp": false,
   "mcpServers": {
     "datagouv": {
       "command": "npx",
-      "args": [
-        "mcp-remote",
-        "https://mcp.data.gouv.fr/mcp"
-      ]
+      "args": ["-y", "mcp-remote", "https://mcp.data.gouv.fr/mcp"]
     }
   }
 }
 ```
 
-See [issue #69](https://github.com/datagouv/datagouv-mcp/issues/69) for background.
+**Windows:** if the server shows up but never connects, Claude may use its bundled Node.js which
+cannot see your `npm` packages. Set `"isUsingBuiltInNodeForMcp": false` at the **root** of the same
+file and restart Claude Desktop ([background](https://github.com/datagouv/datagouv-mcp/issues/69)).
 
 ### Cursor
 
-Cursor supports MCP servers through its settings. To configure the server:
+`Cursor Settings` → `MCP` → **Add new MCP server**, or edit `~/.cursor/mcp.json` (global) /
+`.cursor/mcp.json` (project):
 
-1. Open Cursor Settings
-2. Search for "MCP" or "Model Context Protocol"
-3. Add a new MCP server with the following configuration:
+```json
+{
+  "mcpServers": {
+    "datagouv": {
+      "command": "npx",
+      "args": ["-y", "datagouv-mcp"]
+    }
+  }
+}
+```
+
+HTTP variant:
 
 ```json
 {
@@ -131,36 +221,32 @@ Cursor supports MCP servers through its settings. To configure the server:
 
 ### Gemini CLI
 
-Add the following to your `~/.gemini/settings.json` file (Linux: `~/.gemini/settings.json`, MacOS: `~/.gemini/settings.json`, Windows: `%USERPROFILE%\.gemini\settings.json`):
+`~/.gemini/settings.json` (Windows `%USERPROFILE%\.gemini\settings.json`):
 
 ```json
 {
   "mcpServers": {
     "datagouv": {
-      "httpUrl": "https://mcp.data.gouv.fr/mcp"
+      "command": "npx",
+      "args": ["-y", "datagouv-mcp"]
     }
   }
 }
 ```
 
+HTTP variant: replace the entry with `{ "httpUrl": "https://mcp.data.gouv.fr/mcp" }`.
+
 ### HuggingChat
 
-1. **Access Settings:** In the chat interface, click the + icon, select `MCP Servers`, and click `Manage MCP Servers`.
-2. **Add Server:** Click the + `Add Server` button in the server management window.
-3. **Configure the Server:** Enter a **Server Name** (e.g., "Data Gouv") and set the **Server URL** to `https://mcp.data.gouv.fr/mcp`. Click `Add Server` to save.
-4. **Verify Connection:** Click the `Health Check` button on the new server card to confirm it displays as **Connected**. Ensure the toggle is activated to use the tools in your chat.
+*Remote servers only.*
+
+1. Click **+** in the chat → `MCP Servers` → `Manage MCP Servers` → **Add Server**.
+2. Name `Data Gouv`, URL `https://mcp.data.gouv.fr/mcp`, **Add Server**.
+3. Click **Health Check** on the card; it should read **Connected**. Keep the toggle on.
 
 ### IBM Bob
 
-IBM Bob supports MCP servers through its settings. To configure the server:
-
-1. Click the setting icon in the Bob panel.
-2. Select the MCP tab.
-3. Click the appropriate button:
-  - Edit Global MCP: Opens the global `mcp_settings.json` file
-  - Edit Project MCP: Opens the project-specific `.bob/mcp.json` file (Bob creates it if it does not exist)
-
-Both files use JSON format with an mcpServers object containing named server configurations.
+Bob panel → settings icon → `MCP` tab → **Edit Global MCP** (`mcp_settings.json`) or **Edit Project MCP** (`.bob/mcp.json`):
 
 ```json
 {
@@ -173,391 +259,278 @@ Both files use JSON format with an mcpServers object containing named server con
 }
 ```
 
+Local stdio variant: `{ "command": "npx", "args": ["-y", "datagouv-mcp"], "type": "stdio" }`.
+
 ### Kiro CLI
 
-Add the following to `~/.kiro/settings/mcp.json` (Linux: `~/.kiro/settings/mcp.json`, MacOS: `~/.kiro/settings/mcp.json`, Windows: `%USERPROFILE%\.kiro\settings\mcp.json`):
-
-```json
-{
-  "mcpServers": {
-    "datagouv": {
-      "url": "https://mcp.data.gouv.fr/mcp"
-    }
-  }
-}
-```
-
-### Kiro IDE
-
-Add the following to your Kiro MCP configuration file (`.kiro/settings/mcp.json` in your workspace, or for global config: Linux: `~/.kiro/settings/mcp.json`, MacOS: `~/.kiro/settings/mcp.json`, Windows: `%USERPROFILE%\.kiro\settings\mcp.json`):
-
-```json
-{
-  "mcpServers": {
-    "datagouv": {
-      "url": "https://mcp.data.gouv.fr/mcp"
-    }
-  }
-}
-```
-
-### Le Chat (Mistral)
-
-*Available on all plans, including free.*
-
-1. **Go to Connectors**: Open Mistral in your browser, then go to `Intelligence` > `Connectors`.
-2. **Add a custom connector**: Click `Add connector` > `Custom MCP Connector`, give it a name (for example `DataGouv`), and set the server URL to `https://mcp.data.gouv.fr/mcp`.
-3. **No authentication**: Leave authentication disabled.
-4. **Create**: Click **Create**.
-
-### Mistral Vibe CLI
-
-Edit your Vibe config (default: Linux: `~/.vibe/config.toml`, MacOS: `~/.vibe/config.toml`, Windows: `%USERPROFILE%\.vibe\config.toml`) and add the MCP server:
-
-```toml
-[[mcp_servers]]
-name = "datagouv"
-transport = "streamable-http"
-url = "https://mcp.data.gouv.fr/mcp"
-```
-
-See the full Vibe MCP options in the official docs: [MCP server configuration](https://github.com/mistralai/mistral-vibe?tab=readme-ov-file#mcp-server-configuration).
-
-### OpenCode
-
-Add to `opencode.json` (e.g. `~/.config/opencode/opencode.json` or your project root). Remote servers use the top-level `mcp` object with `type: "remote"`. See [OpenCode MCP servers](https://opencode.ai/docs/mcp-servers/).
-
-```json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "mcp": {
-    "datagouv": {
-      "type": "remote",
-      "url": "https://mcp.data.gouv.fr/mcp",
-      "enabled": true
-    }
-  }
-}
-```
-
-### VS Code
-
-Add the following to your VS Code `mcp.json` file (Linux: `~/.config/Code/User/mcp.json`, MacOS: `~/Library/Application Support/Code/User/mcp.json`, Windows: `%APPDATA%\Code\User\mcp.json`). Run **MCP: Open User Configuration** from the Command Palette to open it.
-
-```json
-{
-  "servers": {
-    "datagouv": {
-      "url": "https://mcp.data.gouv.fr/mcp",
-      "type": "http"
-    }
-  }
-}
-```
-
-### Windsurf
-
-Add the following to your `~/.codeium/windsurf/mcp_config.json` (Linux: `~/.codeium/windsurf/mcp_config.json`, MacOS: `~/.codeium/windsurf/mcp_config.json`, Windows: `%USERPROFILE%\.codeium\windsurf\mcp_config.json`):
+`~/.kiro/settings/mcp.json` (Windows `%USERPROFILE%\.kiro\settings\mcp.json`):
 
 ```json
 {
   "mcpServers": {
     "datagouv": {
       "command": "npx",
-      "args": [
-        "-y",
-        "mcp-remote",
-        "https://mcp.data.gouv.fr/mcp"
-      ]
+      "args": ["-y", "datagouv-mcp"]
     }
   }
 }
 ```
 
-**Note:**
-- The hosted endpoint is `https://mcp.data.gouv.fr/mcp`. If you run the server yourself, replace it with your own URL (see “Run locally” below for the default local endpoint).
-- This MCP server only exposes read-only tools for now, so no API key is required.
+HTTP variant: `{ "url": "https://mcp.data.gouv.fr/mcp" }`.
 
-## 🖥️ Run locally
+### Kiro IDE
 
-### 1. Run the MCP server
+Same file format as Kiro CLI: `.kiro/settings/mcp.json` in the workspace, or the global
+`~/.kiro/settings/mcp.json`. Use the stdio block above or `{ "url": "https://mcp.data.gouv.fr/mcp" }`.
 
-Before starting, clone this repository and browse into it:
+### Le Chat (Mistral)
 
-```shell
-git clone git@github.com:datagouv/datagouv-mcp.git
-cd datagouv-mcp
+*All plans, including free. Remote servers only.*
+
+1. `Intelligence` → `Connectors` → **Add connector** → **Custom MCP Connector**.
+2. Name `DataGouv`, server URL `https://mcp.data.gouv.fr/mcp`, authentication disabled.
+3. **Create**.
+
+### Mistral Vibe CLI
+
+`~/.vibe/config.toml` (Windows `%USERPROFILE%\.vibe\config.toml`):
+
+```toml
+# local stdio
+[[mcp_servers]]
+name = "datagouv"
+transport = "stdio"
+command = "npx"
+args = ["-y", "datagouv-mcp"]
+
+# or hosted / self-hosted HTTP
+# [[mcp_servers]]
+# name = "datagouv"
+# transport = "streamable-http"
+# url = "https://mcp.data.gouv.fr/mcp"
 ```
 
-Docker is required for the recommended setup. Install it via [Docker Desktop](https://www.docker.com/products/docker-desktop/) or any compatible Docker Engine before continuing.
+Reference: [Vibe MCP server configuration](https://github.com/mistralai/mistral-vibe?tab=readme-ov-file#mcp-server-configuration).
 
-#### 🐳 With Docker (Recommended)
+### OpenCode
 
-```shell
-# With default settings (port 8000, prod environment)
-docker compose up -d
+`opencode.json` (`~/.config/opencode/opencode.json` or project root). See [OpenCode MCP servers](https://opencode.ai/docs/mcp-servers/).
 
-# With custom environment variables
-MCP_PORT=8007 DATAGOUV_API_ENV=demo LOG_LEVEL=DEBUG docker compose up -d
-
-# Stop
-docker compose down
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "datagouv": {
+      "type": "local",
+      "command": ["npx", "-y", "datagouv-mcp"],
+      "enabled": true
+    }
+  }
+}
 ```
 
-**Environment variables:**
-- `MCP_HOST`: host to bind to (defaults to `0.0.0.0`). Set to `127.0.0.1` for local development to follow MCP security best practices.
-- `MCP_PORT`: port for the MCP HTTP server (defaults to `8000` when unset).
-- `MCP_ENV`: environment name reported to Sentry (defaults to `local` when unset). Set explicitly to `prod`, `preprod`, or `demo` in your deployment.
-- `DATAGOUV_API_ENV`: `prod` (default) or `demo`. This controls which data.gouv.fr environement it uses the data from (https://www.data.gouv.fr or https://demo.data.gouv.fr). By default the MCP server talks to the production data.gouv.fr. Set `DATAGOUV_API_ENV=demo` if you specifically need the demo environment.
-- `LOG_LEVEL`: Python logging level for the application (defaults to `INFO`). Common values: `DEBUG`, `INFO`, `WARNING`, `ERROR`, `CRITICAL`.
-- `SENTRY_DSN`: Sentry DSN to enable error and performance monitoring. Monitoring is disabled when unset.
-- `SENTRY_SAMPLE_RATE`: sampling rate for Sentry traces and profiles (float `0.0`–`1.0`, defaults to `1.0`).
+HTTP variant: `{ "type": "remote", "url": "https://mcp.data.gouv.fr/mcp", "enabled": true }`.
 
-#### ⚙️ Manual Installation
+### VS Code
 
-You will need [uv](https://github.com/astral-sh/uv) to install dependencies and run the server.
+Run **MCP: Open User Configuration** (or **MCP: Add Server**) to edit `mcp.json`
+(Linux `~/.config/Code/User/mcp.json`, macOS `~/Library/Application Support/Code/User/mcp.json`, Windows `%APPDATA%\Code\User\mcp.json`; project: `.vscode/mcp.json`):
 
-1. **Install dependencies**
-  ```shell
-  uv sync
-  ```
-
-2. **Prepare the environment file**
-
-  Copy the [example environment file](.env.example) to create your own `.env` file:
-  ```shell
-  cp .env.example .env
-  ```
-
-  Then optionally edit `.env` and set the variables that matter for your run:
-  ```
-  MCP_HOST=127.0.0.1  # (defaults to 0.0.0.0, use 127.0.0.1 for local dev)
-  MCP_PORT=8007  # (defaults to 8000 when unset)
-  MCP_ENV=local  # environment name sent to Sentry (defaults to local when unset)
-  DATAGOUV_API_ENV=prod  # Allowed values: demo | prod (defaults to prod when unset)
-  LOG_LEVEL=INFO  # Python log level (default: INFO)
-  ```
-
-  Load the variables with your preferred method, e.g.:
-  ```shell
-  set -a && source .env && set +a
-  ```
-
-3. **Start the HTTP MCP server**
-  ```shell
-  uv run main.py
-  ```
-
-### 2. Connect your chatbot to the local MCP server
-
-Follow the steps in [Connect your chatbot to the MCP server](#-connect-your-chatbot-to-the-mcp-server) and simply swap the hosted URL for your local endpoint (default: `http://127.0.0.1:${MCP_PORT:-8000}/mcp`).
-
-## 🚚 Transport support
-
-The MCP server is built using the [official Python SDK for MCP servers and clients](https://github.com/modelcontextprotocol/python-sdk) and uses the **Streamable HTTP transport only**.
-
-**STDIO and SSE are not supported**.
-
-## 📋 Available Endpoints
-
-**Streamable HTTP transport (standards-compliant):**
-- `POST /mcp` - JSON-RPC messages (client → server)
-- `GET /health` - Health check endpoint: runs `search_datasets` in-process (no recursive HTTP call). Returns `{"status":"ok",...}` with HTTP 200 if healthy, or `{"status":"mcp_unavailable"}` with HTTP 503 if the MCP stack is not responding correctly.
-
-## 🛠️ Available Tools
-
-The MCP server provides tools to interact with data.gouv.fr datasets and third-party APIs cataloged on the platform.
-
-**Note:** data.gouv.fr exposes these third-party APIs (e.g., Adresse API, Sirene API) over HTTP under the `dataservices` resource paths; that is separate from data.gouv.fr's own internal APIs (Main/Tabular/Metrics) that power this MCP server.
-
-### Datasets (static data files)
-
-- **`search_datasets`** - Search for datasets by keywords. Returns datasets with metadata (title, description, organization, tags, resource count).
-
-  Parameters: `query` (required), `page` (optional, default: 1), `page_size` (optional, default: 20, max: 100)
-
-- **`search_organizations`** - List or search publishing organizations on data.gouv.fr. Returns trimmed rows (id, name, slug, acronym, badges, metrics, URLs).
-
-  Parameters: `query` (optional; AND-style keyword search; omit or leave empty to browse), `page` (optional, default: 1), `page_size` (optional, default: 20, max: 100), `sort` (optional; e.g. `datasets`, `-datasets`), `badge` (optional; e.g. `public-service`, `certified`, `association`, `company`, `local-authority`), `name` (optional, exact name filter), `business_number_id` (optional).
-
-- **`get_dataset_info`** - Get detailed information about a specific dataset (metadata, organization, tags, dates, license, etc.).
-
-  Parameters: `dataset_id` (required)
-
-- **`list_dataset_resources`** - List all resources (files) in a dataset with their metadata (format, size, type, URL).
-
-  Parameters: `dataset_id` (required)
-
-- **`get_resource_info`** - Get detailed information about a specific resource (format, size, MIME type, URL, dataset association, Tabular API availability).
-
-  Parameters: `resource_id` (required)
-
-- **`query_resource_data`** - Query data from a specific resource via the Tabular API. Fetches rows from a resource to answer questions.
-
-  Parameters: `resource_id` (required), `page` (optional, default: 1), `page_size` (optional, default: 20, max: 200)
-
-  Note: Recommended workflow: 1) Use `search_datasets` to find the dataset, 2) Use `list_dataset_resources` to see available resources, 3) Use `query_resource_data` with default `page_size` (20) to preview data structure. For small datasets (<500 rows), increase `page_size` or paginate. For large datasets (>1000 rows), continue paginating or use `get_resource_info` to retrieve the raw file URL and fetch it directly. Works for CSV/XLS resources within Tabular API size limits (CSV ≤ 100 MB, XLSX ≤ 12.5 MB).
-
-### Third-party APIs
-
-These tools use data.gouv.fr HTTP paths under `dataservices`; tool and parameter names match that API (`search_dataservices`, `dataservice_id`).
-
-- **`search_dataservices`** - Search for third-party APIs cataloged on data.gouv.fr by keywords. Returns entries with metadata (title, description, organization, base API URL, tags).
-
-  Parameters: `query` (required), `page` (optional, default: 1), `page_size` (optional, default: 20, max: 100)
-
-- **`get_dataservice_info`** - Get detailed metadata for one third-party API (title, description, organization, base API URL, OpenAPI spec URL, license, dates, related datasets).
-
-  Parameters: `dataservice_id` (required) — same as in the data.gouv.fr API and as the `id` from search results.
-
-- **`get_dataservice_openapi_spec`** - Fetch and summarize the OpenAPI/Swagger specification for a third-party API. Returns a concise overview of available endpoints with their parameters.
-
-  Parameters: `dataservice_id` (required)
-
-  Note: Recommended workflow: 1) Use `search_dataservices` to find the API, 2) Use `get_dataservice_info` for metadata and documentation URL, 3) Use `get_dataservice_openapi_spec` for endpoints and parameters, 4) Call the API using the `base_api_url` per the spec.
-
-### Metrics
-
-- **`get_metrics`** - Get metrics (visits, downloads) for a dataset and/or a resource.
-
-  Parameters: `dataset_id` (optional), `resource_id` (optional), `limit` (optional, default: 12, max: 100)
-
-  Returns monthly statistics including visits and downloads, sorted by month in descending order (most recent first). At least one of `dataset_id` or `resource_id` must be provided. **Note:** This tool only works with the production environment (`DATAGOUV_API_ENV=prod`). The Metrics API does not have a demo/preprod environment.
-
-## 🧪 Tests
-
-### ✅ Automated Tests with pytest
-
-Run the tests with pytest (these cover helper modules; the MCP server wiring is best exercised via the MCP Inspector):
-
-```shell
-# Run all tests
-uv run pytest
-
-# Run with verbose output
-uv run pytest -v
-
-# Run specific test file
-uv run pytest tests/test_tabular_api.py
-
-# Run with custom resource ID
-RESOURCE_ID=3b6b2281-b9d9-4959-ae9d-c2c166dff118 uv run pytest tests/test_tabular_api.py
-
-# Run with prod environment
-DATAGOUV_API_ENV=prod uv run pytest
+```json
+{
+  "servers": {
+    "datagouv": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "datagouv-mcp"]
+    }
+  }
+}
 ```
 
-### 🔥 Stress Tests
+HTTP variant: `{ "type": "http", "url": "https://mcp.data.gouv.fr/mcp" }`.
 
-Stress tests send many concurrent requests against a running MCP server. They require a running server and make real HTTP requests, so they are excluded from default `pytest` runs.
+### Windsurf
 
-```shell
-# Start the server first, then in another terminal:
-uv run pytest -m stress
+`~/.codeium/windsurf/mcp_config.json` (Windows `%USERPROFILE%\.codeium\windsurf\mcp_config.json`):
+
+```json
+{
+  "mcpServers": {
+    "datagouv": {
+      "command": "npx",
+      "args": ["-y", "datagouv-mcp"]
+    }
+  }
+}
 ```
 
-Currently includes a test that mixes normal requests with abrupt client TCP disconnects, verifying the server stays healthy and keeps serving despite the disruption. It uses `MCP_PORT` (default: `8000`) to connect to the local server.
+Hosted endpoint: `"args": ["-y", "mcp-remote", "https://mcp.data.gouv.fr/mcp"]`.
 
-### 🩺 Run a Health Check from the CLI
+**Notes**
 
-Runs `search_datasets` in-process to validate end-to-end stack health (tool layer + data.gouv.fr API). Requires network access to data.gouv.fr. Excluded from default `pytest` runs.
+- Self-hosting: replace `https://mcp.data.gouv.fr/mcp` with your endpoint (default `http://127.0.0.1:8000/mcp`).
+- All tools are read-only; no API key or account is needed.
+- Set environment variables for the stdio process with the client's `env` block, e.g. `"env": { "DATAGOUV_API_ENV": "demo" }`.
 
-```shell
-uv run pytest -m health_check
+## Tools
+
+The server exposes read-only tools over data.gouv.fr's own APIs (catalogue, Tabular API, Metrics API,
+crawler, schema.data.gouv.fr). Third-party APIs registered on the platform ("dataservices", e.g.
+Adresse, Sirene) are described by the `*_dataservice*` tools but are **not** proxied.
+
+Recommended workflow: `search_datasets` → `list_dataset_resources` → `get_resource_info` /
+`query_resource_data`. Every tool returns a text block **and** `structuredContent`
+(snake_case, same facts); errors come back as `isError` results with a `code` and a `hint`
+naming the next tool to call.
+
+<!-- tool-catalog:start (keep in sync with src/tools/index.ts ALL_TOOLS; full reference in docs/tools.md) -->
+| Tool | Purpose | Key parameters | Status |
+|------|---------|----------------|--------|
+| `search_datasets` | Keyword search over datasets (French stop words removed, AND semantics, fallback to the raw query) | `query`*, `page`, `page_size` ≤ 100, `sort`, `last_update_range` | available |
+| `search_organizations` | Find or browse publishing organizations | `query`, `page`, `page_size`, `sort`, `badge`, `name`, `business_number_id` | parity port in progress |
+| `search_dataservices` | Search third-party APIs catalogued on the platform | `query`*, `page`, `page_size` | parity port in progress |
+| `get_dataservice_info` | Metadata of one third-party API (base URL, OpenAPI URL, license…) | `dataservice_id`* | parity port in progress |
+| `get_dataservice_openapi_spec` | Endpoint summary of a third-party API's OpenAPI/Swagger spec | `dataservice_id`* | parity port in progress |
+| `query_resource_data` | Rows of a CSV/XLSX resource through the Tabular API, with filter/sort/pagination | `resource_id`*, `page`, `page_size` ≤ 200, `filter_column`, `filter_value`, `filter_operator`, `sort_column`, `sort_direction` | parity port in progress |
+| `get_dataset_info` | Detailed dataset metadata | `dataset_id`* | parity port in progress |
+| `list_dataset_resources` | Resources (files) of a dataset with an access hint per resource | `dataset_id`* | parity port in progress |
+| `get_resource_info` | Resource metadata + capability report (Tabular API, Parquet, stream, dead link…) | `resource_id`* | parity port in progress |
+| `get_metrics` | Monthly visits/downloads for a dataset and/or resource (production only) | `dataset_id`, `resource_id`, `limit` ≤ 50 | parity port in progress |
+| `get_resource_schema` | Columns, types and row count for any queryable resource | `resource_id`* | planned (1.0) |
+| `preview_resource` | Bounded first rows / features / text / archive listing for any format | `resource_id`*, `limit`, `member` | planned (1.0) |
+| `query_resource` | Format-agnostic filter/sort/page query (Tabular API → Parquet → in-memory), optional read-only `sql` with DuckDB | `resource_id`*, `filters`, `sort`, `page`, `page_size`, `sql` | planned (1.0) |
+| `check_resource_availability` | Is the URL alive? size, content-type, last-modified, dead-link diagnosis | `resource_id`* | planned (1.0) |
+| `get_dataset_resources_summary` | One-call overview of a dataset's resources grouped by format family with the best access path | `dataset_id`* | planned (1.0) |
+| `suggest` | Autocomplete datasets / organizations / tags / spatial zones / formats | `q`*, `kind`, `size` | planned (1.0) |
+| `search_reuses` | Reuses (apps, articles) of a dataset or topic | `query`, `dataset_id`, `page`, `page_size` | planned (1.0) |
+| `search_topics` / `get_topic` | Curated collections and high-value datasets | `query` / `topic_id`* | planned (1.0) |
+| `list_schemas` / `get_schema` | schema.data.gouv.fr catalogue and field definitions | — / `schema_name`* | planned (1.0) |
+<!-- tool-catalog:end -->
+
+`*` required. Full per-tool reference with output shapes: [docs/tools.md](docs/tools.md).
+Behaviour differences with the Python server: [docs/migration-from-python.md](docs/migration-from-python.md).
+
+## Architecture
+
+Five layers with enforced one-way imports (`pnpm check:layers`), stdio and Streamable HTTP sharing
+one `McpServer` factory. Details: [docs/architecture.md](docs/architecture.md).
+
+```mermaid
+flowchart LR
+    subgraph clients_[MCP clients]
+        IDE[IDE / CLI<br/>stdio]
+        WEB[Chatbots<br/>Streamable HTTP]
+    end
+    subgraph server[src/server]
+        STDIO[stdio.ts]
+        HTTP[http.ts · Hono<br/>/mcp · /health · host/origin guard]
+        MCP[mcp-server.ts<br/>McpServer factory]
+        DEPS[deps.ts<br/>composition]
+    end
+    subgraph tools[src/tools]
+        REG[registry.ts<br/>logging · error→isError · output cap]
+        T[one file per tool]
+    end
+    subgraph formats[src/formats]
+        CAP[capability.ts]
+        ACC[accessors/*<br/>tabular-api · csv · xlsx · parquet · json · geo · archive · document]
+        ENG[engines/*<br/>pure-js · duckdb optional]
+    end
+    subgraph clients[src/clients]
+        DG[datagouv v1/v2]
+        TAB[tabular]
+        MET[metrics]
+        CRW[crawler]
+        SCH[schema / validata]
+    end
+    subgraph core[src/core]
+        CFG[config] --- ERR[errors] --- LOG[logger] --- CACHE[cache] --- HTTPC[http client]
+    end
+    IDE --> STDIO --> MCP
+    WEB --> HTTP --> MCP
+    MCP --> REG --> T
+    T --> CAP & ACC & ENG
+    T --> DG & TAB & MET & CRW & SCH
+    ACC --> TAB & CRW
+    clients --> core
+    formats --> core
+    tools --> core
+    DEPS -.builds.-> clients & formats
+    DG & TAB & MET & CRW & SCH -->|HTTPS| UP[(data.gouv.fr APIs)]
 ```
 
-### 🛠️ Local Tool Testing Script
+Key properties: stateless HTTP (a fresh server per request, JSON responses — no "session not found"),
+in-memory LRU cache with per-endpoint TTLs and in-flight de-duplication, retries with backoff on
+429/5xx, bounded downloads (`MAX_DOWNLOAD_BYTES`), soft-capped tool output (`MAX_OUTPUT_CHARS`),
+pino JSON logs on stderr.
 
-`scripts/call_tool.py` lets you call any MCP tool directly without manually managing the curl handshake. Requires a running server.
+## Configuration
 
-```shell
-# Start the server first, then in another terminal:
-python scripts/call_tool.py search_datasets '{"query": "IRVE"}'
-python scripts/call_tool.py get_resource_info '{"resource_id": "<id>"}'
-```
+Parsed once from the environment by [`src/core/config.ts`](src/core/config.ts) (Zod; invalid values
+fail fast with every issue listed). Legacy Python names are unchanged. Template: [`.env.example`](.env.example);
+full reference: [docs/configuration.md](docs/configuration.md).
 
-### 🔍 Interactive Testing with MCP Inspector
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `MCP_TRANSPORT` | `stdio` | `stdio` or `http`. CLI flags `--http` / `--stdio` override. |
+| `MCP_HOST` | `127.0.0.1` | HTTP bind address (`0.0.0.0` in Docker). CLI `--host`. |
+| `MCP_PORT` | `8000` | HTTP port (1–65535). CLI `--port`. |
+| `MCP_ENV` | `local` | Deployment name reported by `/health` (`env`) and sent to Sentry. |
+| `MCP_ALLOWED_HOSTS` | `mcp.data.gouv.fr, mcp.preprod.data.gouv.fr, localhost, 127.0.0.1, [::1]` | Comma-separated hostnames accepted in `Host` (DNS-rebinding protection; ports ignored). Add your public hostname when self-hosting. |
+| `MCP_ALLOWED_ORIGINS` | `https://mcp.data.gouv.fr, https://mcp.preprod.data.gouv.fr, http://localhost, http://127.0.0.1` | Comma-separated origins accepted when a browser sends `Origin`; `*` disables the check. |
+| `DATAGOUV_API_ENV` | `prod` | `prod` or `demo` — selects the data.gouv.fr, Tabular and crawler base URLs (Metrics API is always production). Unknown values fall back to `prod`. |
+| `LOG_LEVEL` | `info` | `fatal`, `error`, `warn`, `info`, `debug`, `trace`, `silent`; legacy uppercase Python levels (`WARNING`, `CRITICAL`…) accepted. |
+| `HTTP_TIMEOUT_MS` | `15000` | Timeout per upstream call (≥ 100). |
+| `HTTP_RETRIES` | `2` | Retries on 408/425/429/5xx and network errors (0–10), exponential backoff, `Retry-After` honoured. |
+| `MAX_DOWNLOAD_BYTES` | `52428800` (50 MiB) | Hard cap on bytes downloaded from a resource URL for in-process parsing. |
+| `CACHE_MAX_ENTRIES` | `500` | LRU size; `0` disables caching. |
+| `CACHE_DEFAULT_TTL_MS` | `300000` (5 min) | Default TTL; endpoints override (search 60 s, crawler 1 h…). |
+| `MAX_OUTPUT_CHARS` | `40000` | Soft cap on the text of one tool result (≥ 1000); truncation is explicit. |
+| `ENABLE_DUCKDB` | `false` | `1/true/yes/on` enables the optional DuckDB engine (`@duckdb/node-api` must be installed). |
+| `MATOMO_URL`, `MATOMO_SITE_ID` | unset | Both required to enable Matomo tool-call events. |
+| `MATOMO_AUTH_TOKEN` | unset | Enables client-IP forwarding (`cip`) from `X-Forwarded-For`. |
+| `SENTRY_DSN` | unset | Enables Sentry error reporting. |
+| `SENTRY_SAMPLE_RATE` | `1` | Traces/profiles sample rate, `0`–`1`. |
 
-Use the official [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) to interactively test the server tools and resources.
-
-Prerequisites:
-- Node.js with `npx` available
-
-Steps:
-1. Start the MCP server (see above)
-2. In another terminal, launch the inspector:
-   ```shell
-   npx @modelcontextprotocol/inspector --http-url "http://127.0.0.1:${MCP_PORT}/mcp"
-   ```
-   Adjust the URL if you exposed the server on another host/port.
-
-## 🤝 Contributing
-
-We welcome contributions! To keep the project stable and reviews manageable, please observe these rules before submitting:
-
-- **Human review and accountability:** **Issues and pull requests** must not be raw, unreviewed AI output. You must have read, fully understood, and (for code) tested what you submit. **By opening an issue or a pull request, you certify you could explain and defend it in review without relying on an AI assistant.**
-- **Keep it small:** We strictly follow a **1 feature = 1 PR** workflow.
-- **Conventional commits:** Use the [Conventional Commits](https://www.conventionalcommits.org/) format for **git commit messages** and **PR titles** (e.g. `feat: add dataset search`, `fix: handle empty API response`). See the specification for allowed types, scopes, and breaking-change markers.
-
-We use a standard review-and-deploy process:
-
-1. **Submit a PR:** Propose your changes via a Pull Request against the `main` branch.
-2. **Continuous integration:** CI runs automatically on the pull request. **All required checks must pass** before the PR can be merged (tests, linting, formatting, and type checking). Run the same checks locally—tests per [Tests](#-tests), and lint/format/type via [Code linting and formatting](#-code-linting-and-formatting) or the [pre-commit hook](#-pre-commit-hooks)—to avoid surprise CI failures.
-3. **Review:** All PRs must be reviewed and approved by a maintainer before merging.
-4. **Deployment process:** Once merged into `main`, maintainers deploy changes periodically to **[pre-production](https://mcp.preprod.data.gouv.fr/)** for more tests and validation before wider release.
-
-### 🧹 Code Linting and Formatting
-
-This project follows PEP 8 style guidelines using [Ruff](https://astral.sh/ruff/) for linting and formatting, and [ty](https://docs.astral.sh/ty/) for type checking.
-
-**Either running these commands manually or [installing the pre-commit hook](#-pre-commit-hooks) is required before submitting contributions.**
+## Development
 
 ```shell
-# Lint (including import sorting) and format code
-uv run ruff check --fix && uv run ruff format
-
-# Type check (ty)
-uv run ty check
+git clone https://github.com/giter010101/datagouv-mcp-ts.git && cd datagouv-mcp-ts
+corepack enable && pnpm install          # Node ≥ 22, pnpm 10 (pinned in package.json#packageManager)
+pnpm dev                                 # stdio server with hot reload (tsx watch)
+pnpm dev:http                            # Streamable HTTP on http://127.0.0.1:8000/mcp
+pnpm check                               # typecheck + lint (Biome) + layering + offline tests + build
+pnpm test:coverage                       # vitest with v8 coverage
+pnpm test:live                           # real data.gouv.fr calls (RUN_LIVE_TESTS=1)
+pnpm build && pnpm evidence --tool search_datasets --input '{"query":"population","page_size":3}' --stdio
+npx @modelcontextprotocol/inspector node dist/index.js        # interactive testing (stdio)
 ```
 
-### 🔗 Pre-commit Hooks
+Tests are offline by default (recorded fixtures, in-memory MCP client, HTTP loopback) and run in about
+a second; live tests and evidence reports (`docs/evidence/`) hit the real platform and run nightly in CI.
+Layout, conventions, adding a tool, releasing: [docs/development.md](docs/development.md).
+Agent harness (plans, ADRs, ownership, journal): [`.agent/AGENTS.md`](.agent/AGENTS.md).
 
-This repository uses a [pre-commit](https://pre-commit.com/) hook which lint and format code before each commit. Installing the pre-commit hook is strongly recommended so the checks run automatically.
+## Deployment
 
-**Install pre-commit hooks:**
-```shell
-uv run pre-commit install
-```
-The pre-commit hook that automatically:
-- Check YAML syntax
-- Fix end-of-file issues
-- Remove trailing whitespace
-- Check for large files
-- Run Ruff linting and formatting
+- **Docker**: `ghcr.io/giter010101/datagouv-mcp:<version>` (multi-arch, non-root, `HEALTHCHECK` on `/health`), or `docker compose up -d` to build locally.
+- **Node**: `npm i -g datagouv-mcp && MCP_TRANSPORT=http MCP_HOST=0.0.0.0 datagouv-mcp`.
+- **Endpoints**: `POST /mcp` (Streamable HTTP, stateless JSON), `GET /health` (deep probe running `search_datasets` in-process: `200 {"status":"ok",…}` or `503 {"status":"mcp_unavailable"}`).
+- **Behind a proxy**: add the public hostname to `MCP_ALLOWED_HOSTS`, terminate TLS at the proxy, forward `Host`/`X-Forwarded-For`.
 
-### 🏷️ Releases and versioning
+Full guide (compose, env, Nginx/Caddy/Traefik, health, security): [docs/deployment.md](docs/deployment.md).
 
-The release process uses the [`tag_version.sh`](tag_version.sh) script to create git tags, GitHub releases and update [CHANGELOG.md](CHANGELOG.md) automatically. Package version numbers are automatically derived from git tags using [setuptools_scm](https://github.com/pypa/setuptools_scm), so no manual version updates are needed in `pyproject.toml`.
+## Contributing
 
-**Prerequisites**: [GitHub CLI](https://cli.github.com/) must be installed and authenticated, and you must be on the main branch with a clean working directory.
+Read [CONTRIBUTING.md](CONTRIBUTING.md): one feature = one PR, Conventional Commits, `pnpm check`
+green, a changeset for user-facing changes, an evidence report for every tool, and **no raw,
+unreviewed AI output** — you must be able to explain and defend what you submit.
 
-```shell
-# Create a new release
-./tag_version.sh <version>
+## Security
 
-# Example
-./tag_version.sh 2.5.0
+Read-only server, no credentials handled. Report vulnerabilities as described in [SECURITY.md](SECURITY.md).
 
-# Dry run to see what would happen
-./tag_version.sh 2.5.0 --dry-run
-```
+## License
 
-The script automatically:
-- Extracts commits since the last tag and formats them for CHANGELOG.md
-- Identifies breaking changes (commits with `!:` in the subject)
-- Creates a git tag and pushes it to the remote repository
-- Creates a GitHub release with the changelog content
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
