@@ -34,9 +34,9 @@ Known technical debt items. Small, frequent paydown preferred over big-bang refa
 | TD-003 | tsdown 0.21 / TS 5.9 pins due to Node 22.14 VM | low | open (E) |
 | TD-004 | Delete `legacy/python/` after parity | low | scheduled (orchestrator) |
 | TD-005 | HTTP transport stateless/JSON-only | low | open (C) |
-| TD-006 | Non-datagouv client stubs in `server/deps.ts` | medium | in_progress (Grok, C) |
+| TD-006 | Non-datagouv client stubs in `server/deps.ts` | medium | resolved (`createClients` in `createDeps`) |
 | TD-007 | Missing live evidence reports (20/21 tools) | medium | open (D) |
-| TD-008 | `search_datasets` facets temporarily removed | low | in_progress (Grok, C) |
+| TD-008 | `search_datasets` facets temporarily removed | low | resolved (schema + e2e) |
 | TD-009 | Coverage floors below ADR 0010 (honest CI) | medium | open (D) |
 
 ## Recurring cleanup

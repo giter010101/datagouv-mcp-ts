@@ -1,6 +1,6 @@
 # TD-006: Non-datagouv client stubs in `server/deps.ts`
 
-**Status**: in_progress
+**Status**: resolved
 **Impact**: medium
 **Created**: 2026-09-03
 **Owner**: Grok (WS C)
@@ -21,4 +21,6 @@ Tools depending on tabular API, metrics, crawler exceptions, or schema catalogue
 
 ## Resolution
 
-_(pending sibling merge)_
+- **PR**: branch `cursor/datagouv-mcp-typescript-refonte-57e0`
+- **Date**: 2026-09-03
+- **Notes**: `createDeps` calls `createClients(config, { http, cache })` and wires `tabular`, `metrics`, `crawler`, and `schema` into the formats/tools layers. No inline no-op stubs remain in `src/server/deps.ts`. Offline e2e covers `get_metrics`, `query_resource_data`, and `get_resource_schema`.

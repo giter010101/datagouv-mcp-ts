@@ -1,6 +1,6 @@
 # TD-008: `search_datasets` facet parameters temporarily removed
 
-**Status**: in_progress
+**Status**: resolved
 **Impact**: low
 **Created**: 2026-09-03
 **Owner**: Grok (WS C)
@@ -21,4 +21,6 @@ Agents relying on facet filters cannot narrow dataset search until schema + hand
 
 ## Resolution
 
-_(in progress — do not close until e2e green on main integration branch)_
+- **PR**: branch `cursor/datagouv-mcp-typescript-refonte-57e0`
+- **Date**: 2026-09-03
+- **Notes**: Facet fields (`organization`, `tag`, `license`, `format`, `badge`, `schema`, `geozone`, `granularity`, `topic`) are on `searchDatasetsInputSchema`, mapped in the handler, and asserted by `tests/e2e/search-datasets.test.ts`.

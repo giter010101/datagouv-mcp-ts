@@ -37,8 +37,12 @@ as they land changes; the release PR moves them into the new version section
   count ≥ 21, and the ten legacy names in the first ten slots.
 - Multi-stage Docker image (`node:22-slim`, non-root, `HEALTHCHECK` on `/health`), `.dockerignore`
   and `docker-compose.yml` passing every documented variable through.
+- Optional **Matomo** tool-call beacons and **Sentry** error logging via `createTelemetry` / `onToolCall`
+  (`MATOMO_*`, `SENTRY_*` env vars; no-op when unset).
+- Live evidence reports for **all 21 registered MCP tools** (`docs/evidence/*-live.md`, `pnpm evidence:check`).
+- Loopback MCP conformance script (`pnpm test:conformance`: HTTP initialize + `tools/list` + `tools/call`).
 - GitHub Actions: `ci.yml` (Node 22/24: typecheck, lint, layering, offline tests with coverage,
-  build, Docker smoke), `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
+  informational MCP conformance, build, Docker smoke), `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
   `docker.yml` (branch: build+`/health` without registry push; main/tags: multi-arch GHCR image
   with provenance/SBOM), `release.yml` (changesets version PR, npm publish with provenance gated
   on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.

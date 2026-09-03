@@ -53,6 +53,10 @@ jobs:
       - name: Offline tests with coverage
         run: pnpm test:coverage
 
+      - name: MCP loopback conformance (initialize + tools/list + tools/call)
+        continue-on-error: true
+        run: pnpm test:conformance
+
       - name: Smoke the bundle (--version / --help)
         run: |
           node dist/index.js --version
