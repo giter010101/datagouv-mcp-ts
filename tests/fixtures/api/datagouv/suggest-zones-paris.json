@@ -1,0 +1,23 @@
+[
+  {
+    "code": "75",
+    "id": "fr:departement:75",
+    "level": "fr:departement",
+    "name": "Paris",
+    "uri": "http://id.insee.fr/geo/departement/973f58f8-e45f-468d-b91f-03d28bcd08ee"
+  },
+  {
+    "code": "200054781",
+    "id": "fr:epci:200054781",
+    "level": "fr:epci",
+    "name": "Le Grand Paris",
+    "uri": "http://id.insee.fr/geo/intercommunalite/29fae681-5620-4a63-a591-d5535e9d8e17"
+  },
+  {
+    "code": "200059889",
+    "id": "fr:epci:200059889",
+    "level": "fr:epci",
+    "name": "Grand Paris Seine et Oise",
+    "uri": "http://id.insee.fr/geo/intercommunalite/bc25e31a-e618-4b03-a07e-0a5f28f1a1e8"
+  }
+]

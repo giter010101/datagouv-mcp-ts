@@ -1,0 +1,9 @@
+{
+  "errors": [
+    {
+      "code": null,
+      "title": "Invalid query string",
+      "detail": "Page size exceeds allowed maximum: 200"
+    }
+  ]
+}

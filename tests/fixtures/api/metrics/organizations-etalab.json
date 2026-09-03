@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "__id": 7198911,
+      "organization_id": "534fff75a3a7292c64a77de4",
+      "metric_month": "2026-09",
+      "monthly_visit_dataset": 1560,
+      "monthly_download_resource": 513,
+      "monthly_visit_reuse": 352,
+      "monthly_visit_dataservice": null
+    },
+    {
+      "__id": 7033543,
+      "organization_id": "534fff75a3a7292c64a77de4",
+      "metric_month": "2026-08",
+      "monthly_visit_dataset": 34182,
+      "monthly_download_resource": 2114,
+      "monthly_visit_reuse": 9524,
+      "monthly_visit_dataservice": null
+    }
+  ],
+  "links": {
+    "next": "https://metric-api.data.gouv.fr/api/organizations/data/?organization_id__exact=534fff75a3a7292c64a77de4&metric_month__sort=desc&page=2&page_size=2",
+    "prev": null
+  },
+  "meta": {
+    "page": 1,
+    "page_size": 2,
+    "total": 51
+  }
+}

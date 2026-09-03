@@ -1,0 +1,290 @@
+{
+  "data": [
+    {
+      "id": "5530fbacc751df5ff937dddb",
+      "title": "Base Adresse Nationale",
+      "acronym": "BAN",
+      "slug": "base-adresse-nationale",
+      "description": "La **Base Adresse Nationale** est l’une des neuf bases de données du [service public des données de référence](https://www.data.gouv.fr/fr/reference). C'est le référentiel d'adresses **officiellement reconnu par l’administration**.\n\nService numérique d'intérêt national sur lequel sont adossées de no",
+      "description_short": null,
+      "created_at": "2015-04-17T14:25:16.900000+00:00",
+      "last_modified": "2025-05-27T15:33:27.507000+00:00",
+      "deleted": null,
+      "private": false,
+      "tags": [
+        "adresse",
+        "adresses",
+        "ban",
+        "geospatiales",
+        "hvd",
+        "spd"
+      ],
+      "badges": [
+        {
+          "kind": "hvd"
+        },
+        {
+          "kind": "spd"
+        }
+      ],
+      "resources": {
+        "rel": "subsection",
+        "href": "https://www.data.gouv.fr/api/2/datasets/5530fbacc751df5ff937dddb/resources/?page=1&page_size=50",
+        "type": "GET",
+        "total": 4
+      },
+      "frequency": "daily",
+      "frequency_date": "2024-08-29T15:42:10+00:00",
+      "metrics": {
+        "discussions": 90,
+        "discussions_open": 70,
+        "reuses": 159,
+        "dataservices": 6,
+        "followers": 65,
+        "views": 483872,
+        "resources_downloads": 31068
+      },
+      "organization": {
+        "id": "58e555f5c751df205d54e76b",
+        "name": "Base Adresse Nationale",
+        "slug": "base-adresse-nationale",
+        "acronym": "BAN",
+        "badges": [
+          {
+            "kind": "public-service"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "page": "https://www.data.gouv.fr/organizations/base-adresse-nationale",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/40/05f4e0291e4ad49a9321071c195cce.jpg",
+        "class": "Organization"
+      },
+      "temporal_coverage": {
+        "start": "2015-01-01",
+        "end": null
+      },
+      "spatial": {
+        "geom": null,
+        "zones": [
+          "country-subset:fr:dromcom",
+          "country:fr"
+        ],
+        "granularity": "country"
+      },
+      "license": "lov2",
+      "access_type": "open",
+      "access_type_reason_category": null,
+      "access_type_reason": null,
+      "authorization_request_url": null,
+      "uri": "https://www.data.gouv.fr/api/1/datasets/base-adresse-nationale/",
+      "page": "https://www.data.gouv.fr/datasets/base-adresse-nationale",
+      "last_update": "2026-09-03T02:37:44.966000+00:00",
+      "archived": null,
+      "quality": {
+        "license": true,
+        "temporal_coverage": true,
+        "spatial": true,
+        "update_frequency": true,
+        "dataset_description_quality": true,
+        "has_resources": true,
+        "has_open_format": true,
+        "all_resources_available": false,
+        "resources_documentation": true,
+        "update_fulfilled_in_time": true,
+        "score": 0.8888888888888888
+      },
+      "featured": true
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 718,
+  "next_page": "https://www.data.gouv.fr/api/2/datasets/search/?badge=hvd&page_size=2&page=2",
+  "previous_page": null,
+  "facets": {
+    "format_family": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "other",
+        "count": 41994
+      },
+      {
+        "name": "tabular",
+        "count": 28480
+      }
+    ],
+    "access_type": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "open",
+        "count": 69384
+      },
+      {
+        "name": "restricted",
+        "count": 189
+      }
+    ],
+    "producer_type": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "public-service",
+        "count": 39472
+      },
+      {
+        "name": "local-authority",
+        "count": 20516
+      }
+    ],
+    "organization_id_with_name": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "60784425bed18cfaefe5e653|Région Auvergne-Rhône-Alpes",
+        "count": 1957
+      },
+      {
+        "name": "5d7f937b8b4c4165718fbff1|Office Français de la Biodiversité",
+        "count": 1788
+      }
+    ],
+    "last_update": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "last_3_years",
+        "count": 42525
+      },
+      {
+        "name": "last_12_months",
+        "count": 24559
+      }
+    ],
+    "tag": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "donnees-ouvertes",
+        "count": 24008
+      },
+      {
+        "name": "inspire",
+        "count": 20028
+      }
+    ],
+    "license": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "lov2",
+        "count": 37358
+      },
+      {
+        "name": "notspecified",
+        "count": 16054
+      }
+    ],
+    "format": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "csv",
+        "count": 26879
+      },
+      {
+        "name": "wms",
+        "count": 19819
+      }
+    ],
+    "schema": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "etalab/schema-irve-statique",
+        "count": 1235
+      },
+      {
+        "name": "etalab/schema-vehicules-faibles-emissions-renouvellement-parc",
+        "count": 1067
+      }
+    ],
+    "geozone": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "country:fr",
+        "count": 4242
+      },
+      {
+        "name": "country-group:ue",
+        "count": 725
+      }
+    ],
+    "granularity": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "other",
+        "count": 36171
+      },
+      {
+        "name": "fr:commune",
+        "count": 3340
+      }
+    ],
+    "badge": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "inspire",
+        "count": 20024
+      },
+      {
+        "name": "hvd",
+        "count": 718
+      }
+    ],
+    "topics": [
+      {
+        "name": "all",
+        "count": 74215
+      },
+      {
+        "name": "65e9aa6cb5c809c30c70ee02",
+        "count": 29842
+      },
+      {
+        "name": "69aea5dff97ef1fc29836765",
+        "count": 981
+      }
+    ]
+  }
+}

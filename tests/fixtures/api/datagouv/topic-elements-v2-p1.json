@@ -1,0 +1,40 @@
+{
+  "data": [
+    {
+      "id": "68d3a206796bee9a1a42e28f",
+      "title": "Indicateurs Cartosanté (Atlasanté)",
+      "description": "Les données Cartosanté ont trait à l'offre et la demande de soins de premier recours et d'autres professions de santé.\n\nCes données ne sont pas brutes, mais sont des **listes d’indicateurs territorial",
+      "tags": [],
+      "extras": {
+        "defis": {
+          "availability": "available",
+          "uri": "/datasets/67d2eed93872dba3e719d2bd",
+          "group": "Données sur l'offre et la demande de soins"
+        }
+      },
+      "element": null
+    },
+    {
+      "id": "68d3a206796bee9a1a42e290",
+      "title": "FINESS",
+      "description": "Liste des établissements du domaine sanitaire et social.\n\nA partir des données Finess publiés mensuellement par Ministère de la Santé, l'équipe de data.gouv.fr propose une nouvelle façon d'accéder aux",
+      "tags": [],
+      "extras": {
+        "defis": {
+          "availability": "available",
+          "uri": "/datasets/67e43007cd5e91b9fdcbc7b3",
+          "group": "Données sur l'offre et la demande de soins"
+        }
+      },
+      "element": {
+        "class": "Dataset",
+        "id": "67e43007cd5e91b9fdcbc7b3"
+      }
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 24,
+  "next_page": "https://www.data.gouv.fr/api/2/topics/sante-et-territoires/elements/?page_size=2&page=2",
+  "previous_page": null
+}

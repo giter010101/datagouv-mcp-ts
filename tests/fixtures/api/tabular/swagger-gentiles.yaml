@@ -1,0 +1,512 @@
+components:
+  schemas:
+    Resource:
+      properties:
+        code_insee:
+          type: string
+        commune:
+          type: string
+        departement:
+          type: string
+        gentile:
+          type: string
+      type: object
+    ResourceData:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type: array
+        link:
+          properties:
+            next:
+              description: Pagination link to the next page of the resource data
+              type: string
+            prev:
+              description: Pagination link to the previous page of the resource data
+              type: string
+            profile:
+              description: Link to the profile endpoint of the resource
+              type: string
+          type: object
+        meta:
+          properties:
+            page:
+              description: Current page
+              type: integer
+            page_size:
+              description: Number of results per page
+              type: integer
+            total:
+              description: Total number of results
+              type: integer
+          type: object
+      type: object
+info:
+  description: Retrieve data for a specified resource with optional filtering and
+    sorting.
+  title: Tabular API
+  version: 1.0.0
+openapi: 3.0.3
+paths:
+  /api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/:
+    get:
+      description: Returns resource data based on ID as JSON, each row is a dictionnary.
+      operationId: getResourceDataFromId
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceData'
+          description: successful operation
+        '400':
+          description: Invalid query string
+        '404':
+          description: Resource not found
+      summary: Get resource data from its ID
+    parameters: &id001
+    - description: Specific page (page=value)
+      example: 1
+      in: query
+      name: page
+      required: false
+      schema:
+        type: integer
+    - description: Number of results per page (page_size=value)
+      example: 20
+      in: query
+      name: page_size
+      required: false
+      schema:
+        type: integer
+    - description: Columns to keep in the result (columns=column1,column3,...)
+      explode: false
+      in: query
+      name: columns
+      required: false
+      schema:
+        type: string
+      style: form
+    - description: Encapsulates filters to be joined with the `OR` operator. Allows
+        to build complex queries with nested `or(...)` and `and(...)` operators. Inner
+        filters syntax must be `<column>.<operation>.<value>` (or `<column>.<operation>`
+        for `is(not)null`), separated with commas.
+      in: query
+      name: or
+      required: false
+      schema:
+        type: string
+    - description: 'Exact match in column: commune (commune__exact=value)'
+      in: query
+      name: commune__exact
+      required: false
+      schema:
+        type: string
+    - description: 'Differs from in column: commune (commune__differs=value)'
+      in: query
+      name: commune__differs
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Is `NULL` in column: commune (commune__isnull)'
+      in: query
+      name: commune__isnull
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Is not `NULL` in column: commune (commune__isnotnull)'
+      in: query
+      name: commune__isnotnull
+      required: false
+      schema:
+        type: boolean
+    - description: 'String contains in column: commune (commune__contains=value)'
+      in: query
+      name: commune__contains
+      required: false
+      schema:
+        type: string
+    - description: 'String does not contain in column: commune (commune__notcontains=value)'
+      in: query
+      name: commune__notcontains
+      required: false
+      schema:
+        type: string
+    - description: 'Value in list in column: commune (commune__in=value1,value2,...)'
+      in: query
+      name: commune__in
+      required: false
+      schema:
+        type: string
+    - description: 'Value not in list in column: commune (commune__notin=value1,value2,...)'
+      in: query
+      name: commune__notin
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Performs `group by values` operation in column: commune'
+      in: query
+      name: commune__groupby
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Performs `count values` operation in column: commune'
+      in: query
+      name: commune__count
+      required: false
+      schema:
+        type: boolean
+    - description: 'Sort ascending or descending on column: commune (commune__sort=asc
+        or commune__sort=desc)'
+      in: query
+      name: commune__sort
+      required: false
+      schema:
+        type: string
+    - description: 'Less than in column: commune (commune__less=value)'
+      in: query
+      name: commune__less
+      required: false
+      schema:
+        type: string
+    - description: 'Greater than in column: commune (commune__greater=value)'
+      in: query
+      name: commune__greater
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly less than in column: commune (commune__strictly_less=value)'
+      in: query
+      name: commune__strictly_less
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly greater than in column: commune (commune__strictly_greater=value)'
+      in: query
+      name: commune__strictly_greater
+      required: false
+      schema:
+        type: string
+    - description: 'Exact match in column: gentile (gentile__exact=value)'
+      in: query
+      name: gentile__exact
+      required: false
+      schema:
+        type: string
+    - description: 'Differs from in column: gentile (gentile__differs=value)'
+      in: query
+      name: gentile__differs
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Is `NULL` in column: gentile (gentile__isnull)'
+      in: query
+      name: gentile__isnull
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Is not `NULL` in column: gentile (gentile__isnotnull)'
+      in: query
+      name: gentile__isnotnull
+      required: false
+      schema:
+        type: boolean
+    - description: 'String contains in column: gentile (gentile__contains=value)'
+      in: query
+      name: gentile__contains
+      required: false
+      schema:
+        type: string
+    - description: 'String does not contain in column: gentile (gentile__notcontains=value)'
+      in: query
+      name: gentile__notcontains
+      required: false
+      schema:
+        type: string
+    - description: 'Value in list in column: gentile (gentile__in=value1,value2,...)'
+      in: query
+      name: gentile__in
+      required: false
+      schema:
+        type: string
+    - description: 'Value not in list in column: gentile (gentile__notin=value1,value2,...)'
+      in: query
+      name: gentile__notin
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Performs `group by values` operation in column: gentile'
+      in: query
+      name: gentile__groupby
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Performs `count values` operation in column: gentile'
+      in: query
+      name: gentile__count
+      required: false
+      schema:
+        type: boolean
+    - description: 'Sort ascending or descending on column: gentile (gentile__sort=asc
+        or gentile__sort=desc)'
+      in: query
+      name: gentile__sort
+      required: false
+      schema:
+        type: string
+    - description: 'Less than in column: gentile (gentile__less=value)'
+      in: query
+      name: gentile__less
+      required: false
+      schema:
+        type: string
+    - description: 'Greater than in column: gentile (gentile__greater=value)'
+      in: query
+      name: gentile__greater
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly less than in column: gentile (gentile__strictly_less=value)'
+      in: query
+      name: gentile__strictly_less
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly greater than in column: gentile (gentile__strictly_greater=value)'
+      in: query
+      name: gentile__strictly_greater
+      required: false
+      schema:
+        type: string
+    - description: 'Exact match in column: code_insee (code_insee__exact=value)'
+      in: query
+      name: code_insee__exact
+      required: false
+      schema:
+        type: string
+    - description: 'Differs from in column: code_insee (code_insee__differs=value)'
+      in: query
+      name: code_insee__differs
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Is `NULL` in column: code_insee (code_insee__isnull)'
+      in: query
+      name: code_insee__isnull
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Is not `NULL` in column: code_insee (code_insee__isnotnull)'
+      in: query
+      name: code_insee__isnotnull
+      required: false
+      schema:
+        type: boolean
+    - description: 'String contains in column: code_insee (code_insee__contains=value)'
+      in: query
+      name: code_insee__contains
+      required: false
+      schema:
+        type: string
+    - description: 'String does not contain in column: code_insee (code_insee__notcontains=value)'
+      in: query
+      name: code_insee__notcontains
+      required: false
+      schema:
+        type: string
+    - description: 'Value in list in column: code_insee (code_insee__in=value1,value2,...)'
+      in: query
+      name: code_insee__in
+      required: false
+      schema:
+        type: string
+    - description: 'Value not in list in column: code_insee (code_insee__notin=value1,value2,...)'
+      in: query
+      name: code_insee__notin
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Performs `group by values` operation in column: code_insee'
+      in: query
+      name: code_insee__groupby
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Performs `count values` operation in column: code_insee'
+      in: query
+      name: code_insee__count
+      required: false
+      schema:
+        type: boolean
+    - description: 'Sort ascending or descending on column: code_insee (code_insee__sort=asc
+        or code_insee__sort=desc)'
+      in: query
+      name: code_insee__sort
+      required: false
+      schema:
+        type: string
+    - description: 'Less than in column: code_insee (code_insee__less=value)'
+      in: query
+      name: code_insee__less
+      required: false
+      schema:
+        type: string
+    - description: 'Greater than in column: code_insee (code_insee__greater=value)'
+      in: query
+      name: code_insee__greater
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly less than in column: code_insee (code_insee__strictly_less=value)'
+      in: query
+      name: code_insee__strictly_less
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly greater than in column: code_insee (code_insee__strictly_greater=value)'
+      in: query
+      name: code_insee__strictly_greater
+      required: false
+      schema:
+        type: string
+    - description: 'Exact match in column: departement (departement__exact=value)'
+      in: query
+      name: departement__exact
+      required: false
+      schema:
+        type: string
+    - description: 'Differs from in column: departement (departement__differs=value)'
+      in: query
+      name: departement__differs
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Is `NULL` in column: departement (departement__isnull)'
+      in: query
+      name: departement__isnull
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Is not `NULL` in column: departement (departement__isnotnull)'
+      in: query
+      name: departement__isnotnull
+      required: false
+      schema:
+        type: boolean
+    - description: 'String contains in column: departement (departement__contains=value)'
+      in: query
+      name: departement__contains
+      required: false
+      schema:
+        type: string
+    - description: 'String does not contain in column: departement (departement__notcontains=value)'
+      in: query
+      name: departement__notcontains
+      required: false
+      schema:
+        type: string
+    - description: 'Value in list in column: departement (departement__in=value1,value2,...)'
+      in: query
+      name: departement__in
+      required: false
+      schema:
+        type: string
+    - description: 'Value not in list in column: departement (departement__notin=value1,value2,...)'
+      in: query
+      name: departement__notin
+      required: false
+      schema:
+        type: string
+    - allowEmptyValue: true
+      description: 'Performs `group by values` operation in column: departement'
+      in: query
+      name: departement__groupby
+      required: false
+      schema:
+        type: boolean
+    - allowEmptyValue: true
+      description: 'Performs `count values` operation in column: departement'
+      in: query
+      name: departement__count
+      required: false
+      schema:
+        type: boolean
+    - description: 'Sort ascending or descending on column: departement (departement__sort=asc
+        or departement__sort=desc)'
+      in: query
+      name: departement__sort
+      required: false
+      schema:
+        type: string
+    - description: 'Less than in column: departement (departement__less=value)'
+      in: query
+      name: departement__less
+      required: false
+      schema:
+        type: string
+    - description: 'Greater than in column: departement (departement__greater=value)'
+      in: query
+      name: departement__greater
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly less than in column: departement (departement__strictly_less=value)'
+      in: query
+      name: departement__strictly_less
+      required: false
+      schema:
+        type: string
+    - description: 'Strictly greater than in column: departement (departement__strictly_greater=value)'
+      in: query
+      name: departement__strictly_greater
+      required: false
+      schema:
+        type: string
+  /api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/csv/:
+    get:
+      description: Returns resource data based on ID as a CSV file.
+      operationId: getResourceDataFromIdCSV
+      responses:
+        '200':
+          content:
+            text/csv: {}
+          description: successful operation
+        '400':
+          description: Invalid query string
+        '404':
+          description: Resource not found
+      summary: Get resource data from its ID in CSV format
+    parameters: *id001
+  /api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/json/:
+    get:
+      description: Returns resource data based on ID as a JSON file.
+      operationId: getResourceDataFromIdJSON
+      responses:
+        '200':
+          content:
+            application/json: {}
+          description: successful operation
+        '400':
+          description: Invalid query string
+        '404':
+          description: Resource not found
+      summary: Get resource data from its ID in JSON format
+    parameters: *id001
+tags:
+- description: Retrieve data for a specified resource
+  name: Data retrieval

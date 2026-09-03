@@ -1,0 +1,93 @@
+{
+  "data": [
+    {
+      "id": "534fff75a3a7292c64a77de4",
+      "created_at": "2014-04-17T18:21:09.022000+00:00",
+      "last_modified": "2026-01-27T15:54:38.313000+00:00",
+      "badges": [
+        {
+          "kind": "public-service"
+        },
+        {
+          "kind": "certified"
+        }
+      ],
+      "metrics": {
+        "dataservices": 0,
+        "datasets": 47,
+        "members": 5,
+        "reuses": 29,
+        "followers": 359,
+        "views": 466952
+      },
+      "name": "Etalab",
+      "acronym": null,
+      "slug": "etalab",
+      "description": "Etalab est un département de la direction interministérielle du numérique (DINUM), dont les missions et l’organisation sont fixées par le décret du 30 Octobre 2019. Il coordonne notamment la conception et la mise en œuvre de la stratégie de l’État dans le domaine de la donnée. \n\n**Ouverture (open da",
+      "url": "https://www.etalab.gouv.fr",
+      "image_url": "http://static.data.gouv.fr/07/aa9eee178642d58b458d01f5f5c739e581e7679497608b57e987b60abc937e.png",
+      "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/2015-01-12/8ebc26cca2394e089a8b065fe0ae2659/etalab.jpg",
+      "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/2015-01-12/8ebc26cca2394e089a8b065fe0ae2659/etalab-100.jpg",
+      "business_number_id": "13002526500013",
+      "zone": null,
+      "deleted": null,
+      "page": "https://www.data.gouv.fr/organizations/etalab",
+      "uri": "https://www.data.gouv.fr/api/1/organizations/etalab/"
+    },
+    {
+      "id": "59a47d0ec751df3ad11e2445",
+      "created_at": "2017-08-28T22:29:02.757000+00:00",
+      "last_modified": "2026-07-13T12:12:22.854000+00:00",
+      "badges": [
+        {
+          "kind": "public-service"
+        },
+        {
+          "kind": "certified"
+        }
+      ],
+      "metrics": {
+        "dataservices": 0,
+        "datasets": 6,
+        "members": 1,
+        "reuses": 3,
+        "followers": 10,
+        "views": 27938
+      },
+      "name": "OpenDataFrance",
+      "acronym": "ODF",
+      "slug": "association-opendatafrance",
+      "description": "L'association OpenDataFrance fédère et accompagne les collectivités locales dans leur projet d'ouverture des données. Elle est composée de collectivités territoriales et de membres partenaires (Etalab, Fing, Libertic, ...)\n ",
+      "url": "http://opendatafrance.net",
+      "image_url": null,
+      "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/90/0f5fc12ba34021ba5c1728bdc62241.png",
+      "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/90/0f5fc12ba34021ba5c1728bdc62241-100.png",
+      "business_number_id": "80053452100011",
+      "zone": null,
+      "deleted": null,
+      "page": "https://www.data.gouv.fr/organizations/association-opendatafrance",
+      "uri": "https://www.data.gouv.fr/api/1/organizations/association-opendatafrance/"
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 23,
+  "next_page": "https://www.data.gouv.fr/api/2/organizations/search/?q=etalab&page_size=2&page=2",
+  "previous_page": null,
+  "facets": {
+    "producer_type": [
+      {
+        "name": "all",
+        "count": 23
+      },
+      {
+        "name": "public-service",
+        "count": 5
+      },
+      {
+        "name": "local-authority",
+        "count": 4
+      }
+    ]
+  }
+}

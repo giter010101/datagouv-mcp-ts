@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "__id": 4401,
+      "code_insee": "13117",
+      "commune": "Vitrolles",
+      "departement": "13",
+      "gentile": "Vitrollais, Vitrollaises"
+    },
+    {
+      "__id": 4400,
+      "code_insee": "13116",
+      "commune": "Verquières",
+      "departement": "13",
+      "gentile": "Verquiérois, Verquiéroises"
+    }
+  ],
+  "links": {
+    "profile": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/profile/",
+    "swagger": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/swagger/",
+    "next": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?departement__in=75,13&commune__sort=desc&gentile__differs=x&page=2&page_size=2",
+    "prev": null
+  },
+  "meta": {
+    "page": 1,
+    "page_size": 2,
+    "total": 120
+  }
+}

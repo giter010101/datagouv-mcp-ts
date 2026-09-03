@@ -1,0 +1,14 @@
+{
+  "errors": [
+    {
+      "code": "a613c682ec0245e2a86977ebf6308193",
+      "title": "Database error",
+      "detail": {
+        "code": "42703",
+        "details": null,
+        "hint": null,
+        "message": "column e3686d542d96b3b5c75d40b27b566707.nonexistent does not exist"
+      }
+    }
+  ]
+}

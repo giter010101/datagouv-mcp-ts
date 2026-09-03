@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "__id": 446258,
+      "dataservice_id": "672cf67802ef6b1be63b8975",
+      "metric_month": "2026-09",
+      "monthly_visit": 360
+    },
+    {
+      "__id": 413719,
+      "dataservice_id": "672cf67802ef6b1be63b8975",
+      "metric_month": "2026-08",
+      "monthly_visit": 4385
+    }
+  ],
+  "links": {
+    "next": "https://metric-api.data.gouv.fr/api/dataservices/data/?dataservice_id__exact=672cf67802ef6b1be63b8975&metric_month__sort=desc&page=2&page_size=2",
+    "prev": null
+  },
+  "meta": {
+    "page": 1,
+    "page_size": 2,
+    "total": 20
+  }
+}

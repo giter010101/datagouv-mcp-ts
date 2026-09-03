@@ -1,0 +1,138 @@
+{
+  "data": [
+    {
+      "archived": null,
+      "badges": [],
+      "created_at": "2026-09-01T12:59:07.695000+00:00",
+      "dataservices": [
+        {
+          "class": "Dataservice",
+          "id": "6a44c140cc2e49e6e5384856",
+          "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/base-sirene-des-entreprises-et-de-leurs-etablissements-dans-les-cotes-darmor-siren-siret/",
+          "self_web_url": "https://www.data.gouv.fr/dataservices/base-sirene-des-entreprises-et-de-leurs-etablissements-dans-les-cotes-darmor-siren-siret",
+          "title": "Base Sirene des entreprises et de leurs établissements dans les Côtes d'Armor (SIREN, SIRET)"
+        }
+      ],
+      "datasets": [
+        {
+          "id": "5b7ffc618b4c4169d30727e0",
+          "title": "Base Sirene des entreprises et de leurs établissements (SIREN, SIRET)",
+          "page": "https://www.data.gouv.fr/datasets/base-sirene-des-entreprises-et-de-leurs-etablissements-siren-siret"
+        },
+        {
+          "id": "53699d0ea3a729239d205b2e",
+          "title": "Population",
+          "page": "https://www.data.gouv.fr/datasets/population"
+        },
+        {
+          "id": "58c984b088ee386cdb1261f3",
+          "title": "Code Officiel Géographique (COG)",
+          "page": "https://www.data.gouv.fr/datasets/code-officiel-geographique-cog"
+        }
+      ],
+      "deleted": null,
+      "description": "Zonelo est un outil gratuit qui aide les artisans, commerçants et professionnels libéraux à choisir la commune où s'installer.\n\nPour chaque métier (plombier, coiffeur, infirmier libéral, garagiste, restaurateur…) et chaque commune de France, le site indique si le métier est déjà très présent ou au c",
+      "featured": null,
+      "id": "6a96cc1b2aeed626b1cb300e",
+      "image": "https://udata-images.s3.rbx.io.cloud.ovh.net/4c/c8e784cd4c4f40880afdba50c6be31.png",
+      "image_thumbnail": "https://udata-images.s3.rbx.io.cloud.ovh.net/4c/c8e784cd4c4f40880afdba50c6be31-500.png",
+      "last_modified": "2026-09-02T13:39:35.655000+00:00",
+      "metrics": {
+        "datasets": 5,
+        "discussions": 0,
+        "discussions_open": 0,
+        "followers": 0,
+        "views": 1
+      },
+      "organization": {
+        "id": "6a96afccb93002cd80fe86c9",
+        "name": "Zonelo",
+        "slug": "zonelo",
+        "acronym": null,
+        "badges": [],
+        "page": "https://www.data.gouv.fr/organizations/zonelo",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/db/49829777c54f33864430d118a1beb7.png",
+        "class": "Organization"
+      },
+      "page": "https://www.data.gouv.fr/reuses/zonelo-trop-ou-pas-assez-de-professionnels",
+      "private": false,
+      "slug": "zonelo-trop-ou-pas-assez-de-professionnels",
+      "tags": [
+        "choix-localisation",
+        "commune-francaise",
+        "densite-professionnelle",
+        "implantation-entreprise",
+        "profession-liberale"
+      ],
+      "title": "Zonelo - Trop ou pas assez de professionnels ? ",
+      "topic": "economy_and_business",
+      "type": "application",
+      "uri": "https://www.data.gouv.fr/api/1/reuses/zonelo-trop-ou-pas-assez-de-professionnels/",
+      "url": "https://www.zonelo.fr/"
+    },
+    {
+      "archived": null,
+      "badges": [],
+      "created_at": "2026-06-30T12:57:49.002000+00:00",
+      "dataservices": [],
+      "datasets": [
+        {
+          "id": "548ab97ec751df0f384120e7",
+          "title": "Data INSEE sur les communes",
+          "page": "https://www.data.gouv.fr/datasets/data-insee-sur-les-communes"
+        },
+        {
+          "id": "689c42ce21932fa1640d99c2",
+          "title": "Indicateurs territoriaux de développement durable (ITDD)",
+          "page": "https://www.data.gouv.fr/datasets/indicateurs-territoriaux-de-developpement-durable-itdd"
+        },
+        {
+          "id": "53699d0ea3a729239d205b2e",
+          "title": "Population",
+          "page": "https://www.data.gouv.fr/datasets/population"
+        }
+      ],
+      "deleted": null,
+      "description": "PictoStat, outil de datavisualisation,   **ouvre l'accès à de nombreuses données statistiques de l’État sur les territoires d'Occitanie autour des**  thématiques traités par la DREAL Occitanie: Aménagement du territoire,  Logement, Energie, Risques naturels, industriel, Ecologie ...\n",
+      "featured": null,
+      "id": "6a43bd4d6bda47715be1a401",
+      "image": "https://udata-images.s3.rbx.io.cloud.ovh.net/de/fec5f2cb524ed7858b9a486ed87ade.jpg",
+      "image_thumbnail": "https://udata-images.s3.rbx.io.cloud.ovh.net/de/fec5f2cb524ed7858b9a486ed87ade-500.jpg",
+      "last_modified": "2026-06-30T12:57:54.253000+00:00",
+      "metrics": {
+        "datasets": 3,
+        "discussions": 0,
+        "discussions_open": 0,
+        "followers": 0,
+        "views": 387
+      },
+      "organization": null,
+      "page": "https://www.data.gouv.fr/reuses/pictostat-datavisualisation-geoclip-dreal-occitanie",
+      "private": false,
+      "slug": "pictostat-datavisualisation-geoclip-dreal-occitanie",
+      "tags": [
+        "amenagement",
+        "amenagement-du-territoire",
+        "amenagement-du-territoire-urbanisme-batiments-equipements-logement",
+        "changement-climatique",
+        "ecologie",
+        "energie",
+        "logement",
+        "logement-social",
+        "risques-industriels",
+        "risques-naturels",
+        "urbanisme-logement"
+      ],
+      "title": "PIctoStat - Datavisualisation Geoclip - DREAL Occitanie",
+      "topic": "environment_and_energy",
+      "type": "application",
+      "uri": "https://www.data.gouv.fr/api/1/reuses/pictostat-datavisualisation-geoclip-dreal-occitanie/",
+      "url": "https://www.picto-occitanie.fr/geoclip/#c=home"
+    }
+  ],
+  "next_page": "https://www.data.gouv.fr/api/1/reuses/?dataset=53699d0ea3a729239d205b2e&page=2&page_size=2",
+  "page": 1,
+  "page_size": 2,
+  "previous_page": null,
+  "total": 102
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
+  "url": "https://www.data.gouv.fr/api/1/datasets/r/41b0514d-956d-4e42-80ef-1dcf88cc74e9",
+  "options": {
+    "ignore_header_case": "false",
+    "include_resource_data": "false"
+  },
+  "version": "0.12.5",
+  "date": "2026-09-03T16:32:59.489168+02:00",
+  "report": {
+    "valid": false,
+    "stats": {
+      "errors": 23,
+      "warnings": 43,
+      "seconds": 0.179,
+      "fields": 26,
+      "rows": 2679,
+      "rows_processed": 2679
+    },
+    "warnings": [
+      "Colonne manquante : Ajoutez la colonne manquante `nom_amenageur`.",
+      "Colonne manquante : Ajoutez la colonne manquante `siren_amenageur`."
+    ],
+    "errors": [
+      {
+        "title": "Colonne manquante",
+        "message": "La colonne obligatoire `contact_operateur` est manquante",
+        "type": "missing-label",
+        "tags": [
+          "#table",
+          "#header",
+          "#label"
+        ],
+        "fieldName": "contact_operateur",
+        "fieldNumber": 27
+      },
+      {
+        "title": "Colonne manquante",
+        "message": "La colonne obligatoire `nom_enseigne` est manquante",
+        "type": "missing-label",
+        "tags": [
+          "#table",
+          "#header",
+          "#label"
+        ],
+        "fieldName": "nom_enseigne",
+        "fieldNumber": 28
+      },
+      {
+        "title": "Colonne manquante",
+        "message": "La colonne obligatoire `id_station_itinerance` est manquante",
+        "type": "missing-label",
+        "tags": [
+          "#table",
+          "#header",
+          "#label"
+        ],
+        "fieldName": "id_station_itinerance",
+        "fieldNumber": 29
+      }
+    ]
+  }
+}

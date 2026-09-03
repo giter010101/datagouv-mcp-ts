@@ -1,0 +1,73 @@
+{
+  "$schema": "https://specs.frictionlessdata.io/schemas/table-schema.json",
+  "name": "schema-irve-statique",
+  "title": "IRVE statique",
+  "description": "Spécification du fichier d'échange relatif aux données concernant la localisation géographique et les caractéristiques techniques des stations et des points de recharge pour véhicules électriques. Cha",
+  "countryCode": "FR",
+  "homepage": "https://github.com/etalab/schema-irve",
+  "path": "https://raw.githubusercontent.com/etalab/schema-irve/v2.3.0/statique/schema-statique.json",
+  "sources": [
+    {
+      "title": "Décret n° 2017-26 du 12 janvier 2017 relatif aux infrastructures de recharge pour véhicules électriques et portant diverses mesures de transposition de la directive 2014/94/UE du Parlement européen et du Conseil du 22 octobre 2014 sur le déploiement d’une infrastructure pour carburants alternatifs",
+      "path": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033860620"
+    },
+    {
+      "title": "Arrêté du 12 janvier 2017 relatif aux données concernant la localisation géographique et les caractéristiques techniques des stations et des points de recharge pour véhicules électriques",
+      "path": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033860733"
+    },
+    {
+      "title": "Arrêté du 12 janvier 2017 précisant les dispositions relatives aux identifiants des unités d’exploitation pour la recharge des véhicules électriques",
+      "path": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033860743"
+    },
+    {
+      "title": "Définition et structure des identifiants attribués par l'Association Française pour l'Itinérance de la Recharge Electrique des Véhicules (AFIREV)",
+      "path": "https://afirev.fr/fr/informations-generales/"
+    }
+  ],
+  "created": "2018-06-29",
+  "lastModified": "2022-10-10",
+  "version": "v2.3.0",
+  "fields": [
+    {
+      "name": "nom_amenageur",
+      "description": "La dénomination sociale du nom de l'aménageur, c'est à dire de l'entité publique ou privée propriétaire des infrastructu",
+      "example": "Société X, Entité Y",
+      "type": "string",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "siren_amenageur",
+      "description": "Le numero SIREN de l'aménageur issue de la base SIRENE des entreprises. Vous pouvez récupérer cet identifiant sur le sit",
+      "example": "130025265",
+      "type": "string",
+      "constraints": {
+        "required": false,
+        "pattern": "^\\d{9}$"
+      }
+    },
+    {
+      "name": "contact_amenageur",
+      "description": "Adresse courriel de l'aménageur. Favoriser les adresses génériques de contact. Cette adresse sera utilisée par les servi",
+      "example": "contact@societe-amenageur.com",
+      "type": "string",
+      "format": "email",
+      "constraints": {
+        "required": false
+      }
+    },
+    {
+      "name": "nom_operateur",
+      "description": "La dénomination sociale de l'opérateur. L'opérateur est la personne qui exploite l'infrastructure de recharger pour le c",
+      "example": "Société X, Entité Y",
+      "type": "string",
+      "constraints": {
+        "required": false
+      }
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

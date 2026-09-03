@@ -1,0 +1,12 @@
+{
+  "version": "2.13.2.dev1",
+  "python_version": "3.14.5",
+  "environment": "hydra",
+  "uptime_since": "2026-07-29T17:08:54.120716+00:00",
+  "csv_analysis": true,
+  "csv_to_db": true,
+  "db_to_parquet": true,
+  "db_to_geojson": true,
+  "geojson_to_pmtiles": true,
+  "parquet_to_db": true
+}

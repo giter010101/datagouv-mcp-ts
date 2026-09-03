@@ -1,0 +1,158 @@
+{
+  "profile": {
+    "header": [
+      "code_insee",
+      "commune",
+      "departement",
+      "gentile"
+    ],
+    "columns": {
+      "commune": {
+        "score": 1.490534447406398,
+        "format": "commune",
+        "python_type": "string"
+      },
+      "gentile": {
+        "score": 1.0,
+        "format": "string",
+        "python_type": "string"
+      },
+      "code_insee": {
+        "score": 1.4983396426280766,
+        "format": "code_commune",
+        "python_type": "string"
+      },
+      "departement": {
+        "score": 1.0,
+        "format": "string",
+        "python_type": "string"
+      }
+    },
+    "formats": {
+      "string": [
+        "departement",
+        "gentile"
+      ],
+      "commune": [
+        "commune"
+      ],
+      "code_commune": [
+        "code_insee"
+      ]
+    },
+    "profile": {
+      "commune": {
+        "nb_distinct": 32693,
+        "nb_missing_values": 0.0,
+        "tops": [
+          {
+            "count": 12.0,
+            "value": "Sainte-Colombe"
+          },
+          {
+            "count": 11.0,
+            "value": "Saint-Sauveur"
+          }
+        ]
+      },
+      "gentile": {
+        "nb_distinct": 26644,
+        "nb_missing_values": 3092.0,
+        "tops": [
+          {
+            "count": 69.0,
+            "value": "Saint-Martinois, Saint-Martinoises"
+          },
+          {
+            "count": 50.0,
+            "value": "Neuvillois, Neuvilloises"
+          }
+        ]
+      },
+      "code_insee": {
+        "nb_distinct": 34946,
+        "nb_missing_values": 0.0,
+        "tops": [
+          {
+            "count": 1.0,
+            "value": "01001"
+          },
+          {
+            "count": 1.0,
+            "value": "01002"
+          }
+        ]
+      },
+      "departement": {
+        "nb_distinct": 106,
+        "nb_missing_values": 0.0,
+        "tops": [
+          {
+            "count": 887.0,
+            "value": "62"
+          },
+          {
+            "count": 797.0,
+            "value": "02"
+          }
+        ]
+      }
+    },
+    "encoding": "utf-8",
+    "separator": ",",
+    "categorical": [],
+    "total_lines": 34946,
+    "nb_duplicates": 0,
+    "unique_values": {},
+    "columns_fields": {
+      "commune": {
+        "score": 0.9936896316042653,
+        "format": "commune",
+        "python_type": "string"
+      },
+      "gentile": {
+        "score": 1.0,
+        "format": "string",
+        "python_type": "string"
+      },
+      "code_insee": {
+        "score": 0.9988930950853845,
+        "format": "code_commune",
+        "python_type": "string"
+      },
+      "departement": {
+        "score": 1.0,
+        "format": "string",
+        "python_type": "string"
+      }
+    },
+    "columns_labels": {
+      "commune": {
+        "score": 1.0,
+        "format": "commune",
+        "python_type": "string"
+      },
+      "gentile": {
+        "score": 1.0,
+        "format": "string",
+        "python_type": "string"
+      },
+      "code_insee": {
+        "score": 1.0,
+        "format": "code_commune",
+        "python_type": "string"
+      },
+      "departement": {
+        "score": 1.0,
+        "format": "code_departement",
+        "python_type": "string"
+      }
+    },
+    "header_row_idx": 0,
+    "heading_columns": 0,
+    "trailing_columns": 0
+  },
+  "deleted_at": null,
+  "dataset_id": "6a9899255369f45f95bdd226",
+  "indexes": null
+}

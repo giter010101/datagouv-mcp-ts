@@ -1,0 +1,93 @@
+{
+  "access_type": "open",
+  "access_type_reason": null,
+  "access_type_reason_category": null,
+  "acronym": null,
+  "archived_at": null,
+  "authorization_request_url": null,
+  "availability": 100.0,
+  "availability_url": null,
+  "badges": [
+    {
+      "kind": "hvd"
+    }
+  ],
+  "base_api_url": "https://data.geopf.fr/geocodage/",
+  "business_documentation_url": "https://adresse.data.gouv.fr/outils/api-doc/adresse",
+  "created_at": "2024-11-07T17:18:48.601000+00:00",
+  "datasets": {
+    "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672cf67802ef6b1be63b8975",
+    "rel": "subsection",
+    "total": 1,
+    "type": "GET"
+  },
+  "deleted_at": null,
+  "description": "L' API Adresse permet d'interroger facilement la Base Adresse Nationale.\n\n### A quoi sert l'API Adresse ?\n\nEn intégrant l'API dans votre système d'information, vous pouvez facilement rechercher une adresse et :\n\n- faire de l'autocomplétion et de la vérification d'adresse ;\n- géolocaliser une adresse sur une carte ;\n- faire une recherche géographique inversée (trouver la rue la plus proche de coordonnées géographiques).\n\n### Données disponibles\n\n| Nom              | Description                                                        |\n| ---------------- | ----------------------------------------",
+  "featured": null,
+  "format": null,
+  "id": "672cf67802ef6b1be63b8975",
+  "license": null,
+  "machine_documentation_url": "https://data.geopf.fr/geocodage/openapi.yaml",
+  "metadata_modified_at": "2026-04-17T11:49:47.375000+00:00",
+  "metrics": {
+    "discussions": 9,
+    "discussions_open": 5,
+    "followers": 19,
+    "followers_by_months": {
+      "2025-08": 0,
+      "2025-09": 0,
+      "2025-10": 0,
+      "2025-11": 0,
+      "2025-12": 0,
+      "2026-01": 0,
+      "2026-02": 0,
+      "2026-03": 0,
+      "2026-04": 0,
+      "2026-05": 0,
+      "2026-06": 0,
+      "2026-07": 0,
+      "2026-08": 0
+    },
+    "reuses": 25,
+    "views": 57096
+  },
+  "organization": {
+    "id": "534fff80a3a7292c64a77e41",
+    "name": "Institut national de l'information géographique et forestière",
+    "slug": "institut-national-de-linformation-geographique-et-forestiere",
+    "acronym": "IGN",
+    "badges": [
+      {
+        "kind": "public-service"
+      },
+      {
+        "kind": "certified"
+      }
+    ],
+    "page": "https://www.data.gouv.fr/organizations/institut-national-de-linformation-geographique-et-forestiere",
+    "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527.jpg",
+    "class": "Organization"
+  },
+  "private": false,
+  "rate_limiting": "50 appels / seconde / IP\nL'API unitaire est disponible à hauteur de 50 appels par seconde et par adresse IP.\nLe géocodage de masse (CSV) est disponible à hauteur d'un appel simultané par adresse IP.\n",
+  "rate_limiting_url": null,
+  "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-adresse-base-adresse-nationale-ban/",
+  "self_web_url": "https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban",
+  "slug": "api-adresse-base-adresse-nationale-ban",
+  "tags": [
+    "adresse",
+    "ban",
+    "base",
+    "carte",
+    "code-postal",
+    "geocodage",
+    "geographie",
+    "geospatiales",
+    "gps",
+    "hvd",
+    "localisation",
+    "nationale"
+  ],
+  "technical_documentation_url": "https://geoservices.ign.fr/documentation/services/services-geoplateforme/geocodage",
+  "title": "API Adresse (Base Adresse Nationale - BAN)"
+}
