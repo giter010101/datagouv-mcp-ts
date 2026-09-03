@@ -1,5 +1,22 @@
 # Changelog
 
+## [Unreleased]
+
+### TypeScript rewrite (1.0.0 in progress)
+
+- **BREAKING (repository layout)**: the server is being rewritten in TypeScript (Node 22, `@modelcontextprotocol/sdk` 1.x).
+  The TypeScript package now lives at the repository root (`package.json`, `src/`).
+- The legacy Python implementation (`main.py`, `tools/`, `helpers/`, `tests/`, CircleCI, Dockerfile, docker-compose)
+  was moved unchanged to `legacy/python/` and is kept as a reference until tool parity; it is no longer released from here.
+- New transports: **stdio** (default, for local IDE/CLI clients) in addition to **Streamable HTTP** (`/mcp`, `/health`).
+- Tool `search_datasets` ported with legacy-compatible name, parameters and behaviour (stop-word cleaning + fallback),
+  now returning `structuredContent` in addition to text.
+- Architecture, tool catalogue and milestones: `.agent/exec-plans/001-typescript-rewrite.md`; decisions: `.agent/decisions/`.
+
+---
+
+# Python (legacy) history
+
 ## 0.2.30 (2026-07-17)
 
 - chore: upgrade dependencies
