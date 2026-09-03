@@ -10,17 +10,17 @@ Checklist for adding a new MCP tool to the data.gouv.fr server.
 
 ## Steps
 
-### 1. Define input schema (Zod)
+### 1. Define input schema (Zod raw shape, not `z.object`)
 
 ```typescript
 // src/tools/search-datasets.ts
 import { z } from "zod";
 
-export const searchDatasetsInputSchema = z.object({
+export const searchDatasetsInputShape = {
   query: z.string().min(1).describe("Search keywords"),
   page: z.number().int().min(1).default(1).describe("Page number"),
-  page_size: z.number().int().min(1).max(100).default(20).optional(),
-});
+  page_size: z.number().int().min(1).max(100).default(20).describe("Results per page (max 100)"),
+};
 ```
 
 ### 2. Write LLM-oriented description
@@ -30,31 +30,34 @@ export const searchDatasetsInputSchema = z.object({
 - Mention return format, pagination, limits.
 - Write for an LLM that has never seen data.gouv.fr.
 
-### 3. Register tool
+### 3. Define the tool (reference implementation: `src/tools/search-datasets.ts`)
 
 ```typescript
-server.registerTool(
-  "search_datasets",
-  {
-    title: "Search datasets",
-    description: "Search data.gouv.fr datasets by keyword…",
-    inputSchema: searchDatasetsInputSchema.shape,
-    annotations: {
-      readOnlyHint: true,
-      destructiveHint: false,
-      openWorldHint: true,
-    },
+// src/tools/<tool-name>.ts
+export const myToolInputShape = { /* zod raw shape, every field .describe()d */ };
+
+export const myTool = defineTool<typeof myToolInputShape, MyToolDeps>({
+  name: "get_dataset_info",            // legacy name frozen (ADR 0007)
+  title: "Get dataset info",
+  description: "…LLM-oriented…",
+  inputSchema: myToolInputShape,
+  annotations: READ_ONLY_EXTERNAL_API_TOOL,
+  async handler(input, ctx) {
+    const dataset = await ctx.deps.datagouv.getDataset(input.dataset_id);
+    return { text: formatDataset(dataset), structured: { …snake_case… }, howToGetMore: "…" };
   },
-  async (input) => { /* handler */ },
-);
+});
 ```
+
+Then append it to `ALL_TOOLS` in `src/tools/index.ts` (legacy order first). `tools/registry.ts` does the SDK
+registration, logging, error → `isError` mapping and output capping for you.
 
 ### 4. Implement handler (thin)
 
-- Parse input (already validated by SDK).
-- Call `clients/` layer — no direct `fetch` in tool handler.
-- Shape output with `structuredContent` for typed clients.
-- Apply truncation for large results (configurable max bytes).
+- Input is already validated by the SDK; never re-parse.
+- Call `ctx.deps.*` (clients / formats) — no direct `fetch` in tool handlers (layering check fails otherwise).
+- Throw `DatagouvError` subclasses (`NotFoundError` with the legacy message, etc.); never return ad-hoc error strings.
+- Return `{ text, structured, howToGetMore }`; the registry applies `MAX_OUTPUT_CHARS` (ADR 0008).
 
 ### 5. Output shaping
 

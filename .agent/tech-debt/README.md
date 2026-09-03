@@ -25,6 +25,16 @@ Known technical debt items. Small, frequent paydown preferred over big-bang refa
 4. No upward imports across layers
 5. Evidence report for every tool
 
+## Open items
+
+| ID | Title | Impact | Status |
+|----|-------|--------|--------|
+| TD-001 | `ServerDeps.datagouv` is a `Pick` of the full client | medium | scheduled (A, C) |
+| TD-002 | Matomo / Sentry parsed but not wired | medium | scheduled (C) |
+| TD-003 | tsdown 0.21 / TS 5.9 pins due to Node 22.14 VM | low | open (E) |
+| TD-004 | Delete `legacy/python/` after parity | low | scheduled (orchestrator) |
+| TD-005 | HTTP transport stateless/JSON-only | low | open (C) |
+
 ## Recurring cleanup
 
 Orchestrator schedules periodic "garbage collection" PRs to address open items.

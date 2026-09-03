@@ -4,9 +4,16 @@ Short map for agents. **Read this first**, then follow links. Do not treat this 
 
 ## Project
 
-Rewrite the Python MCP server (`main.py`, `tools/`, `helpers/`) into a state-of-the-art TypeScript MCP server for [data.gouv.fr](https://www.data.gouv.fr).
+Rewrite the Python MCP server (now frozen under `legacy/python/`) into a state-of-the-art TypeScript MCP server for [data.gouv.fr](https://www.data.gouv.fr). The TypeScript package lives at the repo root.
 
 Branch: `cursor/datagouv-mcp-typescript-refonte-57e0`
+
+**Master plan**: `exec-plans/001-typescript-rewrite.md` (architecture, tool catalogue, milestones, workstreams A–E). **Decisions**: `decisions/0001`–`0010`.
+
+## Toolchain (must be green before you commit)
+
+`pnpm check` = `pnpm typecheck && pnpm lint && pnpm check:layers && pnpm test && pnpm build`.
+Other: `pnpm test:live` (real API, `RUN_LIVE_TESTS=1`), `pnpm evidence --tool <name> --input '<json>' [--stdio]`, `pnpm dev` / `pnpm dev:http`.
 
 ## Core rules
 
@@ -63,32 +70,33 @@ Branch: `cursor/datagouv-mcp-typescript-refonte-57e0`
 - **ADRs**: `decisions/README.md`
 - **Ownership**: `ownership.md`
 
-## Repo layout (target)
+## Repo layout (current)
 
 ```
 src/
-├── core/       # types, errors, config
-├── clients/    # data.gouv API clients
-├── formats/    # CSV, XLSX, Parquet parsers
-├── tools/      # MCP tool handlers
-└── server/     # McpServer, transports
-tests/
-docs/
-  └── evidence/ # generated proof-of-function reports
+├── index.ts    # CLI (stdio default, --http)
+├── core/       # config, errors, logger, cache, http, text, types, version
+├── clients/    # data.gouv API clients (types.ts = contracts, schemas/ = Zod)
+├── formats/    # capability detection, ResourceAccessor registry, engines
+├── tools/      # ToolDefinition + registry adapter, one file per tool
+└── server/     # deps composition, McpServer factory, stdio, http (Hono)
+tests/          # unit · e2e (in-memory + HTTP) · live (gated) · fixtures · helpers
+scripts/        # check-layers.ts, evidence.ts
+docs/evidence/  # generated proof-of-function reports
+legacy/python/  # frozen reference, deleted at parity
 ```
 
 ## Stack (summary)
 
-Node 22 LTS · pnpm 10 · TypeScript 5 strict · ESM · `@modelcontextprotocol/sdk@1.30.0` · zod 4 · vitest · biome · pino · Hono · tsdown
+Node 22 LTS · pnpm 10 · TypeScript 5.9 strict · ESM · `@modelcontextprotocol/sdk@1.30.0` · zod 4 · vitest 5 · biome 2 · pino · Hono · tsdown 0.21 (ADR 0002)
 
 Full details: `research/04-harness-engineering-and-ts-stack.md`
 
 ## Quick start for dev agents
 
-1. Read your workstream in `ownership.md`.
-2. Read relevant research docs.
-3. Check `exec-plans/active/` for your plan; create one from `TEMPLATE.md` if none exists.
-4. Implement in assigned `src/` directories respecting layering.
-5. Write tests + evidence report.
-6. Log session in `journal/`.
-7. Update exec-plan milestones and ownership status.
+1. Read your workstream row in `ownership.md` and §12 of `exec-plans/001-typescript-rewrite.md`.
+2. Read relevant research docs and the ADRs your work touches.
+3. Create `exec-plans/active/ws-<letter>-<topic>.md` from `TEMPLATE.md` (one per workstream).
+4. Code against the shared contracts (`src/clients/types.ts`, `src/formats/types.ts`, `src/tools/types.ts`, `src/core/types.ts`) in your owned directories only; respect layering.
+5. `pnpm check` green + evidence report for every tool.
+6. Log session in `journal/`; tick milestones in the master plan; add tech-debt items you leave.
