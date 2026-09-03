@@ -31,10 +31,7 @@ export const searchDatasetsInputShape = {
     .string()
     .optional()
     .describe("Organization ID facet (id, not slug; e.g. INSEE is 61937d50e54eade2bbf8e8df)."),
-  tag: z
-    .string()
-    .optional()
-    .describe("Tag slug facet. Comma-separated for several tags (ANDed)."),
+  tag: z.string().optional().describe("Tag slug facet. Comma-separated for several tags (ANDed)."),
   license: z.string().optional().describe("License slug facet (e.g. fr-lo)."),
   format: z
     .string()
