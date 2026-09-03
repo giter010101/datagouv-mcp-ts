@@ -1,4 +1,4 @@
-import { createClients, type Clients } from "../../src/clients/index.js";
+import { type Clients, createClients } from "../../src/clients/index.js";
 import { createCache } from "../../src/core/cache.js";
 import { createHttpClient } from "../../src/core/http.js";
 import { type DatagouvMock, mockDatagouv } from "../helpers/mock-datagouv.js";

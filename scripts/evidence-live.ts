@@ -18,7 +18,14 @@ const DATE = new Date().toISOString().slice(0, 10);
 const MAX_LINES = 80;
 const CALL_TIMEOUT_MS = 45_000;
 
-type Rpc = { jsonrpc: "2.0"; id?: number; method?: string; params?: unknown; result?: unknown; error?: unknown };
+type Rpc = {
+  jsonrpc: "2.0";
+  id?: number;
+  method?: string;
+  params?: unknown;
+  result?: unknown;
+  error?: unknown;
+};
 
 interface CallSpec {
   name: string;
@@ -28,25 +35,39 @@ interface CallSpec {
 const CALLS: CallSpec[] = [
   { name: "search_organizations", arguments: { query: "etalab", page_size: 3 } },
   { name: "get_dataset_info", arguments: { dataset_id: "53699d0ea3a729239d205b2e" } },
-  { name: "list_dataset_resources", arguments: { dataset_id: "53699d0ea3a729239d205b2e", page_size: 8 } },
+  {
+    name: "list_dataset_resources",
+    arguments: { dataset_id: "53699d0ea3a729239d205b2e", page_size: 8 },
+  },
   { name: "get_resource_info", arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93" } },
-  { name: "query_resource_data", arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", page_size: 5 } },
-  { name: "preview_resource", arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", limit: 5 } },
-  { name: "check_resource_availability", arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", live: true } },
+  {
+    name: "query_resource_data",
+    arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", page_size: 5 },
+  },
+  {
+    name: "preview_resource",
+    arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", limit: 5 },
+  },
+  {
+    name: "check_resource_availability",
+    arguments: { resource_id: "a86ebc34-a979-4d6c-8f2a-9710a43dca93", live: true },
+  },
   { name: "list_high_value_datasets", arguments: { page_size: 3 } },
   { name: "suggest", arguments: { query: "popu", size: 5 } },
   { name: "get_metrics", arguments: { dataset_id: "53699d0ea3a729239d205b2e", limit: 3 } },
 ];
 
 function firstText(result: unknown): string {
-  const content = (result as { content?: Array<{ type?: string; text?: string }> } | undefined)?.content;
+  const content = (result as { content?: Array<{ type?: string; text?: string }> } | undefined)
+    ?.content;
   if (!Array.isArray(content)) return "";
   const block = content.find((c) => c.type === "text");
   return block?.text ?? "";
 }
 
 function structuredKeys(result: unknown): string[] {
-  const sc = (result as { structuredContent?: Record<string, unknown> } | undefined)?.structuredContent;
+  const sc = (result as { structuredContent?: Record<string, unknown> } | undefined)
+    ?.structuredContent;
   return sc ? Object.keys(sc) : [];
 }
 
@@ -228,7 +249,13 @@ class StdioRpc {
 async function main(): Promise<void> {
   mkdirSync(OUT_DIR, { recursive: true });
   const rpc = new StdioRpc();
-  const summary: Array<{ tool: string; verdict: string; durationMs: number; file: string; error?: string }> = [];
+  const summary: Array<{
+    tool: string;
+    verdict: string;
+    durationMs: number;
+    file: string;
+    error?: string;
+  }> = [];
 
   try {
     const init = await rpc.request("initialize", {
@@ -241,7 +268,9 @@ async function main(): Promise<void> {
     }
     rpc.sendNotify("notifications/initialized");
     const list = await rpc.request("tools/list", {});
-    const tools = ((list.result as { tools?: Array<{ name: string }> } | undefined)?.tools ?? []).map((t) => t.name);
+    const tools = (
+      (list.result as { tools?: Array<{ name: string }> } | undefined)?.tools ?? []
+    ).map((t) => t.name);
     console.log(`tools/list: ${tools.length} tools`);
 
     for (const call of CALLS) {
@@ -260,8 +289,7 @@ async function main(): Promise<void> {
       const keys = structuredKeys(result);
       const toolPresent = tools.includes(call.name);
       const rpcError = rpcResp?.error ?? caught;
-      const fail =
-        Boolean(rpcError) || isErrorResult(result) || !text || !toolPresent;
+      const fail = Boolean(rpcError) || isErrorResult(result) || !text || !toolPresent;
       const verdict: "PASS" | "FAIL" = fail ? "FAIL" : "PASS";
       const file = `${call.name}-live.md`;
       const md = reportMarkdown({
@@ -296,7 +324,10 @@ async function main(): Promise<void> {
     await rpc.close();
   }
 
-  writeFileSync(resolve("/tmp/evidence-live-summary.json"), JSON.stringify({ version: VERSION, date: DATE, summary }, null, 2));
+  writeFileSync(
+    resolve("/tmp/evidence-live-summary.json"),
+    JSON.stringify({ version: VERSION, date: DATE, summary }, null, 2),
+  );
   console.log(JSON.stringify({ date: DATE, version: VERSION, summary }, null, 2));
 }
 

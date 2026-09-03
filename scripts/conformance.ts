@@ -83,7 +83,9 @@ async function main(): Promise<void> {
     if (structured?.total !== 1234) {
       throw new Error(`unexpected structuredContent.total: ${String(structured?.total)}`);
     }
-    console.log(`conformance OK — ${tools.length} tools, search_datasets total=${structured.total}`);
+    console.log(
+      `conformance OK — ${tools.length} tools, search_datasets total=${structured.total}`,
+    );
   } finally {
     await client.close().catch(() => undefined);
     await running.close().catch(() => undefined);
