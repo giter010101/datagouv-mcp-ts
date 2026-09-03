@@ -1,0 +1,38 @@
+{
+  "data": [
+    {
+      "id": "53699d0ea3a729239d205b2e",
+      "title": "Population",
+      "slug": "population",
+      "description_short": "Recensement de la population : populations légales des communes, départements et régions.",
+      "organization": {
+        "id": "534fff81a3a7292c64a77e5c",
+        "name": "Institut National de la Statistique et des Etudes Economiques (Insee)",
+        "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+        "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee/"
+      },
+      "tags": ["population", "recensement", "insee", "communes", "demographie", "statistiques"],
+      "resources": { "total": 14 },
+      "last_update": "2026-01-15T08:30:00+00:00",
+      "license": "fr-lo"
+    },
+    {
+      "id": "5b7ffc618b4c4169d30727e0",
+      "title": "Population municipale des communes",
+      "slug": "population-municipale-des-communes",
+      "description_short": null,
+      "description": "## Population municipale\n\nChiffres **officiels** issus du [recensement](https://insee.fr).\n\nDeuxième paragraphe.",
+      "organization": null,
+      "tags": [],
+      "resources": { "total": 2 },
+      "last_update": "2025-11-02T10:00:00+00:00",
+      "license": "notspecified"
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 1234,
+  "next_page": "https://www.data.gouv.fr/api/2/datasets/search/?q=population&page=2&page_size=2",
+  "previous_page": null,
+  "facets": {}
+}
