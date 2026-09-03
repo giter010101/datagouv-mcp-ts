@@ -1,17 +1,58 @@
 # Changelog
 
+All notable changes to `datagouv-mcp` are documented here. The format follows
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
+[Semantic Versioning](https://semver.org/). Versions are cut with
+[changesets](.changeset/README.md): agents and contributors append bullets under `[Unreleased]`
+as they land changes; the release PR moves them into the new version section
+(see `.agent/skills/release.md`).
+
 ## [Unreleased]
 
-### TypeScript rewrite (1.0.0 in progress)
+### Added
 
-- **BREAKING (repository layout)**: the server is being rewritten in TypeScript (Node 22, `@modelcontextprotocol/sdk` 1.x).
-  The TypeScript package now lives at the repository root (`package.json`, `src/`).
-- The legacy Python implementation (`main.py`, `tools/`, `helpers/`, `tests/`, CircleCI, Dockerfile, docker-compose)
-  was moved unchanged to `legacy/python/` and is kept as a reference until tool parity; it is no longer released from here.
-- New transports: **stdio** (default, for local IDE/CLI clients) in addition to **Streamable HTTP** (`/mcp`, `/health`).
-- Tool `search_datasets` ported with legacy-compatible name, parameters and behaviour (stop-word cleaning + fallback),
-  now returning `structuredContent` in addition to text.
-- Architecture, tool catalogue and milestones: `.agent/exec-plans/001-typescript-rewrite.md`; decisions: `.agent/decisions/`.
+- **TypeScript rewrite (1.0.0 in progress)** — the server is rewritten in TypeScript
+  (Node 22, `@modelcontextprotocol/sdk` 1.x) and published as the npm package `datagouv-mcp`
+  (`npx datagouv-mcp`). The package lives at the repository root (`package.json`, `src/`).
+- New **stdio** transport (default, for local IDE/CLI clients) in addition to **Streamable HTTP**
+  (`POST /mcp`, `GET /health`).
+- Every tool returns `structuredContent` (snake_case mirror of the text) and a bounded text output
+  (`MAX_OUTPUT_CHARS`), with errors returned as `isError` results carrying a `code` and a `hint`.
+- New environment variables: `MCP_TRANSPORT`, `MCP_ALLOWED_HOSTS`, `MCP_ALLOWED_ORIGINS`,
+  `HTTP_TIMEOUT_MS`, `HTTP_RETRIES`, `MAX_DOWNLOAD_BYTES`, `CACHE_MAX_ENTRIES`, `CACHE_DEFAULT_TTL_MS`,
+  `MAX_OUTPUT_CHARS`, `ENABLE_DUCKDB` (legacy names unchanged, see `docs/configuration.md`).
+- Tool `search_datasets` ported with legacy-compatible name, parameters and behaviour
+  (stop-word cleaning + fallback).
+- Multi-stage Docker image (`node:22-slim`, non-root, `HEALTHCHECK` on `/health`), `.dockerignore`
+  and `docker-compose.yml` passing every documented variable through.
+- GitHub Actions: `ci.yml` (Node 22/24 matrix: typecheck, lint, layering, offline tests with coverage,
+  build, Docker smoke), `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
+  `docker.yml` (multi-arch GHCR image with provenance/SBOM), `release.yml` (changesets version PR,
+  npm publish with provenance gated on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.
+- Release tooling: `@changesets/cli` in `alpha` pre-release mode with an initial changeset for `1.0.0-alpha.1`.
+- Documentation: rewritten `README.md` (quick start, every client configuration in stdio and HTTP variants,
+  tool catalogue, architecture, env table), `docs/architecture.md`, `docs/deployment.md`,
+  `docs/configuration.md`, `docs/tools.md`, `docs/development.md`, `docs/migration-from-python.md`,
+  `CONTRIBUTING.md`, `SECURITY.md`, `.editorconfig`.
+
+### Changed
+
+- **BREAKING (repository layout)**: the legacy Python implementation (`main.py`, `tools/`, `helpers/`,
+  `tests/`, CircleCI, Dockerfile, docker-compose) was moved unchanged to `legacy/python/` and is kept
+  as a reference until tool parity; it is no longer released from here.
+- Default bind address is `127.0.0.1` (legacy: `0.0.0.0`); the Docker image and compose file set
+  `MCP_HOST=0.0.0.0` explicitly.
+- Log levels follow pino (`info`, `debug`, …); legacy uppercase Python levels are still accepted.
+- Architecture, tool catalogue and milestones: `.agent/exec-plans/001-typescript-rewrite.md`;
+  decisions: `.agent/decisions/`.
+
+### Removed
+
+- CircleCI configuration (replaced by GitHub Actions); `tag_version.sh` (replaced by changesets).
+
+### Fixed
+
+- _(nothing yet)_
 
 ---
 
