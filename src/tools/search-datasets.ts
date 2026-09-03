@@ -26,21 +26,6 @@ export const searchDatasetsInputShape = {
     .enum(LAST_UPDATE_RANGES)
     .optional()
     .describe("Only datasets updated recently: last_30_days, last_12_months or last_3_years."),
-  organization: z
-    .string()
-    .optional()
-    .describe("Facet: organization ID (from search_organizations) to restrict results to one publisher."),
-  tag: z.string().optional().describe("Facet: exact tag slug (e.g. 'transport')."),
-  license: z.string().optional().describe("Facet: license ID (e.g. 'lov2', 'odc-odbl')."),
-  format: z.string().optional().describe("Facet: resource format present in the dataset (e.g. 'csv', 'geojson', 'parquet')."),
-  badge: z
-    .string()
-    .optional()
-    .describe("Facet: dataset badge, e.g. 'hvd' (High Value Dataset, EU regulation) or 'spd' (public service data)."),
-  geozone: z.string().optional().describe("Facet: spatial zone ID (e.g. 'fr:commune:75056'); find IDs with suggest(kind='zone')."),
-  granularity: z.string().optional().describe("Facet: spatial granularity (e.g. 'fr:commune', 'fr:departement', 'country')."),
-  schema: z.string().optional().describe("Facet: schema.data.gouv.fr schema name (e.g. 'etalab/schema-irve-statique')."),
-  topic: z.string().optional().describe("Facet: topic ID (from list_topics)."),
 };
 
 export const searchDatasetsOutputShape = {
@@ -78,34 +63,27 @@ export const searchDatasetsTool = defineTool<typeof searchDatasetsInputShape, To
   outputSchema: searchDatasetsOutputShape,
   annotations: READ_ONLY_EXTERNAL_API_TOOL,
   async handler(input, ctx) {
-    const filters = {
-      organization: input.organization,
-      tag: input.tag ? [input.tag] : undefined,
-      license: input.license,
-      format: input.format,
-      badge: input.badge,
-      geozone: input.geozone,
-      granularity: input.granularity,
-      schema: input.schema,
-      topic: input.topic,
-    };
-    const baseParams = {
+    const cleaned = cleanSearchQuery(input.query);
+    let usedQuery = cleaned === "" ? input.query : cleaned;
+    let result = await ctx.deps.datagouv.searchDatasets({
+      query: usedQuery,
       page: input.page,
       pageSize: input.page_size,
       sort: input.sort,
       lastUpdateRange: input.last_update_range,
-      filters: Object.values(filters).some((v) => v !== undefined) ? filters : undefined,
-    };
-
-    const cleaned = cleanSearchQuery(input.query);
-    let usedQuery = cleaned === "" ? input.query : cleaned;
-    let result = await ctx.deps.datagouv.searchDatasets({ ...baseParams, query: usedQuery });
+    });
 
     // Legacy behaviour: if stop-word cleaning yields nothing, retry with the original query.
     if (result.items.length === 0 && usedQuery !== input.query) {
       ctx.log.debug({ cleaned: usedQuery, original: input.query }, "retrying with original query");
       usedQuery = input.query;
-      result = await ctx.deps.datagouv.searchDatasets({ ...baseParams, query: usedQuery });
+      result = await ctx.deps.datagouv.searchDatasets({
+        query: usedQuery,
+        page: input.page,
+        pageSize: input.page_size,
+        sort: input.sort,
+        lastUpdateRange: input.last_update_range,
+      });
     }
 
     return {

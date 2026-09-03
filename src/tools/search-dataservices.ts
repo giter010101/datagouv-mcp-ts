@@ -102,7 +102,8 @@ export function formatDataservices(query: string, result: Page<DataserviceSummar
   result.items.forEach((ds, index) => {
     lines.push(`${index + 1}. ${ds.title || "Untitled"}`);
     lines.push(`   ID: ${ds.id}`);
-    if (ds.description) lines.push(`   Description: ${truncate(ds.description, LIST_DESCRIPTION_CHARS)}`);
+    if (ds.description)
+      lines.push(`   Description: ${truncate(ds.description, LIST_DESCRIPTION_CHARS)}`);
     if (ds.organization) lines.push(`   Organization: ${ds.organization.name}`);
     if (ds.baseApiUrl) lines.push(`   Base API URL: ${ds.baseApiUrl}`);
     if (ds.tags.length > 0) lines.push(`   Tags: ${ds.tags.slice(0, LIST_TAGS_MAX).join(", ")}`);

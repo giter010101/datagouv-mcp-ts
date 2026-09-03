@@ -19,11 +19,7 @@
           "fieldName": "contact_operateur",
           "fieldNumber": 5,
           "message": "La colonne obligatoire `contact_operateur` est manquante",
-          "tags": [
-            "#table",
-            "#header",
-            "#label"
-          ],
+          "tags": ["#table", "#header", "#label"],
           "title": "Colonne manquante",
           "type": "missing-label"
         },
@@ -31,11 +27,7 @@
           "fieldName": "nom_enseigne",
           "fieldNumber": 6,
           "message": "La colonne obligatoire `nom_enseigne` est manquante",
-          "tags": [
-            "#table",
-            "#header",
-            "#label"
-          ],
+          "tags": ["#table", "#header", "#label"],
           "title": "Colonne manquante",
           "type": "missing-label"
         },
@@ -43,11 +35,7 @@
           "fieldName": "id_station_itinerance",
           "fieldNumber": 7,
           "message": "La colonne obligatoire `id_station_itinerance` est manquante",
-          "tags": [
-            "#table",
-            "#header",
-            "#label"
-          ],
+          "tags": ["#table", "#header", "#label"],
           "title": "Colonne manquante",
           "type": "missing-label"
         }

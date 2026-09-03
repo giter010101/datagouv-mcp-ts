@@ -104,7 +104,9 @@ export function formatDataservice(ds: DataserviceDetail): string {
     kv("ID", ds.id),
     kv("URL", ds.url),
     ds.description ? "" : undefined,
-    ds.description ? `Description: ${truncate(ds.description, DETAIL_DESCRIPTION_CHARS)}` : undefined,
+    ds.description
+      ? `Description: ${truncate(ds.description, DETAIL_DESCRIPTION_CHARS)}`
+      : undefined,
     "",
     kv("Base API URL", ds.baseApiUrl),
     kv("OpenAPI/Swagger spec", ds.machineDocumentationUrl),

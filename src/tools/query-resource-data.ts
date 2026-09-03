@@ -36,7 +36,9 @@ export const queryResourceDataInputShape = {
   filter_value: z
     .string()
     .optional()
-    .describe("Filter value (required with filter_column). For operator 'in', separate values with commas."),
+    .describe(
+      "Filter value (required with filter_column). For operator 'in', separate values with commas.",
+    ),
   filter_operator: z
     .string()
     .default("exact")
@@ -52,9 +54,7 @@ export const queryResourceDataOutputShape = {
   resource_title: z.string(),
   dataset_id: z.string().optional(),
   dataset_title: z.string().optional(),
-  filter: z
-    .object({ column: z.string(), operator: z.string(), value: z.string() })
-    .optional(),
+  filter: z.object({ column: z.string(), operator: z.string(), value: z.string() }).optional(),
   sort: z.object({ column: z.string(), direction: z.string() }).optional(),
   total_pages: z.number().int().optional(),
   ...tableSliceShape,
@@ -95,8 +95,12 @@ export const queryResourceDataTool = defineTool<typeof queryResourceDataInputSha
     }
 
     const context = await resourceContext(ctx.deps, input.resource_id);
-    const header = [`Querying resource: ${context.resourceTitle}`, `Resource ID: ${input.resource_id}`];
-    if (context.datasetId) header.push(`Dataset: ${context.datasetTitle} (ID: ${context.datasetId})`);
+    const header = [
+      `Querying resource: ${context.resourceTitle}`,
+      `Resource ID: ${input.resource_id}`,
+    ];
+    if (context.datasetId)
+      header.push(`Dataset: ${context.datasetTitle} (ID: ${context.datasetId})`);
     header.push("");
     const filters: TabularFilter[] = [];
     const sort: TabularSort[] = [];
@@ -134,7 +138,8 @@ export const queryResourceDataTool = defineTool<typeof queryResourceDataInputSha
       body.push("⚠️  No rows available (resource may be empty or filtered).");
     } else {
       body.push(`Total rows (Tabular API): ${page.total}`);
-      if (totalPages !== undefined) body.push(`Total pages: ${totalPages} (page size: ${page.pageSize})`);
+      if (totalPages !== undefined)
+        body.push(`Total pages: ${totalPages} (page size: ${page.pageSize})`);
       body.push(`Retrieved: ${page.rows.length} row(s) from page ${page.page}`);
       body.push(`Columns: ${columns.join(", ")}`, "");
       body.push(...renderRowsLegacy(page.rows));

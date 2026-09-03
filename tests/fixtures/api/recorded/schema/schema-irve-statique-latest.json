@@ -355,10 +355,7 @@
       },
       {
         "constraints": {
-          "enum": [
-            "Accès libre",
-            "Accès réservé"
-          ],
+          "enum": ["Accès libre", "Accès réservé"],
           "required": true
         },
         "description": "Éventuelles conditions d’accès à la station, hors gabarit. Dans le cas d'un accès libre sans contrainte matérielle physique (ex : absence de barrière) ni restriction d'usager (ex : borne accessible pour n'importe quel type et modèle de voiture électrique), indiquer \"Accès libre\". \nDans le cas d'un accès limité / réservé qui nécessite une identification ou passage d'une barrière, indiquer \"Accès réservé\" (ce type d'accès inclut les IRVE sur le réseau autoroutier payant - passage péage).",
@@ -420,10 +417,7 @@
       },
       {
         "constraints": {
-          "enum": [
-            "Direct",
-            "Indirect"
-          ],
+          "enum": ["Direct", "Indirect"],
           "required": false
         },
         "description": "Type de raccordement de la station au réseau de distribution d'électricité : direct (point de livraison exclusivement dédié à la station) ou indirect.",
@@ -481,9 +475,7 @@
     ],
     "homepage": "https://github.com/etalab/schema-irve",
     "lastModified": "2022-10-10",
-    "missingValues": [
-      ""
-    ],
+    "missingValues": [""],
     "name": "schema-irve-statique",
     "path": "https://raw.githubusercontent.com/etalab/schema-irve/v2.3.0/statique/schema-statique.json",
     "resources": [

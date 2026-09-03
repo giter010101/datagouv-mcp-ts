@@ -40,6 +40,30 @@ const liveCheckSchema = z.object({
   duration_ms: z.number(),
 });
 
+type LiveCheckSuccess = {
+  ok: true;
+  status?: number;
+  method: "GET" | "HEAD";
+  final_url?: string;
+  content_type?: string;
+  content_length?: number;
+  last_modified?: string;
+  error?: undefined;
+  duration_ms: number;
+};
+
+type LiveCheckFailure = {
+  ok: false;
+  status?: number;
+  method: "GET" | "HEAD";
+  final_url?: string;
+  content_type?: string;
+  content_length?: number;
+  last_modified?: string;
+  error: string;
+  duration_ms: number;
+};
+
 export const checkResourceAvailabilityOutputShape = {
   resource_id: z.string(),
   title: z.string(),
@@ -98,20 +122,28 @@ export const checkResourceAvailabilityTool = defineTool<
       platform.available === undefined && platform.status === undefined
         ? "  No check recorded yet."
         : undefined,
-      platform.available !== undefined ? `  Available: ${platform.available ? "yes" : "no"}` : undefined,
+      platform.available !== undefined
+        ? `  Available: ${platform.available ? "yes" : "no"}`
+        : undefined,
       platform.status !== undefined ? `  HTTP status: ${platform.status}` : undefined,
       platform.error ? `  Error: ${platform.error}` : undefined,
       platform.checked_at ? `  Checked at: ${platform.checked_at}` : undefined,
       platform.detected_mime ? `  Detected MIME: ${platform.detected_mime}` : undefined,
-      platform.content_length !== undefined ? `  Content length: ${humanSize(platform.content_length)}` : undefined,
+      platform.content_length !== undefined
+        ? `  Content length: ${humanSize(platform.content_length)}`
+        : undefined,
       live ? "" : undefined,
       live ? `Live check (${live.method}, ${live.duration_ms} ms):` : undefined,
       live ? `  Reachable: ${live.ok ? "yes" : "no"}` : undefined,
       live?.status !== undefined ? `  HTTP status: ${live.status}` : undefined,
       live?.content_type ? `  Content type: ${live.content_type}` : undefined,
-      live?.content_length !== undefined ? `  Content length: ${humanSize(live.content_length)}` : undefined,
+      live?.content_length !== undefined
+        ? `  Content length: ${humanSize(live.content_length)}`
+        : undefined,
       live?.last_modified ? `  Last modified: ${live.last_modified}` : undefined,
-      live?.final_url && live.final_url !== resource.url ? `  Final URL: ${live.final_url}` : undefined,
+      live?.final_url && live.final_url !== resource.url
+        ? `  Final URL: ${live.final_url}`
+        : undefined,
       live?.error ? `  Error: ${live.error}` : undefined,
       "",
       `Verdict: ${verdict}`,
@@ -147,10 +179,14 @@ function platformCheck(resource: ResourceDetail) {
   };
 }
 
-async function liveCheck(deps: ToolDeps, resource: ResourceDetail, signal: AbortSignal | undefined) {
+async function liveCheck(
+  deps: ToolDeps,
+  resource: ResourceDetail,
+  signal: AbortSignal | undefined,
+) {
   const started = Date.now();
   const target = resource.url || resource.latestUrl;
-  const attempt = async (method: "GET" | "HEAD") => {
+  const attempt = async (method: "GET" | "HEAD"): Promise<LiveCheckSuccess> => {
     const response = await deps.http.request(target, {
       method,
       retries: 0,
@@ -168,6 +204,7 @@ async function liveCheck(deps: ToolDeps, resource: ResourceDetail, signal: Abort
       content_type: response.headers.get("content-type") ?? undefined,
       content_length: length !== null && /^\d+$/.test(length) ? Number(length) : undefined,
       last_modified: response.headers.get("last-modified") ?? undefined,
+      error: undefined,
       duration_ms: Date.now() - started,
     };
   };
@@ -187,12 +224,20 @@ async function liveCheck(deps: ToolDeps, resource: ResourceDetail, signal: Abort
   }
 }
 
-function failure(error: ReturnType<typeof toDatagouvError>, method: string, started: number) {
+function failure(
+  error: ReturnType<typeof toDatagouvError>,
+  method: "GET" | "HEAD",
+  started: number,
+): LiveCheckFailure {
   return {
     ok: false,
     status: error instanceof ApiError ? error.status : undefined,
     method,
     error: `${error.code}: ${error.message}`,
+    final_url: undefined,
+    content_type: undefined,
+    content_length: undefined,
+    last_modified: undefined,
     duration_ms: Date.now() - started,
   };
 }

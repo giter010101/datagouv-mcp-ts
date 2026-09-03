@@ -274,17 +274,9 @@
     "spatial": {
       "geom": null,
       "granularity": "fr:commune",
-      "zones": [
-        "country:fr"
-      ]
+      "zones": ["country:fr"]
     },
-    "tags": [
-      "deces",
-      "demographie",
-      "etat-civil",
-      "famille",
-      "mariages"
-    ],
+    "tags": ["deces", "demographie", "etat-civil", "famille", "mariages"],
     "temporal_coverage": null,
     "title": "Population",
     "uri": "https://www.data.gouv.fr/api/1/datasets/population/"

@@ -51,7 +51,9 @@ export const getDatasetResourcesSummaryOutputShape = {
     last_update: z.string().optional(),
     license: z.string().optional(),
     badges: z.array(z.string()),
-    schema: z.object({ name: z.string(), version: z.string().optional(), url: z.string().optional() }).optional(),
+    schema: z
+      .object({ name: z.string(), version: z.string().optional(), url: z.string().optional() })
+      .optional(),
   }),
   resources_total: z.number().int(),
   main_resources: z.number().int(),
@@ -96,7 +98,10 @@ export const getDatasetResourcesSummaryTool = defineTool<
       resources.map((r) => detectOffline(ctx.deps, dataset, r).catch(() => undefined)),
     );
 
-    const groups = new Map<string, { formats: Set<string>; bytes: number; known: boolean; ids: string[] }>();
+    const groups = new Map<
+      string,
+      { formats: Set<string>; bytes: number; known: boolean; ids: string[] }
+    >();
     let latest: string | undefined;
     let mainCount = 0;
     let docCount = 0;
@@ -105,7 +110,12 @@ export const getDatasetResourcesSummaryTool = defineTool<
     resources.forEach((r, i) => {
       const report = reports[i];
       const family = report?.formatFamily ?? "unknown";
-      const g = groups.get(family) ?? { formats: new Set<string>(), bytes: 0, known: false, ids: [] };
+      const g = groups.get(family) ?? {
+        formats: new Set<string>(),
+        bytes: 0,
+        known: false,
+        ids: [],
+      };
       g.formats.add(report?.detectedFormat || r.format || "unknown");
       if (r.filesize !== undefined) {
         g.bytes += r.filesize;
@@ -136,7 +146,9 @@ export const getDatasetResourcesSummaryTool = defineTool<
       `Dataset: ${dataset.title || "Untitled"}`,
       `ID: ${dataset.id} (slug: ${dataset.slug})`,
       dataset.organization ? `Organization: ${dataset.organization.name}` : undefined,
-      dataset.descriptionShort ? `Description: ${truncate(dataset.descriptionShort, LIST_DESCRIPTION_CHARS)}` : undefined,
+      dataset.descriptionShort
+        ? `Description: ${truncate(dataset.descriptionShort, LIST_DESCRIPTION_CHARS)}`
+        : undefined,
       dataset.license ? `License: ${dataset.license}` : undefined,
       dataset.lastUpdate ? `Last update: ${dataset.lastUpdate}` : undefined,
       dataset.badges.length > 0 ? `Badges: ${dataset.badges.join(", ")}` : undefined,

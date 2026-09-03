@@ -1,13 +1,8 @@
 [
   {
     "alternate_titles": [],
-    "alternate_urls": [
-      "https://creativecommons.org/licenses/by/4.0"
-    ],
-    "flags": [
-      "okd_compliant",
-      "domain_content"
-    ],
+    "alternate_urls": ["https://creativecommons.org/licenses/by/4.0"],
+    "flags": ["okd_compliant", "domain_content"],
     "id": "cc-by",
     "maintainer": null,
     "title": "Creative Commons Attribution",
@@ -16,10 +11,7 @@
   {
     "alternate_titles": [],
     "alternate_urls": [],
-    "flags": [
-      "okd_compliant",
-      "domain_content"
-    ],
+    "flags": ["okd_compliant", "domain_content"],
     "id": "cc-by-sa",
     "maintainer": null,
     "title": "Creative Commons Attribution Share-Alike",
@@ -28,29 +20,16 @@
   {
     "alternate_titles": [],
     "alternate_urls": [],
-    "flags": [
-      "domain_data",
-      "okd_compliant",
-      "domain_content",
-      "domain_software"
-    ],
+    "flags": ["domain_data", "okd_compliant", "domain_content", "domain_software"],
     "id": "cc-zero",
     "maintainer": null,
     "title": "Creative Commons CCZero",
     "url": "http://www.opendefinition.org/licenses/cc-zero"
   },
   {
-    "alternate_titles": [
-      "LO/OL"
-    ],
-    "alternate_urls": [
-      "https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf"
-    ],
-    "flags": [
-      "domain_data",
-      "okd_compliant",
-      "domain_content"
-    ],
+    "alternate_titles": ["LO/OL"],
+    "alternate_urls": ["https://www.etalab.gouv.fr/wp-content/uploads/2014/05/Open_Licence.pdf"],
+    "flags": ["domain_data", "okd_compliant", "domain_content"],
     "id": "fr-lo",
     "maintainer": null,
     "title": "Licence Ouverte / Open Licence",

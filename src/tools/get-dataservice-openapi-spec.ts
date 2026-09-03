@@ -148,7 +148,10 @@ export function summarizeSpec(spec: Record<string, unknown>): SpecSummary {
   const host = asString(spec.host);
   if (host) {
     const scheme = (Array.isArray(spec.schemes) && asString(spec.schemes[0])) || "https";
-    servers.push({ url: `${scheme}://${host}${asString(spec.basePath) ?? ""}`, description: "Swagger 2.0 host" });
+    servers.push({
+      url: `${scheme}://${host}${asString(spec.basePath) ?? ""}`,
+      description: "Swagger 2.0 host",
+    });
   }
 
   const endpoints: EndpointSummary[] = [];
@@ -164,7 +167,9 @@ export function summarizeSpec(spec: Record<string, unknown>): SpecSummary {
       endpointsTotal++;
       if (endpoints.length >= MAX_ENDPOINTS) continue;
       const rawSummary = asString(op.summary) ?? asString(op.description);
-      const summary = rawSummary ? truncate(rawSummary.split("\n")[0] ?? "", SUMMARY_CHARS) : undefined;
+      const summary = rawSummary
+        ? truncate(rawSummary.split("\n")[0] ?? "", SUMMARY_CHARS)
+        : undefined;
       const parameters: EndpointSummary["parameters"] = [];
       if (Array.isArray(op.parameters)) {
         for (const p of op.parameters) {
@@ -201,7 +206,8 @@ export function renderSpecSummary(summary: SpecSummary): string[] {
   if (summary.description) out.push(`Description: ${summary.description}`);
   if (summary.servers.length > 0) {
     out.push("", "Servers:");
-    for (const s of summary.servers) out.push(`  - ${s.url}${s.description ? ` (${s.description})` : ""}`);
+    for (const s of summary.servers)
+      out.push(`  - ${s.url}${s.description ? ` (${s.description})` : ""}`);
   }
   if (summary.endpointsTotal > 0) {
     out.push("", `Endpoints (${summary.endpointsTotal} operations):`);
@@ -213,7 +219,9 @@ export function renderSpecSummary(summary: SpecSummary): string[] {
       }
     }
     if (summary.endpointsTotal > summary.endpoints.length) {
-      out.push(`  … ${summary.endpointsTotal - summary.endpoints.length} more operation(s) omitted; see the source URL.`);
+      out.push(
+        `  … ${summary.endpointsTotal - summary.endpoints.length} more operation(s) omitted; see the source URL.`,
+      );
     }
   } else {
     out.push("", "No endpoints found in the specification.");

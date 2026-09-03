@@ -22,10 +22,7 @@
   "name": "Santé et territoires",
   "slug": "sante-et-territoires",
   "description": "_Ce défi est proposé par [la Fondation Roche](https://fondationroche.org/), partenaire de l’Open Data University._\n\n**[Lancer ce défi sur un environnement de travail configuré proposé sur le Datalab \"SSP Cloud\" de l'INSEE](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&name=defis-datagouv&init.personalInit=%C2%ABhttps://raw.githubusercontent.com/datagouv/odu-notebooks/main",
-  "tags": [
-    "defisdatagouvfr",
-    "defisdatagouvfr-saison-saison-4"
-  ],
+  "tags": ["defisdatagouvfr", "defisdatagouvfr-saison-saison-4"],
   "color": null,
   "featured": false,
   "private": false,

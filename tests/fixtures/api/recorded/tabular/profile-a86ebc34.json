@@ -81,23 +81,11 @@
       },
       "encoding": "utf-8",
       "formats": {
-        "code_commune": [
-          "code_insee"
-        ],
-        "commune": [
-          "commune"
-        ],
-        "string": [
-          "departement",
-          "gentile"
-        ]
+        "code_commune": ["code_insee"],
+        "commune": ["commune"],
+        "string": ["departement", "gentile"]
       },
-      "header": [
-        "code_insee",
-        "commune",
-        "departement",
-        "gentile"
-      ],
+      "header": ["code_insee", "commune", "departement", "gentile"],
       "header_row_idx": 0,
       "heading_columns": 0,
       "nb_duplicates": 0,

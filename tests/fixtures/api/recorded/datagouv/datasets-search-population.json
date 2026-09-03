@@ -88,15 +88,9 @@
         "spatial": {
           "geom": null,
           "granularity": "fr:commune",
-          "zones": [
-            "country:fr"
-          ]
+          "zones": ["country:fr"]
         },
-        "tags": [
-          "deces",
-          "demographie",
-          "etat-civil"
-        ],
+        "tags": ["deces", "demographie", "etat-civil"],
         "temporal_coverage": null,
         "title": "Population",
         "uri": "https://www.data.gouv.fr/api/1/datasets/population/"
@@ -180,9 +174,7 @@
         "spatial": {
           "geom": null,
           "granularity": "other",
-          "zones": [
-            "country:fr"
-          ]
+          "zones": ["country:fr"]
         },
         "tags": [],
         "temporal_coverage": {
@@ -303,17 +295,9 @@
         "spatial": {
           "geom": null,
           "granularity": "other",
-          "zones": [
-            "country-subset:fr:metro",
-            "fr:region:04",
-            "fr:region:02"
-          ]
+          "zones": ["country-subset:fr:metro", "fr:region:04", "fr:region:02"]
         },
-        "tags": [
-          "acces-aux-equipements",
-          "bpe",
-          "distance-aux-equipements"
-        ],
+        "tags": ["acces-aux-equipements", "bpe", "distance-aux-equipements"],
         "temporal_coverage": {
           "end": "2025-01-01",
           "start": "2024-01-01"

@@ -6,11 +6,16 @@ import { defineTool } from "./types.js";
 export const SUGGEST_KINDS = ["dataset", "organization", "tag", "zone", "format", "all"] as const;
 
 export const suggestInputShape = {
-  query: z.string().min(1).describe("Prefix or partial name to autocomplete (2+ characters recommended)."),
+  query: z
+    .string()
+    .min(1)
+    .describe("Prefix or partial name to autocomplete (2+ characters recommended)."),
   kind: z
     .enum(SUGGEST_KINDS)
     .default("all")
-    .describe("Restrict to one entity kind: dataset, organization, tag, zone (INSEE geozones), format. Default: all."),
+    .describe(
+      "Restrict to one entity kind: dataset, organization, tag, zone (INSEE geozones), format. Default: all.",
+    ),
   size: z.number().int().min(1).max(20).default(8).describe("Max suggestions per kind (1–20)."),
 };
 
@@ -46,12 +51,16 @@ export const suggestTool = defineTool<typeof suggestInputShape, ToolDeps>({
     const suggestions = (input.kind === "all" ? all : all.filter((s) => s.kind === input.kind)).map(
       (s) => ({ kind: s.kind, text: s.text, id: s.id, url: s.url }),
     );
-    const lines = [`Suggestions for '${input.query}'${input.kind !== "all" ? ` (${input.kind})` : ""}:`];
+    const lines = [
+      `Suggestions for '${input.query}'${input.kind !== "all" ? ` (${input.kind})` : ""}:`,
+    ];
     if (suggestions.length === 0) {
       lines.push("  (none) — try a shorter prefix or search_datasets for full-text search.");
     }
     for (const s of suggestions) {
-      lines.push(`  - [${s.kind}] ${s.text}${s.id ? ` (id: ${s.id})` : ""}${s.url ? ` ${s.url}` : ""}`);
+      lines.push(
+        `  - [${s.kind}] ${s.text}${s.id ? ` (id: ${s.id})` : ""}${s.url ? ` ${s.url}` : ""}`,
+      );
     }
     return {
       text: lines.join("\n"),

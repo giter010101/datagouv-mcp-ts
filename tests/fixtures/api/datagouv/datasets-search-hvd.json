@@ -11,14 +11,7 @@
       "last_modified": "2025-05-27T15:33:27.507000+00:00",
       "deleted": null,
       "private": false,
-      "tags": [
-        "adresse",
-        "adresses",
-        "ban",
-        "geospatiales",
-        "hvd",
-        "spd"
-      ],
+      "tags": ["adresse", "adresses", "ban", "geospatiales", "hvd", "spd"],
       "badges": [
         {
           "kind": "hvd"
@@ -67,10 +60,7 @@
       },
       "spatial": {
         "geom": null,
-        "zones": [
-          "country-subset:fr:dromcom",
-          "country:fr"
-        ],
+        "zones": ["country-subset:fr:dromcom", "country:fr"],
         "granularity": "country"
       },
       "license": "lov2",

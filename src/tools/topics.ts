@@ -1,11 +1,15 @@
 import { z } from "zod";
 import { NotFoundError } from "../core/errors.js";
 import { truncate } from "../core/text.js";
-import type { TopicSummary } from "../core/types.js";
+import type { DatasetSummary, TopicElement, TopicSummary } from "../core/types.js";
 import type { ToolDeps } from "./deps.js";
 import { datasetToStructured } from "./search-datasets.js";
 import { READ_ONLY_EXTERNAL_API_TOOL } from "./shared/annotations.js";
-import { DETAIL_DESCRIPTION_CHARS, LIST_DESCRIPTION_CHARS, LIST_TAGS_MAX } from "./shared/formatters.js";
+import {
+  DETAIL_DESCRIPTION_CHARS,
+  LIST_DESCRIPTION_CHARS,
+  LIST_TAGS_MAX,
+} from "./shared/formatters.js";
 import { datasetSummarySchema, pageOutputShape } from "./shared/output-schemas.js";
 import { defineTool } from "./types.js";
 
@@ -58,7 +62,8 @@ export const listTopicsTool = defineTool<typeof listTopicsInputShape, ToolDeps>(
       result.items.forEach((t, i) => {
         text.push(`${i + 1}. ${t.name || "Untitled"}`);
         text.push(`   ID: ${t.id}`);
-        if (t.description) text.push(`   Description: ${truncate(t.description, LIST_DESCRIPTION_CHARS)}`);
+        if (t.description)
+          text.push(`   Description: ${truncate(t.description, LIST_DESCRIPTION_CHARS)}`);
         if (t.tags.length > 0) text.push(`   Tags: ${t.tags.slice(0, LIST_TAGS_MAX).join(", ")}`);
         text.push(`   URL: ${t.url}`, "");
       });
@@ -127,27 +132,45 @@ export const getTopicTool = defineTool<typeof getTopicInputShape, ToolDeps>({
       }
       throw error;
     }
-    const datasets = topic.elements.slice(0, 100);
+
+    const isDatasetElement = (
+      e: TopicElement,
+    ): e is TopicElement & { elementId: string; elementClass: string } =>
+      e.elementClass?.toLowerCase() === "dataset" &&
+      typeof e.elementId === "string" &&
+      e.elementId.length > 0;
+
+    const datasetElements = topic.elements.filter(isDatasetElement).slice(0, 100);
+    const datasetDetails: DatasetSummary[] = await Promise.all(
+      datasetElements.map((e) => ctx.deps.datagouv.getDataset(e.elementId)),
+    );
+
     const text = [
       `Topic: ${topic.name || "Untitled"}`,
       `ID: ${topic.id} (slug: ${topic.slug})`,
       `URL: ${topic.url}`,
       topic.tags.length > 0 ? `Tags: ${topic.tags.slice(0, 10).join(", ")}` : undefined,
       topic.description ? "" : undefined,
-      topic.description ? `Description: ${truncate(topic.description, DETAIL_DESCRIPTION_CHARS)}` : undefined,
+      topic.description
+        ? `Description: ${truncate(topic.description, DETAIL_DESCRIPTION_CHARS)}`
+        : undefined,
       "",
-      `Datasets (${topic.elements.length}${topic.elements.length > datasets.length ? `, showing ${datasets.length}` : ""}):`,
-      ...datasets.map(
+      `Datasets (${datasetElements.length}):`,
+      ...datasetDetails.map(
         (d, i) =>
           `  ${i + 1}. ${d.title} (ID: ${d.id})${d.organization ? ` — ${d.organization.name}` : ""} — ${d.resourcesCount} resource(s)`,
       ),
     ].filter((l): l is string => l !== undefined);
+
     return {
       text: text.join("\n"),
       structured: {
-        topic: { ...topicToStructured(topic), description: truncate(topic.description, DETAIL_DESCRIPTION_CHARS) },
-        datasets_count: topic.elements.length,
-        datasets: datasets.map(datasetToStructured),
+        topic: {
+          ...topicToStructured(topic),
+          description: truncate(topic.description, DETAIL_DESCRIPTION_CHARS),
+        },
+        datasets_count: datasetElements.length,
+        datasets: datasetDetails.map(datasetToStructured),
       },
       howToGetMore: `Use search_datasets with topic='${topic.id}' to page through all datasets.`,
     };

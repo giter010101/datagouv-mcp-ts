@@ -8,9 +8,7 @@
       "description": "Fichier contenant toutes les adresses d'un territoire donné",
       "schema_type": "other",
       "contact": "adresse@data.gouv.fr",
-      "labels": [
-        "Socle Commun des Données Locales"
-      ],
+      "labels": ["Socle Commun des Données Locales"],
       "consolidation_dataset_id": null,
       "versions": [
         {
@@ -41,10 +39,7 @@
       "description": "Spécification du fichier d'échange relatif aux données concernant la localisation géographique et les caractéristiques techniques des stations et des points de recharge pour véhicules électriques. Chaque ligne du fichier correspond à un point de recharge (PDC).",
       "schema_type": "tableschema",
       "contact": "contact@transport.data.gouv.fr",
-      "labels": [
-        "Socle Commun des Données Locales",
-        "transport.data.gouv.fr"
-      ],
+      "labels": ["Socle Commun des Données Locales", "transport.data.gouv.fr"],
       "consolidation_dataset_id": "5448d3e0c751df01f85d0572",
       "versions": [
         {
@@ -78,9 +73,7 @@
       "description": "Les données essentielles du budget permettent de décrire le contenu des étapes budgétaires des collectivités locales et des établissements publics. Il permet de préciser les catégories de montants financiers ainsi que le découpage de ces sommes en fonction du type de présentation utilisé (par nature",
       "schema_type": "tableschema",
       "contact": "scdl@opendatafrance.email",
-      "labels": [
-        "Socle Commun des Données Locales"
-      ],
+      "labels": ["Socle Commun des Données Locales"],
       "consolidation_dataset_id": null,
       "versions": [
         {

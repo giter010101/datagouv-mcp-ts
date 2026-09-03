@@ -21,7 +21,9 @@ const filterSchema = z.object({
   operator: z
     .enum(TABULAR_OPERATORS as [string, ...string[]])
     .default("exact")
-    .describe("exact | differs | contains | in (comma-separated values) | less | greater (inclusive) | strictly_less | strictly_greater."),
+    .describe(
+      "exact | differs | contains | in (comma-separated values) | less | greater (inclusive) | strictly_less | strictly_greater.",
+    ),
   value: z.string().describe("Comparison value as text (numbers/dates as written in the data)."),
 });
 
@@ -52,12 +54,16 @@ export const queryResourceInputShape = {
     .array(z.string())
     .max(5)
     .optional()
-    .describe("Aggregate rows by these columns (requires the SQL engine, ENABLE_DUCKDB=1). Combine with `aggregations`."),
+    .describe(
+      "Aggregate rows by these columns (requires the SQL engine, ENABLE_DUCKDB=1). Combine with `aggregations`.",
+    ),
   aggregations: z
     .array(aggregationSchema)
     .max(10)
     .optional()
-    .describe("Aggregations to compute per group (count/sum/avg/min/max). Requires the SQL engine."),
+    .describe(
+      "Aggregations to compute per group (count/sum/avg/min/max). Requires the SQL engine.",
+    ),
   sql: z
     .string()
     .optional()
@@ -99,7 +105,8 @@ export const queryResourceTool = defineTool<typeof queryResourceInputShape, Tool
   async handler(input, ctx) {
     const opened = await openResource(ctx.deps, input.resource_id, { signal: ctx.signal });
     const wantsSql = input.sql !== undefined;
-    const wantsAggregation = (input.group_by?.length ?? 0) > 0 || (input.aggregations?.length ?? 0) > 0;
+    const wantsAggregation =
+      (input.group_by?.length ?? 0) > 0 || (input.aggregations?.length ?? 0) > 0;
 
     let slice: TableSlice;
     let engineId: string;
@@ -117,7 +124,11 @@ export const queryResourceTool = defineTool<typeof queryResourceInputShape, Tool
       const accessor = requireAccessor(opened, "query");
       const spec: QuerySpec = {
         filters: input.filters?.map(
-          (f): TabularFilter => ({ column: f.column, operator: f.operator as TabularFilter["operator"], value: f.value }),
+          (f): TabularFilter => ({
+            column: f.column,
+            operator: f.operator as TabularFilter["operator"],
+            value: f.value,
+          }),
         ),
         sort: input.sort?.map((s): TabularSort => ({ column: s.column, direction: s.direction })),
         columns: input.columns,
@@ -143,7 +154,9 @@ export const queryResourceTool = defineTool<typeof queryResourceInputShape, Tool
     ];
     if (sql) header.push(`SQL: ${sql}`);
     if (input.filters?.length) {
-      header.push(`Filters: ${input.filters.map((f) => `${f.column} ${f.operator} ${f.value}`).join(" AND ")}`);
+      header.push(
+        `Filters: ${input.filters.map((f) => `${f.column} ${f.operator} ${f.value}`).join(" AND ")}`,
+      );
     }
     if (input.sort?.length) {
       header.push(`Sort: ${input.sort.map((s) => `${s.column} ${s.direction}`).join(", ")}`);
@@ -272,7 +285,9 @@ export function buildAggregationSql(input: {
         return `CAST(${col} AS VARCHAR) = ${lit}`;
     }
   });
-  const orderBy = (input.sort ?? []).map((s) => `${quoteIdent(s.column)} ${s.direction.toUpperCase()}`);
+  const orderBy = (input.sort ?? []).map(
+    (s) => `${quoteIdent(s.column)} ${s.direction.toUpperCase()}`,
+  );
   const offset = (input.page - 1) * input.page_size;
   return [
     `SELECT ${select} FROM data`,

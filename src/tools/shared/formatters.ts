@@ -48,7 +48,10 @@ export function renderTable(slice: TableSlice): string[] {
   if (slice.rows.length === 0) return ["(no rows)"];
   const columns =
     slice.columns.length > 0 ? slice.columns : Object.keys(slice.rows[0] ?? {}).map(String);
-  const out = [columns.join(" | "), columns.map((c) => "-".repeat(Math.min(c.length, 20))).join("-|-")];
+  const out = [
+    columns.join(" | "),
+    columns.map((c) => "-".repeat(Math.min(c.length, 20))).join("-|-"),
+  ];
   for (const row of slice.rows) out.push(columns.map((c) => cellText(row[c])).join(" | "));
   return out;
 }
@@ -60,7 +63,8 @@ export function renderSchema(schema: TableSchema): string[] {
     }:`,
   ];
   for (const column of schema.columns) {
-    const native = column.nativeType && column.nativeType !== column.type ? ` [${column.nativeType}]` : "";
+    const native =
+      column.nativeType && column.nativeType !== column.type ? ` [${column.nativeType}]` : "";
     out.push(`  - ${column.name}: ${column.type}${native}`);
   }
   return out;
@@ -70,6 +74,11 @@ export function paginationLine(page: number, hasNext: boolean): string | undefin
   return hasNext ? `More results available: use page=${page + 1}.` : undefined;
 }
 
-export function pageStructured(info: { page: number; pageSize: number; total: number; hasNext: boolean }) {
+export function pageStructured(info: {
+  page: number;
+  pageSize: number;
+  total: number;
+  hasNext: boolean;
+}) {
   return { total: info.total, page: info.page, page_size: info.pageSize, has_next: info.hasNext };
 }

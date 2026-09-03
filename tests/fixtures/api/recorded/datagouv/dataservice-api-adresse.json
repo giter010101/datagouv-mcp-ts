@@ -118,11 +118,7 @@
     "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-adresse-base-adresse-nationale-ban/",
     "self_web_url": "https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban",
     "slug": "api-adresse-base-adresse-nationale-ban",
-    "tags": [
-      "adresse",
-      "ban",
-      "base"
-    ],
+    "tags": ["adresse", "ban", "base"],
     "technical_documentation_url": "https://geoservices.ign.fr/documentation/services/services-geoplateforme/geocodage",
     "title": "API Adresse (Base Adresse Nationale - BAN)"
   }

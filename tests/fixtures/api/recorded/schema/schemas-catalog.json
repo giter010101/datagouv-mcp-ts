@@ -18,9 +18,7 @@
         "external_doc": "https://adresse.data.gouv.fr/bases-locales",
         "external_tool": "https://mes-adresses.data.gouv.fr/new",
         "homepage": "https://github.com/etalab/schema-bal",
-        "labels": [
-          "Socle Commun des Données Locales"
-        ],
+        "labels": ["Socle Commun des Données Locales"],
         "name": "etalab/schema-bal",
         "schema_type": "other",
         "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-bal/latest/schema.yml",
@@ -60,10 +58,7 @@
         "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
         "external_tool": null,
         "homepage": "https://github.com/etalab/schema-irve.git",
-        "labels": [
-          "Socle Commun des Données Locales",
-          "transport.data.gouv.fr"
-        ],
+        "labels": ["Socle Commun des Données Locales", "transport.data.gouv.fr"],
         "name": "etalab/schema-irve-statique",
         "schema_type": "tableschema",
         "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
@@ -112,9 +107,7 @@
         "external_doc": null,
         "external_tool": null,
         "homepage": "https://gitlab.com/arsante/atlasante/schema-dae.git",
-        "labels": [
-          "Socle Commun des Données Locales"
-        ],
+        "labels": ["Socle Commun des Données Locales"],
         "name": "atlasante/schema-dae",
         "schema_type": "tableschema",
         "schema_url": "https://schema.data.gouv.fr/schemas/atlasante/schema-dae/latest/schema.json",
@@ -142,10 +135,7 @@
         "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
         "external_tool": null,
         "homepage": "https://github.com/etalab/schema-irve.git",
-        "labels": [
-          "Socle Commun des Données Locales",
-          "transport.data.gouv.fr"
-        ],
+        "labels": ["Socle Commun des Données Locales", "transport.data.gouv.fr"],
         "name": "etalab/schema-irve-dynamique",
         "schema_type": "tableschema",
         "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-dynamique/latest/schema-dynamique.json",
@@ -177,10 +167,7 @@
         "external_doc": "https://doc.transport.data.gouv.fr/producteurs/infrastructures-de-recharge-de-vehicules-electriques-irve",
         "external_tool": null,
         "homepage": "https://github.com/etalab/schema-irve.git",
-        "labels": [
-          "Socle Commun des Données Locales",
-          "transport.data.gouv.fr"
-        ],
+        "labels": ["Socle Commun des Données Locales", "transport.data.gouv.fr"],
         "name": "etalab/schema-irve",
         "schema_type": "datapackage",
         "schema_url": "https://schema.data.gouv.fr/schemas/etalab/schema-irve/latest/datapackage.json",

@@ -28,9 +28,7 @@ export const datasetDetailSchema = z.object({
   license: z.string().optional(),
   frequency: z.string().optional(),
   temporal_coverage: z.object({ start: z.string(), end: z.string() }).optional(),
-  spatial: z
-    .object({ zones: z.array(z.string()), granularity: z.string().optional() })
-    .optional(),
+  spatial: z.object({ zones: z.array(z.string()), granularity: z.string().optional() }).optional(),
   schema: z
     .object({ name: z.string(), version: z.string().optional(), url: z.string().optional() })
     .optional(),
@@ -95,7 +93,9 @@ export function formatDatasetDetail(ds: DatasetDetail): string {
     ds.descriptionShort ? "" : undefined,
     ds.descriptionShort ? `Description: ${ds.descriptionShort}` : undefined,
     fullDiffers ? "" : undefined,
-    fullDiffers ? `Full description: ${truncate(ds.description, DETAIL_DESCRIPTION_CHARS)}` : undefined,
+    fullDiffers
+      ? `Full description: ${truncate(ds.description, DETAIL_DESCRIPTION_CHARS)}`
+      : undefined,
     ds.organization ? "" : undefined,
     ds.organization ? `Organization: ${ds.organization.name}` : undefined,
     ds.organization ? `  Organization ID: ${ds.organization.id}` : undefined,
@@ -110,9 +110,15 @@ export function formatDatasetDetail(ds: DatasetDetail): string {
     ds.license || ds.frequency ? "" : undefined,
     kv("License", ds.license),
     kv("Update frequency", ds.frequency),
-    ds.temporalCoverage ? `Temporal coverage: ${ds.temporalCoverage.start} → ${ds.temporalCoverage.end}` : undefined,
+    ds.temporalCoverage
+      ? `Temporal coverage: ${ds.temporalCoverage.start} → ${ds.temporalCoverage.end}`
+      : undefined,
     ds.spatial?.granularity ? `Spatial granularity: ${ds.spatial.granularity}` : undefined,
-    ds.spatial && ds.spatial.zones.length > 0 ? `Spatial zones: ${ds.spatial.zones.slice(0, 10).join(", ")}` : undefined,
-    ds.schema ? `Schema: ${ds.schema.name}${ds.schema.version ? ` (v${ds.schema.version})` : ""}` : undefined,
+    ds.spatial && ds.spatial.zones.length > 0
+      ? `Spatial zones: ${ds.spatial.zones.slice(0, 10).join(", ")}`
+      : undefined,
+    ds.schema
+      ? `Schema: ${ds.schema.name}${ds.schema.version ? ` (v${ds.schema.version})` : ""}`
+      : undefined,
   );
 }

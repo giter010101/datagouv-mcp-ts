@@ -80,7 +80,11 @@ export function requireAccessor(opened: OpenedResource, operation: "preview" | "
     throw new UnsupportedCapabilityError(
       `Resource ${resource.id} cannot be ${operation === "schema" ? "described" : `${operation}ed`}: detected capability is '${report.primary}' (format '${report.detectedFormat || "unknown"}') and no data accessor handles it.`,
       {
-        details: { resource_id: resource.id, primary: report.primary, capabilities: report.capabilities },
+        details: {
+          resource_id: resource.id,
+          primary: report.primary,
+          capabilities: report.capabilities,
+        },
         hint: `${rec.hint} Next tool: ${rec.tool}.`,
       },
     );

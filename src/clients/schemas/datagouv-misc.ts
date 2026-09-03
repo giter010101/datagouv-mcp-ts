@@ -126,7 +126,10 @@ export const apiSpatialZoneSchema = z.looseObject({
   uri: z.string().nullish(),
 });
 
-export const apiSpatialLevelSchema = z.looseObject({ id: z.string(), name: z.string().default("") });
+export const apiSpatialLevelSchema = z.looseObject({
+  id: z.string(),
+  name: z.string().default(""),
+});
 
 export const apiLicenseSchema = z.looseObject({
   id: z.string(),

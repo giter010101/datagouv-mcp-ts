@@ -19,7 +19,10 @@ export const MSG_METRICS_DEMO =
   "to use this tool, or switch to production environment to access metrics data.";
 
 export const getMetricsInputShape = {
-  dataset_id: z.string().optional().describe("Dataset ID (24-hex). At least one of dataset_id / resource_id is required."),
+  dataset_id: z
+    .string()
+    .optional()
+    .describe("Dataset ID (24-hex). At least one of dataset_id / resource_id is required."),
   resource_id: z.string().optional().describe("Resource UUID."),
   limit: z
     .number()
@@ -27,7 +30,9 @@ export const getMetricsInputShape = {
     .min(1)
     .max(METRICS_LIMIT_MAX)
     .default(METRICS_LIMIT_DEFAULT)
-    .describe(`Number of most recent months to return (1–${METRICS_LIMIT_MAX}, default ${METRICS_LIMIT_DEFAULT}).`),
+    .describe(
+      `Number of most recent months to return (1–${METRICS_LIMIT_MAX}, default ${METRICS_LIMIT_DEFAULT}).`,
+    ),
 };
 
 const monthlyRow = z.object({
@@ -78,9 +83,12 @@ export const getMetricsTool = defineTool<typeof getMetricsInputShape, ToolDeps>(
     const datasetId = input.dataset_id?.trim();
     const resourceId = input.resource_id?.trim();
     if (!datasetId && !resourceId) {
-      throw new ValidationError("Error: At least one of dataset_id or resource_id must be provided.", {
-        hint: "Pass dataset_id (from search_datasets) or resource_id (from list_dataset_resources).",
-      });
+      throw new ValidationError(
+        "Error: At least one of dataset_id or resource_id must be provided.",
+        {
+          hint: "Pass dataset_id (from search_datasets) or resource_id (from list_dataset_resources).",
+        },
+      );
     }
     if (input.dataset_id !== undefined && !datasetId) {
       throw new ValidationError("Error: dataset_id cannot be empty.");
@@ -94,10 +102,20 @@ export const getMetricsTool = defineTool<typeof getMetricsInputShape, ToolDeps>(
     const failures: DatagouvError[] = [];
 
     if (datasetId) {
-      const title = await bestEffort(() => ctx.deps.datagouv.getDataset(datasetId).then((d) => d.title));
-      text.push(title ? `Dataset Metrics: ${title}` : "Dataset Metrics", `Dataset ID: ${datasetId}`, "");
+      const title = await bestEffort(() =>
+        ctx.deps.datagouv.getDataset(datasetId).then((d) => d.title),
+      );
+      text.push(
+        title ? `Dataset Metrics: ${title}` : "Dataset Metrics",
+        `Dataset ID: ${datasetId}`,
+        "",
+      );
       try {
-        const records = await ctx.deps.metrics.getMonthlyMetrics("datasets", datasetId, input.limit);
+        const records = await ctx.deps.metrics.getMonthlyMetrics(
+          "datasets",
+          datasetId,
+          input.limit,
+        );
         const section = toSection(records, true);
         text.push(...renderSection(section, "dataset", true));
         structured.dataset = { id: datasetId, title, ...section };
@@ -105,16 +123,32 @@ export const getMetricsTool = defineTool<typeof getMetricsInputShape, ToolDeps>(
         const mapped = toDatagouvError(error);
         failures.push(mapped);
         text.push(`Error fetching dataset metrics: ${mapped.message}`);
-        structured.dataset = { id: datasetId, title, months: [], total_downloads: 0, error: mapped.message };
+        structured.dataset = {
+          id: datasetId,
+          title,
+          months: [],
+          total_downloads: 0,
+          error: mapped.message,
+        };
       }
       if (resourceId) text.push("", "");
     }
 
     if (resourceId) {
-      const title = await bestEffort(() => ctx.deps.datagouv.getResource(resourceId).then((r) => r.title));
-      text.push(title ? `Resource Metrics: ${title}` : "Resource Metrics", `Resource ID: ${resourceId}`, "");
+      const title = await bestEffort(() =>
+        ctx.deps.datagouv.getResource(resourceId).then((r) => r.title),
+      );
+      text.push(
+        title ? `Resource Metrics: ${title}` : "Resource Metrics",
+        `Resource ID: ${resourceId}`,
+        "",
+      );
       try {
-        const records = await ctx.deps.metrics.getMonthlyMetrics("resources", resourceId, input.limit);
+        const records = await ctx.deps.metrics.getMonthlyMetrics(
+          "resources",
+          resourceId,
+          input.limit,
+        );
         const section = toSection(records, false);
         text.push(...renderSection(section, "resource", false));
         structured.resource = { id: resourceId, title, ...section };
@@ -122,7 +156,13 @@ export const getMetricsTool = defineTool<typeof getMetricsInputShape, ToolDeps>(
         const mapped = toDatagouvError(error);
         failures.push(mapped);
         text.push(`Error fetching resource metrics: ${mapped.message}`);
-        structured.resource = { id: resourceId, title, months: [], total_downloads: 0, error: mapped.message };
+        structured.resource = {
+          id: resourceId,
+          title,
+          months: [],
+          total_downloads: 0,
+          error: mapped.message,
+        };
       }
     }
 
@@ -153,7 +193,9 @@ function toSection(records: MetricsRecord[], withVisits: boolean): Section {
   const months = records.map((record) => {
     const downloads = record.values.monthly_download_resource ?? 0;
     const visits = record.values.monthly_visit ?? 0;
-    return withVisits ? { month: record.month, visits, downloads } : { month: record.month, downloads };
+    return withVisits
+      ? { month: record.month, visits, downloads }
+      : { month: record.month, downloads };
   });
   const total_downloads = months.reduce((sum, m) => sum + m.downloads, 0);
   const total_visits = withVisits ? months.reduce((sum, m) => sum + (m.visits ?? 0), 0) : undefined;
@@ -163,7 +205,11 @@ function toSection(records: MetricsRecord[], withVisits: boolean): Section {
 const pad = (value: string | number, width: number) =>
   (typeof value === "number" ? value.toLocaleString("en-US") : value).padEnd(width);
 
-function renderSection(section: Section, kind: "dataset" | "resource", withVisits: boolean): string[] {
+function renderSection(
+  section: Section,
+  kind: "dataset" | "resource",
+  withVisits: boolean,
+): string[] {
   if (section.months.length === 0) return [`No metrics available for this ${kind}.`];
   const width = withVisits ? 60 : 40;
   const rule = "-".repeat(width);

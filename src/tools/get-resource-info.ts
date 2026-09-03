@@ -125,9 +125,11 @@ export function tabularStatus(report: CapabilityReport) {
   );
   const largeFileException = report.capabilities.includes("tabular_api_large");
   let statusLine: string;
-  if (available && largeFileException) statusLine = "✅ Available via Tabular API (large file exception)";
+  if (available && largeFileException)
+    statusLine = "✅ Available via Tabular API (large file exception)";
   else if (available) statusLine = "✅ Available via Tabular API (can be queried)";
-  else if (report.tabularProbe === "error") statusLine = "⚠️  Could not check Tabular API availability";
+  else if (report.tabularProbe === "error")
+    statusLine = "⚠️  Could not check Tabular API availability";
   else statusLine = "⚠️  Not available via Tabular API (may not be tabular data)";
   return { available, largeFileException, statusLine };
 }

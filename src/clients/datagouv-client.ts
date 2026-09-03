@@ -21,6 +21,7 @@ import type {
   TopicElement,
   TopicSummary,
 } from "../core/types.js";
+import { type DatagouvReference, HttpDatagouvReference } from "./datagouv-reference.js";
 import { toDatasetDetail, toDatasetSummary, toResourceDetail } from "./mappers/dataset.js";
 import {
   toDataserviceDetail,
@@ -33,7 +34,6 @@ import {
   toTopicElement,
   toTopicSummary,
 } from "./mappers/entities.js";
-import { type DatagouvReference, HttpDatagouvReference } from "./datagouv-reference.js";
 import { parseOpenApiDocument } from "./openapi.js";
 import {
   apiDatasetDetailSchema,
@@ -54,8 +54,8 @@ import type {
   DatasetSearchFacets,
   ListReusesParams,
   SchemaCatalogEntry,
-  SearchDatasetsParams,
   SearchDataservicesParams,
+  SearchDatasetsParams,
   SearchOrganizationsParams,
   Suggestion,
 } from "./types.js";
@@ -158,7 +158,11 @@ export class HttpDatagouvClient implements DatagouvClient {
     });
   }
 
-  listHighValueDatasets(query = "", page?: number, pageSize?: number): Promise<Page<DatasetSummary>> {
+  listHighValueDatasets(
+    query = "",
+    page?: number,
+    pageSize?: number,
+  ): Promise<Page<DatasetSummary>> {
     return this.searchDatasets({ query, page, pageSize, filters: { badge: "hvd" } });
   }
 
@@ -195,16 +199,20 @@ export class HttpDatagouvClient implements DatagouvClient {
       page: p,
       page_size: size,
     });
-    return this.cached(`datagouv:dataset-resources:${datasetId}:${url.search}`, TTL.detail, async () => {
-      const body = await this.deps.http.getJson(url, {
-        schema: apiResourcesPageSchema,
-        notFoundMessage: `Dataset with ID '${datasetId}' not found.`,
-      });
-      const items = body.data.map((r) =>
-        toResourceDetail(r, datasetId, this.deps.baseUrls.datagouvApi),
-      );
-      return toPage(body, items, p, size);
-    });
+    return this.cached(
+      `datagouv:dataset-resources:${datasetId}:${url.search}`,
+      TTL.detail,
+      async () => {
+        const body = await this.deps.http.getJson(url, {
+          schema: apiResourcesPageSchema,
+          notFoundMessage: `Dataset with ID '${datasetId}' not found.`,
+        });
+        const items = body.data.map((r) =>
+          toResourceDetail(r, datasetId, this.deps.baseUrls.datagouvApi),
+        );
+        return toPage(body, items, p, size);
+      },
+    );
   }
 
   // ----------------------------------------------------------- organizations
@@ -222,7 +230,9 @@ export class HttpDatagouvClient implements DatagouvClient {
       business_number_id: params.businessNumberId,
     });
     return this.cached(`datagouv:search-organizations:${url.search}`, TTL.search, async () => {
-      const body = await this.deps.http.getJson(url, { schema: apiPageSchema(apiOrganizationSchema) });
+      const body = await this.deps.http.getJson(url, {
+        schema: apiPageSchema(apiOrganizationSchema),
+      });
       return toPage(
         body,
         body.data.map((o) => toOrganizationSummary(o, this.site)),
@@ -250,7 +260,9 @@ export class HttpDatagouvClient implements DatagouvClient {
     const pageSize = clampPageSize(params.pageSize, DATASET_SEARCH_MAX_PAGE_SIZE);
     const url = this.url("2/dataservices/search/", { q: params.query, page, page_size: pageSize });
     return this.cached(`datagouv:search-dataservices:${url.search}`, TTL.search, async () => {
-      const body = await this.deps.http.getJson(url, { schema: apiPageSchema(apiDataserviceSchema) });
+      const body = await this.deps.http.getJson(url, {
+        schema: apiPageSchema(apiDataserviceSchema),
+      });
       return toPage(
         body,
         body.data.map((d) => toDataserviceSummary(d, this.site)),
@@ -288,7 +300,12 @@ export class HttpDatagouvClient implements DatagouvClient {
     });
     return this.cached(`datagouv:reuses:${url.search}`, TTL.search, async () => {
       const body = await this.deps.http.getJson(url, { schema: apiPageSchema(apiReuseSchema) });
-      return toPage(body, body.data.map((r) => toReuseSummary(r, this.site)), page, pageSize);
+      return toPage(
+        body,
+        body.data.map((r) => toReuseSummary(r, this.site)),
+        page,
+        pageSize,
+      );
     });
   }
 
@@ -311,7 +328,12 @@ export class HttpDatagouvClient implements DatagouvClient {
     const url = this.url("2/topics/search/", { q: query, page: p, page_size: size });
     return this.cached(`datagouv:search-topics:${url.search}`, TTL.search, async () => {
       const body = await this.deps.http.getJson(url, { schema: apiPageSchema(apiTopicSchema) });
-      return toPage(body, body.data.map((t) => toTopicSummary(t, this.site)), p, size);
+      return toPage(
+        body,
+        body.data.map((t) => toTopicSummary(t, this.site)),
+        p,
+        size,
+      );
     });
   }
 
@@ -340,13 +362,22 @@ export class HttpDatagouvClient implements DatagouvClient {
       page: p,
       page_size: size,
     });
-    return this.cached(`datagouv:topic-elements:${topicIdOrSlug}:${url.search}`, TTL.detail, async () => {
-      const body = await this.deps.http.getJson(url, {
-        schema: apiPageSchema(apiTopicElementSchema),
-        notFoundMessage: `Topic with ID '${topicIdOrSlug}' not found.`,
-      });
-      return toPage(body, body.data.map((e) => toTopicElement(e, this.site)), p, size);
-    });
+    return this.cached(
+      `datagouv:topic-elements:${topicIdOrSlug}:${url.search}`,
+      TTL.detail,
+      async () => {
+        const body = await this.deps.http.getJson(url, {
+          schema: apiPageSchema(apiTopicElementSchema),
+          notFoundMessage: `Topic with ID '${topicIdOrSlug}' not found.`,
+        });
+        return toPage(
+          body,
+          body.data.map((e) => toTopicElement(e, this.site)),
+          p,
+          size,
+        );
+      },
+    );
   }
 
   // --------------------------------------------------- reference & suggest
@@ -395,7 +426,9 @@ export class HttpDatagouvClient implements DatagouvClient {
 }
 
 /** udata facets come as `[{ name, count }]` buckets; older shapes used `[value, count]` tuples. */
-export function normalizeFacets(raw: Record<string, unknown> | null | undefined): DatasetSearchFacets {
+export function normalizeFacets(
+  raw: Record<string, unknown> | null | undefined,
+): DatasetSearchFacets {
   const out: DatasetSearchFacets = {};
   for (const [facet, buckets] of Object.entries(raw ?? {})) {
     if (!Array.isArray(buckets)) continue;
@@ -405,7 +438,8 @@ export function normalizeFacets(raw: Record<string, unknown> | null | undefined)
       }
       if (bucket !== null && typeof bucket === "object") {
         const b = bucket as Record<string, unknown>;
-        const value = typeof b.name === "string" ? b.name : typeof b.value === "string" ? b.value : undefined;
+        const value =
+          typeof b.name === "string" ? b.name : typeof b.value === "string" ? b.value : undefined;
         if (value !== undefined && typeof b.count === "number") return [{ value, count: b.count }];
       }
       return [];

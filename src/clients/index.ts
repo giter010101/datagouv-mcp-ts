@@ -11,12 +11,12 @@ import type { Clients } from "./types.js";
 export * from "./crawler-client.js";
 export * from "./datagouv-client.js";
 export * from "./datagouv-reference.js";
+export { extractAnalysis } from "./mappers/dataset.js";
 export * from "./metrics-client.js";
 export * from "./openapi.js";
 export * from "./schema-client.js";
 export * from "./tabular-client.js";
 export * from "./types.js";
-export { extractAnalysis } from "./mappers/dataset.js";
 
 export interface CreateClientsDeps {
   http: HttpClient;

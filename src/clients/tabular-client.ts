@@ -13,10 +13,10 @@ import { childLogger } from "../core/logger.js";
 import type { ColumnSchema, ColumnType, Row, TableSchema } from "../core/types.js";
 import { parseOpenApiDocument } from "./openapi.js";
 import {
+  type TabularProfileResponse,
   tabularAggregationExceptionsSchema,
   tabularDataPageSchema,
   tabularErrorBodySchema,
-  type TabularProfileResponse,
   tabularProfileSchema,
   tabularResourceMetaSchema,
 } from "./schemas/tabular.js";
@@ -45,7 +45,8 @@ export const TABULAR_MESSAGES = {
     "The Tabular API is temporarily unavailable or overloaded. Retry in a moment with a smaller page_size or fewer filters.",
   badRequest:
     "The Tabular API rejected the query. Check filter column names (case-sensitive, see get_resource_schema), operators and sort parameters.",
-  columnHint: " Column names must match the resource header exactly; call get_resource_schema to list them.",
+  columnHint:
+    " Column names must match the resource header exactly; call get_resource_schema to list them.",
 } as const;
 
 export interface TabularClientDeps {
@@ -70,7 +71,10 @@ const PYTHON_TYPES: Record<string, ColumnType> = {
   geojson: "geometry",
 };
 
-export function toColumnType(pythonType: string | null | undefined, format: string | null | undefined): ColumnType {
+export function toColumnType(
+  pythonType: string | null | undefined,
+  format: string | null | undefined,
+): ColumnType {
   if (format && /geo|wkt|latlon/i.test(format)) return "geometry";
   if (format === "json" || format === "geojson") return format === "json" ? "json" : "geometry";
   if (format === "date" || format === "datetime") return format;
@@ -332,7 +336,9 @@ export function extractSwaggerColumns(spec: Record<string, unknown>): TabularSwa
   const paths = spec.paths;
   if (paths && typeof paths === "object") {
     for (const item of Object.values(paths as Record<string, unknown>)) {
-      const get = (item as Record<string, unknown> | null)?.get as Record<string, unknown> | undefined;
+      const get = (item as Record<string, unknown> | null)?.get as
+        | Record<string, unknown>
+        | undefined;
       const params = Array.isArray(get?.parameters) ? get.parameters : [];
       for (const p of params) {
         const name = (p as Record<string, unknown> | null)?.name;

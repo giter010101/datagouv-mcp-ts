@@ -1,11 +1,6 @@
 {
   "profile": {
-    "header": [
-      "code_insee",
-      "commune",
-      "departement",
-      "gentile"
-    ],
+    "header": ["code_insee", "commune", "departement", "gentile"],
     "columns": {
       "commune": {
         "score": 1.490534447406398,
@@ -29,16 +24,9 @@
       }
     },
     "formats": {
-      "string": [
-        "departement",
-        "gentile"
-      ],
-      "commune": [
-        "commune"
-      ],
-      "code_commune": [
-        "code_insee"
-      ]
+      "string": ["departement", "gentile"],
+      "commune": ["commune"],
+      "code_commune": ["code_insee"]
     },
     "profile": {
       "commune": {

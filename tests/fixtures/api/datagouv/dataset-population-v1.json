@@ -353,9 +353,7 @@
   "spatial": {
     "geom": null,
     "granularity": "fr:commune",
-    "zones": [
-      "country:fr"
-    ]
+    "zones": ["country:fr"]
   },
   "tags": [
     "deces",

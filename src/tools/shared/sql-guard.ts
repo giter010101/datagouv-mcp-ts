@@ -3,7 +3,8 @@ import { ValidationError } from "../../core/errors.js";
 const FORBIDDEN_KEYWORDS =
   /\b(insert|update|delete|drop|alter|create|attach|detach|copy|export|import|install|load|pragma|set|call|grant|truncate|replace|merge|vacuum|checkpoint)\b/i;
 
-const FORBIDDEN_FUNCTIONS = /\b(read_csv|read_parquet|read_json|read_text|read_blob|glob|getenv)\s*\(/i;
+const FORBIDDEN_FUNCTIONS =
+  /\b(read_csv|read_parquet|read_json|read_text|read_blob|glob|getenv)\s*\(/i;
 
 /**
  * Accept only a single read-only `SELECT`/`WITH` statement that reads from the
@@ -32,9 +33,12 @@ export function assertReadOnlySelect(sql: string): string {
   }
   const fn = stripped.match(FORBIDDEN_FUNCTIONS);
   if (fn) {
-    throw new ValidationError(`sql may not call ${fn[0].trim().replace(/\($/, "")}(): the resource is already exposed as the \`data\` table.`, {
-      hint: "Write `FROM data` instead of reading files or URLs directly.",
-    });
+    throw new ValidationError(
+      `sql may not call ${fn[0].trim().replace(/\($/, "")}(): the resource is already exposed as the \`data\` table.`,
+      {
+        hint: "Write `FROM data` instead of reading files or URLs directly.",
+      },
+    );
   }
   return trimmed;
 }

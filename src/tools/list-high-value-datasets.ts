@@ -31,11 +31,18 @@ export const listHighValueDatasetsInputShape = {
   category: z
     .enum(HVD_CATEGORIES)
     .optional()
-    .describe("HVD thematic category: geospatial, earth-observation-environment, meteorological, statistics, companies, mobility."),
+    .describe(
+      "HVD thematic category: geospatial, earth-observation-environment, meteorological, statistics, companies, mobility.",
+    ),
   organization: z.string().optional().describe("Organization ID facet."),
   page: z.number().int().min(1).default(1),
   page_size: z.number().int().min(1).max(100).default(20),
-  sort: z.string().optional().describe("Sort field (created, last_update, reuses, followers, views; '-' prefix = descending)."),
+  sort: z
+    .string()
+    .optional()
+    .describe(
+      "Sort field (created, last_update, reuses, followers, views; '-' prefix = descending).",
+    ),
 };
 
 export const listHighValueDatasetsOutputShape = {
@@ -45,7 +52,10 @@ export const listHighValueDatasetsOutputShape = {
   datasets: z.array(datasetSummarySchema),
 };
 
-export const listHighValueDatasetsTool = defineTool<typeof listHighValueDatasetsInputShape, ToolDeps>({
+export const listHighValueDatasetsTool = defineTool<
+  typeof listHighValueDatasetsInputShape,
+  ToolDeps
+>({
   name: "list_high_value_datasets",
   title: "List high value datasets (HVD)",
   description: [

@@ -120,11 +120,7 @@
         "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-adresse-base-adresse-nationale-ban/",
         "self_web_url": "https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban",
         "slug": "api-adresse-base-adresse-nationale-ban",
-        "tags": [
-          "adresse",
-          "ban",
-          "base"
-        ],
+        "tags": ["adresse", "ban", "base"],
         "technical_documentation_url": "https://geoservices.ign.fr/documentation/services/services-geoplateforme/geocodage",
         "title": "API Adresse (Base Adresse Nationale - BAN)"
       },
@@ -249,11 +245,7 @@
         "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba/",
         "self_web_url": "https://www.data.gouv.fr/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba",
         "slug": "api-fichier-des-comptes-bancaires-et-assimiles-ficoba",
-        "tags": [
-          "bancaire",
-          "banque",
-          "civil"
-        ],
+        "tags": ["bancaire", "banque", "civil"],
         "technical_documentation_url": "https://github.com/betagouv/api_gouv_swaggers/raw/refs/heads/main/docs/2023-DGFIP-Guide%20Partenaires-FICOBA3.zip",
         "title": "API Fichier des Comptes Bancaires et Assimilés (FICOBA)"
       },
@@ -378,11 +370,7 @@
         "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-recherche-des-personnes-physiques-r2p/",
         "self_web_url": "https://www.data.gouv.fr/dataservices/api-recherche-des-personnes-physiques-r2p",
         "slug": "api-recherche-des-personnes-physiques-r2p",
-        "tags": [
-          "adresse",
-          "civil",
-          "etat"
-        ],
+        "tags": ["adresse", "civil", "etat"],
         "technical_documentation_url": null,
         "title": "API Recherche des personnes physiques (R2P)"
       }

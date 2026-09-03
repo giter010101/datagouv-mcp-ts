@@ -8,8 +8,5 @@
     "5ccd6238-4fb0-4b2c-b14a-581909489320",
     "14dba482-41e3-4c54-b82a-d8c11d1d80eb"
   ],
-  "exceptions": [
-    "dddddddd-7777-eeee-8888-ffffffffffff",
-    "aaaaaaaa-9999-bbbb-1010-cccccccccccc"
-  ]
+  "exceptions": ["dddddddd-7777-eeee-8888-ffffffffffff", "aaaaaaaa-9999-bbbb-1010-cccccccccccc"]
 }

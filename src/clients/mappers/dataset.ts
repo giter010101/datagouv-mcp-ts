@@ -13,6 +13,8 @@ import type { ApiDatasetDetail, ApiResource, ApiSchemaRef } from "../schemas/dat
 import type { ApiDatasetSearchItem } from "../schemas/datagouv-search.js";
 import { summarizeDescription } from "./text.js";
 
+type ApiDatasetSearchOrDetailItem = ApiDatasetSearchItem | ApiDatasetDetail;
+
 const RESOURCE_TYPES: ReadonlySet<ResourceType> = new Set([
   "main",
   "documentation",
@@ -36,11 +38,11 @@ export function toOrganizationRef(
 }
 
 export function toSchemaRef(schema: ApiSchemaRef): SchemaRef | undefined {
-  if (!schema || !schema.name) return undefined;
+  if (!schema?.name) return undefined;
   return { name: schema.name, version: schema.version ?? undefined, url: schema.url ?? undefined };
 }
 
-export function toDatasetSummary(item: ApiDatasetSearchItem, site: string): DatasetSummary {
+export function toDatasetSummary(item: ApiDatasetSearchOrDetailItem, site: string): DatasetSummary {
   const slug = item.slug || item.id;
   return {
     id: item.id,

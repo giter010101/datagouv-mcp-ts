@@ -149,14 +149,9 @@
             "spatial": {
               "geom": null,
               "granularity": "other",
-              "zones": [
-                "country:fr"
-              ]
+              "zones": ["country:fr"]
             },
-            "tags": [
-              "association",
-              "companies"
-            ],
+            "tags": ["association", "companies"],
             "temporal_coverage": {
               "end": "2023-12-31",
               "start": "1973-01-01"
@@ -283,14 +278,9 @@
             "spatial": {
               "geom": null,
               "granularity": "fr:commune",
-              "zones": [
-                "country:fr"
-              ]
+              "zones": ["country:fr"]
             },
-            "tags": [
-              "deces",
-              "demographie"
-            ],
+            "tags": ["deces", "demographie"],
             "temporal_coverage": null,
             "title": "Population",
             "uri": "https://www.data.gouv.fr/api/1/datasets/population/"
@@ -332,10 +322,7 @@
         },
         "private": false,
         "slug": "zonelo-trop-ou-pas-assez-de-professionnels",
-        "tags": [
-          "choix-localisation",
-          "commune-francaise"
-        ],
+        "tags": ["choix-localisation", "commune-francaise"],
         "title": "Zonelo - Trop ou pas assez de professionnels ? ",
         "topic": "economy_and_business",
         "type": "application",
@@ -452,14 +439,9 @@
             "spatial": {
               "geom": null,
               "granularity": "fr:commune",
-              "zones": [
-                "country:fr"
-              ]
+              "zones": ["country:fr"]
             },
-            "tags": [
-              "dataconnexions",
-              "datavisualisation"
-            ],
+            "tags": ["dataconnexions", "datavisualisation"],
             "temporal_coverage": {
               "end": "2014-12-12",
               "start": "2007-12-12"
@@ -586,14 +568,9 @@
             "spatial": {
               "geom": null,
               "granularity": "fr:commune",
-              "zones": [
-                "country:fr"
-              ]
+              "zones": ["country:fr"]
             },
-            "tags": [
-              "developpement-durable",
-              "environnement"
-            ],
+            "tags": ["developpement-durable", "environnement"],
             "temporal_coverage": {
               "end": "2025-12-31",
               "start": "1954-01-01"
@@ -630,10 +607,7 @@
         },
         "private": false,
         "slug": "pictostat-datavisualisation-geoclip-dreal-occitanie",
-        "tags": [
-          "amenagement",
-          "amenagement-du-territoire"
-        ],
+        "tags": ["amenagement", "amenagement-du-territoire"],
         "title": "PIctoStat - Datavisualisation Geoclip - DREAL Occitanie",
         "topic": "environment_and_energy",
         "type": "application",

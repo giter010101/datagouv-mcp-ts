@@ -161,7 +161,9 @@ export function formatOrganizations(
     "",
   ];
   result.items.forEach((org, index) => {
-    const title = org.acronym ? `${org.name || "Untitled"} (${org.acronym})` : org.name || "Untitled";
+    const title = org.acronym
+      ? `${org.name || "Untitled"} (${org.acronym})`
+      : org.name || "Untitled";
     lines.push(`${index + 1}. ${title}`);
     lines.push(`   ID: ${org.id}`);
     if (org.slug) lines.push(`   Slug: ${org.slug}`);

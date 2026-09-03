@@ -22,11 +22,15 @@ export const previewResourceInputShape = {
     .min(1)
     .max(MAX_ROWS_PER_CALL)
     .default(PREVIEW_DEFAULT_LIMIT)
-    .describe("Max rows / features / archive entries to return (default 20, max 200). For documents: characters ÷ 40."),
+    .describe(
+      "Max rows / features / archive entries to return (default 20, max 200). For documents: characters ÷ 40.",
+    ),
   member: z
     .string()
     .optional()
-    .describe("Sub-table inside a container: XLSX sheet name, GPKG layer, or ZIP member. Omit to use the first / the listing."),
+    .describe(
+      "Sub-table inside a container: XLSX sheet name, GPKG layer, or ZIP member. Omit to use the first / the listing.",
+    ),
 };
 
 export const previewResourceOutputShape = {
@@ -39,7 +43,13 @@ export const previewResourceOutputShape = {
   features: z.array(z.record(z.string(), z.unknown())).optional(),
   text: z.string().optional(),
   entries: z
-    .array(z.object({ name: z.string(), size_bytes: z.number().optional(), kind: z.string().optional() }))
+    .array(
+      z.object({
+        name: z.string(),
+        size_bytes: z.number().optional(),
+        kind: z.string().optional(),
+      }),
+    )
     .optional(),
   facts: z.record(z.string(), z.unknown()),
   notes: z.array(z.string()),
@@ -122,7 +132,9 @@ export const previewResourceTool = defineTool<typeof previewResourceInputShape, 
         next_tool: rec.tool,
       },
       howToGetMore:
-        preview.kind === "table" ? "Use query_resource with page/page_size for more rows." : undefined,
+        preview.kind === "table"
+          ? "Use query_resource with page/page_size for more rows."
+          : undefined,
     };
   },
 });
@@ -143,7 +155,9 @@ export function renderPreview(preview: PreviewResult): string[] {
     case "features": {
       const features = preview.features ?? [];
       const out = [`Sample features: ${features.length}`];
-      features.forEach((f, i) => out.push(`  ${i + 1}. ${truncate(JSON.stringify(f), 300)}`));
+      features.forEach((f, i) => {
+        out.push(`  ${i + 1}. ${truncate(JSON.stringify(f), 300)}`);
+      });
       return out;
     }
     case "text":
@@ -152,9 +166,12 @@ export function renderPreview(preview: PreviewResult): string[] {
       const entries = preview.entries ?? [];
       const out = [`Entries (${entries.length}):`];
       for (const e of entries.slice(0, MAX_ENTRIES_SHOWN)) {
-        out.push(`  - ${e.name}${e.sizeBytes !== undefined ? ` (${humanSize(e.sizeBytes)})` : ""}${e.kind ? ` [${e.kind}]` : ""}`);
+        out.push(
+          `  - ${e.name}${e.sizeBytes !== undefined ? ` (${humanSize(e.sizeBytes)})` : ""}${e.kind ? ` [${e.kind}]` : ""}`,
+        );
       }
-      if (entries.length > MAX_ENTRIES_SHOWN) out.push(`  … ${entries.length - MAX_ENTRIES_SHOWN} more`);
+      if (entries.length > MAX_ENTRIES_SHOWN)
+        out.push(`  … ${entries.length - MAX_ENTRIES_SHOWN} more`);
       return out;
     }
     default:

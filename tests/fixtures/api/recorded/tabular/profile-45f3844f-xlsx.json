@@ -11,11 +11,7 @@
     "deleted_at": null,
     "indexes": null,
     "profile": {
-      "categorical": [
-        "FICHE THEME",
-        "THEME",
-        "TYPES"
-      ],
+      "categorical": ["FICHE THEME", "THEME", "TYPES"],
       "columns": {
         "ALIAS": {
           "format": "string",
@@ -99,21 +95,9 @@
       },
       "engine": "openpyxl",
       "formats": {
-        "string": [
-          "FICHE THEME",
-          "LIBELLE QUESTION",
-          "ALIAS",
-          "THEME",
-          "TYPES"
-        ]
+        "string": ["FICHE THEME", "LIBELLE QUESTION", "ALIAS", "THEME", "TYPES"]
       },
-      "header": [
-        "FICHE THEME",
-        "LIBELLE QUESTION",
-        "ALIAS",
-        "THEME",
-        "TYPES"
-      ],
+      "header": ["FICHE THEME", "LIBELLE QUESTION", "ALIAS", "THEME", "TYPES"],
       "header_row_idx": 0,
       "nb_duplicates": "0",
       "profile": {

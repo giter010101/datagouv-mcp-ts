@@ -21,7 +21,10 @@ export const reuseSummarySchema = z.object({
 });
 
 export const searchReusesInputShape = {
-  query: z.string().optional().describe("Keywords. Omit to browse (optionally filtered by dataset_id)."),
+  query: z
+    .string()
+    .optional()
+    .describe("Keywords. Omit to browse (optionally filtered by dataset_id)."),
   dataset_id: z.string().optional().describe("Only reuses built on this dataset (ID or slug)."),
   page: z.number().int().min(1).default(1),
   page_size: z.number().int().min(1).max(100).default(20),
@@ -65,7 +68,11 @@ export const searchReusesTool = defineTool<typeof searchReusesInputShape, ToolDe
     if (result.items.length === 0) {
       text.push(`No reuses found${label ? ` for ${label}` : ""}.`);
     } else {
-      text.push(`Found ${result.total} reuse(s)${label ? ` for ${label}` : ""}`, `Page ${result.page} of results:`, "");
+      text.push(
+        `Found ${result.total} reuse(s)${label ? ` for ${label}` : ""}`,
+        `Page ${result.page} of results:`,
+        "",
+      );
       result.items.forEach((r, i) => {
         text.push(`${i + 1}. ${r.title || "Untitled"}`);
         text.push(`   ID: ${r.id}`);
@@ -135,9 +142,12 @@ export const getReuseInfoTool = defineTool<typeof getReuseInfoInputShape, ToolDe
   async handler(input, ctx) {
     const getReuse = ctx.deps.datagouv.getReuse;
     if (!getReuse) {
-      throw new UnsupportedCapabilityError("Reuse details are not available with this catalogue client.", {
-        hint: "Use search_reuses (which lists reuses with their URL) and open the reuse page.",
-      });
+      throw new UnsupportedCapabilityError(
+        "Reuse details are not available with this catalogue client.",
+        {
+          hint: "Use search_reuses (which lists reuses with their URL) and open the reuse page.",
+        },
+      );
     }
     let reuse: Awaited<ReturnType<typeof getReuse>>;
     try {
@@ -160,10 +170,14 @@ export const getReuseInfoTool = defineTool<typeof getReuseInfoInputShape, ToolDe
       kv("URL", reuse.url),
       kv("Type", reuse.type),
       kv("Topic", reuse.topic),
-      reuse.organization ? `Organization: ${reuse.organization.name} (ID: ${reuse.organization.id})` : undefined,
+      reuse.organization
+        ? `Organization: ${reuse.organization.name} (ID: ${reuse.organization.id})`
+        : undefined,
       reuse.owner ? `Owner: ${reuse.owner.name}` : undefined,
       reuse.description ? "" : undefined,
-      reuse.description ? `Description: ${truncate(reuse.description, DETAIL_DESCRIPTION_CHARS)}` : undefined,
+      reuse.description
+        ? `Description: ${truncate(reuse.description, DETAIL_DESCRIPTION_CHARS)}`
+        : undefined,
       kv("Tags", reuse.tags.slice(0, DETAIL_TAGS_MAX)),
       kv("Created", reuse.createdAt),
       kv("Last modified", reuse.lastModified),

@@ -24,10 +24,7 @@
       "name": "Santé et territoires",
       "slug": "sante-et-territoires",
       "description": "_Ce défi est proposé par [la Fondation Roche](https://fondationroche.org/), partenaire de l’Open Data University._\n\n**[Lancer ce défi sur un environnement de travail configuré proposé sur le Datalab \"SSP Cloud\" de l'INSEE](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&name=",
-      "tags": [
-        "defisdatagouvfr",
-        "defisdatagouvfr-saison-saison-4"
-      ],
+      "tags": ["defisdatagouvfr", "defisdatagouvfr-saison-saison-4"],
       "color": null,
       "featured": false,
       "private": false,
@@ -57,10 +54,7 @@
       "name": "Santé",
       "slug": "sante",
       "description": "Exemples : accessibilité des cabinets, des établissements médicaux et des pharmacies",
-      "tags": [
-        "accessibilite-univers",
-        "accessibilite-univers-theme-accessibilite-sante"
-      ],
+      "tags": ["accessibilite-univers", "accessibilite-univers-theme-accessibilite-sante"],
       "color": null,
       "featured": false,
       "private": false,
