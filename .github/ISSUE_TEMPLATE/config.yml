@@ -1,1 +1,8 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Feedback on the hosted server (mcp.data.gouv.fr)
+    url: https://tally.so/r/KYMboX
+    about: Non-technical feedback about the public instance.
+  - name: Security vulnerability
+    url: https://github.com/giter010101/datagouv-mcp-ts/blob/main/SECURITY.md
+    about: Please do not open public issues for security problems — see SECURITY.md.

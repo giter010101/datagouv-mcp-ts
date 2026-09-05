@@ -1,22 +1,52 @@
+# docker compose up -d            → Streamable HTTP on http://127.0.0.1:${MCP_PORT:-8000}/mcp
+# MCP_PORT=8007 DATAGOUV_API_ENV=demo LOG_LEVEL=debug docker compose up -d
+# docker compose down
+#
+# Every variable below is optional; defaults match src/core/config.ts except
+# MCP_HOST, which must be 0.0.0.0 inside a container. See docs/configuration.md.
 services:
   datagouv-mcp:
     build:
       context: .
       dockerfile: Dockerfile
-    image: datagouv-mcp:latest
+    image: ${DATAGOUV_MCP_IMAGE:-datagouv-mcp:local}
     ports:
-      - "${MCP_PORT:-8000}:${MCP_PORT:-8000}"
+      - "${MCP_BIND_ADDRESS:-127.0.0.1}:${MCP_PORT:-8000}:${MCP_PORT:-8000}"
     environment:
-      - MCP_HOST=${MCP_HOST:-0.0.0.0}
-      - MCP_PORT=${MCP_PORT:-8000}
-      - DATAGOUV_API_ENV=${DATAGOUV_API_ENV:-prod}
-      - MATOMO_URL=${MATOMO_URL}
-      - MATOMO_SITE_ID=${MATOMO_SITE_ID}
-      - MATOMO_AUTH_TOKEN=${MATOMO_AUTH_TOKEN}
+      MCP_TRANSPORT: http
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: ${MCP_PORT:-8000}
+      MCP_ENV: ${MCP_ENV:-local}
+      # Comma-separated. Add your public hostname when serving behind a reverse proxy.
+      MCP_ALLOWED_HOSTS: ${MCP_ALLOWED_HOSTS:-}
+      MCP_ALLOWED_ORIGINS: ${MCP_ALLOWED_ORIGINS:-}
+      DATAGOUV_API_ENV: ${DATAGOUV_API_ENV:-prod}
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      HTTP_TIMEOUT_MS: ${HTTP_TIMEOUT_MS:-15000}
+      HTTP_RETRIES: ${HTTP_RETRIES:-2}
+      MAX_DOWNLOAD_BYTES: ${MAX_DOWNLOAD_BYTES:-52428800}
+      CACHE_MAX_ENTRIES: ${CACHE_MAX_ENTRIES:-500}
+      CACHE_DEFAULT_TTL_MS: ${CACHE_DEFAULT_TTL_MS:-300000}
+      MAX_OUTPUT_CHARS: ${MAX_OUTPUT_CHARS:-40000}
+      ENABLE_DUCKDB: ${ENABLE_DUCKDB:-0}
+      MATOMO_URL: ${MATOMO_URL:-}
+      MATOMO_SITE_ID: ${MATOMO_SITE_ID:-}
+      MATOMO_AUTH_TOKEN: ${MATOMO_AUTH_TOKEN:-}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      SENTRY_SAMPLE_RATE: ${SENTRY_SAMPLE_RATE:-}
     restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
-      test: ["CMD", "python", "-c", "import os, urllib.request; port = os.getenv('MCP_PORT', '8000'); urllib.request.urlopen(f'http://localhost:{port}/health')"]
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch(`http://127.0.0.1:${process.env.MCP_PORT ?? 8000}/health`).then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"
       interval: 60s
-      timeout: 10s
+      timeout: 15s
       retries: 3
-      start_period: 10s
+      start_period: 15s

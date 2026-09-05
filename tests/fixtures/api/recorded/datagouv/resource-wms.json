@@ -1,0 +1,42 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/resources/202c55f0-6be6-4880-8055-9c6a03892857/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:06.121Z",
+    "note": "WMS service endpoint → api_endpoint"
+  },
+  "body": {
+    "dataset_id": "6a98c725c43afe8373b3496a",
+    "resource": {
+      "checksum": null,
+      "created_at": "2026-09-03T01:02:29.459000+00:00",
+      "description": "",
+      "extras": {
+        "dcat": {
+          "rights": [
+            "Licence Ouverte / Open Licence Version 2.0 https://www.etalab.gouv.fr/wp-content/uploads/2017/04/ETALAB-Licence-Ouverte-v2.0.pdf",
+            "Aucun des articles de la loi ne peut être invoqué pour justifier d'une restriction d'accès public.",
+            "Pas de restriction d'accès public selon INSPIRE"
+          ]
+        }
+      },
+      "filesize": null,
+      "filetype": "remote",
+      "format": "wms",
+      "harvest": "[redacted]",
+      "id": "202c55f0-6be6-4880-8055-9c6a03892857",
+      "internal": "[redacted]",
+      "last_modified": "2026-09-03T01:02:29.459000+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/202c55f0-6be6-4880-8055-9c6a03892857",
+      "metrics": "[redacted]",
+      "mime": null,
+      "preview_url": null,
+      "schema": null,
+      "title": "URL du GetCapabilities du service wms sur internet",
+      "type": "api",
+      "url": "https://ogc.geo-ide.developpement-durable.gouv.fr/wxs?map=/opt/data/stack/mapfiles/1.4/org_37978/503f2f8c-5132-4362-aa3e-873e345888ab.internet.map&SERVICE=WMS&REQUEST=GetCapabilities"
+    }
+  }
+}

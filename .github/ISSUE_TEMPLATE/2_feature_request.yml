@@ -1,0 +1,38 @@
+name: Feature request
+description: A new tool, a new format, a new parameter, or a client configuration
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### AI-generated content
+
+        **Raw AI-only issues are not allowed and may be closed without discussion.** By submitting, you state you understand this issue and can defend it without an AI. Other rules: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: checkboxes
+    id: human_accountability
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am not submitting raw, unreviewed AI-generated content. I have reviewed, understand, and stand behind this issue.
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What can you not do today with the existing tools? Include an example question you would ask the chatbot.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Tool name / parameters / expected output, or the client you want documented. Check `docs/tools.md` first.
+
+  - type: input
+    id: example
+    attributes:
+      label: Example dataset or resource
+      description: A data.gouv.fr URL or id that illustrates the need.

@@ -1,0 +1,37 @@
+{
+  "resource": {
+    "id": "4792c248-8b80-4524-8605-7d4213e49051",
+    "title": "Les résultats des recensements de la population",
+    "description": "Page web permettant de consulter les populations légales et les résultats des recensements, ainsi que télécharger des bases de données correspondantes.",
+    "filetype": "remote",
+    "type": "main",
+    "format": "html",
+    "url": "http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensements.htm",
+    "latest": "https://www.data.gouv.fr/api/1/datasets/r/4792c248-8b80-4524-8605-7d4213e49051",
+    "checksum": null,
+    "filesize": null,
+    "mime": null,
+    "created_at": "2014-05-07T04:40:14.478000+00:00",
+    "last_modified": "2026-03-06T16:18:13.089820+00:00",
+    "extras": {
+      "check:available": false,
+      "check:count-availability": 189,
+      "check:url": "http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensements.htm",
+      "check:date": "2026-03-15T06:12:59.984069+00:00",
+      "check:headers:charset": "utf-8",
+      "check:timeout": false,
+      "analysis:content-length": 63806,
+      "analysis:checksum": "29c256cb3ba463d4263221d80671cdb7419a09d3",
+      "analysis:mime-type": "application/javascript",
+      "analysis:last-modified-at": "2026-03-06T16:18:13.089820+00:00",
+      "analysis:last-modified-detection": "content-length-header",
+      "check:id": 43594191,
+      "analysis:check_id": 43079705,
+      "check:status": 400,
+      "check:error": "Bad Request"
+    },
+    "preview_url": null,
+    "schema": null
+  },
+  "dataset_id": "53699d0ea3a729239d205b2e"
+}

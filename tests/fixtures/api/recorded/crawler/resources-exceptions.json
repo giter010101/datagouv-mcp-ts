@@ -1,0 +1,42 @@
+{
+  "$fixture": {
+    "url": "https://crawler.data.gouv.fr/api/resources-exceptions",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:15.081Z",
+    "note": "array trimmed to 5 entries but always keeps the research fixture exception"
+  },
+  "body": [
+    {
+      "comment": "Vitesses relevées par voitures radars 2023",
+      "id": "23",
+      "resource_id": "52200d61-5e80-4a4e-999f-6e1c184fa122",
+      "table_indexes": "{}"
+    },
+    {
+      "comment": "Vitesses relevées par voitures radars 2021",
+      "id": "24",
+      "resource_id": "8b6cd190-3b66-43a8-b609-ce130019069f",
+      "table_indexes": "{}"
+    },
+    {
+      "comment": "IRVE geojson",
+      "id": "25",
+      "resource_id": "7eee8f09-5d1b-4f48-a304-5e99e8da1e26",
+      "table_indexes": "{}"
+    },
+    {
+      "comment": "CNAM effectif de patients",
+      "id": "26",
+      "resource_id": "5f71ba43-afc8-43a0-b306-dafe29940f9c",
+      "table_indexes": "{}"
+    },
+    {
+      "comment": "Liste des autorisations d'urbanisme créant des logements",
+      "id": "55",
+      "resource_id": "65a9e264-7a20-46a9-9d98-66becb817bc3",
+      "table_indexes": "{}"
+    }
+  ]
+}

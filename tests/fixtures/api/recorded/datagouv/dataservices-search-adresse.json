@@ -1,0 +1,462 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/dataservices/search/?q=adresse&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:11.508Z"
+  },
+  "body": {
+    "data": [
+      {
+        "access_audiences": [],
+        "access_type": "open",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived_at": null,
+        "authorization_request_url": null,
+        "availability": 100,
+        "availability_url": null,
+        "badges": [
+          {
+            "kind": "hvd"
+          }
+        ],
+        "base_api_url": "https://data.geopf.fr/geocodage/",
+        "business_documentation_url": "https://adresse.data.gouv.fr/outils/api-doc/adresse",
+        "contact_points": [
+          {
+            "contact_form": null,
+            "email": "geoplateforme@ign.fr",
+            "id": "672b319f0b14c9848ca594da",
+            "name": "Institut national de l'information géographique et forestière (IGN-F)",
+            "organization": {
+              "acronym": "IGN",
+              "badges": [
+                {
+                  "kind": "public-service"
+                },
+                {
+                  "kind": "certified"
+                }
+              ],
+              "class": "Organization",
+              "id": "534fff80a3a7292c64a77e41",
+              "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527.jpg",
+              "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527-100.jpg",
+              "name": "Institut national de l'information géographique et forestière",
+              "page": "https://www.data.gouv.fr/organizations/institut-national-de-linformation-geographique-et-forestiere",
+              "permissions": {
+                "delete": false,
+                "edit": false,
+                "harvest": "[redacted]",
+                "members": false,
+                "private": false
+              },
+              "slug": "institut-national-de-linformation-geographique-et-forestiere",
+              "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-linformation-geographique-et-forestiere/"
+            },
+            "owner": null,
+            "role": "contact"
+          }
+        ],
+        "created_at": "2024-11-07T17:18:48.601000+00:00",
+        "datasets": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672cf67802ef6b1be63b8975",
+          "rel": "subsection",
+          "total": 1,
+          "type": "GET"
+        },
+        "deleted_at": null,
+        "description": "L' API Adresse permet d'interroger facilement la Base Adresse Nationale.\n\n### A quoi sert l'API Adresse ?\n\nEn intégrant l'API dans votre système d'information, vous pouvez facilement rechercher une adresse et :\n\n- faire de l'autocomplétion et de la vérification d'adresse ;\n- géolocaliser une adresse sur une carte ;\n- faire une recherche géographique inversée (trouver la rue la plus proche de coordonnées géographiques).\n\n### Données disponibles\n\n| Nom              | Description                                                        |\n| ---------------- | ------------------------------------------------------------------ |\n| type             | type de résultat trouvé : rue, numéro de plaque, lieu-dit, commune |\n| numéro de plaque | numéro avec indice de répétition éventuel (bis, ter, A, B)         |\n| nom              | numéro éventuel et nom de voie ou lieu dit                         |\n| code postal      | code postal                                                        |\n| code de ville    | code INSEE de la commune                                           |\n| commune          | nom de la commune                                                  |\n| arrondissement   | nom de l’arrondissement (Paris/Lyon/Marseille)                     |\n| context          | n° de département, nom de département et de région                 |\n\n### En savoir plus\n\nLa [Base Adresse Nationale](https://adresse.data.gouv.fr) est constituée par la collaboration entre:\n\n- des acteurs nationaux tels…[truncated]",
+        "extras": {
+          "availability_url": "",
+          "is_franceconnect": false,
+          "public_cible": []
+        },
+        "featured": null,
+        "format": null,
+        "harvest": "[redacted]",
+        "id": "672cf67802ef6b1be63b8975",
+        "license": null,
+        "machine_documentation_url": "https://data.geopf.fr/geocodage/openapi.yaml",
+        "metadata_modified_at": "2026-04-17T11:49:47.375000+00:00",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": "IGN",
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff80a3a7292c64a77e41",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527.jpg",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527-100.jpg",
+          "name": "Institut national de l'information géographique et forestière",
+          "page": "https://www.data.gouv.fr/organizations/institut-national-de-linformation-geographique-et-forestiere",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "institut-national-de-linformation-geographique-et-forestiere",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/institut-national-de-linformation-geographique-et-forestiere/"
+        },
+        "owner": null,
+        "permissions": {
+          "delete": false,
+          "edit": false
+        },
+        "private": false,
+        "rate_limiting": "50 appels / seconde / IP\nL'API unitaire est disponible à hauteur de 50 appels par seconde et par adresse IP.\nLe géocodage de masse (CSV) est disponible à hauteur d'un appel simultané par adresse IP.\n",
+        "rate_limiting_url": null,
+        "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-adresse-base-adresse-nationale-ban/",
+        "self_web_url": "https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban",
+        "slug": "api-adresse-base-adresse-nationale-ban",
+        "tags": ["adresse", "ban", "base"],
+        "technical_documentation_url": "https://geoservices.ign.fr/documentation/services/services-geoplateforme/geocodage",
+        "title": "API Adresse (Base Adresse Nationale - BAN)"
+      },
+      {
+        "access_audiences": [
+          {
+            "condition": "no",
+            "role": "private"
+          },
+          {
+            "condition": "under_condition",
+            "role": "company_and_association"
+          },
+          {
+            "condition": "under_condition",
+            "role": "local_authority_and_administration"
+          }
+        ],
+        "access_type": "restricted",
+        "access_type_reason": null,
+        "access_type_reason_category": "confidentiality_of_personal_data",
+        "acronym": null,
+        "archived_at": null,
+        "authorization_request_url": "https://datapass.api.gouv.fr/demandes/api-ficoba/nouveau",
+        "availability": null,
+        "availability_url": null,
+        "badges": [],
+        "base_api_url": null,
+        "business_documentation_url": "https://github.com/betagouv/api_gouv_swaggers/raw/refs/heads/main/docs/2023-DGFIP-Guide%20Partenaires-FICOBA3.zip",
+        "contact_points": [
+          {
+            "contact_form": null,
+            "email": "dtnum.donnees.demande-acces@dgfip.finances.gouv.fr",
+            "id": "672cf66eee9a5fed20dd93e2",
+            "name": "dtnum.donnees.demande-acces@dgfip.finances.gouv.fr",
+            "organization": {
+              "acronym": "MEF",
+              "badges": [
+                {
+                  "kind": "public-service"
+                },
+                {
+                  "kind": "certified"
+                }
+              ],
+              "class": "Organization",
+              "id": "534fff8ea3a7292c64a77f02",
+              "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6.jpg",
+              "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6-100.jpg",
+              "name": "Ministères économiques et financiers",
+              "page": "https://www.data.gouv.fr/organizations/ministeres-economiques-et-financiers",
+              "permissions": {
+                "delete": false,
+                "edit": false,
+                "harvest": "[redacted]",
+                "members": false,
+                "private": false
+              },
+              "slug": "ministeres-economiques-et-financiers",
+              "uri": "https://www.data.gouv.fr/api/1/organizations/ministeres-economiques-et-financiers/"
+            },
+            "owner": null,
+            "role": "contact"
+          }
+        ],
+        "created_at": "2024-11-08T08:46:12.791000+00:00",
+        "datasets": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672dcfd4fb13e93799d97e68",
+          "rel": "subsection",
+          "total": 0,
+          "type": "GET"
+        },
+        "deleted_at": null,
+        "description": "L'API FICOBA (*FI*chier des *CO*mptes *B*ancaires et *A*ssimilés) permet aux entités administratives (administrations publiques, ministères, organismes sociaux) et aux acteurs privés qui sont éligibles d’accéder aux coordonnées bancaires d'un usager afin de permettre d'intégrer et de valider ces données dans leur système d'information.\n\nEn effet, selon les dispositions de [l'article 1649 A du Code Général des Impôts](https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041578443/2020-02-29) : _\"les administrations publiques, les établissements ou organismes soumis au contrôle de l'autorité administrative, (...) et toutes personnes qui reçoivent habituellement en dépôt des valeurs mobilières, titres ou fonds doivent déclarer à l'administration des impôts l'ouverture et la clôture des comptes de toute nature (...)\"_.\n\n### A quoi sert l'API Ficoba ?\n\nL'API permet de rechercher un compte bancaire, de plusieurs manières:\n\n* avec un identifiant : IBAN, SIREN/SIRET ou identifiant fiscal (SPI, voir [API R2P](https://www.data.gouv.fr/fr/dataservices/api-recherche-des-personnes-physiques-r2p/)) ;\n* avec un état civil d'un usager, avec ou sans adresse, pour une personne physique ;\n* avec la dénomination et deux éléments d'adresse pour une personne morale.\n* Vérifier l'existence d'un compte bancaire\n* Valider la cohérence entre un compte et l'identité du titulaire\n\n\n\n**Cas spécifique**: lors de l'ouverture d'un produit d'épargne réglementé (ex : livret d'épargne populaire LEP, livr…[truncated]",
+        "extras": {
+          "availability_url": "",
+          "is_franceconnect": false,
+          "public_cible": []
+        },
+        "featured": null,
+        "format": null,
+        "harvest": "[redacted]",
+        "id": "672dcfd4fb13e93799d97e68",
+        "license": null,
+        "machine_documentation_url": "https://raw.githubusercontent.com/betagouv/api_gouv_swaggers/refs/heads/main/swaggers/api-ficoba3.json",
+        "metadata_modified_at": "2026-08-18T07:25:37.261000+00:00",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": "MEF",
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff8ea3a7292c64a77f02",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6.jpg",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6-100.jpg",
+          "name": "Ministères économiques et financiers",
+          "page": "https://www.data.gouv.fr/organizations/ministeres-economiques-et-financiers",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "ministeres-economiques-et-financiers",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/ministeres-economiques-et-financiers/"
+        },
+        "owner": null,
+        "permissions": {
+          "delete": false,
+          "edit": false
+        },
+        "private": false,
+        "rate_limiting": "200 appels/minute\nL’API Manager de la DGFiP délivre un quota de consultation pour chacun de ses partenaires pour chaque API utilisée. Concernant l'API Ficoba le quota par partenaire est fixé à 200 appels à la minute.\n",
+        "rate_limiting_url": null,
+        "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba/",
+        "self_web_url": "https://www.data.gouv.fr/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba",
+        "slug": "api-fichier-des-comptes-bancaires-et-assimiles-ficoba",
+        "tags": ["bancaire", "banque", "civil"],
+        "technical_documentation_url": "https://github.com/betagouv/api_gouv_swaggers/raw/refs/heads/main/docs/2023-DGFIP-Guide%20Partenaires-FICOBA3.zip",
+        "title": "API Fichier des Comptes Bancaires et Assimilés (FICOBA)"
+      },
+      {
+        "access_audiences": [
+          {
+            "condition": "no",
+            "role": "private"
+          },
+          {
+            "condition": "under_condition",
+            "role": "company_and_association"
+          },
+          {
+            "condition": "under_condition",
+            "role": "local_authority_and_administration"
+          }
+        ],
+        "access_type": "restricted",
+        "access_type_reason": null,
+        "access_type_reason_category": null,
+        "acronym": null,
+        "archived_at": null,
+        "authorization_request_url": "https://datapass.api.gouv.fr/demandes/api-sfip/nouveau",
+        "availability": null,
+        "availability_url": null,
+        "badges": [],
+        "base_api_url": null,
+        "business_documentation_url": null,
+        "contact_points": [
+          {
+            "contact_form": null,
+            "email": "dtnum.donnees.demande-acces@dgfip.finances.gouv.fr",
+            "id": "672cf66eee9a5fed20dd93e2",
+            "name": "dtnum.donnees.demande-acces@dgfip.finances.gouv.fr",
+            "organization": {
+              "acronym": "MEF",
+              "badges": [
+                {
+                  "kind": "public-service"
+                },
+                {
+                  "kind": "certified"
+                }
+              ],
+              "class": "Organization",
+              "id": "534fff8ea3a7292c64a77f02",
+              "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6.jpg",
+              "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6-100.jpg",
+              "name": "Ministères économiques et financiers",
+              "page": "https://www.data.gouv.fr/organizations/ministeres-economiques-et-financiers",
+              "permissions": {
+                "delete": false,
+                "edit": false,
+                "harvest": "[redacted]",
+                "members": false,
+                "private": false
+              },
+              "slug": "ministeres-economiques-et-financiers",
+              "uri": "https://www.data.gouv.fr/api/1/organizations/ministeres-economiques-et-financiers/"
+            },
+            "owner": null,
+            "role": "contact"
+          }
+        ],
+        "created_at": "2024-11-07T17:18:50.749000+00:00",
+        "datasets": {
+          "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672cf67aa37a79f6ff3e324e",
+          "rel": "subsection",
+          "total": 0,
+          "type": "GET"
+        },
+        "deleted_at": null,
+        "description": "### ATTENTION :&#x20;\n\n**A partir du 30/09/2025, l'API SFiP reprend les fonctionnalités de recherche de personne physique de l'API R2P.** \\\n\\\n**Dorénavant, les nouvelles demandes concernant l'API R2P seront accessibles via l'API SFiP. Les modalités d'accès et les pré-requis restent inchangés pour accéder aux données personnelles d'un usager sur le courtier SFiP.**&#x20;\n\n**Pour les demandes d'accès existantes et/ou en cours sur R2P, l'API reste disponible pour finaliser et/ou modifier votre demande.**\n\n### Description\n\nL'API R2P permet aux entités administratives (administration, ministère, organisme public, collectivité) et aux acteurs privés qui sont éligibles d'obtenir les données personnelles d'un citoyen afin de les intégrer à leur Système d’Information (selon le cas d'usage : état civil complet, dernière adresse connue de l’administration fiscale (DGFIP) et identifiant fiscal ou SPI).\n\n### A quoi sert l’API R2P - Recherche des personnes physiques ?\n\nExemples de cas d'utilisation :\n\n* pour une collectivité locale dans le cadre de la prise en charge d'une facture afin de fiabiliser l'état civil du débiteur ;\n* pour une banque dans le cadre du contrôle de l'éligibilité des conditions d'ouverture d'un Livret d’Épargne Populaire (LEP).\n\n### Les données disponibles dans l'API\n\nCette API fait appel aux différents référentiels nationaux de la DGFiP afin de rechercher et de restituer des éléments relatifs à l'état civil et l'adresse d'un usager ; éléments fiables dont les états …[truncated]",
+        "extras": {
+          "availability_url": "",
+          "is_franceconnect": false,
+          "public_cible": []
+        },
+        "featured": null,
+        "format": null,
+        "harvest": "[redacted]",
+        "id": "672cf67aa37a79f6ff3e324e",
+        "license": null,
+        "machine_documentation_url": "https://raw.githubusercontent.com/betagouv/api_gouv_swaggers/refs/heads/SAADDGFIP2024-patch-2/swaggers/API-R2P.json",
+        "metadata_modified_at": "2025-12-04T10:13:46.496000+00:00",
+        "metrics": "[redacted]",
+        "organization": {
+          "acronym": "MEF",
+          "badges": [
+            {
+              "kind": "public-service"
+            },
+            {
+              "kind": "certified"
+            }
+          ],
+          "class": "Organization",
+          "id": "534fff8ea3a7292c64a77f02",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6.jpg",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6-100.jpg",
+          "name": "Ministères économiques et financiers",
+          "page": "https://www.data.gouv.fr/organizations/ministeres-economiques-et-financiers",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "ministeres-economiques-et-financiers",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/ministeres-economiques-et-financiers/"
+        },
+        "owner": null,
+        "permissions": {
+          "delete": false,
+          "edit": false
+        },
+        "private": false,
+        "rate_limiting": "1000 appels/minute\nL’API Manager de la DGFiP délivre un quota de consultation pour chacun de ses partenaires pour chaque API utilisée. Concernant l'API R2P le quota par partenaire est fixé à 1 000 appels à la minute.\n",
+        "rate_limiting_url": null,
+        "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-recherche-des-personnes-physiques-r2p/",
+        "self_web_url": "https://www.data.gouv.fr/dataservices/api-recherche-des-personnes-physiques-r2p",
+        "slug": "api-recherche-des-personnes-physiques-r2p",
+        "tags": ["adresse", "civil", "etat"],
+        "technical_documentation_url": null,
+        "title": "API Recherche des personnes physiques (R2P)"
+      }
+    ],
+    "facets": {
+      "access_type": [
+        {
+          "count": 316,
+          "name": "all"
+        },
+        {
+          "count": 238,
+          "name": "open"
+        },
+        {
+          "count": 72,
+          "name": "restricted"
+        }
+      ],
+      "badge": [
+        {
+          "count": 316,
+          "name": "all"
+        }
+      ],
+      "last_update": [
+        {
+          "count": 316,
+          "name": "all"
+        },
+        {
+          "count": 316,
+          "name": "last_3_years"
+        },
+        {
+          "count": 273,
+          "name": "last_12_months"
+        }
+      ],
+      "organization_id_with_name": [
+        {
+          "count": 316,
+          "name": "all"
+        },
+        {
+          "count": 57,
+          "name": "57fe2a35c751df21e179df72|Direction interministérielle du numérique"
+        },
+        {
+          "count": 33,
+          "name": "54aff788c751df39e138127d|Département des Côtes d'Armor"
+        }
+      ],
+      "producer_type": [
+        {
+          "count": 316,
+          "name": "all"
+        },
+        {
+          "count": 209,
+          "name": "public-service"
+        },
+        {
+          "count": 52,
+          "name": "local-authority"
+        }
+      ],
+      "tag": [
+        {
+          "count": 316,
+          "name": "all"
+        },
+        {
+          "count": 57,
+          "name": "administration"
+        },
+        {
+          "count": 54,
+          "name": "administration-et-legislation"
+        }
+      ]
+    },
+    "next_page": "https://www.data.gouv.fr/api/2/dataservices/search/?q=adresse&page_size=3&page=2",
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 316
+  }
+}

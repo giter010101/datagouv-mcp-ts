@@ -1,0 +1,51 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/datasets/suggest/?q=popu&size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:09.963Z"
+  },
+  "body": [
+    {
+      "acronym": null,
+      "id": "53699d0ea3a729239d205b2e",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "page": "https://www.data.gouv.fr/datasets/population",
+      "slug": "population",
+      "title": "Population"
+    },
+    {
+      "acronym": null,
+      "id": "5369931ca3a729239d2040d1",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "page": "https://www.data.gouv.fr/datasets/anciennes-donnees-carroyees-a-200-m-sur-la-population",
+      "slug": "anciennes-donnees-carroyees-a-200-m-sur-la-population",
+      "title": "Anciennes données carroyées à 200 m sur la population"
+    },
+    {
+      "acronym": null,
+      "id": "548ad919c751df3d674120e7",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "page": "https://www.data.gouv.fr/datasets/bases-de-donnees-et-fichiers-details-du-recensement-de-la-population",
+      "slug": "bases-de-donnees-et-fichiers-details-du-recensement-de-la-population",
+      "title": "Bases de données et fichiers détails du recensement de la population"
+    },
+    {
+      "acronym": null,
+      "id": "653668616ffc5fc0becb52b4",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "page": "https://www.data.gouv.fr/datasets/recensement-de-la-population-fichiers-detail-logements-ordinaires",
+      "slug": "recensement-de-la-population-fichiers-detail-logements-ordinaires",
+      "title": "Recensement de la population - Fichiers détail : Logements ordinaires"
+    },
+    {
+      "acronym": null,
+      "id": "6536661882301752417a278d",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "page": "https://www.data.gouv.fr/datasets/recensement-de-la-population-fichiers-detail-individus-localises-au-canton-ou-ville",
+      "slug": "recensement-de-la-population-fichiers-detail-individus-localises-au-canton-ou-ville",
+      "title": "Recensement de la population - Fichiers détail : Individus localisés au canton-ou-ville "
+    }
+  ]
+}

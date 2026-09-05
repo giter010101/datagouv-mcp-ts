@@ -1,0 +1,50 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/resources/4792c248-8b80-4524-8605-7d4213e49051/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:05.596Z",
+    "note": "remote HTML with check:available=false → dead_link"
+  },
+  "body": {
+    "dataset_id": "53699d0ea3a729239d205b2e",
+    "resource": {
+      "checksum": null,
+      "created_at": "2014-05-07T04:40:14.478000+00:00",
+      "description": "Page web permettant de consulter les populations légales et les résultats des recensements, ainsi que télécharger des bases de données correspondantes.",
+      "extras": {
+        "analysis:check_id": 43079705,
+        "analysis:checksum": "29c256cb3ba463d4263221d80671cdb7419a09d3",
+        "analysis:content-length": 63806,
+        "analysis:last-modified-at": "[redacted]",
+        "analysis:last-modified-detection": "[redacted]",
+        "analysis:mime-type": "application/javascript",
+        "check:available": false,
+        "check:count-availability": 189,
+        "check:date": "[redacted]",
+        "check:error": "Bad Request",
+        "check:headers:charset": "utf-8",
+        "check:id": 43594191,
+        "check:status": 400,
+        "check:timeout": "[redacted]",
+        "check:url": "http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensements.htm"
+      },
+      "filesize": null,
+      "filetype": "remote",
+      "format": "html",
+      "harvest": null,
+      "id": "4792c248-8b80-4524-8605-7d4213e49051",
+      "internal": "[redacted]",
+      "last_modified": "2026-03-06T16:18:13.089820+00:00",
+      "latest": "https://www.data.gouv.fr/api/1/datasets/r/4792c248-8b80-4524-8605-7d4213e49051",
+      "metrics": "[redacted]",
+      "mime": null,
+      "preview_url": null,
+      "schema": null,
+      "title": "Les résultats des recensements de la population",
+      "type": "main",
+      "url": "http://www.insee.fr/fr/bases-de-donnees/default.asp?page=recensements.htm"
+    }
+  }
+}

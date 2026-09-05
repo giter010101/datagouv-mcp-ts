@@ -1,0 +1,26 @@
+{
+  "feed_size": 50,
+  "id": "data.gouv.fr",
+  "keywords": ["opendata", "udata"],
+  "metrics": {
+    "dataservices": 1235,
+    "datasets": 74202,
+    "discussions": 17575,
+    "followers": 23363,
+    "harvesters": 503,
+    "max_dataset_followers": 199,
+    "max_dataset_reuses": 229,
+    "max_org_datasets": 1963,
+    "max_org_followers": 662,
+    "max_org_reuses": 92,
+    "max_reuse_datasets": 369,
+    "max_reuse_followers": 258,
+    "organizations": 6588,
+    "public-service": 0,
+    "resources": 392142,
+    "reuses": 5578,
+    "users": 80109
+  },
+  "title": "data.gouv.fr",
+  "version": "17.6.0"
+}

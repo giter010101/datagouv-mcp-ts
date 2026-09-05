@@ -1,0 +1,12 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/datasets/resources/00000000-0000-0000-0000-000000000000/",
+    "method": "GET",
+    "status": 404,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:06.305Z"
+  },
+  "body": {
+    "message": "Resource does not exist. You have requested this URI [/api/2/datasets/resources/00000000-0000-0000-0000-000000000000/] but did you mean /api/2/datasets/resources/<uuid:rid>/ ?"
+  }
+}

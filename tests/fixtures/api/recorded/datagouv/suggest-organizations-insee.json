@@ -1,0 +1,51 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/organizations/suggest/?q=insee&size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:46:10.204Z"
+  },
+  "body": [
+    {
+      "acronym": null,
+      "id": "534fff81a3a7292c64a77e5c",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/64/f90b7bc5674a8c9160fad0ec1def4d-100.png",
+      "name": "Institut national de la statistique et des études économiques (Insee)",
+      "page": "https://www.data.gouv.fr/organizations/institut-national-de-la-statistique-et-des-etudes-economiques-insee",
+      "slug": "institut-national-de-la-statistique-et-des-etudes-economiques-insee"
+    },
+    {
+      "acronym": null,
+      "id": "696decfad86466dcba0e150e",
+      "image_url": null,
+      "name": "FINSEEK",
+      "page": "https://www.data.gouv.fr/organizations/finseek",
+      "slug": "finseek"
+    },
+    {
+      "acronym": null,
+      "id": "664b0cf37501e5ba115edb77",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/eb/b520f1a0c643bf9956ee2b4ac08873-100.png",
+      "name": "INSEEC Insight Seekers",
+      "page": "https://www.data.gouv.fr/organizations/inseec-insight-seekers",
+      "slug": "inseec-insight-seekers"
+    },
+    {
+      "acronym": null,
+      "id": "66452802001bf357ae0ea0a9",
+      "image_url": null,
+      "name": "INSEEC_Équipe_3_ODU",
+      "page": "https://www.data.gouv.fr/organizations/inseec-equipe-3-odu",
+      "slug": "inseec-equipe-3-odu"
+    },
+    {
+      "acronym": null,
+      "id": "6643a68af3847c75750300e8",
+      "image_url": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/52/ab8b0b9731498cb0d5a3260ba0117c-100.png",
+      "name": "Inseec_ODU_Equipe4",
+      "page": "https://www.data.gouv.fr/organizations/inseec-odu-equipe4",
+      "slug": "inseec-odu-equipe4"
+    }
+  ]
+}

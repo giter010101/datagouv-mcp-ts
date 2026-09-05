@@ -1,0 +1,59 @@
+{
+  "$fixture": {
+    "url": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=2&page_size=5",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:11.815Z"
+  },
+  "body": {
+    "data": [
+      {
+        "__id": 6,
+        "code_insee": "01007",
+        "commune": "Ambronay",
+        "departement": "01",
+        "gentile": "Ambrons, Ambronnes"
+      },
+      {
+        "__id": 7,
+        "code_insee": "01008",
+        "commune": "Ambutrix",
+        "departement": "01",
+        "gentile": "Butrians, Butrianes"
+      },
+      {
+        "__id": 8,
+        "code_insee": "01009",
+        "commune": "Andert-et-Condon",
+        "departement": "01",
+        "gentile": null
+      },
+      {
+        "__id": 9,
+        "code_insee": "01010",
+        "commune": "Anglefort",
+        "departement": "01",
+        "gentile": "Clafordans, Clafordanes"
+      },
+      {
+        "__id": 10,
+        "code_insee": "01011",
+        "commune": "Apremont",
+        "departement": "01",
+        "gentile": "Marranes"
+      }
+    ],
+    "links": {
+      "next": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=3&page_size=5",
+      "prev": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=1&page_size=5",
+      "profile": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/profile/",
+      "swagger": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/swagger/"
+    },
+    "meta": {
+      "page": 2,
+      "page_size": 5,
+      "total": 34946
+    }
+  }
+}

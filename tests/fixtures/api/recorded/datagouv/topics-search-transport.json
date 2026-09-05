@@ -1,0 +1,165 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/topics/?q=transport&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:14.336Z"
+  },
+  "body": {
+    "data": [
+      {
+        "color": null,
+        "created_at": "2025-09-29T12:14:27.058000+00:00",
+        "description": "Autorités organisatrices de mobilité (AOM), récupérez à la source les informations nécessaires pour déterminer l'éligibilité de vos usagers et leur attribuer automatiquement le tarif adapté pour les transports collectifs.",
+        "elements": {
+          "href": "https://www.data.gouv.fr/api/2/topics/68da7823bc643f6ea5cae5a0/elements/?page=1&page_size=20",
+          "rel": "subsection",
+          "total": 0,
+          "type": "GET"
+        },
+        "extras": {
+          "simplifions-v2-cas-d-usages": {
+            "A_destination_de": [
+              {
+                "id": 35,
+                "label": "Organismes de transports publics (AOM, régies et opérateurs de transport)"
+              }
+            ],
+            "id": 9
+          }
+        },
+        "featured": false,
+        "id": "68da7823bc643f6ea5cae5a0",
+        "last_modified": "2026-09-02T00:03:05.904000+00:00",
+        "name": "🚎 Tarification sociale/solidaire des transports publics | Attribution",
+        "organization": {
+          "acronym": "DINUM",
+          "badges": [
+            {
+              "kind": "certified"
+            },
+            {
+              "kind": "public-service"
+            }
+          ],
+          "class": "Organization",
+          "id": "57fe2a35c751df21e179df72",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/a0/16eb04d7754b989b7dcd21d77699bd.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/a0/16eb04d7754b989b7dcd21d77699bd-100.png",
+          "name": "Direction interministérielle du numérique",
+          "page": "https://www.data.gouv.fr/organizations/direction-interministerielle-du-numerique",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "direction-interministerielle-du-numerique",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/direction-interministerielle-du-numerique/"
+        },
+        "owner": null,
+        "private": false,
+        "slug": "tarification-sociale-solidaire-des-transports-publics-attribution",
+        "spatial": null,
+        "tags": ["simplifions-v2", "simplifions-v2-dag-generated", "simplifions-v2-cas-d-usages"],
+        "uri": "https://www.data.gouv.fr/api/2/topics/tarification-sociale-solidaire-des-transports-publics-attribution/"
+      },
+      {
+        "color": null,
+        "created_at": "2025-04-30T09:08:24.942000+00:00",
+        "description": "#### Présentation\nLe tableau de bord des mobilités durables est un outil national au service des territoires qui a pour objectif de faciliter l’orientation, la prise de décision et le suivi en matière de politiques publiques locales pour la mobilité durable des personnes.\n\nIl permet :\n\n- Un accès simple et rapide à des indicateurs territorialisés de mobilité en cohérence avec les objectifs locaux de transition écologique.\n- L’identification des leviers d’actions pouvant être mobilisés : report modal, mobilité partagée, verdissement du parc automobile, modération de la demande…\n- La comparaison entre les territoires grâce à une base mutualisée d’indicateurs standardisés.\n- L’outil intègre aujourd’hui une vingtaine d’indicateurs permettant de connaître, par exemple, les pratiques de déplacement sur le territoire (parts modales, composition du parc de véhicules…) ou le bouquet de service de mobilité sur le territoire (linéaire d’aménagements cyclables, couverture du réseau de transports en commun…). Il a vocation à évoluer et à être enrichi progressivement avec de nouveaux indicateurs et de nouvelles fonctionnalités.\n\n#### Public cible\nLe tableau de bord des mobilités durables s’adresse principalement aux services de l’Etat et aux collectivités territoriales en charge des politiques de mobilité, en particulier les autorités organisatrices de la mobilité (AOM), et plus largement à tous les acteurs de la mobilité qui contribuent à une mobilité plus durable.\n\n#### Porteurs du proje…[truncated]",
+        "elements": {
+          "href": "https://www.data.gouv.fr/api/2/topics/6811e889b455bf5bbde45517/elements/?page=1&page_size=20",
+          "rel": "subsection",
+          "total": 28,
+          "type": "GET"
+        },
+        "extras": {
+          "ecospheres_indicateurs": {
+            "tag_id": "tdb-mobilite-durable"
+          }
+        },
+        "featured": false,
+        "id": "6811e889b455bf5bbde45517",
+        "last_modified": "2026-08-28T08:22:33.918000+00:00",
+        "name": "Indicateurs du tableau de bord des mobilités durables",
+        "organization": {
+          "acronym": "TBMD",
+          "badges": [
+            {
+              "kind": "certified"
+            },
+            {
+              "kind": "public-service"
+            }
+          ],
+          "class": "Organization",
+          "id": "67c5ea43c8e7b1f1830d4739",
+          "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/ef/c9a998a8a34304b07326a1cac79e82.png",
+          "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/ef/c9a998a8a34304b07326a1cac79e82-100.png",
+          "name": "Tableau de bord des mobilités durables",
+          "page": "https://www.data.gouv.fr/organizations/tableau-de-bord-des-mobilites-durables",
+          "permissions": {
+            "delete": false,
+            "edit": false,
+            "harvest": "[redacted]",
+            "members": false,
+            "private": false
+          },
+          "slug": "tableau-de-bord-des-mobilites-durables",
+          "uri": "https://www.data.gouv.fr/api/1/organizations/tableau-de-bord-des-mobilites-durables/"
+        },
+        "owner": null,
+        "private": false,
+        "slug": "indicateurs-du-tableau-de-bord-des-mobilites-durables",
+        "spatial": {
+          "geom": null,
+          "granularity": "country",
+          "zones": ["country:fr"]
+        },
+        "tags": ["ecospheres", "univers-ecospheres", "ecospheres-theme-se-deplacer"],
+        "uri": "https://www.data.gouv.fr/api/2/topics/indicateurs-du-tableau-de-bord-des-mobilites-durables/"
+      },
+      {
+        "color": null,
+        "created_at": "2026-09-03T14:47:14.188644+00:00",
+        "description": "Cette page a pour vocation de référencer les principaux jeux de données relatifs à la thématique “énergie” disponibles sur data.gouv.fr. Celle-ci n’est pas exhaustive et est ouverte aux contributions.\n\n## Les principaux producteurs de données relatives à l'énergie\n\nLe secteur de l'énergie s'organise autour d'un écosystème riche qui comprend notamment :\n- **Les producteurs d'énergie** (électricité et gaz naturel) ;\n- **Les fournisseurs d'énergie**, qui vendent \"au détail\", aux consommateurs, l'électricité et/ou le gaz qu'ils ont acheté aux producteurs ;\n- **Les gestionnaires de réseau**, qui acheminent l'énergie jusqu'aux clients pour le compte des fournisseurs et exploitent, entretiennent et développent les réseaux, avec :\n  - **Les gestionnaires de transport** qui répartissent l'énergie sur le territoire (Rte pour l'électricité et Teréga ainsi que GRTgaz pour le gaz)\n  - **Les gestionnaires de distribution** qui répartissent l'énergie entre plusieurs communes et, au sein d'une commune, entre plusieurs habitations (Enedis pour l'électricité, GRDF pour le gaz, ou parfois des entreprises locales de distribution).\nBeaucoup publient des données en open data, et voici une liste non exhaustive des principaux producteurs de données relatives à l'énergie.\n\n- [Agence ORE](https://www.data.gouv.fr/fr/organizations/agence-ore-3/)\n  - L’Agence ORE (Opérateurs de Réseaux d’Énergie) fédère l’ensemble des acteurs français de la distribution d’électricité et de gaz, pour offrir une vision gl…[truncated]",
+        "elements": {
+          "href": "https://www.data.gouv.fr/api/2/topics/64d247b84ab64f73c5dd9cd4/elements/?page=1&page_size=20",
+          "rel": "subsection",
+          "total": 65,
+          "type": "GET"
+        },
+        "extras": {},
+        "featured": true,
+        "id": "64d247b84ab64f73c5dd9cd4",
+        "last_modified": "2026-09-03T14:47:14.188657+00:00",
+        "name": "Les données relatives à l'énergie",
+        "organization": null,
+        "owner": {
+          "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b9/7bd8843f2e4ddfb61b028030519e7e.png",
+          "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b9/7bd8843f2e4ddfb61b028030519e7e-500.png",
+          "class": "User",
+          "first_name": "Geoffrey",
+          "id": "5e6f426e634f417810ab794b",
+          "last_name": "Aldebert",
+          "page": "https://www.data.gouv.fr/users/geoffrey-aldebert",
+          "slug": "geoffrey-aldebert",
+          "uri": "https://www.data.gouv.fr/api/1/users/geoffrey-aldebert/"
+        },
+        "private": false,
+        "slug": "les-donnees-relatives-a-lenergie",
+        "spatial": null,
+        "tags": ["carburant", "gaz", "energie"],
+        "uri": "https://www.data.gouv.fr/api/2/topics/les-donnees-relatives-a-lenergie/"
+      }
+    ],
+    "next_page": "https://www.data.gouv.fr/api/2/topics/?q=transport&page_size=3&page=2",
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 26
+  }
+}

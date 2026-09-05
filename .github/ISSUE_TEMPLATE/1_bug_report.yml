@@ -1,0 +1,67 @@
+name: Bug report
+description: A tool returns a wrong result, an error, or the server misbehaves
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### AI-generated content
+
+        **Raw AI-only issues (output you have not personally edited, fully understood, and vetted) are not allowed and may be closed without discussion.** By submitting, you state you understand this issue and can defend it without an AI. Other rules: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md).
+
+  - type: checkboxes
+    id: human_accountability
+    attributes:
+      label: Confirmation
+      options:
+        - label: I am not submitting raw, unreviewed AI-generated content. I have reviewed, understand, and stand behind this issue.
+          required: true
+
+  - type: dropdown
+    id: transport
+    attributes:
+      label: How do you run the server?
+      options:
+        - Hosted https://mcp.data.gouv.fr/mcp
+        - npx datagouv-mcp (stdio)
+        - datagouv-mcp --http (self-hosted)
+        - Docker / docker compose
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "`npx datagouv-mcp --version`, the Docker tag, or the `version` field of `GET /health`."
+    validations:
+      required: true
+
+  - type: input
+    id: client
+    attributes:
+      label: MCP client
+      placeholder: Claude Desktop 1.x, Cursor 2.x, VS Code, Le Chat…
+
+  - type: textarea
+    id: tool_call
+    attributes:
+      label: Tool call
+      description: Tool name and arguments (JSON) that reproduce the problem.
+      render: json
+      placeholder: '{ "tool": "query_resource_data", "arguments": { "resource_id": "…", "page_size": 20 } }'
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened / what you expected
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Server stderr with `LOG_LEVEL=debug` if possible (redact anything private).
+      render: text

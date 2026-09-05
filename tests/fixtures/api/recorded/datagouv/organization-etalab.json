@@ -1,0 +1,112 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/organizations/534fff75a3a7292c64a77de4/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:11.220Z"
+  },
+  "body": {
+    "acronym": null,
+    "badges": [
+      {
+        "kind": "public-service"
+      },
+      {
+        "kind": "certified"
+      }
+    ],
+    "business_number_id": "13002526500013",
+    "created_at": "2014-04-17T18:21:09.022000+00:00",
+    "deleted": null,
+    "description": "Etalab est un département de la direction interministérielle du numérique (DINUM), dont les missions et l’organisation sont fixées par le décret du 30 Octobre 2019. Il coordonne notamment la conception et la mise en œuvre de la stratégie de l’État dans le domaine de la donnée. \n\n**Ouverture (open data) et partage des données**\nEtalab coordonne la politique d’ouverture et de partage des données publiques (open data) : Il coordonne les actions des administrations de l’Etat et leur apporte son appui pour faciliter la diffusion et la réutilisation de leurs informations publiques.\n\nIl développe et anime la plateforme d’open data data.gouv.fr destinée à rassembler et à mettre à disposition librement l’ensemble des informations publiques de l’Etat, de ses établissements publics et, si elles le souhaitent, des collectivités territoriales et des personnes de droit public ou de droit privé chargées d’une mission de service public.\n\nIl coordonne le Service Public de la Donnée .\n\nEtalab contribue également à faciliter la circulation et l’échange de données entre administrations, notamment dans le cadre de la mise en oeuvre du principe du « Dites le nous une fois », ou avec des tiers. \n\n**Exploitation des données : datasciences, intelligence artificielle et algorithmes publics**\nPour la DINUM, Etalab coordonne et promeut l’action de l’Etat et des organismes placés sous sa tutelle en matière d’inventaire, de gouvernance, de production, de circulation, d’exploitation et d’ouverture des donn…[truncated]",
+    "ext": {},
+    "extras": {
+      "datagouv_ckan_id": "69160813-5ee5-4e4a-9b48-363c843b7a25",
+      "datagouv_ckan_last_sync": "2014-09-17T03:30:53.819000",
+      "siretisation:collectivite_territoriale:code_insee": "nan",
+      "siretisation:collectivite_territoriale:niveau": "nan",
+      "siretisation:denomination_unite_legale": "DIRECTION INTERMINISTERIELLE DU NUMERIQUE (DINUM)",
+      "siretisation:est_collectivite_territoriale": "False",
+      "siretisation:est_service_public": "True",
+      "siretisation:found_siret": "13002526500013"
+    },
+    "id": "534fff75a3a7292c64a77de4",
+    "image_url": "http://static.data.gouv.fr/07/aa9eee178642d58b458d01f5f5c739e581e7679497608b57e987b60abc937e.png",
+    "last_modified": "2026-01-27T15:54:38.313000+00:00",
+    "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/2015-01-12/8ebc26cca2394e089a8b065fe0ae2659/etalab.jpg",
+    "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/2015-01-12/8ebc26cca2394e089a8b065fe0ae2659/etalab-100.jpg",
+    "members": [
+      {
+        "label": "Administrateur",
+        "role": "admin",
+        "since": "2020-03-16T15:22:14.164000+00:00",
+        "user": {
+          "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b9/7bd8843f2e4ddfb61b028030519e7e.png",
+          "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b9/7bd8843f2e4ddfb61b028030519e7e-500.png",
+          "class": "User",
+          "email": "***@data.gouv.fr",
+          "first_name": "Geoffrey",
+          "id": "5e6f426e634f417810ab794b",
+          "last_login_at": null,
+          "last_name": "Aldebert",
+          "page": "https://www.data.gouv.fr/users/geoffrey-aldebert",
+          "slug": "geoffrey-aldebert",
+          "uri": "https://www.data.gouv.fr/api/1/users/geoffrey-aldebert/"
+        }
+      },
+      {
+        "label": "Administrateur",
+        "role": "admin",
+        "since": "2020-05-15T11:52:52.598000+00:00",
+        "user": {
+          "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/c4/23684b39334a3aa14f56679b0626c6.png",
+          "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/c4/23684b39334a3aa14f56679b0626c6-500.png",
+          "class": "User",
+          "email": "***@data.gouv.fr",
+          "first_name": "Antonin",
+          "id": "5dee373f6f44416a83fbd907",
+          "last_login_at": null,
+          "last_name": "Garrone",
+          "page": "https://www.data.gouv.fr/users/antonin-garrone",
+          "slug": "antonin-garrone",
+          "uri": "https://www.data.gouv.fr/api/1/users/antonin-garrone/"
+        }
+      },
+      {
+        "label": "Éditeur",
+        "role": "editor",
+        "since": "2020-12-16T16:38:38.870000+00:00",
+        "user": {
+          "avatar": null,
+          "avatar_thumbnail": null,
+          "class": "User",
+          "email": "***@data.gouv.fr",
+          "first_name": "Thanh Ha ",
+          "id": "5fda299e56f984a4b126afe1",
+          "last_login_at": null,
+          "last_name": "LE",
+          "page": "https://www.data.gouv.fr/users/thanh-ha-le",
+          "slug": "thanh-ha-le",
+          "uri": "https://www.data.gouv.fr/api/1/users/thanh-ha-le/"
+        }
+      }
+    ],
+    "metrics": "[redacted]",
+    "name": "Etalab",
+    "page": "https://www.data.gouv.fr/organizations/etalab",
+    "permissions": {
+      "delete": false,
+      "edit": false,
+      "harvest": "[redacted]",
+      "members": false,
+      "private": false
+    },
+    "presentation_blocs_published_at": null,
+    "slug": "etalab",
+    "teams": [],
+    "uri": "https://www.data.gouv.fr/api/1/organizations/etalab/",
+    "url": "https://www.etalab.gouv.fr",
+    "zone": null
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$fixture": {
+    "url": "https://api.validata.etalab.studio/validate?schema=https%3A%2F%2Fschema.data.gouv.fr%2Fschemas%2Fetalab%2Fschema-irve-statique%2Flatest%2Fschema-statique.json&url=https%3A%2F%2Fwww.data.gouv.fr%2Fapi%2F1%2Fdatasets%2Fr%2Fa86ebc34-a979-4d6c-8f2a-9710a43dca93",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:23.738Z",
+    "note": "Validata may be slow/unavailable; optional so the recorder does not fail"
+  },
+  "body": {
+    "date": "2026-09-03T16:47:23.658465+02:00",
+    "options": {
+      "ignore_header_case": "false",
+      "include_resource_data": "false"
+    },
+    "report": {
+      "errors": [
+        {
+          "fieldName": "contact_operateur",
+          "fieldNumber": 5,
+          "message": "La colonne obligatoire `contact_operateur` est manquante",
+          "tags": ["#table", "#header", "#label"],
+          "title": "Colonne manquante",
+          "type": "missing-label"
+        },
+        {
+          "fieldName": "nom_enseigne",
+          "fieldNumber": 6,
+          "message": "La colonne obligatoire `nom_enseigne` est manquante",
+          "tags": ["#table", "#header", "#label"],
+          "title": "Colonne manquante",
+          "type": "missing-label"
+        },
+        {
+          "fieldName": "id_station_itinerance",
+          "fieldNumber": 7,
+          "message": "La colonne obligatoire `id_station_itinerance` est manquante",
+          "tags": ["#table", "#header", "#label"],
+          "title": "Colonne manquante",
+          "type": "missing-label"
+        }
+      ],
+      "stats": {
+        "errors": 23,
+        "fields": 4,
+        "rows": 34946,
+        "rows_processed": 34946,
+        "seconds": 0.598,
+        "warnings": 21
+      },
+      "valid": false,
+      "warnings": [
+        "Colonne manquante : Ajoutez la colonne manquante `nom_amenageur`.",
+        "Colonne manquante : Ajoutez la colonne manquante `siren_amenageur`.",
+        "Colonne manquante : Ajoutez la colonne manquante `contact_amenageur`."
+      ]
+    },
+    "schema": "https://schema.data.gouv.fr/schemas/etalab/schema-irve-statique/latest/schema-statique.json",
+    "url": "https://www.data.gouv.fr/api/1/datasets/r/a86ebc34-a979-4d6c-8f2a-9710a43dca93",
+    "version": "0.12.5"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "__id": 1,
+      "code_insee": "01001",
+      "commune": "L'Abergement-Clémenciat",
+      "departement": "01",
+      "gentile": null
+    },
+    {
+      "__id": 2,
+      "code_insee": "01002",
+      "commune": "L'Abergement-de-Varey",
+      "departement": "01",
+      "gentile": "Abergementais, Abergementaises"
+    },
+    {
+      "__id": 3,
+      "code_insee": "01004",
+      "commune": "Ambérieu-en-Bugey",
+      "departement": "01",
+      "gentile": "Ambarrois, Ambarroises"
+    }
+  ],
+  "links": {
+    "profile": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/profile/",
+    "swagger": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/swagger/",
+    "next": "https://tabular-api.data.gouv.fr/api/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93/data/?page=2&page_size=3",
+    "prev": null
+  },
+  "meta": {
+    "page": 1,
+    "page_size": 3,
+    "total": 34946
+  }
+}

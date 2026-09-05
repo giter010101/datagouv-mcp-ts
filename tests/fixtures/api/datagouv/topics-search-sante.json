@@ -1,0 +1,358 @@
+{
+  "data": [
+    {
+      "id": "68d26d38c8f655382d59e3ac",
+      "organization": {
+        "id": "646b7187b50b2a93b1ae3d45",
+        "name": "data.gouv.fr",
+        "slug": "data-gouv-fr",
+        "acronym": null,
+        "badges": [
+          {
+            "kind": "public-service"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "page": "https://www.data.gouv.fr/organizations/data-gouv-fr",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/31/8739c52c534ed583b0256ee4541875.png",
+        "class": "Organization"
+      },
+      "created_at": "2025-09-23T09:49:44.087000+00:00",
+      "last_modified": "2026-05-20T14:38:20.902000+00:00",
+      "name": "Santé et territoires",
+      "slug": "sante-et-territoires",
+      "description": "_Ce défi est proposé par [la Fondation Roche](https://fondationroche.org/), partenaire de l’Open Data University._\n\n**[Lancer ce défi sur un environnement de travail configuré proposé sur le Datalab \"SSP Cloud\" de l'INSEE](https://datalab.sspcloud.fr/launcher/ide/jupyter-python?autoLaunch=true&name=",
+      "tags": ["defisdatagouvfr", "defisdatagouvfr-saison-saison-4"],
+      "color": null,
+      "featured": false,
+      "private": false,
+      "spatial": null,
+      "uri": "https://www.data.gouv.fr/api/2/topics/sante-et-territoires/",
+      "elements": {
+        "rel": "subsection",
+        "href": "https://www.data.gouv.fr/api/2/topics/68d26d38c8f655382d59e3ac/elements/?page=1&page_size=20",
+        "type": "GET",
+        "total": 24
+      }
+    },
+    {
+      "id": "6a3294f18d9f207fae53d1a1",
+      "organization": {
+        "id": "69e0f294db7cc80119d2b956",
+        "name": "Point d’accès unique aux données d’accessibilité",
+        "slug": "point-dacces-unique-aux-donnees-daccessibilite",
+        "acronym": "PAUDA",
+        "badges": [],
+        "page": "https://www.data.gouv.fr/organizations/point-dacces-unique-aux-donnees-daccessibilite",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/05/561fe9df0d49bd8ec738f82b1e8e5c.png",
+        "class": "Organization"
+      },
+      "created_at": "2026-06-17T12:37:05.190000+00:00",
+      "last_modified": "2026-08-13T07:48:56.557000+00:00",
+      "name": "Santé",
+      "slug": "sante",
+      "description": "Exemples : accessibilité des cabinets, des établissements médicaux et des pharmacies",
+      "tags": ["accessibilite-univers", "accessibilite-univers-theme-accessibilite-sante"],
+      "color": null,
+      "featured": false,
+      "private": false,
+      "spatial": null,
+      "uri": "https://www.data.gouv.fr/api/2/topics/sante/",
+      "elements": {
+        "rel": "subsection",
+        "href": "https://www.data.gouv.fr/api/2/topics/6a3294f18d9f207fae53d1a1/elements/?page=1&page_size=20",
+        "type": "GET",
+        "total": 23
+      }
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 21,
+  "next_page": "https://www.data.gouv.fr/api/2/topics/search/?q=sant%C3%A9&page_size=2&page=2",
+  "previous_page": null,
+  "facets": {
+    "tag": [
+      {
+        "name": "all",
+        "count": 21
+      },
+      {
+        "name": "defisdatagouvfr",
+        "count": 10
+      },
+      {
+        "name": "defisdatagouvfr-saison-saison-4",
+        "count": 7
+      },
+      {
+        "name": "univers-ecospheres",
+        "count": 5
+      },
+      {
+        "name": "ecospheres-subtheme-planification-differenciation-territoriale",
+        "count": 3
+      },
+      {
+        "name": "accessibilite-univers",
+        "count": 2
+      },
+      {
+        "name": "defisdatagouvfr-saison-saison-1",
+        "count": 2
+      },
+      {
+        "name": "ecospheres-theme-autre",
+        "count": 2
+      },
+      {
+        "name": "ecospheres-theme-mieux-preserver-valoriser-ecosystemes",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-categorie-de-solution-brique-technique",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-dag-generated",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-communes",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-tout-acteurs-publics",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-tout-collectivites-territoires",
+        "count": 2
+      },
+      {
+        "name": "simplifions-v2-target-users-particuliers",
+        "count": 2
+      },
+      {
+        "name": "accessibilite-univers-theme-accessibilite-quotidienne",
+        "count": 1
+      },
+      {
+        "name": "accessibilite-univers-theme-accessibilite-sante",
+        "count": 1
+      },
+      {
+        "name": "bourse",
+        "count": 1
+      },
+      {
+        "name": "boursier",
+        "count": 1
+      },
+      {
+        "name": "carte-scolaire",
+        "count": 1
+      },
+      {
+        "name": "defisdatagouvfr-saison-saison-2",
+        "count": 1
+      },
+      {
+        "name": "defisdatagouvfr-saison-saison-3",
+        "count": 1
+      },
+      {
+        "name": "ecospheres",
+        "count": 1
+      },
+      {
+        "name": "ecospheres-subtheme-eau",
+        "count": 1
+      },
+      {
+        "name": "ecospheres-subtheme-sols",
+        "count": 1
+      },
+      {
+        "name": "ecospheres-theme-chantiers-transverses",
+        "count": 1
+      },
+      {
+        "name": "enedis",
+        "count": 1
+      },
+      {
+        "name": "france-relance",
+        "count": 1
+      },
+      {
+        "name": "ilot-de-chaleur-urbain",
+        "count": 1
+      },
+      {
+        "name": "proactivité",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-cas-d-usages",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-cas-d-usages-41",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-categorie-de-solution-portail-consultation",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-acteurs-culture",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-acteurs-education-enseignement",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-acteurs-environnement",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-acteurs-sante",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-acteurs-transport",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-autres-autorites-nationales",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-departements",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-etat",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-fournisseurs-de-service-regions",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-solutions",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-solutions-4",
+        "count": 1
+      },
+      {
+        "name": "simplifions-v2-types-de-simplification-acces-facile",
+        "count": 1
+      },
+      {
+        "name": "sport",
+        "count": 1
+      },
+      {
+        "name": "villes",
+        "count": 1
+      },
+      {
+        "name": "étudiant",
+        "count": 1
+      }
+    ],
+    "organization_id_with_name": [
+      {
+        "name": "all",
+        "count": 21
+      },
+      {
+        "name": "646b7187b50b2a93b1ae3d45|data.gouv.fr",
+        "count": 4
+      },
+      {
+        "name": "57fe2a35c751df21e179df72|Direction interministérielle du numérique",
+        "count": 2
+      },
+      {
+        "name": "69e0f294db7cc80119d2b956|Point d’accès unique aux données d’accessibilité",
+        "count": 2
+      },
+      {
+        "name": "534fff7aa3a7292c64a77e0c|Métropole de Lyon",
+        "count": 1
+      },
+      {
+        "name": "5c547016634f41337edb2fea|Makina Corpus",
+        "count": 1
+      },
+      {
+        "name": "67373f9ab57ae6297e2a31e7|Docurba",
+        "count": 1
+      },
+      {
+        "name": "67dbefdf5b536934a6e640be|Secrétariat général à la planification écologique",
+        "count": 1
+      },
+      {
+        "name": "67ebe46e23fdcc108cdce09d|RésO Villes",
+        "count": 1
+      }
+    ],
+    "producer_type": [
+      {
+        "name": "all",
+        "count": 21
+      },
+      {
+        "name": "user",
+        "count": 8
+      },
+      {
+        "name": "public-service",
+        "count": 6
+      },
+      {
+        "name": "not-specified",
+        "count": 5
+      },
+      {
+        "name": "company",
+        "count": 1
+      },
+      {
+        "name": "local-authority",
+        "count": 1
+      }
+    ],
+    "last_update": [
+      {
+        "name": "all",
+        "count": 21
+      },
+      {
+        "name": "last_3_years",
+        "count": 21
+      },
+      {
+        "name": "last_12_months",
+        "count": 19
+      },
+      {
+        "name": "last_30_days",
+        "count": 5
+      }
+    ]
+  }
+}

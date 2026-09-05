@@ -1,0 +1,679 @@
+{
+  "data": [
+    {
+      "id": "672cf67802ef6b1be63b8975",
+      "organization": {
+        "id": "534fff80a3a7292c64a77e41",
+        "name": "Institut national de l'information géographique et forestière",
+        "slug": "institut-national-de-linformation-geographique-et-forestiere",
+        "acronym": "IGN",
+        "badges": [
+          {
+            "kind": "public-service"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "page": "https://www.data.gouv.fr/organizations/institut-national-de-linformation-geographique-et-forestiere",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/81/98295ded66449e80a960b8bc20e527.jpg",
+        "class": "Organization"
+      },
+      "badges": [
+        {
+          "kind": "hvd"
+        }
+      ],
+      "access_type": "open",
+      "authorization_request_url": null,
+      "access_type_reason_category": null,
+      "access_type_reason": null,
+      "metrics": {
+        "discussions": 9,
+        "discussions_open": 5,
+        "followers": 19,
+        "followers_by_months": {
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0,
+          "2025-11": 0,
+          "2025-12": 0,
+          "2026-01": 0,
+          "2026-02": 0,
+          "2026-03": 0,
+          "2026-04": 0,
+          "2026-05": 0,
+          "2026-06": 0,
+          "2026-07": 0,
+          "2026-08": 0
+        },
+        "reuses": 25,
+        "views": 57096
+      },
+      "title": "API Adresse (Base Adresse Nationale - BAN)",
+      "acronym": null,
+      "slug": "api-adresse-base-adresse-nationale-ban",
+      "description": "L' API Adresse permet d'interroger facilement la Base Adresse Nationale.\n\n### A quoi sert l'API Adresse ?\n\nEn intégrant l'API dans votre système d'information, vous pouvez facilement rechercher une adresse et :\n\n- faire de l'autocomplétion et de la vérification d'adresse ;\n- géolocaliser une adresse sur une carte ;\n- faire une recherche géographique inversée (trouver la rue la plus proche de coord",
+      "base_api_url": "https://data.geopf.fr/geocodage/",
+      "machine_documentation_url": "https://data.geopf.fr/geocodage/openapi.yaml",
+      "technical_documentation_url": "https://geoservices.ign.fr/documentation/services/services-geoplateforme/geocodage",
+      "business_documentation_url": "https://adresse.data.gouv.fr/outils/api-doc/adresse",
+      "rate_limiting": "50 appels / seconde / IP\nL'API unitaire est disponible à hauteur de 50 appels par seconde et par adresse IP.\nLe géocodage de masse (CSV) est disponible à hauteur d'un appel simultané par adresse IP.\n",
+      "rate_limiting_url": null,
+      "availability": 100.0,
+      "availability_url": null,
+      "format": null,
+      "license": null,
+      "tags": [
+        "adresse",
+        "ban",
+        "base",
+        "carte",
+        "code-postal",
+        "geocodage",
+        "geographie",
+        "geospatiales",
+        "gps",
+        "hvd",
+        "localisation",
+        "nationale"
+      ],
+      "private": false,
+      "featured": null,
+      "created_at": "2024-11-07T17:18:48.601000+00:00",
+      "metadata_modified_at": "2026-04-17T11:49:47.375000+00:00",
+      "deleted_at": null,
+      "archived_at": null,
+      "datasets": {
+        "rel": "subsection",
+        "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672cf67802ef6b1be63b8975",
+        "type": "GET",
+        "total": 1
+      },
+      "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-adresse-base-adresse-nationale-ban/",
+      "self_web_url": "https://www.data.gouv.fr/dataservices/api-adresse-base-adresse-nationale-ban"
+    },
+    {
+      "id": "672dcfd4fb13e93799d97e68",
+      "organization": {
+        "id": "534fff8ea3a7292c64a77f02",
+        "name": "Ministères économiques et financiers",
+        "slug": "ministeres-economiques-et-financiers",
+        "acronym": "MEF",
+        "badges": [
+          {
+            "kind": "public-service"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "page": "https://www.data.gouv.fr/organizations/ministeres-economiques-et-financiers",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3b/06ce9c1027460a87364418789747b6.jpg",
+        "class": "Organization"
+      },
+      "badges": [],
+      "access_type": "restricted",
+      "authorization_request_url": "https://datapass.api.gouv.fr/demandes/api-ficoba/nouveau",
+      "access_type_reason_category": "confidentiality_of_personal_data",
+      "access_type_reason": null,
+      "metrics": {
+        "discussions": 2,
+        "discussions_open": 2,
+        "followers": 6,
+        "followers_by_months": {
+          "2025-06": 0,
+          "2025-07": 0,
+          "2025-08": 0,
+          "2025-09": 0,
+          "2025-10": 0,
+          "2025-11": 0,
+          "2025-12": 0,
+          "2026-01": 0,
+          "2026-02": 0,
+          "2026-03": 0,
+          "2026-04": 0,
+          "2026-05": 0,
+          "2026-06": 0
+        },
+        "reuses": 0,
+        "views": 19260
+      },
+      "title": "API Fichier des Comptes Bancaires et Assimilés (FICOBA)",
+      "acronym": null,
+      "slug": "api-fichier-des-comptes-bancaires-et-assimiles-ficoba",
+      "description": "L'API FICOBA (*FI*chier des *CO*mptes *B*ancaires et *A*ssimilés) permet aux entités administratives (administrations publiques, ministères, organismes sociaux) et aux acteurs privés qui sont éligibles d’accéder aux coordonnées bancaires d'un usager afin de permettre d'intégrer et de valider ces données dans leur système d'information.\n\nEn effet, selon les dispositions de [l'article 1649 A du Code",
+      "base_api_url": null,
+      "machine_documentation_url": "https://raw.githubusercontent.com/betagouv/api_gouv_swaggers/refs/heads/main/swaggers/api-ficoba3.json",
+      "technical_documentation_url": "https://github.com/betagouv/api_gouv_swaggers/raw/refs/heads/main/docs/2023-DGFIP-Guide%20Partenaires-FICOBA3.zip",
+      "business_documentation_url": "https://github.com/betagouv/api_gouv_swaggers/raw/refs/heads/main/docs/2023-DGFIP-Guide%20Partenaires-FICOBA3.zip",
+      "rate_limiting": "200 appels/minute\nL’API Manager de la DGFiP délivre un quota de consultation pour chacun de ses partenaires pour chaque API utilisée. Concernant l'API Ficoba le quota par partenaire est fixé à 200 appels à la minute.\n",
+      "rate_limiting_url": null,
+      "availability": null,
+      "availability_url": null,
+      "format": null,
+      "license": null,
+      "tags": [
+        "bancaire",
+        "banque",
+        "civil",
+        "compte",
+        "entreprise",
+        "etat",
+        "fichier",
+        "fiscal",
+        "iban",
+        "identifiant",
+        "particulier",
+        "siren",
+        "siret",
+        "spi"
+      ],
+      "private": false,
+      "featured": null,
+      "created_at": "2024-11-08T08:46:12.791000+00:00",
+      "metadata_modified_at": "2026-08-18T07:25:37.261000+00:00",
+      "deleted_at": null,
+      "archived_at": null,
+      "datasets": {
+        "rel": "subsection",
+        "href": "https://www.data.gouv.fr/api/1/datasets/?dataservice=672dcfd4fb13e93799d97e68",
+        "type": "GET",
+        "total": 0
+      },
+      "self_api_url": "https://www.data.gouv.fr/api/1/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba/",
+      "self_web_url": "https://www.data.gouv.fr/dataservices/api-fichier-des-comptes-bancaires-et-assimiles-ficoba"
+    }
+  ],
+  "page": 1,
+  "page_size": 2,
+  "total": 316,
+  "next_page": "https://www.data.gouv.fr/api/2/dataservices/search/?q=adresse&page_size=2&page=2",
+  "previous_page": null,
+  "facets": {
+    "access_type": [
+      {
+        "name": "all",
+        "count": 316
+      },
+      {
+        "name": "open",
+        "count": 238
+      },
+      {
+        "name": "restricted",
+        "count": 72
+      },
+      {
+        "name": "open_with_account",
+        "count": 6
+      }
+    ],
+    "producer_type": [
+      {
+        "name": "all",
+        "count": 316
+      },
+      {
+        "name": "public-service",
+        "count": 209
+      },
+      {
+        "name": "local-authority",
+        "count": 52
+      },
+      {
+        "name": "user",
+        "count": 28
+      },
+      {
+        "name": "not-specified",
+        "count": 18
+      },
+      {
+        "name": "company",
+        "count": 7
+      },
+      {
+        "name": "association",
+        "count": 2
+      }
+    ],
+    "organization_id_with_name": [
+      {
+        "name": "all",
+        "count": 316
+      },
+      {
+        "name": "57fe2a35c751df21e179df72|Direction interministérielle du numérique",
+        "count": 57
+      },
+      {
+        "name": "54aff788c751df39e138127d|Département des Côtes d'Armor",
+        "count": 33
+      },
+      {
+        "name": "54da1f52c751df59f7467389|Grand Poitiers Open Data",
+        "count": 30
+      },
+      {
+        "name": "534fff4ca3a7292c64a77c95|ADEME",
+        "count": 29
+      },
+      {
+        "name": "534fff80a3a7292c64a77e41|Institut national de l'information géographique et forestière",
+        "count": 12
+      },
+      {
+        "name": "66601e784637c6bfa87b06ca|Bureau de Recherches Géologiques et Minières",
+        "count": 12
+      },
+      {
+        "name": "673f49a6d1c056e10ac5f38b|Hub’eau",
+        "count": 11
+      },
+      {
+        "name": "534fff8ea3a7292c64a77f02|Ministères économiques et financiers",
+        "count": 7
+      },
+      {
+        "name": "534fffa3a3a7292c64a78094|France Travail",
+        "count": 7
+      },
+      {
+        "name": "5bb32d078b4c412462c28955|SAINT-QUENTIN-EN-YVELINES",
+        "count": 7
+      },
+      {
+        "name": "534fff85a3a7292c64a77e9c|La Poste",
+        "count": 6
+      },
+      {
+        "name": "605074cb59c1d13e775073d4|Electricité de France",
+        "count": 6
+      },
+      {
+        "name": "61addb0b0bee8f02301638af|Agence bibliographique de l'enseignement supérieur",
+        "count": 5
+      },
+      {
+        "name": "534fff8da3a7292c64a77eee|Ministère de la Transition écologique",
+        "count": 4
+      },
+      {
+        "name": "64f04846c1f09daa9f42a1a7|Saintes Grandes Rives, l'Agglo",
+        "count": 4
+      },
+      {
+        "name": "673cf09f830c0fd0764d8a9a|Plateforme de l'inclusion",
+        "count": 4
+      },
+      {
+        "name": "534fffa5a3a7292c64a7809e|Premier ministre",
+        "count": 3
+      },
+      {
+        "name": "57e3e31888ee38155a5ff490|Musée d'art et d'histoire - Ville de Saint-Brieuc",
+        "count": 3
+      },
+      {
+        "name": "584ed32c88ee38733fc65bb3|Ville de PLERIN",
+        "count": 3
+      },
+      {
+        "name": "61dc6a1398b3376b6fa0d0d9|Centre Scientifique et Technique du Batiment",
+        "count": 3
+      },
+      {
+        "name": "534fff81a3a7292c64a77e5c|Institut national de la statistique et des études économiques (Insee)",
+        "count": 2
+      },
+      {
+        "name": "534fff8ca3a7292c64a77edf|Ministère de l'Agriculture, de l'agro-alimentaire et de la souveraineté alimentaire",
+        "count": 2
+      },
+      {
+        "name": "534fff8fa3a7292c64a77f22|Ministères de l'Éducation nationale",
+        "count": 2
+      },
+      {
+        "name": "534fff95a3a7292c64a77fd8|Ministère chargé des Sports",
+        "count": 2
+      },
+      {
+        "name": "56c44eb7c751df689e6c6de0|Observatoire de l'environnement en Bretagne",
+        "count": 2
+      },
+      {
+        "name": "588f0a98c751df12c6ae0a66|Ville de Plaintel",
+        "count": 2
+      },
+      {
+        "name": "5988421b88ee382902e11949|Centre Interministériel de Services Informatiques relatifs aux Ressources Humaines (CISIRH)",
+        "count": 2
+      },
+      {
+        "name": "5b20e610c751df0b90147be9|Agence pour l'Informatique Financière de l'Etat",
+        "count": 2
+      },
+      {
+        "name": "5be59f048b4c414624029a95|adresse.data.gouv.fr",
+        "count": 2
+      },
+      {
+        "name": "606fefb59f8e55cf29095d27|Réseau des Carif-Oref",
+        "count": 2
+      },
+      {
+        "name": "610192ec7d0dd134d7a28c2c|Agence du Numérique en Santé",
+        "count": 2
+      },
+      {
+        "name": "534fff4da3a7292c64a77c9f|Agence Bio",
+        "count": 1
+      },
+      {
+        "name": "534fff5ca3a7292c64a77d1a|Caisse nationale de l'Assurance Maladie",
+        "count": 1
+      },
+      {
+        "name": "534fff90a3a7292c64a77f45|Ministère de l'Enseignement supérieur, de la Recherche et de l'Espace",
+        "count": 1
+      },
+      {
+        "name": "534fff94a3a7292c64a77fc1|Ministère des Solidarités et de la Santé",
+        "count": 1
+      },
+      {
+        "name": "534fffaaa3a7292c64a780dd|Rennes Métropole",
+        "count": 1
+      },
+      {
+        "name": "534fffb2a3a7292c64a78123|Système d'Information sur l'Eau",
+        "count": 1
+      },
+      {
+        "name": "537d58eea3a72973a2dc026c|Collectivité de Corse",
+        "count": 1
+      },
+      {
+        "name": "571e4595c751df54b2fcca0d|GRDF",
+        "count": 1
+      },
+      {
+        "name": "5acb2f2088ee3813a476714d|Saint-Brieuc Armor Agglomération",
+        "count": 1
+      },
+      {
+        "name": "5b1138d9c751df2618dc4662|Agence ORE",
+        "count": 1
+      },
+      {
+        "name": "61534146109f50ed98713f7c|Urban Retrofit Business Services",
+        "count": 1
+      },
+      {
+        "name": "62da6837cde1491f3727cdb2|Agence Nationale de l'Habitat",
+        "count": 1
+      },
+      {
+        "name": "6314f7a2844b191886637a24|France Chaleur Urbaine",
+        "count": 1
+      },
+      {
+        "name": "67190943354b432071592b0c|Les Greniers d'Abondance",
+        "count": 1
+      },
+      {
+        "name": "67641e68223a9a9c6bac5a7f|Radio France",
+        "count": 1
+      },
+      {
+        "name": "6a7ee80548fbfb8195240a66|COLLECTIF PIXEL",
+        "count": 1
+      },
+      {
+        "name": "6a91b5bb435dc1520475a5c0|Auregistre",
+        "count": 1
+      },
+      {
+        "name": "6a91b612936deb82cebd1500|QuiVad",
+        "count": 1
+      },
+      {
+        "name": "6a92987c644352af05dd3004|BData X",
+        "count": 1
+      }
+    ],
+    "tag": [
+      {
+        "name": "all",
+        "count": 316
+      },
+      {
+        "name": "administration",
+        "count": 57
+      },
+      {
+        "name": "administration-et-legislation",
+        "count": 54
+      },
+      {
+        "name": "api-entreprise",
+        "count": 31
+      },
+      {
+        "name": "environnement",
+        "count": 24
+      },
+      {
+        "name": "api-particulier",
+        "count": 17
+      },
+      {
+        "name": "entreprise",
+        "count": 17
+      },
+      {
+        "name": "adresse",
+        "count": 16
+      },
+      {
+        "name": "emploi",
+        "count": 16
+      },
+      {
+        "name": "aides",
+        "count": 12
+      },
+      {
+        "name": "fraude",
+        "count": 12
+      },
+      {
+        "name": "cartographie",
+        "count": 11
+      },
+      {
+        "name": "donnees-ouvertes",
+        "count": 11
+      },
+      {
+        "name": "georisques",
+        "count": 11
+      },
+      {
+        "name": "marches-publics",
+        "count": 11
+      },
+      {
+        "name": "rapportage",
+        "count": 11
+      },
+      {
+        "name": "directive-inondation",
+        "count": 10
+      },
+      {
+        "name": "gestion-du-risque-dinondation",
+        "count": 10
+      },
+      {
+        "name": "inondation",
+        "count": 10
+      },
+      {
+        "name": "risque",
+        "count": 10
+      },
+      {
+        "name": "surface-inondable",
+        "count": 10
+      },
+      {
+        "name": "territoire-a-risque-dinondation",
+        "count": 10
+      },
+      {
+        "name": "particulier",
+        "count": 9
+      },
+      {
+        "name": "batiment",
+        "count": 8
+      },
+      {
+        "name": "cnav",
+        "count": 8
+      },
+      {
+        "name": "conformite",
+        "count": 8
+      },
+      {
+        "name": "cotisations",
+        "count": 8
+      },
+      {
+        "name": "effectif",
+        "count": 8
+      },
+      {
+        "name": "energie",
+        "count": 8
+      },
+      {
+        "name": "travaux",
+        "count": 8
+      },
+      {
+        "name": "aides-publiques",
+        "count": 7
+      },
+      {
+        "name": "annuaire",
+        "count": 7
+      },
+      {
+        "name": "btp",
+        "count": 7
+      },
+      {
+        "name": "conforme",
+        "count": 7
+      },
+      {
+        "name": "handicap",
+        "count": 7
+      },
+      {
+        "name": "obligations",
+        "count": 7
+      },
+      {
+        "name": "cours-deau",
+        "count": 6
+      },
+      {
+        "name": "etablissement",
+        "count": 6
+      },
+      {
+        "name": "finances",
+        "count": 6
+      },
+      {
+        "name": "immatriculation",
+        "count": 6
+      },
+      {
+        "name": "siret",
+        "count": 6
+      },
+      {
+        "name": "activite",
+        "count": 5
+      },
+      {
+        "name": "ademe",
+        "count": 5
+      },
+      {
+        "name": "bibliographie",
+        "count": 5
+      },
+      {
+        "name": "compte",
+        "count": 5
+      },
+      {
+        "name": "dgfip",
+        "count": 5
+      },
+      {
+        "name": "donnees",
+        "count": 5
+      },
+      {
+        "name": "ecologie",
+        "count": 5
+      },
+      {
+        "name": "education",
+        "count": 5
+      },
+      {
+        "name": "enfant",
+        "count": 5
+      },
+      {
+        "name": "enseignement",
+        "count": 5
+      }
+    ],
+    "badge": [
+      {
+        "name": "all",
+        "count": 316
+      }
+    ],
+    "last_update": [
+      {
+        "name": "all",
+        "count": 316
+      },
+      {
+        "name": "last_3_years",
+        "count": 316
+      },
+      {
+        "name": "last_12_months",
+        "count": 273
+      },
+      {
+        "name": "last_30_days",
+        "count": 87
+      }
+    ]
+  }
+}

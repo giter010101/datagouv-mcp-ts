@@ -1,0 +1,15 @@
+# Only package.json, pnpm-lock.yaml, tsconfig.json, tsdown.config.ts, src/, LICENSE
+# and README.md are needed to build the image.
+*
+!package.json
+!pnpm-lock.yaml
+!tsconfig.json
+!tsdown.config.ts
+!src/
+!LICENSE
+!README.md
+
+# never ship tests, secrets or local artefacts even if the allow-list widens
+src/**/*.test.ts
+.env
+.env.*

@@ -1,0 +1,46 @@
+{
+  "$fixture": {
+    "url": "https://metric-api.data.gouv.fr/api/datasets/data/?dataset_id__exact=53699d0ea3a729239d205b2e&metric_month__sort=desc&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:13.264Z"
+  },
+  "body": {
+    "data": [
+      {
+        "__id": 134545727,
+        "dataset_id": "53699d0ea3a729239d205b2e",
+        "metric_month": "2026-09",
+        "monthly_download_resource": 108,
+        "monthly_visit": 444,
+        "organization_id": "534fff81a3a7292c64a77e5c"
+      },
+      {
+        "__id": 131884061,
+        "dataset_id": "53699d0ea3a729239d205b2e",
+        "metric_month": "2026-08",
+        "monthly_download_resource": 3142,
+        "monthly_visit": 4628,
+        "organization_id": "534fff81a3a7292c64a77e5c"
+      },
+      {
+        "__id": 129359818,
+        "dataset_id": "53699d0ea3a729239d205b2e",
+        "metric_month": "2026-07",
+        "monthly_download_resource": 593,
+        "monthly_visit": 4216,
+        "organization_id": "534fff81a3a7292c64a77e5c"
+      }
+    ],
+    "links": {
+      "next": "https://metric-api.data.gouv.fr/api/datasets/data/?dataset_id__exact=53699d0ea3a729239d205b2e&metric_month__sort=desc&page=2&page_size=3",
+      "prev": null
+    },
+    "meta": {
+      "page": 1,
+      "page_size": 3,
+      "total": 51
+    }
+  }
+}

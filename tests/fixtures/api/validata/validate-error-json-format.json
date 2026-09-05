@@ -1,0 +1,9 @@
+{
+  "schema": "x",
+  "url": "y",
+  "version": "0.12.5",
+  "error": {
+    "message": "JSON non valide",
+    "type": "json-format-error"
+  }
+}

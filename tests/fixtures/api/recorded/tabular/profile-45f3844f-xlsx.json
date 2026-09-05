@@ -1,0 +1,351 @@
+{
+  "$fixture": {
+    "url": "https://tabular-api.data.gouv.fr/api/resources/45f3844f-0039-48ec-ade7-7dc8c429168b/profile/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:11.982Z"
+  },
+  "body": {
+    "dataset_id": "6a97e79385c92876997291c8",
+    "deleted_at": null,
+    "indexes": null,
+    "profile": {
+      "categorical": ["FICHE THEME", "THEME", "TYPES"],
+      "columns": {
+        "ALIAS": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "FICHE THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "LIBELLE QUESTION": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "TYPES": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "columns_fields": {
+        "ALIAS": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "FICHE THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "LIBELLE QUESTION": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "TYPES": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "columns_labels": {
+        "ALIAS": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "FICHE THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "LIBELLE QUESTION": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "THEME": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        },
+        "TYPES": {
+          "format": "string",
+          "python_type": "string",
+          "score": 1
+        }
+      },
+      "engine": "openpyxl",
+      "formats": {
+        "string": ["FICHE THEME", "LIBELLE QUESTION", "ALIAS", "THEME", "TYPES"]
+      },
+      "header": ["FICHE THEME", "LIBELLE QUESTION", "ALIAS", "THEME", "TYPES"],
+      "header_row_idx": 0,
+      "nb_duplicates": "0",
+      "profile": {
+        "ALIAS": {
+          "nb_distinct": 880,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 1,
+              "value": "ID_UNIQUE"
+            },
+            {
+              "count": 1,
+              "value": "NOM"
+            },
+            {
+              "count": 1,
+              "value": "Mail"
+            },
+            {
+              "count": 1,
+              "value": "Tiers-Lieux_Région"
+            },
+            {
+              "count": 1,
+              "value": "statut_lieu"
+            },
+            {
+              "count": 1,
+              "value": "en projet (pas encore ouvert)"
+            },
+            {
+              "count": 1,
+              "value": "en activité"
+            },
+            {
+              "count": 1,
+              "value": "en cours de fermeture ou fermé en 2025"
+            },
+            {
+              "count": 1,
+              "value": "fermé depuis plus d'1 an"
+            },
+            {
+              "count": 1,
+              "value": "initiative_origine"
+            }
+          ]
+        },
+        "FICHE THEME": {
+          "nb_distinct": 13,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 232,
+              "value": "04_ACTIVITES & 13_INTEGRALE"
+            },
+            {
+              "count": 160,
+              "value": "08_PARTENARIAT & 13_INTEGRALE"
+            },
+            {
+              "count": 76,
+              "value": "10_PERSPECTIVE & 13_INTEGRALE"
+            },
+            {
+              "count": 72,
+              "value": "02_INFO_GEN & 04_ACTIVITES & 13_INTEGRALE"
+            },
+            {
+              "count": 67,
+              "value": "05_PUBLICS & 13_INTEGRALE"
+            },
+            {
+              "count": 55,
+              "value": "11_RESEAUX & 13_INTEGRALE"
+            },
+            {
+              "count": 54,
+              "value": "03_FONCIER & 13_INTEGRALE"
+            },
+            {
+              "count": 45,
+              "value": "09_LABELS_AGREMENTS & 13_INTEGRALE"
+            },
+            {
+              "count": 39,
+              "value": "07_GOUVERNANCE & 13_INTEGRALE"
+            },
+            {
+              "count": 35,
+              "value": "02_INFO_GEN & 13_INTEGRALE"
+            }
+          ]
+        },
+        "LIBELLE QUESTION": {
+          "nb_distinct": 90,
+          "nb_missing_values": 766,
+          "tops": [
+            {
+              "count": 12,
+              "value": "Pour chaque collectivité(s) ou institution(s) avec laquelle vous êtes en lien, quelles sont les modalités de vos partenariats ? "
+            },
+            {
+              "count": 9,
+              "value": "En 2025, combien avez-vous eu de contrats pour :\nindiquez le nombre de contrats ou de personnes concernées (indiquer 0 si vous n'en avez pas)"
+            },
+            {
+              "count": 4,
+              "value": "Si vous avez bénéficié d’un des programmes de la politique de soutien aux tiers-lieux, préciser le nom du ou des projet(s) pour le(s)quel(s) vous avez été lauréat.\n(que vous soyez encore en convention ou que celle-ci soit terminée) "
+            },
+            {
+              "count": 3,
+              "value": "A combien d'équivalent temps plein (ETP) estimez-vous les ressources humaines qui vous permettent d'animer la vie du lieu et d'en assurer la gestion ?\n1 ETP = 35h/semaine\nnombre d'ETP (indiquer 0 si vous n'en avez pas)"
+            },
+            {
+              "count": 1,
+              "value": "Identifiant unique"
+            },
+            {
+              "count": 1,
+              "value": "Nom du tiers-lieu"
+            },
+            {
+              "count": 1,
+              "value": "E mail de contact (donnée publique)"
+            },
+            {
+              "count": 1,
+              "value": "Région (complétion à partir de la base d'adresse nationale)"
+            },
+            {
+              "count": 1,
+              "value": "Votre lieu est "
+            },
+            {
+              "count": 1,
+              "value": "Votre tiers-lieu a été initié ou impulsé par\nUn seul choix de réponse possible"
+            }
+          ]
+        },
+        "THEME": {
+          "nb_distinct": 11,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 304,
+              "value": "Activités"
+            },
+            {
+              "count": 160,
+              "value": "Partenariats"
+            },
+            {
+              "count": 76,
+              "value": "Perspectives"
+            },
+            {
+              "count": 67,
+              "value": "Publics"
+            },
+            {
+              "count": 55,
+              "value": "Réseaux"
+            },
+            {
+              "count": 54,
+              "value": "Foncier"
+            },
+            {
+              "count": 45,
+              "value": "Labels et agréments"
+            },
+            {
+              "count": 44,
+              "value": "Informations générales"
+            },
+            {
+              "count": 39,
+              "value": "Gouvernance"
+            },
+            {
+              "count": 32,
+              "value": "Ressources Humaines"
+            }
+          ]
+        },
+        "TYPES": {
+          "nb_distinct": 4,
+          "nb_missing_values": 0,
+          "tops": [
+            {
+              "count": 715,
+              "value": "booléen (boolean) (0,1)"
+            },
+            {
+              "count": 69,
+              "value": "chaînes de caractères à choix multiples"
+            },
+            {
+              "count": 66,
+              "value": "chaîne de caractères (str)"
+            },
+            {
+              "count": 30,
+              "value": "nombre (number)"
+            }
+          ]
+        }
+      },
+      "sheet_name": "Recensement - integrale",
+      "total_lines": 880,
+      "unique_values": {
+        "FICHE THEME": [
+          "Toutes",
+          "02_INFO_GEN & 13_INTEGRALE",
+          "02_INFO_GEN & 04_ACTIVITES & 13_INTEGRALE",
+          "04_ACTIVITES & 13_INTEGRALE",
+          "09_LABELS_AGREMENTS & 13_INTEGRALE",
+          "05_PUBLICS & 13_INTEGRALE",
+          "06_RH & 13_INTEGRALE",
+          "03_FONCIER & 13_INTEGRALE",
+          "11_RESEAUX & 13_INTEGRALE",
+          "08_PARTENARIAT & 13_INTEGRALE",
+          "10_PERSPECTIVE & 13_INTEGRALE",
+          "07_GOUVERNANCE & 13_INTEGRALE",
+          "12_EN_PROJET & 13_INTEGRALE"
+        ],
+        "THEME": [
+          "Informations générales",
+          "Activités",
+          "Labels et agréments",
+          "Publics",
+          "Ressources Humaines",
+          "Foncier",
+          "Réseaux",
+          "Partenariats",
+          "Perspectives",
+          "Gouvernance",
+          "En Projet"
+        ],
+        "TYPES": [
+          "nombre (number)",
+          "chaîne de caractères (str)",
+          "chaînes de caractères à choix multiples",
+          "booléen (boolean) (0,1)"
+        ]
+      }
+    }
+  }
+}

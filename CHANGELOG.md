@@ -1,5 +1,88 @@
 # Changelog
 
+All notable changes to `datagouv-mcp` are documented here. The format follows
+[Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project adheres to
+[Semantic Versioning](https://semver.org/). Versions are cut with
+[changesets](.changeset/README.md): agents and contributors append bullets under `[Unreleased]`
+as they land changes; the release PR moves them into the new version section
+(see `.agent/skills/release.md`).
+
+## [Unreleased]
+
+### Added
+
+- **TypeScript rewrite (1.0.0 in progress)** — the server is rewritten in TypeScript
+  (Node 22, `@modelcontextprotocol/sdk` 1.x) and published as the npm package `datagouv-mcp`
+  (`npx datagouv-mcp`). The package lives at the repository root (`package.json`, `src/`).
+- New **stdio** transport (default, for local IDE/CLI clients) in addition to **Streamable HTTP**
+  (`POST /mcp`, `GET /health`).
+- Every tool returns `structuredContent` (snake_case mirror of the text) and a bounded text output
+  (`MAX_OUTPUT_CHARS`), with errors returned as `isError` results carrying a `code` and a `hint`.
+- New environment variables: `MCP_TRANSPORT`, `MCP_ALLOWED_HOSTS`, `MCP_ALLOWED_ORIGINS`,
+  `HTTP_TIMEOUT_MS`, `HTTP_RETRIES`, `MAX_DOWNLOAD_BYTES`, `CACHE_MAX_ENTRIES`, `CACHE_DEFAULT_TTL_MS`,
+  `MAX_OUTPUT_CHARS`, `ENABLE_DUCKDB` (legacy names unchanged, see `docs/configuration.md`).
+- Formats layer (workstream B): capability detection plus **resource accessors** for Tabular API,
+  Hydra/native Parquet, CSV/TSV (gzip), XLSX/XLS/ODS, JSON/JSONL, GeoJSON, ZIP listing + member
+  recurse, shapefile-in-zip, XML/KML, PDF/HTML/text, OGC API endpoints, and a metadata-only
+  fallback that never throws. Stable exports: `defaultAccessors()`, `createAccessorRegistry()`,
+  `openResource()`.
+- Optional DuckDB query engine behind `ENABLE_DUCKDB` + `@duckdb/node-api`; pure-JS engine always
+  available (filters/sort/page/aggregations aligned with the Tabular API).
+- **21 MCP tools** registered in `ALL_TOOLS` (10 legacy first, then 11 new):
+  `check_resource_availability`, `get_dataset_resources_summary`, `get_resource_schema`,
+  `get_reuse_info`, `list_high_value_datasets`, `list_topics`, `get_topic`, `preview_resource`,
+  `query_resource`, `search_reuses`, `suggest`.
+- `tsx scripts/print-tool-catalog.ts` prints the README markdown catalogue from `ALL_TOOLS`.
+- E2E `tools/list` snapshot (`tests/e2e/tools-list.test.ts`) asserting every registered name,
+  count ≥ 21, and the ten legacy names in the first ten slots.
+- Multi-stage Docker image (`node:22-slim`, non-root, `HEALTHCHECK` on `/health`), `.dockerignore`
+  and `docker-compose.yml` passing every documented variable through.
+- Optional **Matomo** tool-call beacons and **Sentry** error logging via `createTelemetry` / `onToolCall`
+  (`MATOMO_*`, `SENTRY_*` env vars; no-op when unset).
+- Live evidence reports for **all 21 registered MCP tools** (`docs/evidence/*-live.md`;
+  `pnpm evidence:check` indexes 42 PASS rows). Automated live vitest smoke for
+  `search_datasets`, `get_dataset_info`, `list_dataset_resources`, `search_organizations`,
+  `query_resource_data`, and `preview_resource` (`DATAGOUV_LIVE=1`, loose assertions against
+  research/evidence fixture IDs). Nightly: `.github/workflows/nightly-live.yml` (`pnpm test:live`).
+- Loopback MCP conformance script (`pnpm test:conformance`: HTTP initialize + `tools/list` + `tools/call`).
+- GitHub Actions: `ci.yml` (Node 22/24: typecheck, lint, layering, offline tests with coverage,
+  required `pnpm evidence:check`, required `pnpm test:conformance`, build, Docker smoke;
+  `docs/evidence/**` is **not** path-ignored so evidence-only commits still run the check job),
+  `nightly-live.yml` (live suite + evidence, auto-managed tracking issue),
+  `docker.yml` (branch: build+`/health` without registry push; main/tags: multi-arch GHCR image
+  with provenance/SBOM), `release.yml` (changesets version PR, npm publish with provenance gated
+  on `NPM_TOKEN`); Dependabot for npm, Actions and Docker.
+- Release tooling: `@changesets/cli` in `alpha` pre-release mode. Next cut is **`1.0.0-alpha.1`**
+  (changesets pending; M6 documented). Not a production `1.0.0` and not published to npm from this work.
+- Documentation: rewritten `README.md` (quick start, every client configuration in stdio and HTTP
+  variants, tool catalogue, architecture, env table), `docs/architecture.md`, `docs/deployment.md`,
+  `docs/configuration.md`, `docs/tools.md`, `docs/development.md`, `docs/migration-from-python.md`,
+  `CONTRIBUTING.md`, `SECURITY.md`, `.editorconfig`.
+
+### Changed
+
+- **BREAKING (repository layout)**: the legacy Python implementation (`main.py`, `tools/`, `helpers/`,
+  `tests/`, CircleCI, Dockerfile, docker-compose) was moved unchanged to `legacy/python/` and is kept
+  as a reference until tool parity; it is no longer released from here.
+- Default bind address is `127.0.0.1` (legacy: `0.0.0.0`); the Docker image and compose file set
+  `MCP_HOST=0.0.0.0` explicitly.
+- Log levels follow pino (`info`, `debug`, …); legacy uppercase Python levels are still accepted.
+- Architecture, tool catalogue and milestones: `.agent/exec-plans/001-typescript-rewrite.md`;
+  decisions: `.agent/decisions/`.
+
+### Removed
+
+- CircleCI configuration (replaced by GitHub Actions); `tag_version.sh` (replaced by changesets).
+
+### Fixed
+
+- _(nothing yet)_
+
+---
+
+## Python (legacy) history
+
+
 ## 0.2.30 (2026-07-17)
 
 - chore: upgrade dependencies

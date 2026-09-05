@@ -1,0 +1,10 @@
+{
+  "$fixture": {
+    "url": "https://tabular-api.data.gouv.fr/api/resources/dbab1fa5-b902-4586-81e0-6063a6f96ca9/profile/",
+    "method": "GET",
+    "status": 404,
+    "contentType": "text/plain; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:12.156Z"
+  },
+  "body": "404: Not Found"
+}

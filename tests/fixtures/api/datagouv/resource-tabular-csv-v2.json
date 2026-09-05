@@ -1,0 +1,38 @@
+{
+  "resource": {
+    "id": "a86ebc34-a979-4d6c-8f2a-9710a43dca93",
+    "title": "Gentilés des communes françaises",
+    "description": "Fichier de référence des gentilés des communes françaises recensés et documentés par Habitants. Le jeu de données comprend le code INSEE de la commune, son nom, son département et le gentilé recensé. Une valeur vide dans le champ « gentile » signifie qu'aucun gentilé n'est actuellement documenté dans la base. Les données sont générées directement depuis la base et mises à jour au fil de son enrichissement.\n",
+    "filetype": "remote",
+    "type": "main",
+    "format": "csv",
+    "url": "https://www.habitants.fr/api/export-gentiles.php",
+    "latest": "https://www.data.gouv.fr/api/1/datasets/r/a86ebc34-a979-4d6c-8f2a-9710a43dca93",
+    "checksum": null,
+    "filesize": null,
+    "mime": "text/csv",
+    "created_at": "2026-09-02T21:46:13.912000+00:00",
+    "last_modified": "2026-09-02T21:46:13.912000+00:00",
+    "extras": {
+      "check:id": 52710616,
+      "check:available": true,
+      "check:status": 200,
+      "check:timeout": false,
+      "check:date": "2026-09-02T21:46:30.217618+00:00",
+      "check:headers:content-type": "text/csv",
+      "check:cors:status": 200,
+      "analysis:check_id": 52710616,
+      "analysis:content-length": 1708485,
+      "analysis:checksum": "23f47866761a0b524c835ba99110a3ad1f9e3990",
+      "analysis:mime-type": "text/csv",
+      "analysis:parsing:started_at": "2026-09-02T21:46:34.698262+00:00",
+      "analysis:parsing:finished_at": "2026-09-02T21:46:37.151061+00:00",
+      "analysis:parsing:parsing_table": "e3686d542d96b3b5c75d40b27b566707",
+      "analysis:parsing:parquet_url": "https://hydra.s3.rbx.io.cloud.ovh.net/parquet/a86ebc34-a979-4d6c-8f2a-9710a43dca93.parquet",
+      "analysis:parsing:parquet_size": 722001
+    },
+    "preview_url": "https://explore.data.gouv.fr/fr/resources/a86ebc34-a979-4d6c-8f2a-9710a43dca93",
+    "schema": null
+  },
+  "dataset_id": "6a9899255369f45f95bdd226"
+}

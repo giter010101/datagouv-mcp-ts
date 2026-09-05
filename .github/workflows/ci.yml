@@ -1,0 +1,120 @@
+name: CI
+
+on:
+  push:
+    branches: [main, "cursor/**"]
+    paths-ignore:
+      - "legacy/**"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "legacy/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CI: "1"
+  LOG_LEVEL: silent
+
+jobs:
+  check:
+    name: check (node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ["22.x", "24.x"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        # version is read from package.json#packageManager
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Check (typecheck + lint + layers + tests + build)
+        run: pnpm check
+
+      - name: Offline tests with coverage
+        run: pnpm test:coverage
+
+      - name: Evidence coverage gate (21 tools × offline + live)
+        run: pnpm evidence:check
+
+      - name: MCP loopback conformance (initialize + tools/list + tools/call)
+        run: pnpm test:conformance
+
+      - name: Smoke the bundle (--version / --help)
+        run: |
+          node dist/index.js --version
+          node dist/index.js --help > /dev/null
+
+      - name: Upload coverage
+        if: matrix.node == '22.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: coverage/
+          retention-days: 14
+          if-no-files-found: warn
+
+      - name: Upload build
+        if: matrix.node == '22.x'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+          retention-days: 7
+
+  docker-smoke:
+    name: docker build + /health
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    needs: check
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          push: false
+          tags: datagouv-mcp:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run container and probe /health
+        run: |
+          set -euo pipefail
+          docker run -d --rm --name datagouv-mcp -p 8000:8000 datagouv-mcp:ci
+          for i in $(seq 1 30); do
+            if curl -fsS http://127.0.0.1:8000/health; then echo; echo "healthy after ${i}s"; exit 0; fi
+            sleep 1
+          done
+          echo "::error::/health never returned 200"
+          docker logs datagouv-mcp
+          exit 1
+
+      - name: Container logs
+        if: always()
+        run: docker logs datagouv-mcp || true
+
+      - name: Stop container
+        if: always()
+        run: docker stop datagouv-mcp || true

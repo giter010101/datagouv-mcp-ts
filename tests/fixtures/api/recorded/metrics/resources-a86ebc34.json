@@ -1,0 +1,21 @@
+{
+  "$fixture": {
+    "url": "https://metric-api.data.gouv.fr/api/resources/data/?resource_id__exact=a86ebc34-a979-4d6c-8f2a-9710a43dca93&metric_month__sort=desc&page_size=3",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "recordedAt": "2026-09-03T14:46:13.888Z"
+  },
+  "body": {
+    "data": [],
+    "links": {
+      "next": null,
+      "prev": null
+    },
+    "meta": {
+      "page": 1,
+      "page_size": 3,
+      "total": 0
+    }
+  }
+}

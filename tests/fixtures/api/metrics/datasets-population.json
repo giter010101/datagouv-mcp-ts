@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "__id": 134545727,
+      "dataset_id": "53699d0ea3a729239d205b2e",
+      "organization_id": "534fff81a3a7292c64a77e5c",
+      "metric_month": "2026-09",
+      "monthly_visit": 444,
+      "monthly_download_resource": 108
+    },
+    {
+      "__id": 131884061,
+      "dataset_id": "53699d0ea3a729239d205b2e",
+      "organization_id": "534fff81a3a7292c64a77e5c",
+      "metric_month": "2026-08",
+      "monthly_visit": 4628,
+      "monthly_download_resource": 3142
+    },
+    {
+      "__id": 129359818,
+      "dataset_id": "53699d0ea3a729239d205b2e",
+      "organization_id": "534fff81a3a7292c64a77e5c",
+      "metric_month": "2026-07",
+      "monthly_visit": 4216,
+      "monthly_download_resource": 593
+    }
+  ],
+  "links": {
+    "next": "https://metric-api.data.gouv.fr/api/datasets/data/?dataset_id__exact=53699d0ea3a729239d205b2e&metric_month__sort=desc&page=2&page_size=3",
+    "prev": null
+  },
+  "meta": {
+    "page": 1,
+    "page_size": 3,
+    "total": 51
+  }
+}

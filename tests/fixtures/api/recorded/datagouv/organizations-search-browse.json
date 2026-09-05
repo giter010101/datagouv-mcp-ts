@@ -1,0 +1,340 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/2/organizations/search/?page_size=3&sort=-datasets",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:11.051Z",
+    "note": "browse mode (empty query)"
+  },
+  "body": {
+    "data": [
+      {
+        "acronym": null,
+        "badges": [
+          {
+            "kind": "local-authority"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "business_number_id": "20005376700014",
+        "created_at": "2021-04-15T15:48:21.638000+00:00",
+        "deleted": null,
+        "description": "Regroupant les anciennes Régions Auvergne et Rhône-Alpes, Auvergne-Rhône-Alpes se compose de 12 départements. Couvrant près de 70 000 km², soit 13 % du territoire métropolitain, elle s'étend du Massif central à l'ouest, jusqu'aux Alpes à l'est. Sa superficie est équivalente à celle de l’Irlande. Avec 80 % de son territoire situé en montagne, Auvergne-Rhône-Alpes est la plus grande région de montagne d’Europe. La Région est soumise au respect de la réglementation nationale et communautaire qui régit les collectivités locales et la fonction publique territoriale (code des collectivités territoriales, statut du personnel, instruction comptable, code des marchés publics). Ses activités principales sont axées sur les compétences en matière d'enseignement (formation initiale, formation continue, apprentissage), de transports, d'aménagement du territoire, d'amélioration du cadre de vie et de développement économique.\n- La Région Auvergne-Rhône-Alpes organise et finance :\n•\tLes TER\n•\tLes Cars Région express\n•\tLes transports interurbains et scolaires de l’Ain, de l’Allier, de l’Ardèche, du Cantal, de la Drôme, de la Haute Loire, de la Haute Savoie, de la Loire, du Puy de Dôme et de la Savoie. \n- La Région Auvergne-Rhône-Alpes, en tant que collectivité territoriale est notamment soumise au code de la commande publique du 1er avril 2019.\nDans ce cadre réglementaire, elle réalise des marchés de fournitures, de services, et de travaux conformément aux procédures permises par les textes au…[truncated]",
+        "ext": {},
+        "extras": {
+          "siretisation:collectivite_territoriale:code_insee": "84",
+          "siretisation:collectivite_territoriale:niveau": "region",
+          "siretisation:denomination_unite_legale": "REGION AUVERGNE-RHONE-ALPES",
+          "siretisation:est_collectivite_territoriale": "True",
+          "siretisation:est_service_public": "True",
+          "siretisation:found_siret": "20005376700014"
+        },
+        "id": "60784425bed18cfaefe5e653",
+        "image_url": null,
+        "last_modified": "2026-09-03T13:03:34.808000+00:00",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/6c/2bea4558654e128fafd9e62991818f.jpg",
+        "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/6c/2bea4558654e128fafd9e62991818f-100.jpg",
+        "members": [
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2021-04-15T15:48:21.638000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@auvergnerhonealpes.fr",
+              "first_name": "Nicolas",
+              "id": "5fd24865bc6d514e7c230ee5",
+              "last_login_at": null,
+              "last_name": "de COCQUEREL",
+              "page": "https://www.data.gouv.fr/users/nicolas-de-cocquerel",
+              "slug": "nicolas-de-cocquerel",
+              "uri": "https://www.data.gouv.fr/api/1/users/nicolas-de-cocquerel/"
+            }
+          },
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2024-06-06T13:23:26.605000+00:00",
+            "user": {
+              "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b0/829b93f3a146e093cf59713a7da924.png",
+              "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/b0/829b93f3a146e093cf59713a7da924-500.png",
+              "class": "User",
+              "email": "***@auvergnerhonealpes.fr",
+              "first_name": "GAËL",
+              "id": "664cc7ce7805b8558f7e9922",
+              "last_login_at": null,
+              "last_name": "PLASSART",
+              "page": "https://www.data.gouv.fr/users/gael-plassart",
+              "slug": "gael-plassart",
+              "uri": "https://www.data.gouv.fr/api/1/users/gael-plassart/"
+            }
+          },
+          {
+            "label": "Éditeur",
+            "role": "editor",
+            "since": "2025-05-21T06:37:11.983000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@cityway.fr",
+              "first_name": "Cityway",
+              "id": "682c8606e32914bb1a909799",
+              "last_login_at": null,
+              "last_name": "OURA",
+              "page": "https://www.data.gouv.fr/users/cityway-oura",
+              "slug": "cityway-oura",
+              "uri": "https://www.data.gouv.fr/api/1/users/cityway-oura/"
+            }
+          }
+        ],
+        "metrics": "[redacted]",
+        "name": "Région Auvergne-Rhône-Alpes",
+        "page": "https://www.data.gouv.fr/organizations/region-auvergne-rhone-alpes",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "harvest": "[redacted]",
+          "members": false,
+          "private": false
+        },
+        "presentation_blocs_published_at": null,
+        "slug": "region-auvergne-rhone-alpes",
+        "teams": [],
+        "uri": "https://www.data.gouv.fr/api/1/organizations/region-auvergne-rhone-alpes/",
+        "url": "https://www.auvergnerhonealpes.fr/",
+        "zone": null
+      },
+      {
+        "acronym": "OFB",
+        "badges": [
+          {
+            "kind": "certified"
+          },
+          {
+            "kind": "public-service"
+          }
+        ],
+        "business_number_id": "13002591900015",
+        "created_at": "2019-09-16T15:51:55.543000+00:00",
+        "deleted": null,
+        "description": "L'Office français de la biodiversité (OFB) est un établissement public dédié à la protection et la restauration de la biodiversité en métropole et dans les Outre-mer, sous la tutelle des ministères de la Transition écologique et de l'Agriculture et de l'alimentation. ",
+        "ext": {},
+        "extras": {
+          "siretisation:collectivite_territoriale:code_insee": "nan",
+          "siretisation:collectivite_territoriale:niveau": "nan",
+          "siretisation:denomination_unite_legale": "OFFICE FRANCAIS DE LA BIODIVERSITE (OFB)",
+          "siretisation:est_collectivite_territoriale": "False",
+          "siretisation:est_service_public": "True",
+          "siretisation:found_siret": "13002591900015"
+        },
+        "id": "5d7f937b8b4c4165718fbff1",
+        "image_url": null,
+        "last_modified": "2026-09-03T00:21:50.570000+00:00",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/00/43a5d806674e8782299d24db8329d0.png",
+        "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/00/43a5d806674e8782299d24db8329d0-100.png",
+        "members": [
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2020-09-11T09:24:36.410000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@ofb.gouv.fr",
+              "first_name": "Thomas",
+              "id": "5f5b24278e080f81fd5f182b",
+              "last_login_at": null,
+              "last_name": "BOUIX",
+              "page": "https://www.data.gouv.fr/users/thomas-bouix-1",
+              "slug": "thomas-bouix-1",
+              "uri": "https://www.data.gouv.fr/api/1/users/thomas-bouix-1/"
+            }
+          },
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2020-12-16T09:10:22.369000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@ofb.gouv.fr",
+              "first_name": "Antonio",
+              "id": "5fd9bedb9083c278938ed8f9",
+              "last_login_at": null,
+              "last_name": "Andrade",
+              "page": "https://www.data.gouv.fr/users/antonio-andrade",
+              "slug": "antonio-andrade",
+              "uri": "https://www.data.gouv.fr/api/1/users/antonio-andrade/"
+            }
+          },
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2021-06-30T17:23:10.454000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@ofb.gouv.fr",
+              "first_name": "Alexandre",
+              "id": "60dc7f4da25a395aaf93bfa2",
+              "last_login_at": null,
+              "last_name": "Liccardi",
+              "page": "https://www.data.gouv.fr/users/alexandre-liccardi",
+              "slug": "alexandre-liccardi",
+              "uri": "https://www.data.gouv.fr/api/1/users/alexandre-liccardi/"
+            }
+          }
+        ],
+        "metrics": "[redacted]",
+        "name": "Office Français de la Biodiversité",
+        "page": "https://www.data.gouv.fr/organizations/office-francais-de-la-biodiversite",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "harvest": "[redacted]",
+          "members": false,
+          "private": false
+        },
+        "presentation_blocs_published_at": null,
+        "slug": "office-francais-de-la-biodiversite",
+        "teams": [],
+        "uri": "https://www.data.gouv.fr/api/1/organizations/office-francais-de-la-biodiversite/",
+        "url": "https://www.ofb.gouv.fr",
+        "zone": null
+      },
+      {
+        "acronym": null,
+        "badges": [
+          {
+            "kind": "public-service"
+          },
+          {
+            "kind": "certified"
+          }
+        ],
+        "business_number_id": "23750007900312",
+        "created_at": "2014-04-17T18:22:00.473000+00:00",
+        "deleted": null,
+        "description": "La Région Île-de-France, c'est 8 départements représentant 2% de la surface de la France, plus de 12 millions d’habitants représentant plus de 18% de la population française, plus de 6 millions d’emplois salariés et non salariés et plus de 1 million d’entreprises.\nMais aussi... 48% de terres agricoles, 28% de zones urbaines et 24% d'espaces naturels.\n\nL'Île-de-France est non seulement un territoire mais aussi une collectivité territoriale constituée de 209 conseillers régionaux ayant pour mission le développement de ce territoire.\n\nLa Région agit dans des domaines exclusifs :\n\n* **Les transports** \\\n  Gestion des transports publics, des transports routiers interurbains et scolaires, de la voirie, des gares publiques routières…\n* **Les lycées**\\\n  Construction, entretien et fonctionnement des lycées d’enseignement général publics et des lycées et établissements d’enseignement agricole…\n* **La formation professionnelle** \\\n  Insertion des jeunes en difficulté, formation des demandeurs d’emploi, service public régional de l’orientation et de la formation professionnelle…\n* **L’aménagement du territoire et l’environnement**\\\n  Gestion des déchets, des parcs naturels régionaux, développement rural et urbain, plan régional pour la qualité de l’air, schéma régional d’aménagement, de développement durable et d’égalité des territoires (il fixe les objectifs en matière d’équilibre et d’égalité des territoires, d’implantation des différentes infrastructures d’intérêt régional, de désenc…[truncated]",
+        "ext": {},
+        "extras": {
+          "datagouv_ckan_id": "07e2a61d-960e-4d6c-b3a2-9d1fb4701731",
+          "datagouv_ckan_last_sync": "2014-09-17T03:32:22.876000",
+          "siretisation:collectivite_territoriale:code_insee": "nan",
+          "siretisation:collectivite_territoriale:niveau": "nan",
+          "siretisation:denomination_unite_legale": "REGION ILE DE FRANCE",
+          "siretisation:est_collectivite_territoriale": "False",
+          "siretisation:est_service_public": "False",
+          "siretisation:found_siret": "40356835500024"
+        },
+        "id": "534fffa8a3a7292c64a780c8",
+        "image_url": "http://www.iledefrance.fr/sites/all/themes/francilien/logo.png",
+        "last_modified": "2026-09-03T04:04:07.975000+00:00",
+        "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/ae/e36a843f5d4f44a76957c3c8994bb6.jpg",
+        "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/ae/e36a843f5d4f44a76957c3c8994bb6-100.jpg",
+        "members": [
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2014-09-04T05:46:54.901000+00:00",
+            "user": {
+              "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/26/cb6151c79948299d65233661aa95fa.png",
+              "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/26/cb6151c79948299d65233661aa95fa-500.png",
+              "class": "User",
+              "email": "***@iledefrance.fr",
+              "first_name": "Christophe",
+              "id": "534fff3ea3a7292c64a774fd",
+              "last_login_at": null,
+              "last_name": "Libert",
+              "page": "https://www.data.gouv.fr/users/christophe-libert",
+              "slug": "christophe-libert",
+              "uri": "https://www.data.gouv.fr/api/1/users/christophe-libert/"
+            }
+          },
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2023-02-08T18:01:15.083000+00:00",
+            "user": {
+              "avatar": null,
+              "avatar_thumbnail": null,
+              "class": "User",
+              "email": "***@iledefrance.fr",
+              "first_name": "Antoine",
+              "id": "5bbc5f1c8b4c4157462ec449",
+              "last_login_at": null,
+              "last_name": "CARETTE",
+              "page": "https://www.data.gouv.fr/users/antoine-carette-1",
+              "slug": "antoine-carette-1",
+              "uri": "https://www.data.gouv.fr/api/1/users/antoine-carette-1/"
+            }
+          },
+          {
+            "label": "Administrateur",
+            "role": "admin",
+            "since": "2025-11-24T16:34:25.922000+00:00",
+            "user": {
+              "avatar": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3c/71355cff664d90b526dab05264ea07.png",
+              "avatar_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/3c/71355cff664d90b526dab05264ea07-500.png",
+              "class": "User",
+              "email": "***@iledefrance.fr",
+              "first_name": "Arnaud",
+              "id": "5ef472c32f458d18978e6b6b",
+              "last_login_at": null,
+              "last_name": "Mollard",
+              "page": "https://www.data.gouv.fr/users/arnaud-mollard",
+              "slug": "arnaud-mollard",
+              "uri": "https://www.data.gouv.fr/api/1/users/arnaud-mollard/"
+            }
+          }
+        ],
+        "metrics": "[redacted]",
+        "name": "Région Île-de-France",
+        "page": "https://www.data.gouv.fr/organizations/region-ile-de-france",
+        "permissions": {
+          "delete": false,
+          "edit": false,
+          "harvest": "[redacted]",
+          "members": false,
+          "private": false
+        },
+        "presentation_blocs_published_at": null,
+        "slug": "region-ile-de-france",
+        "teams": [],
+        "uri": "https://www.data.gouv.fr/api/1/organizations/region-ile-de-france/",
+        "url": "http://data.iledefrance.fr",
+        "zone": null
+      }
+    ],
+    "facets": {
+      "producer_type": [
+        {
+          "count": 6587,
+          "name": "all"
+        },
+        {
+          "count": 1671,
+          "name": "company"
+        },
+        {
+          "count": 1532,
+          "name": "local-authority"
+        }
+      ]
+    },
+    "next_page": "https://www.data.gouv.fr/api/2/organizations/search/?page_size=3&sort=-datasets&page=2",
+    "page": 1,
+    "page_size": 3,
+    "previous_page": null,
+    "total": 6587
+  }
+}

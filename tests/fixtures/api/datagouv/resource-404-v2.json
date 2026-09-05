@@ -1,0 +1,3 @@
+{
+  "message": "Resource does not exist. You have requested this URI [/api/2/datasets/resources/00000000-0000-0000-0000-000000000000/] but did you mean /api/2/datasets/resources/<uuid:rid>/ ?"
+}

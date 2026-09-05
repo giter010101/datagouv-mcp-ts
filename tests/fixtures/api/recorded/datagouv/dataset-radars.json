@@ -1,0 +1,281 @@
+{
+  "$fixture": {
+    "url": "https://www.data.gouv.fr/api/1/datasets/619f8727e07d975a56664c61/",
+    "method": "GET",
+    "status": 200,
+    "contentType": "application/json",
+    "recordedAt": "2026-09-03T14:47:08.495Z",
+    "note": "dataset with tabular CSV resources (radars)"
+  },
+  "body": {
+    "access_audiences": [],
+    "access_type": "open",
+    "access_type_reason": null,
+    "access_type_reason_category": null,
+    "acronym": "DVVRCE",
+    "archived": null,
+    "authorization_request_url": null,
+    "badges": [],
+    "contact_points": [],
+    "created_at": "2021-11-25T13:52:55.121000+00:00",
+    "deleted": null,
+    "description": "Les voitures radars à conduite externalisée couvrent huit 8 régions du territoire métropolitain : Normandie, Bretagne, Pays-de-la-Loire, et Centre-Val de Loire, Nouvelle-Aquitaine, Bourgogne-Franche-Comté, Grand-Est, Hauts de France.\n\nLes cinq autres régions métropolitaines font l’objet de contrôles par des voitures radars conduites par un policier ou un gendarme.\n\nLes voitures radars à conduite externalisée circulent sur des trajets et des plages horaires fixés par les préfets en fonction des critères d'accidentalité locale. \n\nCes véhicules dotés d’un dispositif de contrôles automatisés restent propriété de l'État.\nIls disposent d'équipements capables de lire les panneaux de limitation de vitesse permettant au radar de fonctionner de manière autonome, sans aucune intervention du conducteur du véhicule. \n\nLe jeu de données publié fournit la mesure des vitesses pratiquées par les véhicules contrôlés en déplacement et relevées par le cinémomètre embarqué qui intègre la marge technique de l’équipement. Ce jeu de données couvre partiellement les routes du territoire métropolitain en zones interurbaines. \n\n**Métadonnées :**\n\nCes données correspondent aux contrôles réalisés par les voitures radars à conduite externalisée.\n\nCes contrôles relèvent la vitesse de tous les véhicules croisés en rapprochement et ou en dépassement.\n\nChaque relevé comporte : la vitesse pratiquée par le véhicule contrôlé incluant la marge technique de l’équipement, la vitesse maximale autorisée au point de c…[truncated]",
+    "description_short": null,
+    "extras": {},
+    "featured": true,
+    "frequency": "annual",
+    "frequency_date": "2022-12-31T06:00:00+00:00",
+    "harvest": null,
+    "id": "619f8727e07d975a56664c61",
+    "internal": "[redacted]",
+    "last_modified": "2026-01-13T14:56:09.130000+00:00",
+    "last_update": "2026-01-13T14:45:52.615000+00:00",
+    "license": "lov2",
+    "metrics": "[redacted]",
+    "organization": {
+      "acronym": "MI",
+      "badges": [
+        {
+          "kind": "public-service"
+        },
+        {
+          "kind": "certified"
+        }
+      ],
+      "class": "Organization",
+      "id": "534fff91a3a7292c64a77f53",
+      "logo": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/e1/27853c13394328b06c071c7953856a.jpg",
+      "logo_thumbnail": "https://udata-avatars.s3.rbx.io.cloud.ovh.net/e1/27853c13394328b06c071c7953856a-100.jpg",
+      "name": "Ministère de l'intérieur",
+      "page": "https://www.data.gouv.fr/organizations/ministere-de-linterieur",
+      "permissions": {
+        "delete": false,
+        "edit": false,
+        "harvest": "[redacted]",
+        "members": false,
+        "private": false
+      },
+      "slug": "ministere-de-linterieur",
+      "uri": "https://www.data.gouv.fr/api/1/organizations/ministere-de-linterieur/"
+    },
+    "owner": null,
+    "page": "https://www.data.gouv.fr/datasets/jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee",
+    "permissions": {
+      "delete": false,
+      "edit": false,
+      "edit_resources": false
+    },
+    "private": false,
+    "quality": "[redacted]",
+    "resources": [
+      {
+        "checksum": null,
+        "created_at": "2026-01-13T14:45:52.447000+00:00",
+        "description": "Jeu de données de l'année 2024\n",
+        "extras": {
+          "analysis:check_id": 39559369,
+          "analysis:error": "File too large to download",
+          "analysis:last-modified-at": "[redacted]",
+          "analysis:last-modified-detection": "[redacted]",
+          "check:available": true,
+          "check:cors:allow-credentials": "true",
+          "check:cors:allow-headers": "Origin,Authorization,Accept,DNT,User-Agent,If-Modified-Since,Cache-Control,Content-Type,Range,sentry-trace,baggage",
+          "check:cors:allow-methods": "GET, OPTIONS",
+          "check:cors:allow-origin": "*",
+          "check:cors:max-age": "1728000",
+          "check:cors:status": 204,
+          "check:date": "[redacted]",
+          "check:headers:content-type": "text/csv",
+          "check:id": 42162157,
+          "check:status": 200,
+          "check:timeout": "[redacted]"
+        },
+        "filesize": 535893350,
+        "filetype": "file",
+        "format": "csv",
+        "harvest": null,
+        "id": "5bd2b320-fc25-4cce-a68d-bebd21ab0e85",
+        "internal": "[redacted]",
+        "last_modified": "2026-01-13T14:45:52.615000+00:00",
+        "latest": "https://www.data.gouv.fr/api/1/datasets/r/5bd2b320-fc25-4cce-a68d-bebd21ab0e85",
+        "metrics": "[redacted]",
+        "mime": "text/csv",
+        "preview_url": null,
+        "schema": null,
+        "title": "opendata-vitesses-pratiquees-voitures-radars-2024-01-01-2024-12-31.csv",
+        "type": "main",
+        "url": "https://static.data.gouv.fr/resources/jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee/20260113-144502/opendata-vitesses-pratiquees-voitures-radars-2024-01-01-2024-12-31.csv"
+      },
+      {
+        "checksum": {
+          "type": "sha1",
+          "value": "29a27c1ad74e42aab76832c115b84159f0288f26"
+        },
+        "created_at": "2024-10-10T12:38:55.840000+00:00",
+        "description": null,
+        "extras": {
+          "analysis:check_id": 50314841,
+          "analysis:checksum": "29a27c1ad74e42aab76832c115b84159f0288f26",
+          "analysis:content-length": 135466,
+          "analysis:last-modified-at": "[redacted]",
+          "analysis:last-modified-detection": "[redacted]",
+          "analysis:mime-type": "application/pdf",
+          "check:available": true,
+          "check:cors:allow-credentials": "true",
+          "check:cors:allow-headers": "Origin,Authorization,Accept,DNT,User-Agent,If-Modified-Since,Cache-Control,Content-Type,Range,sentry-trace,baggage",
+          "check:cors:allow-methods": "GET, OPTIONS",
+          "check:cors:allow-origin": "*",
+          "check:cors:max-age": "1728000",
+          "check:cors:status": 204,
+          "check:date": "[redacted]",
+          "check:headers:content-length": 135466,
+          "check:headers:content-type": "application/pdf",
+          "check:id": 50314841,
+          "check:status": 200,
+          "check:timeout": "[redacted]"
+        },
+        "filesize": 135466,
+        "filetype": "file",
+        "format": "pdf",
+        "harvest": null,
+        "id": "aafea4cf-b6f3-407c-8216-471351d929b8",
+        "internal": "[redacted]",
+        "last_modified": "2025-04-17T15:03:43.638000+00:00",
+        "latest": "https://www.data.gouv.fr/api/1/datasets/r/aafea4cf-b6f3-407c-8216-471351d929b8",
+        "metrics": "[redacted]",
+        "mime": "application/pdf",
+        "preview_url": null,
+        "schema": {
+          "name": null,
+          "url": null,
+          "version": null
+        },
+        "title": "jeu-de-donnees-des-vitesses-pratiquees-issues-des-voitures-radar-privatisees-v6.pdf",
+        "type": "documentation",
+        "url": "https://static.data.gouv.fr/resources/jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee/20241010-123855/jeu-de-donnees-des-vitesses-pratiquees-issues-des-voitures-radar-privatisees-v6.pdf"
+      },
+      {
+        "checksum": {
+          "type": "sha1",
+          "value": "1a103df43dec704efd0b459c29795ff1863bee44"
+        },
+        "created_at": "2024-10-10T12:33:01.822000+00:00",
+        "description": "cf description jointe à la publication (PDF)",
+        "extras": {
+          "analysis:checksum": "1a103df43dec704efd0b459c29795ff1863bee44",
+          "analysis:content-length": 700085045,
+          "analysis:last-modified-at": "[redacted]",
+          "analysis:last-modified-detection": "[redacted]",
+          "analysis:mime-type": "text/plain",
+          "analysis:parsing:finished_at": "2025-04-17T15:16:13.384429+00:00",
+          "analysis:parsing:parquet_size": 231277350,
+          "analysis:parsing:parquet_url": "https://object.files.data.gouv.fr/hydra-parquet/hydra-parquet/756ff540c1160325916332c2570c54bf.parquet",
+          "analysis:parsing:parsing_table": "756ff540c1160325916332c2570c54bf",
+          "analysis:parsing:started_at": "2025-04-17T15:08:55.442843+00:00",
+          "check:available": true,
+          "check:cors:allow-credentials": "true",
+          "check:cors:allow-headers": "Origin,Authorization,Accept,DNT,User-Agent,If-Modified-Since,Cache-Control,Content-Type,Range,sentry-trace,baggage",
+          "check:cors:allow-methods": "GET, OPTIONS",
+          "check:cors:allow-origin": "*",
+          "check:cors:max-age": "1728000",
+          "check:cors:status": 204,
+          "check:date": "[redacted]",
+          "check:headers:content-type": "text/csv",
+          "check:id": 41319417,
+          "check:status": 200,
+          "check:timeout": "[redacted]"
+        },
+        "filesize": 700085045,
+        "filetype": "file",
+        "format": "csv",
+        "harvest": null,
+        "id": "52200d61-5e80-4a4e-999f-6e1c184fa122",
+        "internal": "[redacted]",
+        "last_modified": "2024-10-29T14:24:24.083000+00:00",
+        "latest": "https://www.data.gouv.fr/api/1/datasets/r/52200d61-5e80-4a4e-999f-6e1c184fa122",
+        "metrics": "[redacted]",
+        "mime": "text/csv",
+        "preview_url": "https://explore.data.gouv.fr/fr/resources/52200d61-5e80-4a4e-999f-6e1c184fa122",
+        "schema": {
+          "name": null,
+          "url": null,
+          "version": null
+        },
+        "title": "opendata-vitesses-pratiquees-voitures-radars-2023-01-01-2023-12-31-.csv",
+        "type": "main",
+        "url": "https://static.data.gouv.fr/resources/jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee/20241029-142313/opendata-vitesses-pratiquees-voitures-radars-2023-01-01-2023-12-31-.csv"
+      },
+      {
+        "checksum": {
+          "type": "sha1",
+          "value": "5c7b6de9ead8586bb3e3122658cef30534addfaf"
+        },
+        "created_at": "2022-12-21T16:16:48.486000+00:00",
+        "description": null,
+        "extras": {
+          "analysis:checksum": "5c7b6de9ead8586bb3e3122658cef30534addfaf",
+          "analysis:content-length": 285295623,
+          "analysis:last-modified-at": "[redacted]",
+          "analysis:last-modified-detection": "[redacted]",
+          "analysis:mime-type": "text/plain",
+          "analysis:parsing:finished_at": "2025-04-17T15:12:25.601673+00:00",
+          "analysis:parsing:parquet_size": 106363310,
+          "analysis:parsing:parquet_url": "https://object.files.data.gouv.fr/hydra-parquet/hydra-parquet/249348ec0ee99791994171a81dddab00.parquet",
+          "analysis:parsing:parsing_table": "249348ec0ee99791994171a81dddab00",
+          "analysis:parsing:started_at": "2025-04-17T15:09:20.690203+00:00",
+          "check:available": true,
+          "check:cors:allow-credentials": "true",
+          "check:cors:allow-headers": "Origin,Authorization,Accept,DNT,User-Agent,If-Modified-Since,Cache-Control,Content-Type,Range,sentry-trace,baggage",
+          "check:cors:allow-methods": "GET, OPTIONS",
+          "check:cors:allow-origin": "*",
+          "check:cors:max-age": "1728000",
+          "check:cors:status": 204,
+          "check:date": "[redacted]",
+          "check:headers:content-type": "text/csv",
+          "check:id": 41319224,
+          "check:status": 200,
+          "check:timeout": "[redacted]"
+        },
+        "filesize": 285295623,
+        "filetype": "file",
+        "format": "csv",
+        "harvest": null,
+        "id": "8b6cd190-3b66-43a8-b609-ce130019069f",
+        "internal": "[redacted]",
+        "last_modified": "2022-12-21T16:19:52.487000+00:00",
+        "latest": "https://www.data.gouv.fr/api/1/datasets/r/8b6cd190-3b66-43a8-b609-ce130019069f",
+        "metrics": "[redacted]",
+        "mime": "text/csv",
+        "preview_url": "https://explore.data.gouv.fr/fr/resources/8b6cd190-3b66-43a8-b609-ce130019069f",
+        "schema": {
+          "name": null,
+          "url": null,
+          "version": null
+        },
+        "title": "opendata-vitesse-2021-01-01-2021-12-31.csv",
+        "type": "main",
+        "url": "https://static.data.gouv.fr/resources/jeu-de-donnees-des-vitesses-pratiquees-issues-des-voitures-radars-a-conduite-externalisee/20221221-161623/opendata-vitesse-2021-01-01-2021-12-31.csv"
+      }
+    ],
+    "schema": null,
+    "slug": "jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee",
+    "spatial": {
+      "geom": null,
+      "granularity": "fr:departement",
+      "zones": []
+    },
+    "tags": [
+      "controle",
+      "date-et-heure-de-controle",
+      "limitation",
+      "localisation-du-controle",
+      "radar"
+    ],
+    "temporal_coverage": {
+      "end": "2024-12-31",
+      "start": "2021-01-01"
+    },
+    "title": "Jeux de données des vitesses relevées par les voitures radars à conduite externalisée ",
+    "uri": "https://www.data.gouv.fr/api/1/datasets/jeux-de-donnees-des-vitesses-relevees-par-les-voitures-radars-a-conduite-externalisee/"
+  }
+}
