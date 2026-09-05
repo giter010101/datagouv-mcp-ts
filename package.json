@@ -1,6 +1,6 @@
 {
   "name": "datagouv-mcp",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "MCP server for data.gouv.fr: search, inspect and query any open dataset of the French national open data platform.",
   "license": "MIT",
   "type": "module",
