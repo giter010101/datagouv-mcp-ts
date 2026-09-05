@@ -3,6 +3,8 @@
 How to run `datagouv-mcp` as a shared Streamable HTTP endpoint. For local IDE use prefer stdio
 (`npx -y datagouv-mcp`, see the [README](../README.md#connect-your-client)).
 
+Cloudflare Wrangler login/secrets (no tokens in git): [cloudflare.md](cloudflare.md). The app is Node, not a Worker yet.
+
 ## Endpoints
 
 | Method / path | Purpose |
