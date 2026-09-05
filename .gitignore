@@ -6,13 +6,11 @@ coverage/
 .pnpm-store/
 .tsdown/
 
-# Environment / Cloudflare Wrangler (never commit secrets or auth)
+# Environment
 .env
 .env.local
 .env.*.local
 .dev.vars
-.wrangler/
-*.pem
 
 # Logs
 *.log
